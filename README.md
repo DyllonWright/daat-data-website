@@ -1,7 +1,7 @@
 # Deploying this page
 
-This folder holds the v0 static landing page for Daat Data (working title — see
-`docs/POSITIONING.md`). It follows the same free hosting pipeline documented in
+This folder holds the v0 static landing page for Daat Data Consulting (brand
+decided 2026-07-14 — see `docs/POSITIONING.md`). It follows the same free hosting pipeline documented in
 the sibling `free-website-workflow` repo: **GitHub stores the file, Cloudflare
 Pages serves it, both stay on free tiers.** Total cost: $0.00.
 
