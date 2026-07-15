@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daat Data — Systems-Based Spiritual Consulting</title>
+<meta name="description" content="Daat Data pairs systems rigor, comparative theology, and modern psychology into one consulting practice for analytical minds working through existential or spiritual questions.">
+
+<!-- Working title notice: "Daat Data" stands as the current working brand name.
+     A final public name remains an open decision — see docs/POSITIONING.md. -->
+
+<!-- Single Google Font, loaded once, with a system-font fallback stack so the
+     page still renders correctly offline or if the request fails. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg-deep: #0a0e1f;
+    --bg-mid: #10152b;
+    --bg-panel: #141a35;
+    --border-soft: rgba(212, 175, 130, 0.18);
+    --gold: #d4af82;
+    --gold-bright: #e8c99a;
+    --ink: #e8e6f0;
+    --ink-dim: #a7a9c4;
+    --ink-faint: #7c7e9c;
+    --max-width: 960px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background:
+      radial-gradient(ellipse at 20% -10%, rgba(90, 70, 140, 0.25), transparent 55%),
+      radial-gradient(ellipse at 85% 15%, rgba(60, 90, 150, 0.18), transparent 50%),
+      linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-mid) 45%, var(--bg-deep) 100%);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3 {
+    font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--gold-bright);
+    margin: 0 0 0.5em 0;
+  }
+
+  a { color: var(--gold); }
+
+  .wrap {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* Decorative starfield — pure CSS, no images, no JS */
+  .stars {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image:
+      radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1.5px 1.5px at 60% 70%, rgba(255,255,255,0.35), transparent),
+      radial-gradient(1px 1px at 30% 85%, rgba(255,255,255,0.3), transparent),
+      radial-gradient(1px 1px at 90% 60%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1.5px 1.5px at 45% 35%, rgba(255,255,255,0.25), transparent),
+      radial-gradient(1px 1px at 15% 55%, rgba(255,255,255,0.3), transparent);
+    background-repeat: repeat;
+    background-size: 100% 100%;
+    opacity: 0.8;
+  }
+
+  header.hero {
+    padding: 6rem 0 4rem;
+    text-align: center;
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    margin-bottom: 1.25rem;
+  }
+
+  header.hero h1 {
+    font-size: clamp(2.4rem, 6vw, 3.75rem);
+    margin-bottom: 0.6em;
+  }
+
+  header.hero p.value-prop {
+    font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+    color: var(--ink-dim);
+    max-width: 640px;
+    margin: 0 auto 2.25rem;
+  }
+
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.85rem 1.75rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    border: 1px solid transparent;
+  }
+
+  .btn:hover { transform: translateY(-1px); }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold) 0%, #b98d5c 100%);
+    color: #1a1408;
+    box-shadow: 0 6px 24px rgba(212, 175, 130, 0.25);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    border-color: var(--border-soft);
+    color: var(--ink);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--gold);
+    color: var(--gold-bright);
+  }
+
+  section {
+    padding: 3.5rem 0;
+    border-top: 1px solid var(--border-soft);
+  }
+
+  section .section-heading {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  section .section-heading h2 {
+    font-size: clamp(1.6rem, 4vw, 2.1rem);
+  }
+
+  section .section-heading p {
+    color: var(--ink-dim);
+    max-width: 560px;
+    margin: 0.5rem auto 0;
+  }
+
+  /* Services teaser */
+  .tiers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .tier-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+    padding: 1.75rem;
+  }
+
+  .tier-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.6em;
+  }
+
+  .tier-card p {
+    color: var(--ink-dim);
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  .tier-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  /* Community / booking / newsletter panels */
+  .panel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .panel {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .panel h3 {
+    font-size: 1.25rem;
+  }
+
+  .panel p {
+    color: var(--ink-dim);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Newsletter form (static placeholder, no external JS) */
+  .newsletter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+  }
+
+  .newsletter-form input[type="email"] {
+    flex: 1 1 220px;
+    padding: 0.7rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--border-soft);
+    background: var(--bg-deep);
+    color: var(--ink);
+    font-size: 0.95rem;
+  }
+
+  .newsletter-form input[type="email"]::placeholder {
+    color: var(--ink-faint);
+  }
+
+  footer {
+    padding: 3rem 0 4rem;
+    border-top: 1px solid var(--border-soft);
+  }
+
+  footer .disclaimer {
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+    max-width: 720px;
+    margin: 0 auto 1.5rem;
+    text-align: center;
+    line-height: 1.7;
+  }
+
+  footer .copyline {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+  }
+
+  @media (max-width: 480px) {
+    header.hero { padding: 4rem 0 2.5rem; }
+    section { padding: 2.5rem 0; }
+    .btn { width: 100%; text-align: center; }
+    .cta-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stars" aria-hidden="true"></div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow"><!-- "Daat Data" = working title, not a finalized public brand name. See docs/POSITIONING.md -->Daat Data</div>
+    <h1>Debug the meaning-making system, not just the symptom.</h1>
+    <p class="value-prop">
+      Systems-based spiritual consulting for analytical minds — comparative theology and modern
+      psychology applied with the same rigor you already bring to hard problems at work. Not therapy.
+      A different discipline, aimed at a different question.
+    </p>
+    <div class="cta-row">
+      <!-- DISCORD INVITE GOES HERE — replace "#" with the live invite link before launch -->
+      <a class="btn btn-secondary" href="#" id="discord-link">Join the Discord</a>
+      <!-- CAL.COM BOOKING LINK GOES HERE — replace "#" with the live Cal.com event link before launch -->
+      <a class="btn btn-primary" href="#" id="booking-link">Book a Session</a>
+    </div>
+  </header>
+
+  <section id="services">
+    <div class="section-heading">
+      <h2>Three ways to engage</h2>
+      <p>Each tier scales the depth of the comparative-theology and systems synthesis to the size of the question.</p>
+    </div>
+    <div class="tiers">
+      <div class="tier-card">
+        <span class="tier-tag">Tier One</span>
+        <h3>Single Session</h3>
+        <p>One intake conversation plus one synthesis report. Fits a bounded question or a first look at how this practice works.</p>
+      </div>
+      <div class="tier-card">
+        <span class="tier-tag">Tier Two</span>
+        <h3>Multi-Week Program</h3>
+        <p>A fixed arc of sessions built on a shared, evolving synthesis report. Fits a sustained transition or a recurring pattern worth real time.</p>
+      </div>
+      <div class="tier-card">
+        <span class="tier-tag">Tier Three</span>
+        <h3>Ongoing</h3>
+        <p>A standing monthly or biweekly cadence with no fixed end date. Fits a client who wants continued comparative and systems support as a regular practice.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="community-booking">
+    <div class="section-heading">
+      <h2>Start here</h2>
+      <p>Two ways in: the community, or straight to a booked session.</p>
+    </div>
+    <div class="panel-grid">
+      <div class="panel">
+        <h3>The Discord</h3>
+        <p>Announcements, client-shared wins, and the intake funnel all live in one low-noise server. No open theology debate, no crisis service — just the path to a session.</p>
+        <!-- DISCORD INVITE GOES HERE — same link as the hero button above -->
+        <a class="btn btn-secondary" href="#">Join the Discord</a>
+      </div>
+      <div class="panel">
+        <h3>Book a Session</h3>
+        <p>Scheduling runs through Cal.com; payment runs through a Stripe Payment Link sent after booking. Discord itself never handles payment.</p>
+        <!-- CAL.COM BOOKING LINK GOES HERE — same link as the hero button above -->
+        <a class="btn btn-primary" href="#">Book Now</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="newsletter">
+    <div class="section-heading">
+      <h2>Recent Studies — the newsletter</h2>
+      <p>A weekly digest of comparative-theology and systems notes, curated from an ongoing personal study practice. Not yet live — the signup below holds a place until a provider gets chosen (see docs/NEWSLETTER-PIPELINE.md).</p>
+    </div>
+    <div class="panel" style="max-width: 520px; margin: 0 auto;">
+      <h3>Get notified at launch</h3>
+      <p>No newsletter provider chosen yet. This form stays inert until one gets wired in — see the note below.</p>
+
+      <!--
+        NEWSLETTER PROVIDER DECISION PENDING — see docs/NEWSLETTER-PIPELINE.md.
+        Once a provider (Buttondown / beehiiv / Substack) gets chosen, replace this
+        mailto placeholder with that provider's embed form or API-backed form action.
+        The mailto below serves as a temporary, zero-dependency capture method only —
+        it opens the visitor's own email client rather than storing an address anywhere.
+      -->
+      <form class="newsletter-form" action="mailto:hello@example.com" method="post" enctype="text/plain">
+        <input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required>
+        <button class="btn btn-primary" type="submit">Notify Me</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <!-- SYNC WITH ATTORNEY-APPROVED WORDING — this disclaimer paraphrases the
+         compliance note in docs/POSITIONING.md and has NOT received legal review.
+         Do not treat this copy as final; replace once counsel signs off. -->
+    <p class="disclaimer">
+      Daat Data offers coaching and consulting services only. This practice does not provide therapy,
+      counseling, or medical or mental-health treatment, and it does not diagnose or treat any
+      condition. If you face a mental-health crisis, please contact a licensed provider or a crisis
+      line rather than this practice.
+    </p>
+    <p class="copyline">&copy; 2026 Daat Data. Working brand name — final naming decision pending.</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
