@@ -96,11 +96,26 @@
     opacity: 0.8;
   }
 
-  /* Text-first hero with the banner art faded to atmosphere beneath it
-     (refactor 2026-07-19, third pass). At ~25% opacity under a vignette the
-     art's own typography no longer competes with the landing copy — the text
-     leads, the art glows underneath, and the bottom edge melts into the page
-     so nothing disrupts the flow below. */
+  /* ─── HERO BACKGROUND SYSTEM ───────────────────────────────────────────────
+     Background images are designed WITHOUT embedded text or logos so they can
+     sit at full atmospheric strength (0.45 opacity) without competing with the
+     HTML copy above. Three art-directed slots handle desktop / tablet / mobile.
+
+     ASSET SPEC (replace placeholder banner.png with purpose-built images):
+       hero-bg-desktop.jpg  — 1920×900px  · 16:9  · safe zone: center 50% horiz
+       hero-bg-tablet.jpg   — 1024×800px  · 4:3   · safe zone: center 60% horiz
+       hero-bg-mobile.jpg   —  768×900px  · 5:6   · safe zone: full width, keep
+                                                      top + bottom edges dark
+
+     AI PROMPT CORE (add to any generator):
+       "deep space, Saturn-like planet, warm gold and ivory on near-black,
+        cinematic chiaroscuro, NO TEXT, NO LOGOS, center area dark and empty
+        for text overlay" + desired pixel dimensions.
+
+     TODO: replace assets/banner.png references below once purpose-built images
+     are ready. Raise opacity toward 0.5–0.6 when the background has no
+     competing embedded typography.
+     ─────────────────────────────────────────────────────────────────────── */
   header.hero {
     position: relative;
     padding: 4rem 0 5.5rem;
@@ -108,12 +123,33 @@
     overflow: hidden;
   }
 
+  /* Desktop slot — swap url() for hero-bg-desktop.jpg when ready */
   header.hero::before {
     content: "";
     position: absolute;
     inset: 0;
+    /* Temporary: banner.png blurred to dissolve its embedded text until a
+       purpose-built desktop background (no typography) replaces it. */
     background: url("assets/banner.png") center 30% / cover no-repeat;
-    opacity: 0.25;
+    opacity: 0.35;
+    filter: blur(12px);
+    /* When replaced with a text-free image: remove filter, raise opacity to ~0.5 */
+  }
+
+  /* Tablet slot — swap for hero-bg-tablet.jpg when ready */
+  @media (max-width: 1023px) {
+    header.hero::before {
+      background-image: url("assets/banner.png"); /* → hero-bg-tablet.jpg */
+      background-position: center 35%;
+    }
+  }
+
+  /* Mobile slot — swap for hero-bg-mobile.jpg when ready */
+  @media (max-width: 767px) {
+    header.hero::before {
+      background-image: url("assets/banner.png"); /* → hero-bg-mobile.jpg */
+      background-position: center top;
+    }
   }
 
   header.hero::after {
