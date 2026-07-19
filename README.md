@@ -10,6 +10,72 @@ One difference from that guide's default walkthrough: the guide assumes
 this repo holds business documents generally, not just the site. The steps
 below account for that.
 
+> Design and copy lessons from the 2026-07-19 revision passes live in
+> `docs/WEBSITE-DESIGN-LEARNINGS.md` — read that before the next visual or
+> copy change.
+
+## Brand reskin (2026-07-19)
+
+The page now carries the ivory/gold/black chiaroscuro treatment drawn from the
+brand art delivered in the repo-root folder `branding logo pfp and banner art/`:
+
+- `website/assets/logo.png` — copied from `profile pic.png` (ivory "DD" serif
+  monogram, gold Saturn ring, sun flare on black). Serves as the favicon, the
+  hero mark, and the source of the palette.
+- `website/assets/banner.png` — copied from `banner art.png` (the monogram over
+  a sun/Saturn spacescape). Serves as the darkened full-bleed hero background
+  and the Open Graph / Twitter-card preview image (relative paths only — no
+  public domain exists yet).
+
+**Naming discrepancy, left for the owner to reconcile:** the brand now appears
+in three spellings across live surfaces — "Da'at Data" (banner art and the
+YouTube bio header, observed 2026-07-19), "daathdata" with an "h" (the business
+email, Linktree, and Threads handle), and "Daat Data Consulting" (the decided
+brand, 2026-07-14, see `docs/POSITIONING.md`). The site keeps the decided
+spelling; the art and channels keep theirs. Reconcile before launch.
+
+**From the owner's YouTube bio (2026-07-19), folded in or flagged:**
+
+- The tagline "Where Consciousness Meets Complexity" (also on the banner art)
+  now appears in the hero, along with the Consulting/Creating/Curating triad.
+- The X link now reads `x.com/DaatData` (no "h"), matching the bio's own link
+  list; the page previously guessed `DaathData`. All other handles matched.
+- The bio names services in esoteric terms (Divination, Astrology, Tarot,
+  Dream Interpretation, Shadow Work, Western Esotericism) that the site's
+  tier copy does not use, and it carries its own disclaimer wording
+  ("Educational and spiritual guidance only… Exoterically / Esoterically…")
+  that differs from the site's footer draft. **Flag for legal review:** the
+  attorney reviewing the footer disclaimer should see the bio wording too, so
+  the two surfaces end up consistent — see the legal-caution rule in
+  `CLAUDE.md` and `docs/POSITIONING.md`. Neither wording got changed here.
+- The bio's Linktree (`linktr.ee/daathdata`) stays unlinked on this page —
+  the Discord/Cal.com funnel remains the site's primary path.
+
+The existing Cloudflare Pages setting **build output directory: `website`**
+already covers the new `website/assets/` folder — no deployment change needed.
+
+**Layout and copy refactor (2026-07-19, three passes):** the landing now opens
+text-first — logo, brand line, tagline, thesis headline ("Most people choose
+between science and spirituality. We study the systems beneath both."),
+one supporting paragraph naming tarot, astrology, dream analysis, and Western
+esotericism as symbolic technologies, and the two CTAs — all in the first
+viewport. The banner artwork sits *beneath* the hero as atmosphere: ~25%
+opacity under a vignette that melts into the page black, so the art glows
+under the text without competing with it (an earlier mid-page divider
+placement sat loose in the flow and got removed). The banner still serves as
+the Open Graph / Twitter-card image at full strength. **Flags:**
+
+- The hero and premises now name divination practices publicly — the owner
+  (and the attorney reviewing the footer disclaimer) should confirm the lines
+  stay inside the positioning boundaries in `docs/POSITIONING.md`. The copy
+  makes no predictive, medical, or outcome claims by design.
+- **Display spelling now reads "Da'at Data Consulting"** in the hero, page
+  title, and social metas, per the owner's 2026-07-19 layout spec (matching
+  the banner art and YouTube bio). The footer disclaimer and © line keep
+  "Daat Data Consulting" — the disclaimer awaits attorney sign-off and the
+  legal entity name remains undecided, so those two lines stay untouched
+  until the owner confirms which spelling the LLC filing uses.
+
 ## One-time setup
 
 1. **Push this repo to GitHub** (it already lives at

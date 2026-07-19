@@ -3,28 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daat Data Consulting — Systems-Based Spiritual Consulting</title>
-<meta name="description" content="Daat Data Consulting pairs systems rigor, comparative theology, and modern psychology into one consulting practice for analytical minds working through existential or spiritual questions.">
+<title>Da'at Data Consulting — Where Consciousness Meets Complexity</title>
+<meta name="description" content="Most people choose between science and spirituality. Da'at Data studies the systems beneath both — tarot, astrology, dream analysis, and Western esotericism, treated as symbolic technologies worth serious inquiry.">
+
+<!-- Brand assets live in website/assets/ (copied 2026-07-19 from the
+     "branding logo pfp and banner art" folder at the repo root). All paths
+     stay relative — no public domain exists yet, so absolute URLs would break. -->
+<link rel="icon" type="image/png" href="assets/logo.png">
+<meta property="og:title" content="Da'at Data Consulting — Where Consciousness Meets Complexity">
+<meta property="og:description" content="Most people choose between science and spirituality. Da'at Data studies the systems beneath both — tarot, astrology, dream analysis, and Western esotericism, treated as symbolic technologies worth serious inquiry.">
+<meta property="og:image" content="assets/banner.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Da'at Data Consulting — Where Consciousness Meets Complexity">
+<meta name="twitter:description" content="Most people choose between science and spirituality. Da'at Data studies the systems beneath both — tarot, astrology, dream analysis, and Western esotericism, treated as symbolic technologies worth serious inquiry.">
+<meta name="twitter:image" content="assets/banner.png">
 
 <!-- Brand name decided 2026-07-14: "Daat Data Consulting." Attorney review of the
      compliance/disclaimer language below still has not happened — see the
      footer disclaimer note and docs/POSITIONING.md. -->
 
-<!-- Single Google Font, loaded once, with a system-font fallback stack so the
-     page still renders correctly offline or if the request fails. -->
 <!-- Self-contained: no external font request (codex review 2026-07-14). Georgia serves as the display serif; self-host Cormorant Garamond later if the brand demands it. -->
 
 <style>
+  /* Palette reskinned 2026-07-19 to match the brand art in website/assets/:
+     ivory monogram, gold Saturn ring, sun-flare chiaroscuro on near-black. */
   :root {
-    --bg-deep: #0a0e1f;
-    --bg-mid: #10152b;
-    --bg-panel: #141a35;
-    --border-soft: rgba(212, 175, 130, 0.18);
-    --gold: #d4af82;
-    --gold-bright: #e8c99a;
-    --ink: #e8e6f0;
-    --ink-dim: #a7a9c4;
-    --ink-faint: #7c7e9c;
+    --bg-deep: #060504;
+    --bg-panel: #0d0b08;
+    --border-soft: rgba(201, 162, 75, 0.22);
+    --gold: #c9a24b;
+    --gold-bright: #e8c887;
+    --gold-deep: #8a6a2a;
+    --ink: #f2ead9;
+    --ink-dim: #b8ae9a;
+    --ink-faint: #8a8171;
     --max-width: 960px;
   }
 
@@ -35,10 +48,13 @@
   body {
     margin: 0;
     padding: 0;
+    /* Chiaroscuro: a warm sun glow breaks from the upper left and fades into
+       deep black toward the lower right — the banner's light-versus-shadow motif. */
     background:
-      radial-gradient(ellipse at 20% -10%, rgba(90, 70, 140, 0.25), transparent 55%),
-      radial-gradient(ellipse at 85% 15%, rgba(60, 90, 150, 0.18), transparent 50%),
-      linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-mid) 45%, var(--bg-deep) 100%);
+      radial-gradient(ellipse 90% 60% at 12% -8%, rgba(232, 200, 135, 0.16), transparent 55%),
+      radial-gradient(ellipse 70% 50% at 100% 110%, rgba(0, 0, 0, 0.9), transparent 60%),
+      linear-gradient(155deg, #0b0906 0%, var(--bg-deep) 55%, #030202 100%);
+    background-color: var(--bg-deep);
     color: var(--ink);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
@@ -50,7 +66,7 @@
     font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
     font-weight: 600;
     letter-spacing: 0.01em;
-    color: var(--gold-bright);
+    color: var(--ink);
     margin: 0 0 0.5em 0;
   }
 
@@ -62,47 +78,120 @@
     padding: 0 1.5rem;
   }
 
-  /* Decorative starfield — pure CSS, no images, no JS */
+  /* Decorative starfield — pure CSS, no images, no JS; warm-tinted to match the art */
   .stars {
     position: fixed;
     inset: 0;
     z-index: -1;
     background-image:
-      radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.5), transparent),
-      radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.4), transparent),
-      radial-gradient(1.5px 1.5px at 60% 70%, rgba(255,255,255,0.35), transparent),
-      radial-gradient(1px 1px at 30% 85%, rgba(255,255,255,0.3), transparent),
-      radial-gradient(1px 1px at 90% 60%, rgba(255,255,255,0.4), transparent),
-      radial-gradient(1.5px 1.5px at 45% 35%, rgba(255,255,255,0.25), transparent),
-      radial-gradient(1px 1px at 15% 55%, rgba(255,255,255,0.3), transparent);
+      radial-gradient(1px 1px at 10% 20%, rgba(242, 234, 217, 0.5), transparent),
+      radial-gradient(1px 1px at 80% 10%, rgba(232, 200, 135, 0.4), transparent),
+      radial-gradient(1.5px 1.5px at 60% 70%, rgba(242, 234, 217, 0.35), transparent),
+      radial-gradient(1px 1px at 30% 85%, rgba(232, 200, 135, 0.3), transparent),
+      radial-gradient(1px 1px at 90% 60%, rgba(242, 234, 217, 0.4), transparent),
+      radial-gradient(1.5px 1.5px at 45% 35%, rgba(232, 200, 135, 0.25), transparent),
+      radial-gradient(1px 1px at 15% 55%, rgba(242, 234, 217, 0.3), transparent);
     background-repeat: repeat;
     background-size: 100% 100%;
     opacity: 0.8;
   }
 
+  /* Text-first hero with the banner art faded to atmosphere beneath it
+     (refactor 2026-07-19, third pass). At ~25% opacity under a vignette the
+     art's own typography no longer competes with the landing copy — the text
+     leads, the art glows underneath, and the bottom edge melts into the page
+     so nothing disrupts the flow below. */
   header.hero {
-    padding: 6rem 0 4rem;
+    position: relative;
+    padding: 4rem 0 5.5rem;
     text-align: center;
+    overflow: hidden;
+  }
+
+  header.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("assets/banner.png") center 30% / cover no-repeat;
+    opacity: 0.25;
+  }
+
+  header.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 85% 75% at 50% 40%, transparent 0%, rgba(6, 5, 4, 0.55) 70%, var(--bg-deep) 100%),
+      linear-gradient(180deg, rgba(6, 5, 4, 0.4) 0%, transparent 30%, transparent 55%, var(--bg-deep) 100%);
+  }
+
+  header.hero .wrap {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-logo {
+    width: clamp(84px, 10vw, 112px);
+    height: auto;
+    margin-bottom: 1.25rem;
+    filter: drop-shadow(0 0 20px rgba(232, 200, 135, 0.22));
   }
 
   .eyebrow {
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    font-size: 0.75rem;
-    color: var(--ink-faint);
-    margin-bottom: 1.25rem;
+    font-size: 0.8rem;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+  }
+
+  .tagline {
+    font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2.2vw, 1.15rem);
+    color: var(--gold);
+    margin: 0 auto 2.25rem;
   }
 
   header.hero h1 {
-    font-size: clamp(2.4rem, 6vw, 3.75rem);
-    margin-bottom: 0.6em;
+    font-size: clamp(2rem, 5vw, 3.1rem);
+    max-width: 800px;
+    margin: 0 auto 0.7em;
+    line-height: 1.2;
+  }
+
+  header.hero h1 em {
+    font-style: italic;
+    color: var(--gold-bright);
   }
 
   header.hero p.value-prop {
-    font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+    font-size: clamp(1.05rem, 2.4vw, 1.25rem);
     color: var(--ink-dim);
-    max-width: 640px;
-    margin: 0 auto 2.25rem;
+    max-width: 620px;
+    margin: 0 auto 2.5rem;
+  }
+
+  /* Working premises — one quotable line at a time, with room to land */
+  .premise-list {
+    display: grid;
+    gap: 2.5rem;
+    max-width: 620px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .premise {
+    font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    font-size: clamp(1.2rem, 2.8vw, 1.5rem);
+    line-height: 1.5;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .premise em {
+    font-style: normal;
+    color: var(--gold-bright);
   }
 
   .cta-row {
@@ -127,13 +216,13 @@
   .btn:hover { transform: translateY(-1px); }
 
   .btn-primary {
-    background: linear-gradient(135deg, var(--gold) 0%, #b98d5c 100%);
-    color: #1a1408;
-    box-shadow: 0 6px 24px rgba(212, 175, 130, 0.25);
+    background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold) 45%, var(--gold-deep) 100%);
+    color: #171105;
+    box-shadow: 0 6px 24px rgba(201, 162, 75, 0.3);
   }
 
   .btn-secondary {
-    background: transparent;
+    background: rgba(6, 5, 4, 0.6);
     border-color: var(--border-soft);
     color: var(--ink);
   }
@@ -144,7 +233,7 @@
   }
 
   section {
-    padding: 3.5rem 0;
+    padding: 4.5rem 0;
     border-top: 1px solid var(--border-soft);
   }
 
@@ -155,6 +244,16 @@
 
   section .section-heading h2 {
     font-size: clamp(1.6rem, 4vw, 2.1rem);
+  }
+
+  /* Thin gold rule under each section heading — the ring motif in miniature */
+  section .section-heading h2::after {
+    content: "";
+    display: block;
+    width: 56px;
+    height: 1px;
+    margin: 0.6rem auto 0;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
   }
 
   section .section-heading p {
@@ -173,8 +272,26 @@
   .tier-card {
     background: var(--bg-panel);
     border: 1px solid var(--border-soft);
+    border-top: 2px solid var(--gold);
     border-radius: 14px;
     padding: 1.75rem;
+  }
+
+  /* Light-to-shadow progression across the three tiers: full sun, eclipse edge,
+     ringed Saturn — rendered purely with CSS accents, no extra images. */
+  .tier-sun {
+    border-top-color: var(--gold-bright);
+    background: linear-gradient(180deg, rgba(232, 200, 135, 0.09), var(--bg-panel) 55%);
+  }
+
+  .tier-eclipse {
+    border-top-color: var(--gold);
+    background: linear-gradient(180deg, rgba(201, 162, 75, 0.05), var(--bg-panel) 55%);
+  }
+
+  .tier-saturn {
+    border-top-color: var(--gold-deep);
+    background: linear-gradient(180deg, rgba(138, 106, 42, 0.05), var(--bg-panel) 55%);
   }
 
   .tier-card h3 {
@@ -207,6 +324,7 @@
   .panel {
     background: var(--bg-panel);
     border: 1px solid var(--border-soft);
+    border-top: 2px solid var(--gold);
     border-radius: 14px;
     padding: 2rem;
     text-align: center;
@@ -298,8 +416,8 @@
   }
 
   @media (max-width: 480px) {
-    header.hero { padding: 4rem 0 2.5rem; }
-    section { padding: 2.5rem 0; }
+    header.hero { padding: 3rem 0 3.5rem; }
+    section { padding: 3rem 0; }
     .btn { width: 100%; text-align: center; }
     .cta-row { flex-direction: column; }
   }
@@ -309,15 +427,20 @@
 
 <div class="stars" aria-hidden="true"></div>
 
-<div class="wrap">
-
-  <header class="hero">
-    <div class="eyebrow">Daat Data Consulting</div>
-    <h1>Debug the meaning-making system, not just the symptom.</h1>
+<header class="hero">
+  <div class="wrap">
+    <!-- Display brand spelled "Da'at" per the owner's spec (2026-07-19); the
+         footer disclaimer and © line keep "Daat" until the legal name gets
+         confirmed — see website/README.md. -->
+    <img class="hero-logo" src="assets/logo.png"
+         alt="Da'at Data monogram: two interlocked ivory serif letter Ds circled by a gold planetary ring">
+    <div class="eyebrow">Da'at Data Consulting</div>
+    <p class="tagline">Where consciousness meets complexity.</p>
+    <h1>Most people choose between science and spirituality.<br><em>We study the systems beneath both.</em></h1>
     <p class="value-prop">
-      Systems-based spiritual consulting for analytical minds — comparative theology and modern
-      psychology applied with the same rigor you already bring to hard problems at work. Not therapy.
-      A different discipline, aimed at a different question.
+      Tarot, astrology, dream analysis, Western esotericism — symbolic technologies
+      refined over millennia for reading the patterns beneath a life. We approach them
+      with method, curiosity, and respect.
     </p>
     <div class="cta-row">
       <!-- DISCORD INVITE GOES HERE — replace "#" with the live invite link before launch -->
@@ -325,28 +448,42 @@
       <!-- CAL.COM BOOKING LINK GOES HERE — replace "#" with the live Cal.com event link before launch -->
       <a class="btn btn-primary" href="#" id="booking-link">Book a Session</a>
     </div>
-  </header>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section id="premises">
+    <div class="section-heading">
+      <h2>Working premises</h2>
+    </div>
+    <div class="premise-list">
+      <p class="premise">Every civilization ships an operating system. <em>Almost nobody reads the source.</em></p>
+      <p class="premise">Astrology survived forty centuries not by predicting the future, but by <em>scheduling reflection</em>.</p>
+      <p class="premise">The map you inherit becomes the prison you defend — <em>unless you learn cartography</em>.</p>
+    </div>
+  </section>
 
   <section id="services">
     <div class="section-heading">
-      <h2>Three ways to engage</h2>
-      <p>Each tier scales the depth of the comparative-theology and systems synthesis to the size of the question.</p>
+      <h2>The work, at three depths</h2>
+      <p>Start small. It scales only if the question earns it.</p>
     </div>
     <div class="tiers">
-      <div class="tier-card">
+      <div class="tier-card tier-sun">
         <span class="tier-tag">Tier One</span>
         <h3>Single Session</h3>
-        <p>One intake conversation plus one synthesis report. Fits a bounded question or a first look at how this practice works.</p>
+        <p>Bring one bounded question. Leave with one written synthesis. A controlled experiment.</p>
       </div>
-      <div class="tier-card">
+      <div class="tier-card tier-eclipse">
         <span class="tier-tag">Tier Two</span>
         <h3>Multi-Week Program</h3>
-        <p>A fixed arc of sessions built on a shared, evolving synthesis report. Fits a sustained transition or a recurring pattern worth real time.</p>
+        <p>Recurring patterns demand repeated observation — a fixed arc of sittings around one evolving document.</p>
       </div>
-      <div class="tier-card">
+      <div class="tier-card tier-saturn">
         <span class="tier-tag">Tier Three</span>
         <h3>Ongoing</h3>
-        <p>A standing monthly or biweekly cadence with no fixed end date. Fits a client who wants continued comparative and systems support as a regular practice.</p>
+        <p>A standing cadence, no fixed end date. For people who treat reflection as infrastructure.</p>
       </div>
     </div>
   </section>
@@ -354,12 +491,12 @@
   <section id="community-booking">
     <div class="section-heading">
       <h2>Start here</h2>
-      <p>Two ways in: the community, or straight to a booked session.</p>
+      <p>Two doors: the community, or straight to a booked session.</p>
     </div>
     <div class="panel-grid">
       <div class="panel">
         <h3>The Discord</h3>
-        <p>Announcements, client-shared wins, and the intake funnel all live in one low-noise server. No open theology debate, no crisis service — just the path to a session.</p>
+        <p>Research threads, Q&amp;As, and the path to a session — one low-noise server. No debate arena, no crisis line.</p>
         <!-- DISCORD INVITE GOES HERE — same link as the hero button above -->
         <a class="btn btn-secondary" href="#">Join the Discord</a>
       </div>
@@ -375,7 +512,7 @@
   <section id="newsletter">
     <div class="section-heading">
       <h2>Recent Studies — the newsletter</h2>
-      <p>A weekly digest of comparative-theology and systems notes, curated from an ongoing personal study practice. Not yet live — the signup below holds a place until a provider gets chosen (see docs/NEWSLETTER-PIPELINE.md).</p>
+      <p>A weekly record of what this practice reads, tests, and discards. Not yet live — the signup below holds a place until a provider gets chosen.</p>
     </div>
     <div class="panel" style="max-width: 520px; margin: 0 auto;">
       <h3>Get notified at launch</h3>
@@ -398,18 +535,20 @@
   <section id="connect">
     <div class="section-heading">
       <h2>Watch and follow</h2>
-      <p>Short-form and long-form video, plus the rest of the channel presence, all live here.</p>
+      <p>Satire on the surface; load-bearing ideas underneath.</p>
     </div>
-    <!-- Handles sourced from the ClipPipeline repo (pipeline/analysis_engine.py and
-         assembly/titles.py, most recently updated 2026-07-14). Older generated
-         outputs in that same repo (outputs/analysis/*/chapters.txt) show a
-         slightly different TikTok/Instagram handle (@daathdata5 / daathdata,
-         an earlier naming) — confirm the live handle before launch if a link 404s. -->
+    <!-- Handles originally sourced from the ClipPipeline repo (pipeline/analysis_engine.py
+         and assembly/titles.py, updated 2026-07-14). On 2026-07-19 the owner's live
+         YouTube bio confirmed: TikTok @DaatData, Instagram DaatData, X x.com/DaatData
+         (no "h" — corrected here from the earlier DaathData guess), Threads @DaathData
+         (with "h"), YouTube @DaatData. The bio also lists a Linktree
+         (linktr.ee/daathdata) and business email (daathdata@gmail.com), both spelled
+         with an "h" — not linked on this page; the Discord/Cal.com funnel stays primary. -->
     <div class="social-row">
       <a class="social-link" href="https://www.youtube.com/@DaatData" target="_blank" rel="noopener">YouTube</a>
       <a class="social-link" href="https://www.tiktok.com/@daatdata" target="_blank" rel="noopener">TikTok</a>
       <a class="social-link" href="https://www.instagram.com/daatdata" target="_blank" rel="noopener">Instagram</a>
-      <a class="social-link" href="https://x.com/DaathData" target="_blank" rel="noopener">X</a>
+      <a class="social-link" href="https://x.com/DaatData" target="_blank" rel="noopener">X</a>
       <a class="social-link" href="https://www.threads.net/@daathdata" target="_blank" rel="noopener">Threads</a>
     </div>
   </section>
@@ -419,7 +558,7 @@
       <a class="social-link" href="https://www.youtube.com/@DaatData" target="_blank" rel="noopener">YouTube</a>
       <a class="social-link" href="https://www.tiktok.com/@daatdata" target="_blank" rel="noopener">TikTok</a>
       <a class="social-link" href="https://www.instagram.com/daatdata" target="_blank" rel="noopener">Instagram</a>
-      <a class="social-link" href="https://x.com/DaathData" target="_blank" rel="noopener">X</a>
+      <a class="social-link" href="https://x.com/DaatData" target="_blank" rel="noopener">X</a>
       <a class="social-link" href="https://www.threads.net/@daathdata" target="_blank" rel="noopener">Threads</a>
     </div>
     <!-- SYNC WITH ATTORNEY-APPROVED WORDING — this disclaimer paraphrases the
