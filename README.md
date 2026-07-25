@@ -76,6 +76,28 @@ the Open Graph / Twitter-card image at full strength. **Flags:**
   legal entity name remains undecided, so those two lines stay untouched
   until the owner confirms which spelling the LLC filing uses.
 
+## ⚠️ Deployment reality check (2026-07-25)
+
+The one-time setup below describes the *intended* pipeline. What actually runs
+differs, and the gap matters:
+
+- A Cloudflare Pages project exists at **`website-9t2.pages.dev`** (HTTP 200),
+  but it builds from **`github.com/daathdata/website`** (private) — **not this
+  repo.** The page it serves is a different, older design that still carries
+  the pre-2026-07-19 social handles (`x.com/DaathData`, `tiktok.com/@daathdata5`)
+  this repo already corrected, and it has no Discord invite, no Cal.com
+  placeholder, no newsletter block, and no disclaimer.
+- The custom domain **`daatdata.net`** (registered 2026-07-25) returns **HTTP
+  522** at the apex and **525** on `www` — leftover Namecheap parking records
+  sit proxied in the Cloudflare zone and the Pages custom domain never
+  completed attachment.
+
+**This repo holds the current, correct copy of the site.** Full diagnosis, the
+DNS evidence, and the fix sequence live in `docs/INFRASTRUCTURE.md` → **Known
+problems** and **Recommended next actions**. Repointing the existing Pages
+project at this repo (build output directory `website`) resolves both — no
+migration, one settings change.
+
 ## One-time setup
 
 1. **Push this repo to GitHub** (it already lives at
@@ -120,10 +142,17 @@ marked with an HTML comment at its location in `index.html`):
   WORDING`; this paraphrases the compliance note in `docs/POSITIONING.md`
   and has not received legal review. Do not treat it as final.
 
-## Optional: custom domain and QR code
+## Custom domain and QR code — done, with one fault outstanding
 
-Once the `.pages.dev` URL works, the free-website-workflow guide's later
-sections cover connecting a custom domain (roughly $10-15/year, verify
-current pricing) and generating a QR code for print/flyer use via a
-browser's built-in QR generator or a free tool like QR Code Monkey. Both
-apply unchanged to this page.
+No longer optional and no longer hypothetical:
+
+- **Domain:** `daatdata.net`, registered 2026-07-25 through Namecheap (~$12/yr),
+  DNS delegated to Cloudflare. It does **not** serve yet — see the reality
+  check above. `docs/INFRASTRUCTURE.md` carries the record and the fix.
+- **Email:** `contact@daatdata.net` forwards to the owner's Gmail via
+  Cloudflare Email Routing, tested working. Receive-only for now.
+- **QR codes:** already scripted, not hand-made. `discord/assets/generate-qr.py`
+  writes brand-marked codes for the invite, every social handle, the Linktree,
+  and the contact address into `discord/assets/qr/`. The **website QR stays
+  commented out** in that script until `daatdata.net` returns 200 — uncomment
+  and re-run then.
