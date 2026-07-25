@@ -106,8 +106,9 @@ Cloudflare-side action needed after the one-time setup above.
 Before treating this page as launch-ready, fill in the following (each
 marked with an HTML comment at its location in `index.html`):
 
-- **Discord invite link** — replace the two `href="#"` placeholders tagged
-  `DISCORD INVITE GOES HERE`.
+- ~~**Discord invite link**~~ — done 2026-07-24: both buttons point at the
+  permanent invite `https://discord.gg/JY2Zbk7RyS` (canonical record:
+  `discord/README.md`).
 - **Cal.com booking link** — replace the two `href="#"` placeholders tagged
   `CAL.COM BOOKING LINK GOES HERE`, once the Cal.com event type exists (see
   `docs/DISCORD-SPEC.md` for the booking/payment stack recommendation).
