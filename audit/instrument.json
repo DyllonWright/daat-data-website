@@ -1,0 +1,2299 @@
+{
+  "schema": "ontology-audit/instrument",
+  "version": "0.6.0",
+  "updated": "2026-09-18",
+  "status": "fact layer populated for 17 positions; prose at v3; citations drafted but UNVERIFIED",
+  "contract": "Two layers per object. `facts` bears the scoring and changes only with a version bump; `prose` holds the words a respondent reads and may be regenerated freely. See README.md.",
+  "axes": [
+    {
+      "id": "substrate",
+      "order": 1,
+      "pole_positive": {
+        "letter": "I",
+        "name": "immanent"
+      },
+      "pole_negative": {
+        "letter": "T",
+        "name": "transcendent"
+      },
+      "facts": {
+        "settles": "Whether the real inheres in what exists or lies beyond it.",
+        "positive_claim": "The real inheres in what exists; depth into the world reaches it.",
+        "negative_claim": "The real lies beyond what exists; the world at best transmits it."
+      },
+      "prose": {
+        "selected": "v1",
+        "variants": [
+          {
+            "id": "v1",
+            "author": "opus-5",
+            "humanized": false,
+            "label": "Substrate",
+            "question": "Where does the real live?",
+            "positive": "immanent",
+            "negative": "transcendent"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vector",
+      "order": 2,
+      "pole_positive": {
+        "letter": "G",
+        "name": "gnosis"
+      },
+      "pole_negative": {
+        "letter": "P",
+        "name": "praxis"
+      },
+      "facts": {
+        "settles": "Whether change follows from seeing correctly or from doing repeatedly.",
+        "positive_claim": "Correct seeing produces the change; conduct follows understanding.",
+        "negative_claim": "Repeated doing produces the change; understanding follows conduct."
+      },
+      "prose": {
+        "selected": "v1",
+        "variants": [
+          {
+            "id": "v1",
+            "author": "opus-5",
+            "humanized": false,
+            "label": "Vector",
+            "question": "What produces change — seeing, or doing?",
+            "positive": "gnosis",
+            "negative": "praxis"
+          }
+        ]
+      }
+    },
+    {
+      "id": "agency",
+      "order": 3,
+      "pole_positive": {
+        "letter": "W",
+        "name": "will"
+      },
+      "pole_negative": {
+        "letter": "S",
+        "name": "surrender"
+      },
+      "facts": {
+        "settles": "Whether a person acts upon the pattern or aligns to it.",
+        "positive_claim": "The practitioner exerts intention and the cosmos answers it.",
+        "negative_claim": "The practitioner consents to the pattern and stops obstructing it."
+      },
+      "prose": {
+        "selected": "v1",
+        "variants": [
+          {
+            "id": "v1",
+            "author": "opus-5",
+            "humanized": false,
+            "label": "Agency",
+            "question": "How does a person meet the pattern?",
+            "positive": "will",
+            "negative": "surrender"
+          }
+        ]
+      }
+    },
+    {
+      "id": "warrant",
+      "order": 4,
+      "pole_positive": {
+        "letter": "L",
+        "name": "lineage"
+      },
+      "pole_negative": {
+        "letter": "D",
+        "name": "direct"
+      },
+      "facts": {
+        "settles": "What authorizes a claim - a transmitted and vetted framework, or first-person evidence.",
+        "positive_claim": "A claim earns warrant by surviving a framework others maintain and test: a lineage, a school, a discipline, a body of review.",
+        "negative_claim": "A claim earns warrant when direct engagement confirms it, whatever any institution has ratified.",
+        "note": "Deliberately register-neutral as of v0.2.0. A monastic lineage and a peer-review process both count as the positive pole. The earlier definition admitted only mystical transmission, which mis-sorted every respondent who trusts institutional method."
+      },
+      "prose": {
+        "selected": "v1",
+        "variants": [
+          {
+            "id": "v1",
+            "author": "opus-5",
+            "humanized": false,
+            "label": "Warrant",
+            "question": "What authorizes a claim?",
+            "positive": "lineage",
+            "negative": "direct experience"
+          }
+        ]
+      }
+    },
+    {
+      "id": "verdict",
+      "order": 5,
+      "pole_positive": {
+        "letter": "C",
+        "name": "cosmos sound"
+      },
+      "pole_negative": {
+        "letter": "F",
+        "name": "cosmos flawed"
+      },
+      "facts": {
+        "settles": "Whether the setup the practitioner finds themselves inside deserves trust.",
+        "positive_claim": "The order holds; apparent defects reflect an ungrasped logic.",
+        "negative_claim": "The order carries a genuine defect; apparent defects reflect a real one.",
+        "note": "Carries unusual discriminating weight — it separates traditions that agree on the other four. The Hermeticist repairs the world; the Gnostic leaves it."
+      },
+      "prose": {
+        "selected": "v1",
+        "variants": [
+          {
+            "id": "v1",
+            "author": "opus-5",
+            "humanized": false,
+            "label": "Verdict",
+            "question": "What kind of setup does the world run on?",
+            "positive": "sound",
+            "negative": "flawed"
+          }
+        ]
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "q01",
+      "axis": "substrate",
+      "block_order": 1,
+      "tiebreaker": false,
+      "weight": 1.0,
+      "facts": {
+        "tests": "Whether sacredness is a property of the object or an event arriving from beyond it.",
+        "positive_proposition": "Sacredness inheres in the object; perception discovers what was already there.",
+        "negative_proposition": "Sacredness arrives from beyond the object; the object momentarily transmits it.",
+        "separates": [
+          "core-shamanism",
+          "daoism",
+          "hermeticism",
+          "indigenous-animism"
+        ],
+        "from": [
+          "gnosticism",
+          "apophatic",
+          "advaita"
+        ]
+      },
+      "prose": {
+        "selected": "v3",
+        "variants": [
+          {
+            "id": "v1",
+            "author": "opus-5",
+            "humanized": false,
+            "stem": "When something strikes you as sacred, what makes it so?",
+            "positive": "It already held that quality; you finally noticed.",
+            "negative": "Something from beyond it shone through for a moment."
+          },
+          {
+            "id": "v2",
+            "author": "opus-5",
+            "humanized": false,
+            "note": "Concrete register - owner selection 2026-09-18. Each item describes a situation rather than stating an abstraction, so the respondent answers about a person in a scene instead of about which philosophy sounds better.",
+            "stem": "You walk into an old church, or a grove, or a room where something happened. The feeling arrives. Where did it sit a minute before you got there?",
+            "positive": "In the place. It waited there; you showed up.",
+            "negative": "Somewhere else. The place let it through for a moment."
+          },
+          {
+            "id": "v3",
+            "author": "opus-5 + humanizer skill",
+            "humanized": true,
+            "note": "Humanizer pass over v2. Removed the spaced em dash that closed all twenty v2 stems (the strongest single AI tell, and used structurally across the whole instrument), thinned a rule-of-three cluster at q01/q11/q19, and cut one aphorism formula at q02. E-Prime kept: the humanizer treats copula avoidance as a tell, but the repo rule wins, so concrete verbs replace the flagged 'works as / serves as' constructions.",
+            "stem": "You walk into an old church, or a room where something happened. The feeling arrives. Where did it sit a minute before you got there?",
+            "positive": "In the place. It waited there; you showed up.",
+            "negative": "Somewhere else. The place let it through for a moment."
+          }
+        ]
+      },
+      "audit": {
+        "status": "audited",
+        "social_desirability": "mild",
+        "leakage": "none",
+        "notes": "'You finally noticed' carries mindfulness-culture approval. Prose should avoid rewarding either pole with the more fashionable register."
+      }
+    },
+    {
+      "id": "q02",
+      "axis": "substrate",
+      "block_order": 2,
+      "tiebreaker": false,
+      "weight": 1.0,
+      "facts": {
+        "tests": "Whether matter carries the pattern or conceals it.",
+        "positive_proposition": "Matter carries the pattern; going further into it reaches the real.",
+        "negative_proposition": "Matter veils the pattern; going past it reaches the real.",
+        "separates": [
+          "core-shamanism",
+          "hermeticism",
+          "indigenous-animism",
+          "materialism"
+        ],
+        "from": [
+          "gnosticism",
+          "advaita",
+          "apophatic"
+        ]
+      },
+      "prose": {
+        "selected": "v3",
+        "variants": [
+          {
+            "id": "v1",
+            "author": "opus-5",
+            "humanized": false,
+            "stem": "Matter —",
+            "positive": "carries the pattern. You reach the divine by going further in.",
+            "negative": "veils the pattern. You reach the divine by going past it."
+          },
+          {
+            "id": "v2",
+            "author": "opus-5",
+            "humanized": false,
+            "note": "Concrete register - owner selection 2026-09-18. Each item describes a situation rather than stating an abstraction, so the respondent answers about a person in a scene instead of about which philosophy sounds better.",
+            "stem": "A physicist and a mystic each spend thirty years looking for what actually goes on underneath. The physicist goes further into matter. The mystic goes past it. Who walks toward the real thing?",
+            "positive": "The physicist. It sits in there.",
+            "negative": "The mystic. Matter works as the curtain."
+          },
+          {
+            "id": "v3",
+            "author": "opus-5 + humanizer skill",
+            "humanized": true,
+            "note": "Humanizer pass over v2. Removed the spaced em dash that closed all twenty v2 stems (the strongest single AI tell, and used structurally across the whole instrument), thinned a rule-of-three cluster at q01/q11/q19, and cut one aphorism formula at q02. E-Prime kept: the humanizer treats copula avoidance as a tell, but the repo rule wins, so concrete verbs replace the flagged 'works as / serves as' constructions.",
+            "stem": "A physicist and a mystic each spend thirty years looking for what actually goes on underneath. The physicist goes further into matter. The mystic goes past it. Who walks toward the real thing?",
+            "positive": "The physicist. It sits in there.",
+            "negative": "The mystic. Matter hides it."
+          }
+        ]
+      },
+      "audit": {
+        "status": "audited",
+        "social_desirability": "mild",
+        "leakage": "none",
+        "notes": "Immanent pole reads as monist-scientific and therefore safer to a modern reader. Watch the prose for that tilt."
+      }
+    },
+    {
+      "id": "q03",
+      "axis": "substrate",
+      "block_order": 3,
+      "tiebreaker": false,
+      "weight": 1.0,
+      "facts": {
+        "tests": "Whether maturation increases or decreases dependence on embodied life.",
+        "positive_proposition": "Full realization looks like maximal engagement with embodied existence.",
+        "negative_proposition": "Full realization looks like minimal reliance on embodied existence.",
+        "separates": [
+          "daoism",
+          "stoicism",
+          "zen"
+        ],
+        "from": [
+          "theravada",
+          "gnosticism",
+          "advaita"
+        ]
+      },
+      "prose": {
+        "selected": "v3",
+        "variants": [
+          {
+            "id": "v1",
+            "author": "opus-5",
+            "humanized": false,
+            "stem": "A perfected version of you would —",
+            "positive": "inhabit this life more completely.",
+            "negative": "need much less of this life at all."
+          },
+          {
+            "id": "v2",
+            "author": "opus-5",
+            "humanized": false,
+            "note": "Concrete register - owner selection 2026-09-18. Each item describes a situation rather than stating an abstraction, so the respondent answers about a person in a scene instead of about which philosophy sounds better.",
+            "stem": "Two people reach the end of a long practice. One eats, works, argues and loves more fully than before. The other needs almost none of it. Which one got further?",
+            "positive": "The one who needs more of life.",
+            "negative": "The one who needs less of it."
+          },
+          {
+            "id": "v3",
+            "author": "opus-5 + humanizer skill",
+            "humanized": true,
+            "note": "Humanizer pass over v2. Removed the spaced em dash that closed all twenty v2 stems (the strongest single AI tell, and used structurally across the whole instrument), thinned a rule-of-three cluster at q01/q11/q19, and cut one aphorism formula at q02. E-Prime kept: the humanizer treats copula avoidance as a tell, but the repo rule wins, so concrete verbs replace the flagged 'works as / serves as' constructions.",
+            "stem": "Two people reach the end of a long practice. One eats, works, argues and loves more fully than before. The other needs almost none of it. Which one got further?",
+            "positive": "The one who needs more of life.",
+            "negative": "The one who needs less of it."
+          }
+        ]
+      },
+      "audit": {
+        "status": "audited",
+        "social_desirability": "high",
+        "leakage": "verdict, agency",
+        "notes": "Stripped the 'perfected version of you' framing, which recruited self-actualization culture toward the immanent pole. Audit called it fatal for a general audience; discounted somewhat here because an esoterically-inclined audience grants renunciation real cachet. Direction of bias accepted, magnitude not."
+      }
+    },
+    {
+      "id": "q04",
+      "axis": "substrate",
+      "block_order": 4,
+      "tiebreaker": true,
+      "weight": 1.5,
+      "facts": {
+        "tests": "Whether correspondence between levels states a structural fact or a consoling figure.",
+        "positive_proposition": "Correspondence language describes an actual structural mirroring between levels of reality.",
+        "negative_proposition": "Correspondence language works as figurative consolation rather than a claim about structure.",
+        "separates": [
+          "hermeticism",
+          "kabbalah",
+          "theurgy"
+        ],
+        "from": [
+          "existentialism",
+          "materialism",
+          "theravada"
+        ]
+      },
+      "prose": {
+        "selected": "v4",
+        "variants": [
+          {
+            "id": "v1",
+            "author": "opus-5",
+            "humanized": false,
+            "stem": "\"As above, so below\" reads as —",
+            "positive": "a literal structural claim about how the levels mirror.",
+            "negative": "a poetic consolation for creatures stuck below."
+          },
+          {
+            "id": "v2",
+            "author": "opus-5",
+            "humanized": false,
+            "note": "Concrete register - owner selection 2026-09-18. Each item describes a situation rather than stating an abstraction, so the respondent answers about a person in a scene instead of about which philosophy sounds better.",
+            "stem": "A teacher says the pattern in an atom repeats in a solar system, and again in a life. She means it —",
+            "positive": "literally. The levels really do mirror.",
+            "negative": "as an image. A true-sounding one, not a claim about structure."
+          },
+          {
+            "id": "v3",
+            "author": "opus-5 + humanizer skill",
+            "humanized": true,
+            "note": "Humanizer pass over v2. Removed the spaced em dash that closed all twenty v2 stems (the strongest single AI tell, and used structurally across the whole instrument), thinned a rule-of-three cluster at q01/q11/q19, and cut one aphorism formula at q02. E-Prime kept: the humanizer treats copula avoidance as a tell, but the repo rule wins, so concrete verbs replace the flagged 'works as / serves as' constructions.",
+            "stem": "A teacher says the pattern in an atom repeats in a solar system, and again in a life. How does she mean it?",
+            "positive": "Literally. The levels really do mirror.",
+            "negative": "As an image. A true-sounding one, not a claim about structure."
+          },
+          {
+            "id": "v4",
+            "author": "opus-5",
+            "humanized": true,
+            "note": "Replaced the 'as above, so below' quotation after mock runs found four of eight test personas did not recognise it. An item a quarter of respondents cannot parse should not decide an axis at 1.5x weight. Same proposition, ordinary vocabulary.",
+            "stem": "A biologist notices that a cell, a city and an economy keep solving the same problems with the same shapes. What did she notice?",
+            "positive": "A real structure. The same form genuinely recurs at every scale.",
+            "negative": "A real limit. Our minds reach for the shapes they already hold."
+          }
+        ]
+      },
+      "audit": {
+        "status": "audited",
+        "social_desirability": "high",
+        "leakage": "warrant",
+        "notes": "'Literal' coded as credulous and 'poetic' as sophisticated. Reframed as description-vs-figure. Sits on a 1.5x tiebreaker, so the tilt distorted the whole block. REBUILT 2026-09-18 after mock runs: the esoteric quotation failed comprehension for half the low-context personas."
+      }
+    },
+    {
+      "id": "q05",
+      "axis": "vector",
+      "block_order": 1,
+      "tiebreaker": false,
+      "weight": 1.0,
+      "facts": {
+        "tests": "Whether a persistent block indicates missing insight or missing repetition.",
+        "positive_proposition": "A single correct insight can resolve a long-standing pattern without further repetition.",
+        "negative_proposition": "No insight resolves a stuck pattern; only sustained repetition does.",
+        "separates": [
+          "gnosticism",
+          "advaita",
+          "depth-psychology"
+        ],
+        "from": [
+          "theravada",
+          "zen",
+          "sufism"
+        ]
+      },
+      "prose": {
+        "selected": "v3",
+        "variants": [
+          {
+            "id": "v1",
+            "author": "opus-5",
+            "humanized": false,
+            "stem": "Someone stuck for years most likely lacks —",
+            "positive": "one correct insight that rearranges everything.",
+            "negative": "one ordinary practice held long enough to work."
+          },
+          {
+            "id": "v2",
+            "author": "opus-5",
+            "humanized": false,
+            "note": "Concrete register - owner selection 2026-09-18. Each item describes a situation rather than stating an abstraction, so the respondent answers about a person in a scene instead of about which philosophy sounds better.",
+            "stem": "Someone carries the same problem for eleven years. Then it ends. What ended it?",
+            "positive": "They finally saw it correctly. Once did it.",
+            "negative": "They did one small thing every day until it wore through."
+          },
+          {
+            "id": "v3",
+            "author": "opus-5 + humanizer skill",
+            "humanized": true,
+            "note": "Humanizer pass over v2. Removed the spaced em dash that closed all twenty v2 stems (the strongest single AI tell, and used structurally across the whole instrument), thinned a rule-of-three cluster at q01/q11/q19, and cut one aphorism formula at q02. E-Prime kept: the humanizer treats copula avoidance as a tell, but the repo rule wins, so concrete verbs replace the flagged 'works as / serves as' constructions.",
+            "stem": "Someone carries the same problem for eleven years. Then it ends. What ended it?",
+            "positive": "They finally saw it correctly. Once did it.",
+            "negative": "They did one small thing every day until it wore through."
+          }
+        ]
+      },
+      "audit": {
+        "status": "audited",
+        "social_desirability": "high",
+        "leakage": "none",
+        "notes": "Original recruited habit-culture consensus ('discipline beats epiphany') toward praxis. Both poles now state a defensible mechanism."
+      }
+    },
+    {
+      "id": "q06",
+      "axis": "vector",
+      "block_order": 2,
+      "tiebreaker": false,
+      "weight": 1.0,
+      "facts": {
+        "tests": "Whether explanatory power or immediate applicability earns trust in a teaching.",
+        "positive_proposition": "A teaching's value rests on its explanatory power.",
+        "negative_proposition": "A teaching's value rests on its actionability.",
+        "separates": [
+          "hermeticism",
+          "materialism",
+          "depth-psychology"
+        ],
+        "from": [
+          "core-shamanism",
+          "indigenous-animism",
+          "theravada",
+          "zen"
+        ]
+      },
+      "prose": {
+        "selected": "v3",
+        "variants": [
+          {
+            "id": "v1",
+            "author": "opus-5",
+            "humanized": false,
+            "stem": "You trust a teaching more when it —",
+            "positive": "explains something you previously could not explain.",
+            "negative": "hands you something to do tonight."
+          },
+          {
+            "id": "v2",
+            "author": "opus-5",
+            "humanized": false,
+            "note": "Concrete register - owner selection 2026-09-18. Each item describes a situation rather than stating an abstraction, so the respondent answers about a person in a scene instead of about which philosophy sounds better.",
+            "stem": "Two books on the same subject. One explains why you had it wrong your whole life. The other hands you something to do tonight. Which one earned the money?",
+            "positive": "The one that explained it.",
+            "negative": "The one with the instruction."
+          },
+          {
+            "id": "v3",
+            "author": "opus-5 + humanizer skill",
+            "humanized": true,
+            "note": "Humanizer pass over v2. Removed the spaced em dash that closed all twenty v2 stems (the strongest single AI tell, and used structurally across the whole instrument), thinned a rule-of-three cluster at q01/q11/q19, and cut one aphorism formula at q02. E-Prime kept: the humanizer treats copula avoidance as a tell, but the repo rule wins, so concrete verbs replace the flagged 'works as / serves as' constructions.",
+            "stem": "Two books on the same subject. One explains why you had it wrong your whole life. The other hands you something to do tonight. Which one earned the money?",
+            "positive": "The one that explained it.",
+            "negative": "The one with the instruction."
+          }
+        ]
+      },
+      "audit": {
+        "status": "audited",
+        "social_desirability": "high",
+        "leakage": "warrant",
+        "notes": "'Hands you something to do tonight' read as the practical, credible answer. Reframed as two criteria of value rather than one useful and one abstract. Dropping the word 'trust' also removes the leak into Warrant."
+      }
+    },
+    {
+      "id": "q07",
+      "axis": "vector",
+      "block_order": 3,
+      "tiebreaker": false,
+      "weight": 1.0,
+      "facts": {
+        "tests": "Whether understanding unaccompanied by behavioral change counts as progress.",
+        "positive_proposition": "Insight without behavioral change still counts as real progress.",
+        "negative_proposition": "Insight without behavioral change counts as almost nothing.",
+        "separates": [
+          "advaita",
+          "gnosticism",
+          "depth-psychology"
+        ],
+        "from": [
+          "theravada",
+          "zen",
+          "stoicism"
+        ]
+      },
+      "prose": {
+        "selected": "v3",
+        "variants": [
+          {
+            "id": "v1",
+            "author": "opus-5",
+            "humanized": false,
+            "stem": "Understanding your own pattern while your behavior stays identical counts as —",
+            "positive": "real progress; the seeing does its work on its own schedule.",
+            "negative": "almost nothing; the body learns only by repetition."
+          },
+          {
+            "id": "v2",
+            "author": "opus-5",
+            "humanized": false,
+            "note": "Concrete register - owner selection 2026-09-18. Each item describes a situation rather than stating an abstraction, so the respondent answers about a person in a scene instead of about which philosophy sounds better.",
+            "stem": "A man understands exactly why he does the thing he does. He keeps doing it. Five years on —",
+            "positive": "he has moved. Understanding takes its own time to land.",
+            "negative": "he has not moved. Nothing counts until the behaviour changes."
+          },
+          {
+            "id": "v3",
+            "author": "opus-5 + humanizer skill",
+            "humanized": true,
+            "note": "Humanizer pass over v2. Removed the spaced em dash that closed all twenty v2 stems (the strongest single AI tell, and used structurally across the whole instrument), thinned a rule-of-three cluster at q01/q11/q19, and cut one aphorism formula at q02. E-Prime kept: the humanizer treats copula avoidance as a tell, but the repo rule wins, so concrete verbs replace the flagged 'works as / serves as' constructions.",
+            "stem": "A man understands exactly why he does the thing he does. He keeps doing it. Five years on, where does that leave him?",
+            "positive": "He has moved. Understanding takes its own time to land.",
+            "negative": "He has not moved. Nothing counts until the behaviour changes."
+          }
+        ]
+      },
+      "audit": {
+        "status": "audited",
+        "social_desirability": "mild",
+        "leakage": "none",
+        "notes": "Best-behaved item in the block: insight-oriented therapy culture and the 'insight porn' critique of it pull in opposite directions, so the bias partly cancels. Earlier self-flag stands but downgraded."
+      }
+    },
+    {
+      "id": "q08",
+      "axis": "vector",
+      "block_order": 4,
+      "tiebreaker": true,
+      "weight": 1.5,
+      "facts": {
+        "tests": "Where a person spends a scarce year — accumulating understanding or accumulating repetitions.",
+        "positive_proposition": "A year of reading outperforms a year of daily repetition.",
+        "negative_proposition": "A year of daily repetition outperforms a year of reading.",
+        "separates": [
+          "hermeticism",
+          "gnosticism",
+          "materialism"
+        ],
+        "from": [
+          "zen",
+          "theravada",
+          "sufism"
+        ]
+      },
+      "prose": {
+        "selected": "v3",
+        "variants": [
+          {
+            "id": "v1",
+            "author": "opus-5",
+            "humanized": false,
+            "stem": "Given one year, you would rather —",
+            "positive": "read the twelve hardest books in a tradition.",
+            "negative": "run one discipline every morning for 365 days."
+          },
+          {
+            "id": "v2",
+            "author": "opus-5",
+            "humanized": false,
+            "note": "Concrete register - owner selection 2026-09-18. Each item describes a situation rather than stating an abstraction, so the respondent answers about a person in a scene instead of about which philosophy sounds better.",
+            "stem": "You get one year and nothing to distract you. At the end of it, who knows the subject better - the one who read the twelve hardest books in the field, or the one who practised every morning for 365 days?",
+            "positive": "The reader.",
+            "negative": "The one who practised."
+          },
+          {
+            "id": "v3",
+            "author": "opus-5 + humanizer skill",
+            "humanized": true,
+            "note": "Humanizer pass over v2. Removed the spaced em dash that closed all twenty v2 stems (the strongest single AI tell, and used structurally across the whole instrument), thinned a rule-of-three cluster at q01/q11/q19, and cut one aphorism formula at q02. E-Prime kept: the humanizer treats copula avoidance as a tell, but the repo rule wins, so concrete verbs replace the flagged 'works as / serves as' constructions.",
+            "stem": "You get one year and nothing to distract you. At the end of it, who knows the subject better: the one who read the twelve hardest books in the field, or the one who practised every morning for 365 days?",
+            "positive": "The reader.",
+            "negative": "The one who practised."
+          }
+        ]
+      },
+      "audit": {
+        "status": "audited",
+        "social_desirability": "mild",
+        "leakage": "none",
+        "notes": "Both poles carry real modern cachet - bookish depth versus monk-mode discipline. Closest thing to a genuine coin flip in the instrument. Keep the shape."
+      }
+    },
+    {
+      "id": "q09",
+      "axis": "agency",
+      "block_order": 1,
+      "tiebreaker": false,
+      "weight": 1.0,
+      "facts": {
+        "tests": "Whether obstruction yields to applied force or to locating where it already gives.",
+        "positive_proposition": "Overcoming an obstacle requires imposing an intended shape on it.",
+        "negative_proposition": "Overcoming an obstacle requires locating the direction in which it already yields.",
+        "separates": [
+          "thelema",
+          "kabbalah",
+          "existentialism"
+        ],
+        "from": [
+          "daoism",
+          "sufism",
+          "apophatic"
+        ]
+      },
+      "prose": {
+        "selected": "v3",
+        "variants": [
+          {
+            "id": "v1",
+            "author": "opus-5",
+            "humanized": false,
+            "stem": "Facing a real obstacle, the deeper move looks like —",
+            "positive": "precise force: impose the shape you intend.",
+            "negative": "finding the grain: stop pushing where the thing refuses to give."
+          },
+          {
+            "id": "v2",
+            "author": "opus-5",
+            "humanized": false,
+            "note": "Concrete register - owner selection 2026-09-18. Each item describes a situation rather than stating an abstraction, so the respondent answers about a person in a scene instead of about which philosophy sounds better.",
+            "stem": "Someone stays blocked on the same thing for months, then gets through. Did they —",
+            "positive": "decide the shape it would take, and hold that until reality caught up?",
+            "negative": "stop insisting on a shape, and follow the one opening already there?"
+          },
+          {
+            "id": "v3",
+            "author": "opus-5 + humanizer skill",
+            "humanized": true,
+            "note": "Humanizer pass over v2. Removed the spaced em dash that closed all twenty v2 stems (the strongest single AI tell, and used structurally across the whole instrument), thinned a rule-of-three cluster at q01/q11/q19, and cut one aphorism formula at q02. E-Prime kept: the humanizer treats copula avoidance as a tell, but the repo rule wins, so concrete verbs replace the flagged 'works as / serves as' constructions.",
+            "stem": "Someone stays blocked on the same thing for months, then gets through. Which one did they do?",
+            "positive": "Decided the shape it would take, and held that until reality caught up.",
+            "negative": "Stopped insisting on a shape, and followed the one opening already there."
+          }
+        ]
+      },
+      "audit": {
+        "status": "audited",
+        "social_desirability": "high",
+        "leakage": "verdict",
+        "notes": "The 'grain' metaphor made surrender sound like craftsmanship and will sound like blunt force. Proposition neutralized; prose may stay vivid but must not favour one pole's register."
+      }
+    },
+    {
+      "id": "q10",
+      "axis": "agency",
+      "block_order": 2,
+      "tiebreaker": false,
+      "weight": 1.0,
+      "facts": {
+        "tests": "Whether an effect a practitioner gets from ritual follows from active causation or from allowing.",
+        "positive_proposition": "Whatever effect ritual has on a practitioner follows from the practitioner actively causing it.",
+        "negative_proposition": "Whatever effect ritual has on a practitioner follows from the practitioner allowing or opening to it.",
+        "separates": [
+          "thelema",
+          "theurgy",
+          "kabbalah"
+        ],
+        "from": [
+          "sufism",
+          "apophatic",
+          "daoism"
+        ]
+      },
+      "prose": {
+        "selected": "v3",
+        "variants": [
+          {
+            "id": "v1",
+            "author": "opus-5",
+            "humanized": false,
+            "stem": "Ritual works, to whatever degree it works, because —",
+            "positive": "it exerts something. The operator causes an effect.",
+            "negative": "it opens something. The operator consents to an effect."
+          },
+          {
+            "id": "v2",
+            "author": "opus-5",
+            "humanized": false,
+            "note": "Concrete register - owner selection 2026-09-18. Each item describes a situation rather than stating an abstraction, so the respondent answers about a person in a scene instead of about which philosophy sounds better.",
+            "stem": "Someone finishes a long ritual and feels changed. What changed them?",
+            "positive": "What they did. The doing produced it.",
+            "negative": "What they stopped defending against. The allowing produced it."
+          },
+          {
+            "id": "v3",
+            "author": "opus-5 + humanizer skill",
+            "humanized": true,
+            "note": "Humanizer pass over v2. Removed the spaced em dash that closed all twenty v2 stems (the strongest single AI tell, and used structurally across the whole instrument), thinned a rule-of-three cluster at q01/q11/q19, and cut one aphorism formula at q02. E-Prime kept: the humanizer treats copula avoidance as a tell, but the repo rule wins, so concrete verbs replace the flagged 'works as / serves as' constructions.",
+            "stem": "Someone finishes a long ritual and feels changed. What changed them?",
+            "positive": "What they did. The doing produced it.",
+            "negative": "What they stopped defending against. The allowing produced it."
+          }
+        ]
+      },
+      "audit": {
+        "status": "audited",
+        "social_desirability": "high",
+        "leakage": "none",
+        "notes": "PRESUPPOSITION FIX. The original asserted that ritual works, leaving a materialist no honest answer and breaking the stated design goal that a Buddhist, a Thelemite and an atheist can all complete the run. Now scoped to the effect on the practitioner, which a materialist can answer as psychology without conceding anything."
+      }
+    },
+    {
+      "id": "q11",
+      "axis": "agency",
+      "block_order": 3,
+      "tiebreaker": false,
+      "weight": 1.0,
+      "facts": {
+        "tests": "Whether surrender of personal will names an abdication or an attainment.",
+        "positive_proposition": "Surrendering one's will to something higher amounts to giving up responsibility.",
+        "negative_proposition": "Surrendering one's will to something higher amounts to the hardest act available to a person.",
+        "separates": [
+          "thelema",
+          "existentialism",
+          "materialism"
+        ],
+        "from": [
+          "sufism",
+          "apophatic",
+          "advaita"
+        ]
+      },
+      "prose": {
+        "selected": "v3",
+        "variants": [
+          {
+            "id": "v1",
+            "author": "opus-5",
+            "humanized": false,
+            "stem": "\"Thy will be done\" reads as —",
+            "positive": "abdication wearing the costume of piety.",
+            "negative": "the hardest sentence in the whole canon."
+          },
+          {
+            "id": "v2",
+            "author": "opus-5",
+            "humanized": false,
+            "note": "Concrete register - owner selection 2026-09-18. Each item describes a situation rather than stating an abstraction, so the respondent answers about a person in a scene instead of about which philosophy sounds better.",
+            "stem": "A woman hands the outcome over - to God, to fate, to the process, whatever she calls it - and stops trying to steer. Watching her, you think —",
+            "positive": "she has stopped taking responsibility for her own life.",
+            "negative": "she does the hardest thing a person can do."
+          },
+          {
+            "id": "v3",
+            "author": "opus-5 + humanizer skill",
+            "humanized": true,
+            "note": "Humanizer pass over v2. Removed the spaced em dash that closed all twenty v2 stems (the strongest single AI tell, and used structurally across the whole instrument), thinned a rule-of-three cluster at q01/q11/q19, and cut one aphorism formula at q02. E-Prime kept: the humanizer treats copula avoidance as a tell, but the repo rule wins, so concrete verbs replace the flagged 'works as / serves as' constructions.",
+            "stem": "A woman hands the outcome over, to God or fate or the process, whatever she calls it, and stops trying to steer. Watching her, what do you think?",
+            "positive": "She has stopped taking responsibility for her own life.",
+            "negative": "She does the hardest thing a person can do."
+          }
+        ]
+      },
+      "audit": {
+        "status": "audited",
+        "social_desirability": "high",
+        "leakage": "warrant, substrate",
+        "notes": "Dropped the 'Thy will be done' quotation and 'the whole canon'. The specific liturgical phrasing made non-Christian respondents answer about Christianity rather than about themselves, and made the surrender pole sound reflexively pious."
+      }
+    },
+    {
+      "id": "q12",
+      "axis": "agency",
+      "block_order": 4,
+      "tiebreaker": true,
+      "weight": 1.5,
+      "facts": {
+        "tests": "Whether imposed intention causes outcomes or obstructs them.",
+        "positive_proposition": "Forcing outcomes through will and effort reliably produces results.",
+        "negative_proposition": "Forcing outcomes through will and effort reliably backfires or stalls.",
+        "separates": [
+          "thelema",
+          "existentialism",
+          "kabbalah"
+        ],
+        "from": [
+          "daoism",
+          "zen",
+          "sufism"
+        ]
+      },
+      "prose": {
+        "selected": "v3",
+        "variants": [
+          {
+            "id": "v1",
+            "author": "opus-5",
+            "humanized": false,
+            "stem": "\"Make it happen\" strikes you as —",
+            "positive": "basically correct about how anything ever gets done.",
+            "negative": "the exact error that keeps people stuck for decades."
+          },
+          {
+            "id": "v2",
+            "author": "opus-5",
+            "humanized": false,
+            "note": "Concrete register - owner selection 2026-09-18. Each item describes a situation rather than stating an abstraction, so the respondent answers about a person in a scene instead of about which philosophy sounds better.",
+            "stem": "Someone sets a hard goal and drives at it for two years without letting up. Most of the time that ends —",
+            "positive": "with the goal. That explains how anything gets done.",
+            "negative": "with the goal further off than when they started."
+          },
+          {
+            "id": "v3",
+            "author": "opus-5 + humanizer skill",
+            "humanized": true,
+            "note": "Humanizer pass over v2. Removed the spaced em dash that closed all twenty v2 stems (the strongest single AI tell, and used structurally across the whole instrument), thinned a rule-of-three cluster at q01/q11/q19, and cut one aphorism formula at q02. E-Prime kept: the humanizer treats copula avoidance as a tell, but the repo rule wins, so concrete verbs replace the flagged 'works as / serves as' constructions.",
+            "stem": "Someone sets a hard goal and drives at it for two years without letting up. Where does that usually end?",
+            "positive": "With the goal. That explains how anything gets done.",
+            "negative": "With the goal further off than when they started."
+          }
+        ]
+      },
+      "audit": {
+        "status": "audited",
+        "social_desirability": "high",
+        "leakage": "none",
+        "notes": "'Make it happen' and 'the exact error that keeps people stuck' both lifted straight from anti-hustle discourse, so choosing will meant defending hustle culture by name. On a 1.5x tiebreaker."
+      }
+    },
+    {
+      "id": "q13",
+      "axis": "warrant",
+      "block_order": 1,
+      "tiebreaker": false,
+      "weight": 1.0,
+      "facts": {
+        "tests": "Whether age of transmission confers warrant that invention cannot.",
+        "positive_proposition": "Continuous transmission adds real value that fresh invention cannot supply.",
+        "negative_proposition": "Only present effectiveness matters; age and transmission add nothing by themselves.",
+        "separates": [
+          "kabbalah",
+          "materialism",
+          "theravada",
+          "theurgy"
+        ],
+        "from": [
+          "daoism",
+          "existentialism",
+          "thelema"
+        ]
+      },
+      "prose": {
+        "selected": "v3",
+        "variants": [
+          {
+            "id": "v1",
+            "author": "opus-5",
+            "humanized": false,
+            "stem": "A practice transmitted for nine hundred years and a practice you invented last month —",
+            "positive": "do not compare. Transmission carries something invention cannot.",
+            "negative": "compare fine. What works, works; age proves nothing."
+          },
+          {
+            "id": "v2",
+            "author": "opus-5",
+            "humanized": false,
+            "note": "Concrete register - owner selection 2026-09-18. Each item describes a situation rather than stating an abstraction, so the respondent answers about a person in a scene instead of about which philosophy sounds better.",
+            "stem": "Two techniques do the same job about equally well. One came down through nine hundred years of hands. The other arrived last month. Does the age buy anything?",
+            "positive": "Yes. Nine hundred years of use carries information.",
+            "negative": "No. It works or it does not."
+          },
+          {
+            "id": "v3",
+            "author": "opus-5 + humanizer skill",
+            "humanized": true,
+            "note": "Humanizer pass over v2. Removed the spaced em dash that closed all twenty v2 stems (the strongest single AI tell, and used structurally across the whole instrument), thinned a rule-of-three cluster at q01/q11/q19, and cut one aphorism formula at q02. E-Prime kept: the humanizer treats copula avoidance as a tell, but the repo rule wins, so concrete verbs replace the flagged 'works as / serves as' constructions.",
+            "stem": "Two techniques do the same job about equally well. One came down through nine hundred years of hands. The other arrived last month. Does the age buy anything?",
+            "positive": "Yes. Nine hundred years of use carries information.",
+            "negative": "No. It works or it does not."
+          }
+        ]
+      },
+      "audit": {
+        "status": "audited",
+        "social_desirability": "mild",
+        "leakage": "none",
+        "notes": "Mildest item in the block and answerable by all three target respondent types. Kept close to original."
+      }
+    },
+    {
+      "id": "q14",
+      "axis": "warrant",
+      "block_order": 2,
+      "tiebreaker": false,
+      "weight": 1.0,
+      "facts": {
+        "tests": "Which side yields when first-person experience contradicts an authoritative source.",
+        "positive_proposition": "When personal experience conflicts with an authoritative source, the source takes precedence.",
+        "negative_proposition": "When personal experience conflicts with an authoritative source, the experience takes precedence.",
+        "separates": [
+          "kabbalah",
+          "materialism",
+          "sufism",
+          "theurgy"
+        ],
+        "from": [
+          "existentialism",
+          "thelema",
+          "zen"
+        ]
+      },
+      "prose": {
+        "selected": "v3",
+        "variants": [
+          {
+            "id": "v1",
+            "author": "opus-5",
+            "humanized": false,
+            "stem": "When your own experience contradicts the text, you —",
+            "positive": "suspect the experience and re-read.",
+            "negative": "suspect the text and keep the experience."
+          },
+          {
+            "id": "v2",
+            "author": "opus-5",
+            "humanized": false,
+            "note": "Concrete register - owner selection 2026-09-18. Each item describes a situation rather than stating an abstraction, so the respondent answers about a person in a scene instead of about which philosophy sounds better.",
+            "stem": "The book says one thing. It happened to you the other way. One of them has it wrong —",
+            "positive": "probably you. Read it again.",
+            "negative": "probably the book. You were there."
+          },
+          {
+            "id": "v3",
+            "author": "opus-5 + humanizer skill",
+            "humanized": true,
+            "note": "Humanizer pass over v2. Removed the spaced em dash that closed all twenty v2 stems (the strongest single AI tell, and used structurally across the whole instrument), thinned a rule-of-three cluster at q01/q11/q19, and cut one aphorism formula at q02. E-Prime kept: the humanizer treats copula avoidance as a tell, but the repo rule wins, so concrete verbs replace the flagged 'works as / serves as' constructions.",
+            "stem": "The book says one thing. It happened to you the other way. One of them has it wrong. Which?",
+            "positive": "Probably you. Read it again.",
+            "negative": "Probably the book. You lived it."
+          }
+        ]
+      },
+      "audit": {
+        "status": "audited",
+        "social_desirability": "high",
+        "leakage": "none",
+        "notes": "'Trust your gut' is the individualist-therapeutic default, so the direct pole read as obviously healthy. Generalized 'the text' to 'an authoritative source' so the item covers a replicated result as well as a scripture."
+      }
+    },
+    {
+      "id": "q15",
+      "axis": "warrant",
+      "block_order": 3,
+      "tiebreaker": false,
+      "weight": 1.0,
+      "facts": {
+        "tests": "Whether initiation transmits something unreachable alone or gatekeeps something reachable alone.",
+        "positive_proposition": "Formal training transmits something solitary study cannot reach.",
+        "negative_proposition": "Formal training adds little that a determined person cannot reach alone.",
+        "separates": [
+          "indigenous-animism",
+          "kabbalah",
+          "materialism",
+          "theurgy"
+        ],
+        "from": [
+          "core-shamanism",
+          "existentialism",
+          "thelema"
+        ],
+        "note": "The animism split shows up on this item: indigenous transmission sits at lineage +4 while core shamanism sits at direct -3, so the two successors land on opposite poles of the same question."
+      },
+      "prose": {
+        "selected": "v3",
+        "variants": [
+          {
+            "id": "v1",
+            "author": "opus-5",
+            "humanized": false,
+            "stem": "Initiation and formal training —",
+            "positive": "transmit something no book and no solo work supplies.",
+            "negative": "mostly gatekeep something a determined person reaches alone."
+          },
+          {
+            "id": "v2",
+            "author": "opus-5",
+            "humanized": false,
+            "note": "Concrete register - owner selection 2026-09-18. Each item describes a situation rather than stating an abstraction, so the respondent answers about a person in a scene instead of about which philosophy sounds better.",
+            "stem": "Two people learn the same discipline. One trains under somebody. One teaches themselves from whatever they can find. Ten years on, does the trained one hold something the self-taught one lacks?",
+            "positive": "Yes, and it does not come out of books.",
+            "negative": "No. The determined one gets there."
+          },
+          {
+            "id": "v3",
+            "author": "opus-5 + humanizer skill",
+            "humanized": true,
+            "note": "Humanizer pass over v2. Removed the spaced em dash that closed all twenty v2 stems (the strongest single AI tell, and used structurally across the whole instrument), thinned a rule-of-three cluster at q01/q11/q19, and cut one aphorism formula at q02. E-Prime kept: the humanizer treats copula avoidance as a tell, but the repo rule wins, so concrete verbs replace the flagged 'works as / serves as' constructions.",
+            "stem": "Two people learn the same discipline. One trains under somebody. One teaches themselves from whatever they can find. Ten years on, does the trained one hold something the self-taught one lacks?",
+            "positive": "Yes, and it does not come out of books.",
+            "negative": "No. The determined one gets there."
+          }
+        ]
+      },
+      "audit": {
+        "status": "audited",
+        "social_desirability": "high",
+        "leakage": "none",
+        "notes": "Removed the word 'gatekeep', which functions in current usage as an accusation rather than a description. Choosing lineage previously required defending gatekeeping in so many words - probably the single most damaging lexical choice in the instrument."
+      }
+    },
+    {
+      "id": "q16",
+      "axis": "warrant",
+      "block_order": 4,
+      "tiebreaker": true,
+      "weight": 1.5,
+      "facts": {
+        "tests": "Whether a transmitted and vetted framework confers trust once individual capability is held constant.",
+        "positive_proposition": "Between two equally capable practitioners, the one working inside an established, vetted framework merits more trust.",
+        "negative_proposition": "Between two equally capable practitioners, the one who built their own method merits equal or more trust.",
+        "separates": [
+          "materialism",
+          "sufism",
+          "theravada",
+          "theurgy"
+        ],
+        "from": [
+          "daoism",
+          "existentialism",
+          "thelema"
+        ]
+      },
+      "prose": {
+        "selected": "v3",
+        "variants": [
+          {
+            "id": "v1",
+            "author": "opus-5",
+            "humanized": false,
+            "stem": "You would sooner trust —",
+            "positive": "a mediocre practitioner inside a living lineage.",
+            "negative": "a gifted practitioner who built their own method."
+          },
+          {
+            "id": "v2",
+            "author": "opus-5",
+            "humanized": false,
+            "note": "Concrete register - owner selection 2026-09-18. Each item describes a situation rather than stating an abstraction, so the respondent answers about a person in a scene instead of about which philosophy sounds better.",
+            "stem": "Two people do the work equally well. One learned it from a school that has taught it for centuries. The other worked it out alone. Whose judgement would you take on a hard case?",
+            "positive": "The one the school trained.",
+            "negative": "The one who worked it out."
+          },
+          {
+            "id": "v3",
+            "author": "opus-5 + humanizer skill",
+            "humanized": true,
+            "note": "Humanizer pass over v2. Removed the spaced em dash that closed all twenty v2 stems (the strongest single AI tell, and used structurally across the whole instrument), thinned a rule-of-three cluster at q01/q11/q19, and cut one aphorism formula at q02. E-Prime kept: the humanizer treats copula avoidance as a tell, but the repo rule wins, so concrete verbs replace the flagged 'works as / serves as' constructions.",
+            "stem": "Two people do the work equally well. One learned it from a school that has taught it for centuries. The other worked it out alone. Whose judgement would you take on a hard case?",
+            "positive": "The one the school trained.",
+            "negative": "The one who worked it out."
+          }
+        ]
+      },
+      "audit": {
+        "status": "audited",
+        "social_desirability": "mild",
+        "leakage": "none",
+        "notes": "WORST ITEM IN v0.1, NOW REBUILT. The original pitted a 'mediocre' practitioner against a 'gifted' one, which measured preference for talent rather than warrant - and did so on a 1.5x tiebreaker. Capability now held constant, and 'established, vetted framework' replaces 'living lineage' so peer review and replication register as the positive pole alongside initiatory transmission."
+      }
+    },
+    {
+      "id": "q17",
+      "axis": "verdict",
+      "block_order": 1,
+      "tiebreaker": false,
+      "weight": 1.0,
+      "facts": {
+        "tests": "Whether suffering indicates an ungrasped logic or a genuine defect.",
+        "positive_proposition": "Suffering indicates a design whose logic remains ungrasped.",
+        "negative_proposition": "Suffering indicates a real defect in the setup.",
+        "separates": [
+          "stoicism",
+          "hermeticism",
+          "sufism"
+        ],
+        "from": [
+          "gnosticism",
+          "theravada",
+          "kabbalah"
+        ]
+      },
+      "prose": {
+        "selected": "v3",
+        "variants": [
+          {
+            "id": "v1",
+            "author": "opus-5",
+            "humanized": false,
+            "stem": "The sheer quantity of suffering points to —",
+            "positive": "a design whose logic you have not yet grasped.",
+            "negative": "something genuinely wrong with the setup."
+          },
+          {
+            "id": "v2",
+            "author": "opus-5",
+            "humanized": false,
+            "note": "Concrete register - owner selection 2026-09-18. Each item describes a situation rather than stating an abstraction, so the respondent answers about a person in a scene instead of about which philosophy sounds better.",
+            "stem": "Take the whole quantity of suffering there has ever been. All of it at once. That number tells you —",
+            "positive": "a reason runs underneath it that you do not stand tall enough to see.",
+            "negative": "something went wrong in how this got built."
+          },
+          {
+            "id": "v3",
+            "author": "opus-5 + humanizer skill",
+            "humanized": true,
+            "note": "Humanizer pass over v2. Removed the spaced em dash that closed all twenty v2 stems (the strongest single AI tell, and used structurally across the whole instrument), thinned a rule-of-three cluster at q01/q11/q19, and cut one aphorism formula at q02. E-Prime kept: the humanizer treats copula avoidance as a tell, but the repo rule wins, so concrete verbs replace the flagged 'works as / serves as' constructions.",
+            "stem": "Take all the suffering that has ever happened. All of it at once. What does that number tell you?",
+            "positive": "A reason runs underneath it that you do not stand tall enough to see.",
+            "negative": "Something went wrong in how this got built."
+          }
+        ]
+      },
+      "audit": {
+        "status": "audited",
+        "social_desirability": "high",
+        "leakage": "none",
+        "notes": "Theodicy has lost the discourse among the philosophically literate, so the flawed pole reads as the honest one. Prose must not make 'a design you have not grasped' sound like an excuse."
+      }
+    },
+    {
+      "id": "q18",
+      "axis": "verdict",
+      "block_order": 2,
+      "tiebreaker": false,
+      "weight": 1.0,
+      "facts": {
+        "tests": "Whether difficulty in the world serves a formative function or signals confinement.",
+        "positive_proposition": "Difficulty in the world serves a constructive, formative function.",
+        "negative_proposition": "Difficulty in the world serves no constructive function and signals a confinement to escape.",
+        "separates": [
+          "stoicism",
+          "hermeticism",
+          "theurgy"
+        ],
+        "from": [
+          "gnosticism",
+          "theravada",
+          "existentialism"
+        ]
+      },
+      "prose": {
+        "selected": "v3",
+        "variants": [
+          {
+            "id": "v1",
+            "author": "opus-5",
+            "humanized": false,
+            "stem": "\"The world\" functions mostly as —",
+            "positive": "a school: brutal, but built to teach.",
+            "negative": "a trap: and waking up means noticing the walls."
+          },
+          {
+            "id": "v2",
+            "author": "opus-5",
+            "humanized": false,
+            "note": "Concrete register - owner selection 2026-09-18. Each item describes a situation rather than stating an abstraction, so the respondent answers about a person in a scene instead of about which philosophy sounds better.",
+            "stem": "Someone comes out of a terrible decade. Looking back, that decade —",
+            "positive": "made them. They would not trade it.",
+            "negative": "cost them, and taught them nothing they needed."
+          },
+          {
+            "id": "v3",
+            "author": "opus-5 + humanizer skill",
+            "humanized": true,
+            "note": "Humanizer pass over v2. Removed the spaced em dash that closed all twenty v2 stems (the strongest single AI tell, and used structurally across the whole instrument), thinned a rule-of-three cluster at q01/q11/q19, and cut one aphorism formula at q02. E-Prime kept: the humanizer treats copula avoidance as a tell, but the repo rule wins, so concrete verbs replace the flagged 'works as / serves as' constructions.",
+            "stem": "Someone comes out of a terrible decade. Looking back, what did that decade do?",
+            "positive": "Made them. They would not trade it.",
+            "negative": "Cost them, and taught them nothing they needed."
+          }
+        ]
+      },
+      "audit": {
+        "status": "audited",
+        "social_desirability": "high",
+        "leakage": "none",
+        "notes": "'Waking up' and 'noticing the walls' are the native vocabulary of awakening-culture internet - which is precisely this funnel's audience, so the wording recruited the flawed pole from the exact people taking the quiz. Vocabulary stripped from the proposition."
+      }
+    },
+    {
+      "id": "q19",
+      "axis": "verdict",
+      "block_order": 3,
+      "tiebreaker": false,
+      "weight": 1.0,
+      "facts": {
+        "tests": "Whether the social order reads as workable-but-peopled-by-flawed-people or as resting on a falsehood.",
+        "positive_proposition": "Human society consists of flawed people inside a workable order.",
+        "negative_proposition": "Human society consists of a workable-looking order resting on a falsehood.",
+        "separates": [
+          "stoicism",
+          "theurgy",
+          "depth-psychology"
+        ],
+        "from": [
+          "gnosticism",
+          "existentialism",
+          "thelema"
+        ]
+      },
+      "prose": {
+        "selected": "v3",
+        "variants": [
+          {
+            "id": "v1",
+            "author": "opus-5",
+            "humanized": false,
+            "stem": "The ordinary run of human society looks like —",
+            "positive": "flawed people inside a workable order.",
+            "negative": "a workable-looking order running on a lie."
+          },
+          {
+            "id": "v2",
+            "author": "opus-5",
+            "humanized": false,
+            "note": "Concrete register - owner selection 2026-09-18. Each item describes a situation rather than stating an abstraction, so the respondent answers about a person in a scene instead of about which philosophy sounds better.",
+            "stem": "Look at the institutions you deal with - work, school, government, whichever. What actually goes wrong there —",
+            "positive": "the people inside them. The structure holds up.",
+            "negative": "the structure. It only looks like it holds up."
+          },
+          {
+            "id": "v3",
+            "author": "opus-5 + humanizer skill",
+            "humanized": true,
+            "note": "Humanizer pass over v2. Removed the spaced em dash that closed all twenty v2 stems (the strongest single AI tell, and used structurally across the whole instrument), thinned a rule-of-three cluster at q01/q11/q19, and cut one aphorism formula at q02. E-Prime kept: the humanizer treats copula avoidance as a tell, but the repo rule wins, so concrete verbs replace the flagged 'works as / serves as' constructions.",
+            "stem": "Look at the institutions you deal with, the job and the school and the government. What actually goes wrong there?",
+            "positive": "The people inside them. The structure holds up.",
+            "negative": "The structure. It only looks like it holds up."
+          }
+        ]
+      },
+      "audit": {
+        "status": "audited",
+        "social_desirability": "high",
+        "leakage": "political disposition",
+        "notes": "Confirms the earlier self-flag. 'Running on a lie' channels generalized institutional distrust, and q17-q19 together risk loading on a latent cynicism factor rather than on a cosmological verdict. Candidate for replacement if run data shows the three moving together too tightly."
+      }
+    },
+    {
+      "id": "q20",
+      "axis": "verdict",
+      "block_order": 4,
+      "tiebreaker": true,
+      "weight": 1.5,
+      "facts": {
+        "tests": "Whether the right aim, given power, is repair of this world or exit from it.",
+        "positive_proposition": "Given power, repair of this world is the right aim.",
+        "negative_proposition": "Given power, exit from this world is the right aim.",
+        "separates": [
+          "kabbalah",
+          "stoicism",
+          "hermeticism"
+        ],
+        "from": [
+          "gnosticism",
+          "advaita",
+          "theravada"
+        ],
+        "note": "Kabbalah sits positive here despite a negative Verdict coordinate — tikkun holds that the world broke AND that repair is the assignment. The tiebreaker earns its weight on exactly this distinction."
+      },
+      "prose": {
+        "selected": "v3",
+        "variants": [
+          {
+            "id": "v1",
+            "author": "opus-5",
+            "humanized": false,
+            "stem": "Given the power, you would —",
+            "positive": "repair this world.",
+            "negative": "leave it."
+          },
+          {
+            "id": "v2",
+            "author": "opus-5",
+            "humanized": false,
+            "note": "Concrete register - owner selection 2026-09-18. Each item describes a situation rather than stating an abstraction, so the respondent answers about a person in a scene instead of about which philosophy sounds better.",
+            "stem": "Someone hands you enough power to do one of these, and only one.",
+            "positive": "Fix this place.",
+            "negative": "Get out of it."
+          },
+          {
+            "id": "v3",
+            "author": "opus-5 + humanizer skill",
+            "humanized": true,
+            "note": "Humanizer pass over v2. Removed the spaced em dash that closed all twenty v2 stems (the strongest single AI tell, and used structurally across the whole instrument), thinned a rule-of-three cluster at q01/q11/q19, and cut one aphorism formula at q02. E-Prime kept: the humanizer treats copula avoidance as a tell, but the repo rule wins, so concrete verbs replace the flagged 'works as / serves as' constructions.",
+            "stem": "Someone hands you enough power to do one of these, and only one.",
+            "positive": "Fix this place.",
+            "negative": "Get out of it."
+          }
+        ]
+      },
+      "audit": {
+        "status": "audited",
+        "social_desirability": "mild",
+        "leakage": "none",
+        "notes": "Usefully reverses the block's drift - 'repair this world' carries prosocial appeal pulling back toward sound, partly counterbalancing q17-q19. The one tiebreaker whose bias helps rather than compounds."
+      }
+    }
+  ],
+  "positions": [
+    {
+      "id": "hermeticism",
+      "display": "Hermeticism",
+      "code": "IGWLC",
+      "coords": {
+        "substrate": 3,
+        "vector": 3,
+        "agency": 3,
+        "warrant": 1,
+        "verdict": 3
+      },
+      "facts": {
+        "status": "populated",
+        "source": "subagent fact-layer pass 2026-09-18, reviewed",
+        "core_claims": [
+          "The cosmos forms one connected structure in which patterns at one level repeat at every other level (\"as above, so below\").",
+          "A divine spark or nous inhabits each person, consubstantial with the mind that generates the cosmos (Corpus Hermeticum I, the Poimandres).",
+          "Ignorance of one's own divine nature — not an inherited metaphysical rupture — produces the ordinary human condition of confusion and mortality-bound suffering.",
+          "Gnosis, direct transformative knowledge of the self as identical in kind with the cosmic mind, reverses that ignorance and constitutes salvation (CH I and CH XIII, \"On Rebirth\").",
+          "Because the practitioner shares substance with the cosmic order, disciplined contemplative and operative work can act on that order rather than only observe it.",
+          "The material world serves as a legitimate arena for divine action rather than a prison to escape, which separates Hermetic cosmology from the contemporaneous Gnostic reading of matter despite overlapping vocabulary."
+        ],
+        "coordinate_justification": {
+          "substrate": "The corpus locates divinity throughout nature and the self rather than in a separate realm; the \"as above, so below\" tiebreaker question tests exactly this claim. CH I still narrates an ascent through planetary spheres, which pulls slightly toward transcendence — a specialist could argue for +2 instead.",
+          "vector": "Gnosis names the explicit soteriological mechanism throughout the corpus. Not +4, since the texts also demand ethical and ascetic preparation, a praxis component.",
+          "agency": "The most contestable score here. The later operative/alchemical Hermetic current fits an active-will reading well, but the contemplative core of CH XIII reads closer to reception of a disclosed truth than to willed causation. A case exists for scoring this near zero for the philosophical Hermetica specifically.",
+          "warrant": "Mild lineage — the corpus frames itself as a chain of disclosure (Poimandres to Hermes, Hermes to Tat or Asclepius) but validates through personal vision, not institutional ordination. Low positive fits better than a high one.",
+          "verdict": "The cosmos counts as good and ordered, made by a benevolent Nous — the point on which Hermetic cosmology explicitly parts ways with the hostile-Demiurge reading in Gnosticism."
+        },
+        "as_primary": [],
+        "as_shadow": [],
+        "nearest": []
+      },
+      "prose": {
+        "selected": null,
+        "variants": []
+      },
+      "citations": {
+        "status": "drafted-unverified",
+        "entry_texts": [
+          "*Hermetica: The Greek Corpus Hermeticum and the Latin Asclepius*, trans. Brian P. Copenhaver (Cambridge University Press, 1992) — the standard scholarly translation.",
+          "*The Way of Hermes*, trans. Clement Salaman et al. (Inner Traditions, 2000) — a more accessible rendering of CH I–XIV plus the Definitions of Hermes Trismegistus. Flag: I omit a third ancient primary text on purpose. The popular *Kybalion* (1908) presents itself as Hermetic teaching, but scholarship treats it as a New Thought-era invention rather than a primary Hermetic source — worth naming only as a derivative text, never as doctrine."
+        ],
+        "gaps": [],
+        "note": "Titles drafted by a subagent and NOT yet checked against a real catalogue. Verify every one before it reaches a paying customer; an invented citation is the single failure this product cannot survive."
+      }
+    },
+    {
+      "id": "gnosticism",
+      "display": "Classical Gnosticism",
+      "code": "TGWDF",
+      "coords": {
+        "substrate": -4,
+        "vector": 4,
+        "agency": 2,
+        "warrant": -2,
+        "verdict": -4
+      },
+      "facts": {
+        "status": "populated",
+        "source": "subagent fact-layer pass 2026-09-18, reviewed",
+        "core_claims": [
+          "A transcendent, unknowable true God exists entirely outside and prior to the visible cosmos.",
+          "A lesser, ignorant or malevolent craftsman (the Demiurge, often identified with the biblical creator) fashioned the material universe, mistaking himself for the ultimate God.",
+          "Human beings carry a fragment of the transcendent divine, a spark of pneuma, trapped in matter and in the Demiurge's cosmic system.",
+          "Ignorance of one's true origin, not sin in the ethical sense, names the human predicament; the material cosmos functions as a trap, not a neutral stage.",
+          "Gnosis — revealed, direct knowledge of one's divine origin and of the true God beyond the Demiurge — liberates the spark and reunites it with the Pleroma (the fullness).",
+          "A redeemer figure (in Christian Gnostic texts, Christ as a purely spiritual visitant) descends to deliver the saving knowledge, since the trapped spark cannot free itself unaided."
+        ],
+        "coordinate_justification": {
+          "substrate": "The true divine sits maximally outside the cosmos; matter itself carries negative valence. Full transcendence — hard to place lower.",
+          "vector": "Gnosis names the entire mechanism of salvation by definition. Uncontested.",
+          "agency": "I flag this as wrong, or at least overstated. The spark cannot free itself by will — it needs an external revealer, a reception-shaped event closer to surrender than to willed action. I would propose a score near zero or negative instead of +2.",
+          "warrant": "Reasonable. Gnostic groups relied on private revelation (the Apocryphon of John claims direct disclosure to John) in tension with proto-orthodox institutional authority, though Valentinian schools also claimed a teaching succession from Christ through Theudas — hence −2 rather than −4.",
+          "verdict": "The cosmos counts as a mistake, a prison built by an ignorant or hostile power. Central and uncontested."
+        },
+        "as_primary": [],
+        "as_shadow": [],
+        "nearest": []
+      },
+      "prose": {
+        "selected": null,
+        "variants": []
+      },
+      "citations": {
+        "status": "drafted-unverified",
+        "entry_texts": [
+          "*The Nag Hammadi Scriptures*, ed. Marvin Meyer (HarperOne, 2007) — the standard one-volume English translation, including the Apocryphon of John and the Gospel of Truth.",
+          "*The Gnostic Bible*, ed. Willis Barnstone and Marvin Meyer (Shambhala, 2003) — a broader anthology adding Mandaean and Manichaean material.",
+          "Bentley Layton, *The Gnostic Scriptures* (Doubleday/Anchor Bible Reference Library, 1987) — organized by school (Sethian, Valentinian, etc.), useful because it preserves the real doctrinal variety the single label \"Gnosticism\" tends to flatten."
+        ],
+        "gaps": [],
+        "note": "Titles drafted by a subagent and NOT yet checked against a real catalogue. Verify every one before it reaches a paying customer; an invented citation is the single failure this product cannot survive."
+      }
+    },
+    {
+      "id": "theurgy",
+      "display": "Neoplatonic theurgy",
+      "code": "TPwLC",
+      "coords": {
+        "substrate": -3,
+        "vector": -1,
+        "agency": 0,
+        "warrant": 4,
+        "verdict": 2
+      },
+      "facts": {
+        "status": "populated",
+        "source": "subagent fact-layer pass 2026-09-18, reviewed",
+        "core_claims": [
+          "Reality forms a hierarchy of emanation from the One, through Nous and Soul, down to matter; the soul originates above and descends into embodiment.",
+          "Discursive reasoning and contemplation alone cannot fully reunite the embodied soul with the divine — against Plotinus, Iamblichus holds the soul's descent implicates it too deeply in matter for reason alone to reverse.",
+          "Theurgy — ritual acts using sunthemata, divine tokens the gods themselves embedded in matter — activates a real causal channel between the material and divine orders.",
+          "The gods, not the human operator, perform the actual work in theurgic ritual; the human supplies correct performance and the god supplies the effect (*De Mysteriis*: \"it is not thought that links the theurgists to the gods... it is the accomplishment of acts\").",
+          "Correct practice requires exact traditional transmission — the tokens and rites descend from the gods through a chain of prior practitioners, never from individual invention.",
+          "The cosmos runs fundamentally good and orderly, since the gods who established it and its theurgic access-points remain benevolent; evil derives from matter's distance from the One, not from a flawed design."
+        ],
+        "coordinate_justification": {
+          "substrate": "The One and the gods sit above the material order in the emanation hierarchy. Not −4: the sunthemata doctrine holds that divine tokens genuinely lodge in matter, giving this position a stronger immanent thread than Gnosticism or Advaita. A case exists for −2 instead.",
+          "vector": "Close to the midline and genuinely contested. Iamblichus argues explicitly against Porphyry that intellection alone cannot unite soul and divine — ritual practice supplies what contemplation cannot. This argues for a stronger negative than −1; I would propose −2.",
+          "agency": "0. Corrected from +3 on 2026-09-18. De Mysteriis argues against Porphyry that human thought and will do not cause the theurgic effect: the gods act and the practitioner performs a given rite correctly. Placed at the midline rather than at surrender because refusing this very dichotomy counts as Iamblichus's own move, and a coordinate that declines to commit states that more honestly than either pole.",
+          "warrant": "Correct and central. Efficacy depends entirely on correctly transmitted sunthemata and formulae; invented ritual carries no power.",
+          "verdict": "The cosmos and its gods count as good; evil arises from matter's remove from the One, not from corrupt design. +2 leaves room for real ambivalence toward matter's lowness elsewhere in the hierarchy."
+        },
+        "as_primary": [],
+        "as_shadow": [],
+        "nearest": []
+      },
+      "prose": {
+        "selected": null,
+        "variants": []
+      },
+      "citations": {
+        "status": "drafted-unverified",
+        "entry_texts": [
+          "Iamblichus, *On the Mysteries*, trans. Emma C. Clarke, John M. Dillon, and Jackson P. Hershbell (Society of Biblical Literature, 2003) — the standard scholarly translation with facing Greek."
+        ],
+        "gaps": [
+          "Gregory Shaw, *Theurgy and the Soul: The Neoplatonism of Iamblichus* (Pennsylvania State University Press, 1995) — a secondary study, not a primary text, but one a beginner likely needs to read *De Mysteriis* correctly at all. Flag: I could not confidently name a third accessible primary text. Iamblichus's other works survive mostly as fragments in Stobaeus and Proclus, not as standalone translated books — I note the gap rather than inventing a title."
+        ],
+        "note": "Titles drafted by a subagent and NOT yet checked against a real catalogue. Verify every one before it reaches a paying customer; an invented citation is the single failure this product cannot survive."
+      }
+    },
+    {
+      "id": "kabbalah",
+      "display": "Lurianic Kabbalah",
+      "code": "TPWLF",
+      "coords": {
+        "substrate": -2,
+        "vector": -2,
+        "agency": 3,
+        "warrant": 4,
+        "verdict": -3
+      },
+      "facts": {
+        "status": "populated",
+        "source": "subagent fact-layer pass 2026-09-18, reviewed",
+        "core_claims": [
+          "Before creation, Ein Sof (the infinite God) contracted (tsimtsum) to open a conceptual space in which a finite world could exist.",
+          "Divine light poured into vessels (kelim) built to hold and structure it, but the vessels proved too fragile and shattered (shevirat ha-kelim), scattering sparks of divine light trapped in shards (kelipot) throughout the material world.",
+          "This shattering, not merely human disobedience, names the fundamental catastrophe behind exile, evil, and the brokenness of ordinary reality — a structural flaw dating to cosmogony itself.",
+          "Human beings, through Torah observance, prayer, and especially precise ritual intention (kavvanah) performed at the correct moment, actively raise and reunite the scattered sparks with their source (tikkun, repair).",
+          "Tikkun requires collective human effort across history, culminating in full restoration and the messianic age.",
+          "This restorative work depends on transmitted, precisely specified practice — received from Isaac Luria through an unbroken chain of teachers — not on private spiritual invention."
+        ],
+        "coordinate_justification": {
+          "substrate": "Moderate transcendence. Ein Sof stands entirely beyond creation, but the scattered-sparks doctrine puts fragments of divinity inside matter itself, which argues for the mild rather than extreme negative score assigned here.",
+          "vector": "Reasonable — kavvanah performed at exact moments, not philosophical insight, performs tikkun. A stronger negative score would also fit, given how procedural the system runs, but −2 leaves room for the elaborate conceptual cosmology a practitioner also has to learn.",
+          "agency": "The most questionable score here, on the same grounds as Iamblichus above. Raising sparks counts as an active act, which supports a positive score, but the frame stays covenantal and law-bound throughout — the practitioner executes a divinely prescribed, precisely timed procedure rather than inventing one. I would propose lowering this toward 0 or +1, while granting a specialist could defend +3 on the strength of kavvanah's active-causation language. I flag this as a live disagreement, not a settled correction.",
+          "warrant": "Correct. Lurianic practice depends entirely on transmission from Luria via Hayyim Vital's writings and a rabbinic chain of authority; no room exists in the system for private reinvention of the kavvanot.",
+          "verdict": "Correct and central. The shattering names a real cosmic malfunction tikkun must repair. Not −4: the doctrine's optimism that repair remains fully achievable separates it from Gnosticism's harder pessimism about matter itself."
+        },
+        "as_primary": [],
+        "as_shadow": [],
+        "nearest": []
+      },
+      "prose": {
+        "selected": null,
+        "variants": []
+      },
+      "citations": {
+        "status": "drafted-unverified",
+        "entry_texts": [
+          "Gershom Scholem, *Kabbalah* (Meridian/Dorset Press, 1974, various reprints) — not a primary Lurianic text but the standard overview a beginner needs first; includes translated excerpts of Lurianic doctrine."
+        ],
+        "gaps": [
+          "Lawrence Fine, *Physician of the Soul, Healer of the Cosmos: Isaac Luria and His Kabbalistic Fellowship* (Stanford University Press, 2003) — a scholarly study with translated primary material on Luria's own teaching and community. Flag: I could not confidently cite a complete, widely available English translation of Hayyim Vital's *Etz Chayim* (the primary Lurianic text) suitable for a beginner — partial translations circulate in specialist and denominational editions I cannot verify with confidence. A beginner most likely needs Scholem or Fine before approaching Luria's own text."
+        ],
+        "note": "Titles drafted by a subagent and NOT yet checked against a real catalogue. Verify every one before it reaches a paying customer; an invented citation is the single failure this product cannot survive."
+      }
+    },
+    {
+      "id": "advaita",
+      "display": "Advaita Vedanta",
+      "code": "TGwLC",
+      "coords": {
+        "substrate": -2,
+        "vector": 4,
+        "agency": 0,
+        "warrant": 2,
+        "verdict": 1
+      },
+      "facts": {
+        "status": "populated",
+        "source": "subagent fact-layer pass 2026-09-18, reviewed",
+        "core_claims": [
+          "Only one reality exists — Brahman, non-dual, without parts or qualities — and the apparent multiplicity of the world, individual selves, and a personal God counts as maya, a beginningless superimposition on that one reality.",
+          "The individual self (atman) has never actually differed from Brahman; the Upanishadic statement \"tat tvam asi\" (you are that) names an already-existing fact, not a future achievement.",
+          "Ignorance (avidya) of this identity, not any real separation, causes the experience of bondage, suffering, and repeated rebirth.",
+          "Liberation (moksha) consists entirely in the removal of this ignorance through direct knowledge (jnana) of one's identity with Brahman — not in action, ritual, or moral improvement, which can only prepare the mind but never itself produce liberation.",
+          "Because liberation removes ignorance rather than creating a new state, a liberated person (jivanmukta) can continue an embodied life while abiding in that knowledge, per Shankara's teaching.",
+          "Scriptural inquiry under a qualified teacher, especially sustained reflection on the Upanishadic \"great sayings,\" names the standard means for this knowledge to dawn, per Shankara's commentaries on the Brahma Sutras, principal Upanishads, and Bhagavad Gita."
+        ],
+        "coordinate_justification": {
+          "substrate": "-2. Softened from -4 on 2026-09-18. Ontologically Brahman underlies everything (sarvam khalvidam brahma), which reads immanent. Operationally, on all four Substrate questions an Advaitin answers transcendent, since maya and neti neti reach the real by negating appearance rather than by depth into it. The negative sign holds; the extreme magnitude did not, and a Vedantin would have called -4 a caricature.",
+          "vector": "Correct and central, among the least contestable scores in the library. Jnana alone liberates in Shankara's system; karma at most purifies the mind as preparation.",
+          "agency": "0. Corrected from -3 on 2026-09-18. Advaita denies the agent outright: doership counts as superimposition on a self that never acts. Neither will nor surrender describes a position that dissolves the one who would do either. The midline states that; a surrender score quietly imported bhakti.",
+          "warrant": "Reasonable. Shankara's authority rests on scriptural commentary within a guru-disciple lineage and on the Vedas as revealed scripture, but the aspirant's own discriminative reasoning also carries real weight, which argues for +2 rather than +4.",
+          "verdict": "Debatable in a specific way, similar to my Substrate flag. Advaita treats the whole sound/flawed question as posed within maya, a level of description the realization supersedes rather than judges. A mild positive captures the tradition's general serenity about the phenomenal order better than a strongly negative score would, but this axis may simply not bite cleanly here — the file should note that rather than present +1 as a confident reading."
+        },
+        "as_primary": [],
+        "as_shadow": [],
+        "nearest": []
+      },
+      "prose": {
+        "selected": null,
+        "variants": []
+      },
+      "citations": {
+        "status": "drafted-unverified",
+        "entry_texts": [
+          "Shankara (attributed), *Vivekachudamani* (*Crest-Jewel of Discrimination*), trans. Swami Prabhavananda and Christopher Isherwood (Vedanta Press, 1947) — widely available and readable, though scholars debate Shankara's actual authorship of this specific text.",
+          "Eliot Deutsch, *Advaita Vedanta: A Philosophical Reconstruction* (University of Hawaii Press, 1969) — a standard academic introduction requiring no Sanskrit background.",
+          "Shankara, *Brahma Sutra Bhashya*, trans. Swami Gambhirananda (Advaita Ashrama) — the actual primary commentary, harder going than the first two; likely a second rather than first text for a true beginner."
+        ],
+        "gaps": [],
+        "note": "Titles drafted by a subagent and NOT yet checked against a real catalogue. Verify every one before it reaches a paying customer; an invented citation is the single failure this product cannot survive."
+      }
+    },
+    {
+      "id": "theravada",
+      "display": "Theravada Buddhism",
+      "code": "IPWLF",
+      "coords": {
+        "substrate": 1,
+        "vector": -3,
+        "agency": 2,
+        "warrant": 3,
+        "verdict": -3
+      },
+      "facts": {
+        "status": "populated",
+        "source": "subagent fact-layer pass 2026-09-18, reviewed",
+        "core_claims": [
+          "All conditioned existence carries dukkha (unsatisfactoriness) as an inescapable structural feature (the First Noble Truth).",
+          "Craving (tanha) — for sense pleasure, for continued existence, for non-existence — produces dukkha's arising (the Second Noble Truth): a psychological/causal claim, not a claim about an external saboteur or a broken cosmos.",
+          "The cessation of craving produces the cessation of dukkha, nibbana, a real attainable state (the Third Noble Truth), not merely a regulative ideal.",
+          "The Noble Eightfold Path — right view, intention, speech, action, livelihood, effort, mindfulness, concentration — names the actual route to that cessation (the Fourth Noble Truth); sustained ethical and meditative practice, not a single insight-event, does the work.",
+          "No permanent, unchanging self (anatta) exists in the five aggregates that make up a person; the intuitive sense of a fixed \"I\" counts as a further error to see through, not a starting fact.",
+          "The Buddha functions as a teacher who discovered and taught an already-available path, not a savior or a channel for a transcendent power acting on the practitioner's behalf — liberation runs through the practitioner's own sustained effort."
+        ],
+        "coordinate_justification": {
+          "substrate": "Mild, and appropriately hedged. Canonical Theravada stays famously reticent about an ultimate ground of reality (the \"unanswered questions\"), so neither a strongly immanent nor strongly transcendent score fits well. A small positive nudges toward the tradition's this-world, practice-oriented framing without overclaiming a doctrine of immanent divinity the tradition never teaches.",
+          "vector": "Correct and central. The Eightfold Path names a graduated practice regimen; canonical texts repeatedly warn against mistaking intellectual understanding of the Dhamma for the liberation only sustained meditative cultivation produces. Not −4: \"right view\" still names a genuine cognitive component within the path.",
+          "agency": "Reasonable. The tradition explicitly places responsibility for liberation on the practitioner's own effort, against grace-based traditions. Not +4: much of the actual technique (calm/samatha meditation especially) involves letting go and non-grasping, which pulls toward surrender even inside an effort-based overall framing.",
+          "warrant": "Reasonable. The school claims textual and monastic-lineage continuity to the Buddha via the Pali Canon and an unbroken ordination lineage. Not +4: the Kalama Sutta explicitly instructs testing a teaching against one's own experience rather than accepting it on tradition or report alone — a real direct-experience thread inside an otherwise lineage-heavy system.",
+          "verdict": "Reasonable. Dukkha as a structural feature of all conditioned existence makes a strong claim that ordinary existence runs badly if left unexamined. Not −4: the tradition does not describe a deliberately malicious trap — no hostile Demiurge — the machinery produces suffering by its own nature, a somewhat less totalizing claim than outright cosmic malevolence."
+        },
+        "as_primary": [],
+        "as_shadow": [],
+        "nearest": []
+      },
+      "prose": {
+        "selected": null,
+        "variants": []
+      },
+      "citations": {
+        "status": "drafted-unverified",
+        "entry_texts": [
+          "Bhikkhu Bodhi (trans./ed.), *In the Buddha's Words: An Anthology of Discourses from the Pali Canon* (Wisdom Publications, 2005) — well-organized, direct access to canonical sources.",
+          "Walpola Rahula, *What the Buddha Taught* (Grove Press, 1959) — the standard short introduction by a Theravada monk-scholar, with translated canonical excerpts.",
+          "Bhikkhu Bodhi, *The Noble Eightfold Path: Way to the End of Suffering* (Buddhist Publication Society, 1984) — focused directly on the path central to this position's claims."
+        ],
+        "gaps": [],
+        "note": "Titles drafted by a subagent and NOT yet checked against a real catalogue. Verify every one before it reaches a paying customer; an invented citation is the single failure this product cannot survive."
+      }
+    },
+    {
+      "id": "zen",
+      "display": "Zen / Chan",
+      "code": "IPSLC",
+      "coords": {
+        "substrate": 3,
+        "vector": -4,
+        "agency": -2,
+        "warrant": 2,
+        "verdict": 2
+      },
+      "facts": {
+        "status": "populated",
+        "source": "subagent fact-layer pass 2026-09-18, reviewed",
+        "core_claims": [
+          "Buddha-nature already fully inheres in every sentient being; awakening consists in directly realizing what already stands the case, not acquiring something new.",
+          "Conceptual thought and doctrinal study, pursued alone, cannot deliver this realization and can actively obstruct it — hence the tradition's wariness toward \"a special transmission outside the scriptures, not founded upon words and letters.\"",
+          "Zazen functions, depending on lineage, either as the direct expression of already-present Buddha-nature (Sōtō's shikantaza, \"just sitting,\" per Dōgen) or as the vehicle that precipitates sudden breakthrough (kenshō/satori, emphasized more in Rinzai koan practice).",
+          "Direct, teacher-verified experience — not scriptural argument — settles whether realization has actually occurred; a student's understanding gets tested and confirmed or rejected in face-to-face encounter (dokusan) with a qualified teacher.",
+          "Ordinary activity, performed with full attention and without a grasping self-conscious \"doer,\" itself counts as practice and as an expression of awakening.",
+          "Mind-to-mind transmission from teacher to student, traced through an unbroken lineage back to the historical Buddha and, in the tradition's own account, through Bodhidharma's transmission of Chan to China, authenticates a teacher's standing to confirm another's realization."
+        ],
+        "coordinate_justification": {
+          "substrate": "Buddha-nature inheres in ordinary embodied existence and ordinary activity itself; \"this very mind is Buddha\" reads as an immanent claim. Not +4: Zen remains formally a school of Mahayana Buddhism and retains cosmological furniture (rebirth, other Buddha-realms) it does not fully collapse into pure immanence.",
+          "vector": "Worth flagging in the opposite direction from most flags here. Zen's own rhetoric of sudden awakening sounds gnosis-coded, yet the tradition insists sudden seeing arises only out of and inseparable from sustained zazen practice, and treats any insight divorced from ongoing practice as suspect (makyo, a meditative delusion). Given that near-total emphasis on practice as both means and, per Dōgen, content of realization, −4 looks defensible; a specialist in Rinzai koan-training, which does center a sudden cognitive break, might argue for something closer to −2.",
+          "agency": "Reasonable. The instruction to sit \"without gaining idea,\" to release the very effort to achieve enlightenment, pulls toward non-doing. Not more extreme: zazen and koan work still ask for real disciplined exertion.",
+          "warrant": "Reasonable. Dharma transmission and lineage charts matter enormously for a teacher's institutional legitimacy, but the tradition also insists a student's own direct realization, verified rather than merely conferred, must underlie any transmission.",
+          "verdict": "Reasonable. Zen runs no strong cosmic-flaw doctrine; ordinary reality, seen clearly, already counts as complete and lacking nothing — a mild positive fits better than either extreme."
+        },
+        "as_primary": [],
+        "as_shadow": [],
+        "nearest": []
+      },
+      "prose": {
+        "selected": null,
+        "variants": []
+      },
+      "citations": {
+        "status": "drafted-unverified",
+        "entry_texts": [
+          "Shunryu Suzuki, *Zen Mind, Beginner's Mind* (Weatherhill, 1970) — the standard first book in English, from a Sōtō teacher; a modern teaching text rather than a classical primary source.",
+          "Dōgen, selected in Kazuaki Tanahashi (trans./ed.), *Moon in a Dewdrop* (North Point Press, 1985) — a more approachable entry to Dōgen's *Shōbōgenzō* than the complete text, which I flag as genuinely difficult for a true beginner.",
+          "*The Blue Cliff Record*, trans. Thomas Cleary and J.C. Cleary (Shambhala, 1977) — the classical koan collection central to Rinzai practice."
+        ],
+        "gaps": [],
+        "note": "Titles drafted by a subagent and NOT yet checked against a real catalogue. Verify every one before it reaches a paying customer; an invented citation is the single failure this product cannot survive."
+      }
+    },
+    {
+      "id": "daoism",
+      "display": "Philosophical Daoism",
+      "code": "IPSDC",
+      "coords": {
+        "substrate": 4,
+        "vector": -2,
+        "agency": -4,
+        "warrant": -2,
+        "verdict": 3
+      },
+      "facts": {
+        "status": "populated",
+        "source": "subagent fact-layer pass 2026-09-18, reviewed",
+        "core_claims": [
+          "The Dao names the nameless, ungraspable source and pattern underlying all things; the Daodejing opens by stating that any nameable Dao differs from the constant Dao.",
+          "Excessive conceptual categorization, striving, and artificial social convention distance a person from spontaneous alignment with the Dao.",
+          "Wu wei — action without forcing or contrivance — names the correct mode of engaging the world: acting with the natural grain of a situation rather than imposing an intention on it.",
+          "The sage governs or lives best through minimal, unobtrusive intervention (\"the more prohibitions, the poorer the people\"; governing a large state like cooking a small fish).",
+          "Apparent opposites — strength and weakness, being and non-being, action and stillness — generate each other rather than standing as fixed contraries; water's softness overcomes hardness precisely by not resisting.",
+          "A person achieves the fullest flourishing, per the Zhuangzi especially, through the \"free and easy wandering\" of a mind unattached to fixed categories of usefulness, right and wrong, or self and other, rather than through moral or intellectual striving toward a defined goal."
+        ],
+        "coordinate_justification": {
+          "substrate": "The Dao operates immanently, within and as the natural pattern of ordinary things (water, an uncarved block, a butcher's knife finding the joints of an ox), with no separate transcendent realm invoked.",
+          "vector": "Debatable in a specific way. Both core texts center non-conceptual apprehension of the Dao achieved through unlearning, which sounds gnosis-adjacent, yet the recommended mode — wu wei, the Cook Ding parable's practiced knife-work — reads as skilled practice more than propositional insight. −2 reads as a reasonable middle position; I would not push it further negative, since a real seeing-through-categories element remains.",
+          "agency": "Reasonable and among the least contestable scores in the library. Wu wei explicitly counsels against forcing or imposing, in favor of yielding to a situation's own grain.",
+          "warrant": "Reasonable. The Daodejing distrusts fixed doctrine and named authority (\"those who know don't talk, those who talk don't know\"), and the Zhuangzi satirizes Confucian appeals to sage-lineage. Note that later *religious* Daoism, a distinct historical development, built extensive lineage and ordination systems this score does not cover.",
+          "verdict": "Reasonable. The natural order, left alone, runs well; trouble arises from human interference, not from a flaw in the Dao itself. Not +4: the Zhuangzi registers real grief and difficulty (on death, on hardship) a maximal score would understate."
+        },
+        "as_primary": [],
+        "as_shadow": [],
+        "nearest": []
+      },
+      "prose": {
+        "selected": null,
+        "variants": []
+      },
+      "citations": {
+        "status": "drafted-unverified",
+        "entry_texts": [
+          "*Daodejing*, trans. D.C. Lau (Penguin Classics, 1963, rev. 1989) — a careful, widely used scholarly translation.",
+          "*Daodejing*, trans. Philip J. Ivanhoe (Hackett, 2002) — a useful alternate translation for comparing renderings of a notoriously hard-to-translate text.",
+          "*Zhuangzi: The Essential Writings*, trans. Brook Ziporyn (Hackett, 2009) — necessary alongside the Daodejing, since the two texts differ considerably in tone and argument despite sharing the \"Daoist\" label."
+        ],
+        "gaps": [],
+        "note": "Titles drafted by a subagent and NOT yet checked against a real catalogue. Verify every one before it reaches a paying customer; an invented citation is the single failure this product cannot survive."
+      }
+    },
+    {
+      "id": "stoicism",
+      "display": "Stoicism",
+      "code": "IGSDC",
+      "coords": {
+        "substrate": 3,
+        "vector": 2,
+        "agency": -1,
+        "warrant": -1,
+        "verdict": 4
+      },
+      "facts": {
+        "status": "populated",
+        "source": "subagent fact-layer pass 2026-09-18, reviewed",
+        "core_claims": [
+          "The cosmos runs as a single rational, providentially ordered whole (the Logos), and everything that happens follows necessarily and rightly from that order (Chrysippus's account of universal causation and fate).",
+          "Human beings possess a fragment of that same rational Logos and achieve their proper function by living in agreement with nature and with that rational order.",
+          "Only virtue — practical wisdom, justice, courage, temperance — counts as a true good; external circumstances (health, wealth, reputation, even life and death) count as \"indifferents,\" genuinely preferred or dispreferred but never necessary for a flourishing life.",
+          "Destructive emotions (fear, excessive desire, distress, excessive delight) arise from mistaken value-judgments about externals, not from externals themselves; correcting the judgment reshapes or removes the emotion.",
+          "The \"dichotomy of control\" separates what lies within a person's power (their own judgments, will, responses) from what does not (outcomes, other people's actions); a rational agent directs effort only toward the former.",
+          "Progress toward virtue runs through sustained rational self-examination and daily discipline, per Marcus Aurelius's private notebook practice, not through a single transformative event."
+        ],
+        "coordinate_justification": {
+          "substrate": "The Logos pervades the cosmos and the individual alike, with no separate transcendent realm beyond nature; Stoic physics identifies god with the active rational principle immanent in matter.",
+          "vector": "Debatable. Stoic ethics leans heavily on correcting judgments, a cognitive operation supporting a positive score, but also demands the sustained daily spiritual exercises Pierre Hadot documented (evening self-examination, the view from above) needed to actually change habituated reactions — a praxis-leaning counterweight. A specialist reading Hadot's account of Stoicism as fundamentally a practiced way of life might argue for a score near zero instead.",
+          "agency": "A genuinely close call. Stoicism demands vigorous active effort (courage, virtue as achievement) yet its core teaching (the dichotomy of control, amor fati) counsels aligning oneself with what already happens rather than bending outcomes. A small negative captures this blend reasonably; a small positive would also fit, given how much active daily discipline the practice demands.",
+          "warrant": "Debatable in the opposite direction from Iamblichus and Lurianic Kabbalah above. Stoicism ran as an organized school with real institutional lineage (Zeno through Chrysippus in Athens, later Seneca, Epictetus, Marcus Aurelius in Rome), constantly citing earlier authorities — which would support a positive score. But Stoic epistemology also holds that any rational person can reach the same conclusions through their own shared reason, supporting direct warrant instead. −1 reasonably resolves that tension rather than marking an error.",
+          "verdict": "Correct and central, among the least contestable scores in the library. Stoic physics explicitly identifies the cosmic order as rational, providential, and good by definition — a built-in theodicy in which apparent evils serve the whole's rational design."
+        },
+        "as_primary": [],
+        "as_shadow": [],
+        "nearest": []
+      },
+      "prose": {
+        "selected": null,
+        "variants": []
+      },
+      "citations": {
+        "status": "drafted-unverified",
+        "entry_texts": [
+          "Epictetus, *Enchiridion* (*The Handbook*), trans. Nicholas White (Hackett, 1983) — the shortest, most direct entry point, a condensed manual of practice.",
+          "Marcus Aurelius, *Meditations*, trans. Gregory Hays (Modern Library, 2002) — the most widely read Stoic primary text, a private notebook rather than a treatise.",
+          "Seneca, *Letters from a Stoic*, trans. Robin Campbell (Penguin Classics, 1969) — accessible, practically oriented letters covering ethics and the dichotomy of control."
+        ],
+        "gaps": [],
+        "note": "Titles drafted by a subagent and NOT yet checked against a real catalogue. Verify every one before it reaches a paying customer; an invented citation is the single failure this product cannot survive."
+      }
+    },
+    {
+      "id": "sufism",
+      "display": "Sufism and bhakti devotion",
+      "code": "TPSLC",
+      "coords": {
+        "substrate": -3,
+        "vector": -2,
+        "agency": -4,
+        "warrant": 3,
+        "verdict": 3
+      },
+      "facts": {
+        "status": "populated",
+        "source": "subagent fact-layer pass 2026-09-18, reviewed",
+        "core_claims": [
+          "The divine functions as an object of passionate love — in Sufism, the Beloved; in bhakti, Krishna, Rama, or another personal deity — and love, not primarily metaphysical argument, names the actual path to union or nearness.",
+          "The individual ego (nafs, in Sufism) forms the primary obstacle between the seeker and the divine; its dissolution or \"annihilation\" (fana in Sufism; a structurally similar self-forgetting in bhakti practice) opens the way.",
+          "Remembrance and repetition — dhikr (ritualized repetition of divine names) in Sufism, japa/kirtan (repeated chanting of divine names) in bhakti — name the primary, sustained technology of transformation, not a single doctrinal insight.",
+          "A living teacher (a Sufi shaykh within a tariqa, or a bhakti guru within a sampradaya) transmits both the practice and its authorization; the path does not work reliably attempted alone from texts.",
+          "Surrender of the individual will to the divine will or the divine person, rather than assertion of individual will, names both the method and, at its completion, the realized state (fana in Sufism; prapatti, total surrender, in schools such as Sri Vaishnavism).",
+          "The cosmos and embodied life serve as a legitimate field for love's expression rather than a trap to escape — connected in Sufi metaphysics (e.g., readings associated with Ibn Arabi) to the idea that the cosmos functions as the locus where divine names become manifest."
+        ],
+        "coordinate_justification": {
+          "substrate": "Reasonable for the devotional core, which addresses the Beloved as other even in intimacy. Real internal tension exists: some Sufi metaphysics (Ibn Arabi's wahdat al-wujud, \"unity of being\") reads closer to immanent non-dualism, and bhakti theology varies by school (dualist Dvaita, qualified non-dualist Vishishtadvaita, more monist strands). −3 works as a rough average across this range but genuinely papers over real internal disagreement worth naming in the result copy.",
+          "vector": "Reasonable. Dhikr and japa/kirtan name repeated practice, not doctrinal study, as the operative mechanism, though intense devotional feeling itself sits somewhat awkwardly on a seeing-versus-doing axis, since it names neither exactly.",
+          "agency": "Reasonable and central to both currents. Fana and prapatti both name the deliberate, complete relinquishment of individual will as the point of the practice, not a side effect.",
+          "warrant": "Reasonable. Both currents run on transmitted authorization — the Sufi silsila, an unbroken chain of teachers to the Prophet; the bhakti guru-parampara — and both traditions treat unauthorized solo attempts as unreliable or dangerous.",
+          "verdict": "Reasonable. Both traditions treat the created world as good, a genuine field for divine love's disclosure rather than a trap or mistake — sharply distinguishing this position from the Verdict-negative traditions (Gnosticism, Lurianic Kabbalah, Theravada) despite surface similarity in emphasizing surrender and practice."
+        },
+        "as_primary": [],
+        "as_shadow": [],
+        "nearest": [],
+        "bundle_flag": "Sufism and bhakti devotion **Coordinates:** (−3, −2, −4, +3, +3) — T P S L C Flag on the bundle: this entry compresses two historically distinct traditions — Islamic Sufism and Hindu bhakti devotionalism — into one position, the largest single structural compression in the library. The claims below state what the two currents genuinely share (ecstatic, love-centered devotion aimed at union or nearness with a personal-seeming divine, transmitted through an authorized order); a specialist in either tradition individually would object to treating them as one entry, and I'd flag this bundle as a candidate for splitting into two positions."
+      },
+      "prose": {
+        "selected": null,
+        "variants": []
+      },
+      "citations": {
+        "status": "drafted-unverified",
+        "entry_texts": [
+          "Rumi, *Signs of the Unseen: The Discourses of Rumi*, trans. W.M. Thackston Jr. (Threshold Books, 1994/1999) — prose teachings translated directly from Persian.",
+          "*The Essential Rumi*, trans. Coleman Barks (HarperOne, 1995) — the most widely available English entry to Sufi devotional poetry; flagged explicitly: Barks worked from earlier English/German translations rather than directly from Persian and takes real interpretive liberties.",
+          "*Bhagavad Gita*, trans. Eknath Easwaran (Nilgiri Press, rev. 1985) — the standard beginner entry to bhakti theology in its most widely read primary source, particularly its chapters on bhakti yoga as a path in its own right. Flag: this list still under-represents bhakti relative to Sufism. A fuller treatment needs a Chaitanya-tradition or Alvar-tradition primary text I do not have enough confidence to cite specifically without risking an inaccurate attribution."
+        ],
+        "gaps": [],
+        "note": "Titles drafted by a subagent and NOT yet checked against a real catalogue. Verify every one before it reaches a paying customer; an invented citation is the single failure this product cannot survive."
+      }
+    },
+    {
+      "id": "thelema",
+      "display": "Thelema and chaos magick",
+      "code": "IPWDC",
+      "coords": {
+        "substrate": 3,
+        "vector": -3,
+        "agency": 4,
+        "warrant": -3,
+        "verdict": 3
+      },
+      "facts": {
+        "status": "populated",
+        "source": "subagent fact-layer pass 2026-09-18, reviewed",
+        "core_claims": [
+          "Each individual carries a \"True Will\" — an authentic, discoverable purpose specific to them — and the entire ethical and magical project consists in discovering and enacting it (\"Do what thou wilt shall be the whole of the Law\").",
+          "Ritual and magical technique work causally on reality, understood either as engaging real discrete forces or entities (Crowley's more traditionally occult framing) or as engaging and reprogramming the practitioner's own belief-structures to alter perception and behavior (the chaos-magick reframing, especially in Carroll's work).",
+          "Belief itself functions as a tool rather than a fixed commitment — a chaos magician may adopt, use, and discard a given belief-system purely for its practical effect, a stance chaos magick calls \"paradigm shifting.\"",
+          "No source of doctrine or tradition binds the practitioner in advance; efficacy, tested empirically by the practitioner's own results, functions as the only real authority (\"the proof of the pudding is in the eating,\" in Carroll's formulation).",
+          "Altered states of consciousness (gnosis, in chaos magick's specific technical sense of a one-pointed or blanked mental state achieved through intense concentration, sensory overload, or exhaustion) enable magical technique to bypass the practitioner's habitual, limiting beliefs.",
+          "The individual will, correctly aligned and exercised, functions as the primary causal engine in magical work — the practitioner causes the effect rather than petitioning or aligning with an external will that grants it."
+        ],
+        "coordinate_justification": {
+          "substrate": "Reasonable. Both currents locate magical power within the practitioner's own psyche and its exercise upon an immanent, malleable reality, without appeal to a separate transcendent order the practitioner must reach toward — especially clear in chaos magick's explicitly psychological framing.",
+          "vector": "Reasonable. Technique, ritual, and repeated practical experimentation, not doctrinal study, drive results; Crowley's own definition of magick as \"the Science and Art of causing Change to occur in conformity with Will\" frames the entire project as experimental and practice-based.",
+          "agency": "Correct and among the least contestable scores in the library. Both currents explicitly define magic as the imposition of will on reality — the clearest possible statement of the will pole as the instrument itself defines it.",
+          "warrant": "Correct and central. Chaos magick explicitly rejects any requirement of authenticated lineage, treating tradition as raw material to test and use; Thelema centers Crowley's own direct revelatory experience (receiving *The Book of the Law* in Cairo, 1904) over prior institutional sanction.",
+          "verdict": "+3. Raised from +1 on 2026-09-18. Liber AL affirms the world emphatically (existence as pure joy) against the ascetic reading it defines itself against. A near-neutral score understated one of the tradition's loudest commitments."
+        },
+        "as_primary": [],
+        "as_shadow": [],
+        "nearest": [],
+        "bundle_flag": "Thelema and chaos magick **Coordinates:** (+3, −3, +4, −3, +1) — I P W D C Flag on the bundle: this entry combines Crowley's Thelema with the later, distinct chaos-magick current (Peter Carroll and others) under one position. The claims below state what both currents share as a modern Western ceremonial-magical approach centering individual will and pragmatic technique over inherited doctrine; a historian of either current specifically would object to the merger."
+      },
+      "prose": {
+        "selected": null,
+        "variants": []
+      },
+      "citations": {
+        "status": "drafted-unverified",
+        "entry_texts": [
+          "Peter J. Carroll, *Liber Null & Psychonaut* (Weiser, 1987) — the foundational chaos-magick practical manual, considerably more accessible than Crowley for a beginner and probably the better actual starting point despite Thelema's historical priority.",
+          "Aleister Crowley, *Magick: Liber ABA, Book Four*, ed. Hymenaeus Beta (Weiser, 1997 rev. ed.) — the core theoretical text; flagged as long, dense, and idiosyncratic, a difficult first text.",
+          "Aleister Crowley, *The Book of the Law* (*Liber AL vel Legis*) — short and central to Thelemic doctrine specifically, though it functions more as scripture than instruction; a beginner likely needs Crowley's own later commentary (within *Magick: Liber ABA*) to make sense of it."
+        ],
+        "gaps": [],
+        "note": "Titles drafted by a subagent and NOT yet checked against a real catalogue. Verify every one before it reaches a paying customer; an invented citation is the single failure this product cannot survive."
+      }
+    },
+    {
+      "id": "apophatic",
+      "display": "Apophatic Christian mysticism",
+      "code": "TGSLC",
+      "coords": {
+        "substrate": -4,
+        "vector": 1,
+        "agency": -4,
+        "warrant": 3,
+        "verdict": 2
+      },
+      "facts": {
+        "status": "populated",
+        "source": "subagent fact-layer pass 2026-09-18, reviewed",
+        "core_claims": [
+          "God exceeds every concept, category, and name a human mind can form; any positive theological statement falls short and requires immediate qualification or negation (the via negativa), per Pseudo-Dionysius the Areopagite's *Mystical Theology* and *The Divine Names*.",
+          "The soul approaches God most nearly not by accumulating correct concepts about God but by entering a \"cloud of unknowing\" — a deliberate unknowing that exceeds ordinary knowing, per the anonymous 14th-century English text of that name.",
+          "Sustained contemplative practice — long, wordless prayer, radical stillness, the systematic release of images and concepts as they arise — constitutes the actual discipline that makes this unknowing possible; it does not arrive as a spontaneous side effect of ordinary life.",
+          "Union with God, when it occurs, exceeds sensory or intellectual experience altogether and resists adequate description afterward, hence the tradition's characteristic paradoxical language (\"dazzling darkness,\" \"the naked intent of love\").",
+          "This union does not abolish the real distinction between Creator and creature — orthodox apophatic mysticism retains God's transcendence even in the closest union; the soul draws as near as a creature can draw without becoming identical with God.",
+          "Formal ecclesial and monastic discipline — obedience, the sacraments, a spiritual director, a rule of life — typically frames and authorizes this contemplative path rather than leaving it to unstructured private experimentation."
+        ],
+        "coordinate_justification": {
+          "substrate": "Correct and central, among the least contestable scores in the whole library alongside Gnosticism's identical score. Apophatic theology repeatedly insists God exceeds and transcends the created order in every nameable respect.",
+          "vector": "Close to the midline and worth real scrutiny. The unknowing functions as a kind of higher, negative \"knowledge\" — Pseudo-Dionysius calls it a form of knowing that exceeds knowing — supporting a positive score, yet the tradition insists this state arrives only through sustained ascetic-contemplative practice, never through doctrinal study or argument alone, arguably the opposite of a discriminative-reasoning gnosis path like Advaita's. +1 reasonably captures this near-balance; I would not push it further in either direction without stronger textual grounds.",
+          "agency": "Correct and central. The discipline consists entirely of releasing and un-grasping — the \"naked intent,\" the deliberate refusal to strive after concepts or experiences — the clearest possible expression of the surrender pole.",
+          "warrant": "Reasonable. This path typically operates inside monastic obedience, a spiritual director's guidance, and church/sacramental authority. Not +4: the actual mystical experience itself, intensely private, gets verified rather than conferred by any institution directly.",
+          "verdict": "Reasonable. Orthodox Christian theology, which this tradition operates within however negatively it speaks of God, affirms creation as fundamentally good even while acknowledging the Fall and real evil — a moderate positive fits better than either extreme."
+        },
+        "as_primary": [],
+        "as_shadow": [],
+        "nearest": []
+      },
+      "prose": {
+        "selected": null,
+        "variants": []
+      },
+      "citations": {
+        "status": "drafted-unverified",
+        "entry_texts": [
+          "*The Cloud of Unknowing*, trans. Carmen Acevedo Butcher (Shambhala, 2009) — the classic Middle English text in accessible modern translation.",
+          "Pseudo-Dionysius the Areopagite, *The Complete Works*, trans. Colm Luibheid (Paulist Press, Classics of Western Spirituality series, 1987) — includes *The Mystical Theology* and *The Divine Names*, foundational for the whole apophatic current.",
+          "John of the Cross, *Dark Night of the Soul*, trans. E. Allison Peers (various reprints) — a later Carmelite classic centered on contemplative unknowing as spiritual desolation and purification."
+        ],
+        "gaps": [],
+        "note": "Titles drafted by a subagent and NOT yet checked against a real catalogue. Verify every one before it reaches a paying customer; an invented citation is the single failure this product cannot survive."
+      }
+    },
+    {
+      "id": "depth-psychology",
+      "display": "Depth psychology",
+      "code": "IGSLC",
+      "coords": {
+        "substrate": 2,
+        "vector": 3,
+        "agency": -1,
+        "warrant": 1,
+        "verdict": 2
+      },
+      "facts": {
+        "status": "populated",
+        "source": "subagent fact-layer pass 2026-09-18, reviewed",
+        "core_claims": [
+          "A personal unconscious and, beneath it, a collective unconscious shared across humanity structure psychic life; the collective unconscious contains archetypes — the Shadow, the Anima/Animus, the Self — that shape experience independent of personal history.",
+          "The Self (capitalized, distinct from the ego) names the archetype of psychic wholeness and the organizing center of the entire psyche, of which the conscious ego forms only a part.",
+          "Individuation — the lifelong integration of unconscious contents, especially the Shadow, into conscious awareness — constitutes the central task of psychological and, in Jung's own explicit framing, spiritual development.",
+          "Symbols, dreams, myths, and religious imagery across cultures give direct, observable access to archetypal material and carry real diagnostic and developmental significance, not merely cultural or arbitrary content.",
+          "Psychic health requires holding and integrating genuine opposites — conscious/unconscious, masculine/feminine principles, good/evil potential within oneself — rather than resolving them onto one side; a one-sided conscious personality produces a correspondingly extreme unconscious compensation.",
+          "Religious and mythological systems across history function, in Jung's account, as historically evolved technologies for managing and expressing the same archetypal dynamics depth psychology now studies directly and clinically."
+        ],
+        "coordinate_justification": {
+          "substrate": "Reasonable. The collective unconscious and its archetypes operate within the human psyche, an immanent location rather than an external transcendent realm, though Jung's later writing on synchronicity and the psychoid nature of the archetype edges toward claiming the archetypal order extends beyond individual psyches into the physical world — complicating a purely immanent-in-the-individual reading. A mild score seems appropriately cautious given that ambiguity.",
+          "vector": "Reasonable. Individuation centers on bringing unconscious material into conscious awareness — dream interpretation, active imagination as a way of \"seeing\" what the unconscious holds — clearly gnosis-coded. Not +4: real, sustained relational work (transference, the analytic relationship, active imagination as a practiced discipline over years) goes beyond pure insight.",
+          "agency": "Reasonable. Individuation requires the ego to relinquish its assumed centrality and cooperate with unconscious material it does not control or fully choose, a real surrender-coded demand, yet the process also requires active engagement — dream work, deliberate confrontation with the Shadow — rather than passive waiting. A small negative balances this.",
+          "warrant": "Reasonable. Jungian analytic training runs through an institutionally regulated lineage (training analysis, supervision, certification through bodies like the IAAP), supporting a positive score, though the field also grants real weight to a client's or practitioner's own direct experience and dream material as primary data.",
+          "verdict": "Reasonable. Jung's system does not treat the psyche or cosmos as fundamentally broken or malevolent — the Shadow counts as necessary and integrable, not evil to eliminate — supporting a mild positive, though the seriousness with which Jung treats evil and the Shadow as real, not illusory, keeps the score modest."
+        },
+        "as_primary": [],
+        "as_shadow": [],
+        "nearest": []
+      },
+      "prose": {
+        "selected": null,
+        "variants": []
+      },
+      "citations": {
+        "status": "drafted-unverified",
+        "entry_texts": [
+          "C.G. Jung, *Man and His Symbols* (Doubleday, 1964) — written for a general audience under Jung's own direction, the standard first book.",
+          "C.G. Jung, *Memories, Dreams, Reflections*, recorded/edited by Aniela Jaffé, trans. Richard and Clara Winston (Pantheon, 1963) — Jung's own autobiographical account.",
+          "Marie-Louise von Franz, *The Interpretation of Fairy Tales* (Shambhala, rev. ed. 1996) — a focused, practical introduction to Jungian symbolic method by Jung's closest collaborator, useful as a second text after the two above."
+        ],
+        "gaps": [],
+        "note": "Titles drafted by a subagent and NOT yet checked against a real catalogue. Verify every one before it reaches a paying customer; an invented citation is the single failure this product cannot survive."
+      }
+    },
+    {
+      "id": "existentialism",
+      "display": "Secular existentialism",
+      "code": "IGWDF",
+      "coords": {
+        "substrate": 4,
+        "vector": 2,
+        "agency": 3,
+        "warrant": -4,
+        "verdict": -2
+      },
+      "facts": {
+        "status": "populated",
+        "source": "subagent fact-layer pass 2026-09-18, reviewed",
+        "core_claims": [
+          "No pre-given, cosmic, or divinely ordained meaning attaches to human existence or the universe; meaning, where it exists at all, gets created rather than discovered (existentialism), or its absence must simply get faced without resolution (absurdism, per Camus).",
+          "Existence precedes essence: a person carries no fixed prior nature or purpose determining what they must become; they define themselves through their choices and actions, per Sartre's formulation.",
+          "This radical absence of pre-given meaning or a fixed self makes human beings entirely, unavoidably responsible for their own choices and values — Sartre's \"condemned to be free,\" since one cannot escape the responsibility even by refusing to choose.",
+          "Confronting this absence honestly, rather than fleeing into false certainty (Sartre's \"bad faith,\" self-deceptive pretense that one's role or circumstances leave no choice) or manufactured metaphysical comfort, constitutes the primary ethical and psychological task.",
+          "In Camus's formulation, the absurd names the collision between the human demand for meaning and the universe's silence in response; neither suicide (refusing existence) nor a \"leap of faith\" into unjustified belief (Camus's critique of Kierkegaard) resolves the absurd honestly — one must instead live fully within the unresolved tension, as Sisyphus does, pushing the boulder without metaphysical rescue.",
+          "Authentic living consists in acting from one's own freely chosen, owned values rather than from unreflective conformity to inherited social roles, expectations, or ready-made ideologies."
+        ],
+        "coordinate_justification": {
+          "substrate": "Reasonable and among the least contestable scores for this position. The framework explicitly denies any transcendent order or divine ground beyond the immanent, physical universe and human consciousness within it.",
+          "vector": "Debatable. The entire project centers on a lucid, unflinching recognition — of one's freedom, of the absurd, of mortality — functioning as a gnosis-coded act of clear seeing, arguing for a stronger positive score. But Sartre and Camus both insist this recognition means nothing without enduring commitment and repeated concrete choice over a lifetime, a genuinely practice-coded dimension. +2 reads as a reasonable balance; a specialist could push it in either direction.",
+          "agency": "Reasonable and among the clearer scores for this position. The framework insists on radical, unavoidable individual freedom and responsibility for self-creation through willed choice.",
+          "warrant": "Correct and central, among the least contestable scores in the library. The framework explicitly rejects appeal to inherited authority, tradition, or received doctrine as a basis for value or meaning, insisting instead on each individual's own confrontation with their situation.",
+          "verdict": "Reasonable, though worth a nuance the file's sound/flawed binary does not quite capture. This position does not claim the universe runs actively malevolent the way Gnosticism does — rather it claims the universe runs entirely indifferent, without any design, good or bad, to evaluate at all. −2 (moderate rather than maximal) captures \"the universe offers no answer\" without overstating it as \"the universe answers wrongly,\" but the Verdict axis, built around a sound/flawed design binary, may not cleanly fit a position that denies any cosmic design standing there to judge sound or flawed in the first place — a concern parallel to the one raised for Advaita's Verdict score, from the opposite direction."
+        },
+        "as_primary": [],
+        "as_shadow": [],
+        "nearest": []
+      },
+      "prose": {
+        "selected": null,
+        "variants": []
+      },
+      "citations": {
+        "status": "drafted-unverified",
+        "entry_texts": [
+          "Albert Camus, *The Myth of Sisyphus*, trans. Justin O'Brien (Vintage, 1955) — the foundational absurdist essay, the clearest single entry point.",
+          "Jean-Paul Sartre, *Existentialism Is a Humanism*, trans. Carol Macomber (Yale University Press, 2007) — a short, originally-public-lecture text designed explicitly to introduce the philosophy to a general audience.",
+          "Albert Camus, *The Stranger*, trans. Matthew Ward (Vintage International, 1988) — the novel dramatizing absurdist themes directly, a more experiential second entry point."
+        ],
+        "gaps": [],
+        "note": "Titles drafted by a subagent and NOT yet checked against a real catalogue. Verify every one before it reaches a paying customer; an invented citation is the single failure this product cannot survive."
+      }
+    },
+    {
+      "id": "materialism",
+      "display": "Methodological materialism",
+      "code": "IGWLc",
+      "coords": {
+        "substrate": 4,
+        "vector": 2,
+        "agency": 2,
+        "warrant": 4,
+        "verdict": 0
+      },
+      "facts": {
+        "status": "populated",
+        "source": "subagent fact-layer pass 2026-09-18, reviewed",
+        "core_claims": [
+          "Physical reality, describable in principle by the natural sciences, exhausts what exists; no additional immaterial substance, soul, or transcendent realm operates alongside or beyond it.",
+          "Claims about the world earn acceptance only when they can, in principle, get tested against observation and hold up under attempts at falsification or replication by others, regardless of who makes the claim.",
+          "Human experience, including subjective states like consciousness, meaning, and value, arises from and can in principle get explained by physical processes — neurological, evolutionary, social — even where a complete explanation remains currently unavailable.",
+          "Apparent design, purpose, or meaning in nature results from explicable physical and evolutionary processes (natural selection, self-organization) rather than from an intending mind behind the cosmos.",
+          "Human wellbeing and understanding improve through the accumulation and application of tested, shareable, revisable knowledge — the scientific method and its institutions — rather than through revelation, private mystical experience, or untested tradition.",
+          "Ethical and existential questions, where they get answered at all, get answered through reasoned argument grounded in observable human needs and consequences, not through appeal to a transcendent authority or an unfalsifiable revealed doctrine."
+        ],
+        "coordinate_justification": {
+          "substrate": "Reasonable and among the least contestable scores in the library. The framework locates reality entirely within the physical, immanent order and explicitly denies any additional transcendent layer.",
+          "vector": "Debatable in an interesting way. Scientific understanding functions as a form of insight or seeing (theory, explanation, comprehension of mechanism), supporting a positive score, but science as an institution runs on experimental practice and procedural method — a genuinely praxis-coded activity, since a validated finding requires running the experiment, not reasoning alone. +2 tries to balance theory against experimental practice, though this axis, framed around seeing-versus-doing in a personal/soteriological sense, maps onto the scientific method only loosely, since science combines both in a way most of the other fifteen positions do not.",
+          "agency": "Debatable, similar to Stoicism's score. A rationalist orientation can support either an active-will framing (intervening on nature via technology, medicine, engineering) or a more surrender-coded framing (accepting what the evidence shows regardless of what one wants true, \"following the evidence where it leads\"). +2 leans toward the interventionist reading; a real case exists for scoring this closer to zero or negative, given how central \"don't impose your preferred conclusion\" runs to the actual scientific ethic. I flag this as a genuine candidate for revision.",
+          "warrant": "This score needs the most explicit conceptual flag in the entire library. The instrument defines the Warrant poles as lineage versus direct experience — language drawn from religious epistemology (an unbroken teacher-to-student transmission, or textual revelation, versus a practitioner's own personal experience). Scoring methodological materialism at +4 \"lineage\" only holds up if \"lineage\" gets reinterpreted as institutional, peer-reviewed, consensus-based scientific authority — trusting the published, replicated finding over one's own single anecdotal observation — rather than the religious sense of lineage the axis meant originally to measure. That reinterpretation holds up reasonably well: science does ask an individual to trust an established, tested body of collective knowledge over raw direct experience, functioning analogously to lineage-warrant through a completely different mechanism (replication and peer review rather than transmission and initiation). But the result copy should say this explicitly rather than let the shared word \"lineage\" imply a false equivalence between apostolic succession and peer review. I treat +4 as defensible only with that gloss attached, not as a straightforward reading.",
+          "verdict": "0. Corrected from +1 on 2026-09-18. The axis asks whether the order deserves trust, which presumes an order somebody set up. Methodological materialism holds that no design exists to call sound or flawed, so it declines the question rather than answering it weakly."
+        },
+        "as_primary": [],
+        "as_shadow": [],
+        "nearest": []
+      },
+      "prose": {
+        "selected": null,
+        "variants": []
+      },
+      "citations": {
+        "status": "drafted-unverified",
+        "entry_texts": [
+          "Carl Sagan, *The Demon-Haunted World: Science as a Candle in the Dark* (Random House, 1995) — the clearest widely available defense of the epistemological stance itself (evidence, testability, skepticism of untested claims), not of any single finding.",
+          "Bertrand Russell, *Why I Am Not a Christian and Other Essays* (Simon & Schuster, 1957, various reprints) — a classic statement of the philosophical position from a leading 20th-century rationalist philosopher.",
+          "Daniel Dennett, *Breaking the Spell: Religion as a Natural Phenomenon* (Viking, 2006) — argues explicitly for explaining religious and meaning-making phenomena through natural, evolutionary, and cognitive-scientific mechanisms, engaging claim 4 above directly."
+        ],
+        "gaps": [],
+        "note": "Titles drafted by a subagent and NOT yet checked against a real catalogue. Verify every one before it reaches a paying customer; an invented citation is the single failure this product cannot survive."
+      }
+    },
+    {
+      "id": "indigenous-animism",
+      "display": "Indigenous animism",
+      "coords": {
+        "substrate": 4,
+        "vector": -3,
+        "agency": 1,
+        "warrant": 4,
+        "verdict": 2
+      },
+      "facts": {
+        "status": "populated",
+        "source": "split from the bundled animism entry on owner decision 2026-09-18",
+        "split_rationale": "Separated from core shamanism because the two hold opposite Warrant values. Genuine animist traditions transmit through kinship, initiation and place, and many stay deliberately closed; averaging them with a synthetic universal method produced a position describing neither.",
+        "core_claims": [
+          "Non-human persons — animals, plants, geographic features, weather, ancestors, spirits — possess agency and personhood comparable in kind, not degree, to human persons; relation with them, not domination over an inert nature, structures a livable world.",
+          "Ordinary and non-ordinary reality (an altered state reached via drumming, chanting, fasting, or entheogens) name two accessible domains, and specifically trained individuals move between them for specific practical purposes.",
+          "Illness, misfortune, and disorder often result from a disrupted relationship with non-human persons or spirits — soul loss, spirit intrusion, broken reciprocity — rather than solely from physical or purely psychological causes.",
+          "The practitioner actively travels, negotiates, retrieves, or contends with spirits on behalf of the community or client, performing real effortful, willed work in the non-ordinary domain rather than passively receiving insight.",
+          "Correct technique and, in genuine indigenous traditions specifically, correct relationship to a specific lineage, teacher, and cultural context authorize this work; core shamanism's own innovation extracted a claimed cross-cultural technical \"core\" while setting aside this specific cultural embedding.",
+          "The material and spiritual worlds interpenetrate continuously rather than separating into a lower and higher order; the spirits of a place, an animal, or an ancestor remain present and reachable within ordinary embodied life."
+        ],
+        "coordinate_justification": {
+          "substrate": "Reasonable. Spirits and non-human persons inhabit this world — specific places, specific animals, ancestors — not a separated transcendent realm.",
+          "vector": "Reasonable. Shamanic work centers on technique (drumming, specific journeying methods, specific ritual actions) rather than doctrinal or philosophical study.",
+          "agency": "+1. The practitioner acts, but within obligations to non-human persons who may refuse. Negotiation rather than either command or submission.",
+          "warrant": "+4. Standing comes from initiation, kinship, and relationship to a specific place and its beings. A self-taught outsider holds no standing whatever the technique.",
+          "verdict": "Reasonable. Most animist cosmologies treat the world as fundamentally workable and relationship-based rather than broken, though disorder and malevolent spirits do exist within it — a mild positive fits better than a strong claim in either direction."
+        },
+        "as_primary": [],
+        "as_shadow": [],
+        "nearest": [
+          "theurgy, separated on Substrate",
+          "theravada, separated on Verdict"
+        ]
+      },
+      "prose": {
+        "selected": null,
+        "variants": []
+      },
+      "citations": {
+        "status": "gap-acknowledged",
+        "entry_texts": [],
+        "gaps": [
+          "No widely available English primary text names itself without decontextualizing a closed or partly closed tradition. Left empty on purpose rather than filled with an extraction."
+        ],
+        "note": "Publishing an entry text here risks exactly the appropriation the split exists to avoid. Route through the Temple capability scan and the substitution ledger in docs/SERVICES-AND-PROOF-OF-SKILL.md before anything appears publicly."
+      },
+      "code": "IPWLC"
+    },
+    {
+      "id": "core-shamanism",
+      "display": "Core shamanism and neo-animist practice",
+      "coords": {
+        "substrate": 4,
+        "vector": -3,
+        "agency": 2,
+        "warrant": -3,
+        "verdict": 2
+      },
+      "facts": {
+        "status": "populated",
+        "source": "split from the bundled animism entry on owner decision 2026-09-18",
+        "split_rationale": "Michael Harner's 20th-century cross-cultural extraction removes culturally specific content deliberately and teaches a claimed universal technique to outsiders in a weekend. That makes it direct-warrant by its own design, the opposite of the traditions it draws from.",
+        "core_claims": [
+          "Non-human persons — animals, plants, geographic features, weather, ancestors, spirits — possess agency and personhood comparable in kind, not degree, to human persons; relation with them, not domination over an inert nature, structures a livable world.",
+          "Ordinary and non-ordinary reality (an altered state reached via drumming, chanting, fasting, or entheogens) name two accessible domains, and specifically trained individuals move between them for specific practical purposes.",
+          "Illness, misfortune, and disorder often result from a disrupted relationship with non-human persons or spirits — soul loss, spirit intrusion, broken reciprocity — rather than solely from physical or purely psychological causes.",
+          "The practitioner actively travels, negotiates, retrieves, or contends with spirits on behalf of the community or client, performing real effortful, willed work in the non-ordinary domain rather than passively receiving insight.",
+          "Correct technique and, in genuine indigenous traditions specifically, correct relationship to a specific lineage, teacher, and cultural context authorize this work; core shamanism's own innovation extracted a claimed cross-cultural technical \"core\" while setting aside this specific cultural embedding.",
+          "The material and spiritual worlds interpenetrate continuously rather than separating into a lower and higher order; the spirits of a place, an animal, or an ancestor remain present and reachable within ordinary embodied life."
+        ],
+        "coordinate_justification": {
+          "substrate": "Reasonable. Spirits and non-human persons inhabit this world — specific places, specific animals, ancestors — not a separated transcendent realm.",
+          "vector": "Reasonable. Shamanic work centers on technique (drumming, specific journeying methods, specific ritual actions) rather than doctrinal or philosophical study.",
+          "agency": "+2. The practitioner journeys deliberately, for a stated purpose, on their own initiative.",
+          "warrant": "-3. The method claims transferability to anyone without lineage, initiation, or relationship to a place. Its own premise denies that transmission supplies anything necessary.",
+          "verdict": "Reasonable. Most animist cosmologies treat the world as fundamentally workable and relationship-based rather than broken, though disorder and malevolent spirits do exist within it — a mild positive fits better than a strong claim in either direction."
+        },
+        "as_primary": [],
+        "as_shadow": [],
+        "nearest": [
+          "thelema, separated on Vector",
+          "daoism, separated on Agency"
+        ]
+      },
+      "prose": {
+        "selected": null,
+        "variants": []
+      },
+      "citations": {
+        "status": "drafted-unverified",
+        "entry_texts": [
+          "Mircea Eliade, *Shamanism: Archaic Techniques of Ecstasy*, trans. Willard R. Trask (Princeton University Press/Bollingen, 1964) — the classic cross-cultural survey; flagged as significantly critiqued by later scholarship on both method and specific claims, a foundational but contested text.",
+          "Michael Harner, *The Way of the Shaman* (Harper & Row, 1980) — the founding text of \"core shamanism\" specifically; useful only for that specific modern current, explicitly not a substitute for any actual indigenous tradition's own material. Flag: I could not confidently name a widely available English-language primary text representing a specific indigenous animist tradition without risking a shallow or decontextualized citation of a closed or partially closed tradition. This gap deserves a specialist in a specific named tradition, not a generic \"animism\" reading list — a real hole in this entry, not an oversight to smooth over."
+        ],
+        "gaps": [],
+        "note": "Verify every title against a real catalogue before publication."
+      },
+      "code": "IPWDC"
+    }
+  ],
+  "scoring": {
+    "questions_per_axis": 4,
+    "tiebreaker_weight": 1.5,
+    "axis_range": [
+      -4,
+      4
+    ],
+    "code": "One letter per axis, taken from the sign. The code is the shareable simplification; matching runs on the continuous vector.",
+    "match": {
+      "primary": "nearest position by Euclidean distance",
+      "shadow": "furthest position by Euclidean distance",
+      "shadow_note": "Furthest actual position, never the arithmetic opposite of the code — an arithmetic opposite frequently names no real tradition.",
+      "ambiguity_behavior": "Name both positions and treat the ambiguity as the finding.",
+      "tiebreak_window": 2.68,
+      "tiebreak_rule": "When the top two positions sit within this distance of each other, decide between them on the axis where THEY differ most, rather than on overall proximity. Without this, three positions in the library could never be returned as a primary result at all: in a tight pair, plain nearest-neighbour always hands the win to whichever position sits further along the respondent's own direction.",
+      "report_both_window": 0.5,
+      "report_both_rule": "Only within this much tighter distance does the result copy tell the respondent they sit between two traditions. Measured across all 7776 reachable vectors, this fires on roughly 38%; the wider tiebreak window would fire on 96% and say nothing."
+    },
+    "coherence": {
+      "status": "uncalibrated-but-behaviour-checked",
+      "base": 10,
+      "torn_penalty_by_axis_magnitude": {
+        "4": 0.0,
+        "2": 0.8,
+        "0.5": 1.4
+      },
+      "fit_weight": 2.0,
+      "fit_floor": 2.0,
+      "fit_ceiling": 8.0,
+      "floor": 1,
+      "ceiling": 10,
+      "note": "Replaced the v0.1 formula on 2026-09-18. That one penalised only axes at +-2 and ignored axes resolved by the tiebreaker at +-0.5, which are the MOST torn a respondent can be. The result: someone who answered 2-2 on all five axes scored 9 out of 10 for coherence. Exactly backwards, and it would have broken the product's central hook.",
+      "measured_distribution_pct": {
+        "2": 1,
+        "3": 5,
+        "4": 17,
+        "5": 27,
+        "6": 27,
+        "7": 16,
+        "8": 6,
+        "9": 1
+      },
+      "framing": "A high score describes a settled position, never a better person. A low score describes friction with a findable source."
+    },
+    "fit": {
+      "report_separately": true,
+      "good_max": 2.5,
+      "weak_min": 5.0,
+      "rule": "Distance to the nearest position, reported alongside coherence rather than folded into it. Below good_max the match is close. Above weak_min the respondent sits far from every position in the library, and the copy must say so instead of presenting a confident match.",
+      "why": "A persona stated to have no spiritual interest, answering impatiently, scored coherence 9 and received a confident tradition. Consistency and engagement are different things and the score could not tell them apart.",
+      "copy_when_weak": "Your answers held together, but they do not sit close to any tradition here. That means one of two things: you hold a position this library does not carry, or these questions do not map onto how you think. Both count as real findings, and neither makes the reading list below wrong for you."
+    }
+  },
+  "revision_log": [
+    {
+      "version": "0.2.0",
+      "date": "2026-09-18",
+      "change": "Widened the Warrant axis to cover transmitted-and-vetted frameworks generally rather than mystical lineage specifically, and corrected propositions on 12 questions after an adversarial audit.",
+      "why": "The library scores methodological materialism at warrant +4 (peer review read as transmission), but all four Warrant questions defined lineage as initiation and mystical transmission. A materialist respondent answered 'direct' four times and got pushed away from their own position. Construct-validity bug, not a wording problem.",
+      "breaks_scoring": true
+    },
+    {
+      "version": "0.3.0",
+      "date": "2026-09-18",
+      "change": "Populated the position fact layer, split the animism bundle into indigenous-animism and core-shamanism, moved theurgy Agency +3 to 0, softened advaita Substrate -4 to -2, and allowed midline coordinates.",
+      "why": "The bundled animism entry averaged opposite Warrant values and described neither tradition. Theurgy's Agency contradicted its own primary source. Advaita's magnitude overstated a defensible sign.",
+      "breaks_scoring": true
+    },
+    {
+      "version": "0.4.0",
+      "date": "2026-09-18",
+      "change": "advaita agency -3->0, materialism verdict +1->0, thelema verdict +1->+3.",
+      "why": "Scorer self-test showed these three positions could never be returned as a primary result: in each collision pair one member sat strictly inside the other. Each fix moves the position on the axis that actually distinguishes it, and each holds on doctrine independent of the geometry.",
+      "breaks_scoring": true
+    },
+    {
+      "version": "0.5.0",
+      "date": "2026-09-18",
+      "change": "Rebuilt the coherence formula, split the ambiguity threshold into a wide tiebreak window and a narrow report-both window, and added the distinguishing-axis tiebreak rule.",
+      "why": "A reference scorer run against all 7776 reachable vectors found the old coherence formula scoring maximally-torn respondents 9/10, and found three positions unreachable as a primary result.",
+      "breaks_scoring": true
+    },
+    {
+      "version": "0.6.0",
+      "date": "2026-09-18",
+      "change": "Rebuilt q04 for comprehension and added a separately reported fit measure with copy for weak matches.",
+      "why": "Sixteen mock personas: q04's unglossed quotation lost four of eight low-context readers while carrying 1.5x weight, and a disengaged persona received a confident result at coherence 9. See docs/INSTRUMENT-TEST-LOG.md.",
+      "breaks_scoring": false
+    }
+  ],
+  "open_questions": [
+    {
+      "id": "collision-advaita-apophatic",
+      "finding": "Nothing in the Vector block distinguishes arriving at a positive knowing (Advaita's jnana) from systematically un-knowing every claim (the via negativa). That is the actual axis on which these two positions split.",
+      "proposed_item": {
+        "positive": "Liberation arrives at a positive truth beyond further negation; you reach it and you know you have.",
+        "negative": "Liberation never arrives at a final positive claim; every insight reached is one more veil to strip."
+      },
+      "recommendation": "Do not spend a question slot on it for the MVP. Four questions per axis is an invariant, so adding this means cutting an item that works for all sixteen positions in order to separate two. The ambiguity threshold already reports both positions and reads better than a clean answer.",
+      "status": "deferred, not rejected"
+    },
+    {
+      "id": "warrant-register-breadth",
+      "finding": "Widening the axis definition and rebuilding q16 register-neutral should let a materialist respondent score toward lineage. Whether one item is enough remains untested.",
+      "recommendation": "Check against real run data in phase 4. If materialist-coded respondents still land far from the materialism position, the axis needs a second institutionally-framed item.",
+      "status": "open"
+    }
+  ],
+  "collisions_analysis": "Two pairs in the library share an identical five-letter code. Both concentrate almost their entire separation onto a single axis, which gives the result copy a clean, concrete diagnostic question for each pair. ### IGWLC — Hermeticism (#1) and Methodological materialism (#16) Distance ≈4, the closest pair anywhere in the library; the two positions match sign on four of five axes and differ mainly on Warrant (Hermeticism +1, mild lineage; Materialism +4, strong lineage under the \"institutional consensus\" reading flagged in §16b). **Distinguishing question:** when a personal or textual tradition's account of how something works conflicts with a repeatable, peer-checkable test, which wins? An answer along the lines of \"the tradition, properly understood, still carries something the test cannot capture\" places the respondent nearer Hermeticism; an answer along the lines of \"the test, regardless of the tradition's age or prestige\" places the respondent nearer materialism. **Secondary distinguishing fact:** both score Verdict positive, but Hermeticism's +3 reflects belief in a deliberately, benevolently designed cosmos, while materialism's +1 reflects at most a workable, undesigned one. Ask directly whether the respondent thinks a designer shaped the universe at all — a question this axis pair does not otherwise surface cleanly. ### TGSLC — Advaita Vedanta (#5) and Apophatic Christian mysticism (#13) Distance ≈3.5, the second-closest pair anywhere in the library. Both axes match exactly on Substrate (a shared −4, flagged in §5b as itself a questionable score for Advaita) and differ mainly on Vector (Advaita +4, Apophatic +1). **Distinguishing question:** does the decisive shift arrive as a conceptual recognition that resolves once seen clearly — an already-true identity simply noticed — or as a sustained, disciplined unknowing that never resolves into a statable insight at all? A respondent describing a moment of \"I already was this\" places nearer Advaita; a respondent de"
+}
