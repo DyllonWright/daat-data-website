@@ -1,0 +1,764 @@
+{
+  "_README": [
+    "GENERATED — do not hand-edit. scripts/build-website-data.py writes this",
+    "file from projects/videos/youtube-database.json, which holds the hub's",
+    "verified record of the channel. Re-run the script after a harvest.",
+    "",
+    "Order: most viewed first, the order the carousel renders. views carries",
+    "the count read on viewsAsOf below; counts move.",
+    "",
+    "The video the owner keeps unlisted never appears here (decided 2026-10-31)."
+  ],
+  "channel": {
+    "handle": "@DaatData",
+    "url": "https://www.youtube.com/@DaatData",
+    "lastHarvested": "2026-10-31",
+    "viewsAsOf": "2026-10-31",
+    "count": 69
+  },
+  "videos": [
+    {
+      "id": "rpO0VhOaPt4",
+      "title": "Devouring Da'at: Why Da’at Darling Destroyed Her Own Brand",
+      "url": "https://www.youtube.com/watch?v=rpO0VhOaPt4",
+      "thumb": "https://i.ytimg.com/vi/rpO0VhOaPt4/hqdefault.jpg",
+      "views": 2000,
+      "durationSeconds": 603,
+      "playlists": [
+        "One Offs"
+      ]
+    },
+    {
+      "id": "IDyo2CSlsGk",
+      "title": "Maturing Is Realizing Senator Armstrong Was Right",
+      "url": "https://www.youtube.com/watch?v=IDyo2CSlsGk",
+      "thumb": "https://i.ytimg.com/vi/IDyo2CSlsGk/hqdefault.jpg",
+      "views": 640,
+      "durationSeconds": 858,
+      "playlists": []
+    },
+    {
+      "id": "_5X4d-jQ7x4",
+      "title": "Spooky Action at a Distance… Saturn’s Morphic Synchronicity Field",
+      "url": "https://www.youtube.com/watch?v=_5X4d-jQ7x4",
+      "thumb": "https://i.ytimg.com/vi/_5X4d-jQ7x4/hqdefault.jpg",
+      "views": 221,
+      "durationSeconds": 822,
+      "playlists": []
+    },
+    {
+      "id": "7zfDKQXHrtg",
+      "title": "I Didn’t Gain Sentience Until I Was 16",
+      "url": "https://www.youtube.com/watch?v=7zfDKQXHrtg",
+      "thumb": "https://i.ytimg.com/vi/7zfDKQXHrtg/hqdefault.jpg",
+      "views": 210,
+      "durationSeconds": 910,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "O4of_HWnoH4",
+      "title": "Accidents Have Consequences. For DBDR (@Hat_Flying)",
+      "url": "https://www.youtube.com/watch?v=O4of_HWnoH4",
+      "thumb": "https://i.ytimg.com/vi/O4of_HWnoH4/hqdefault.jpg",
+      "views": 183,
+      "durationSeconds": 820,
+      "playlists": []
+    },
+    {
+      "id": "TDA8rgsGwXU",
+      "title": "EXPOSING Secret Jewish \"Death Magic\" & the 11th Sephirah (Decoding Da’at)",
+      "url": "https://www.youtube.com/watch?v=TDA8rgsGwXU",
+      "thumb": "https://i.ytimg.com/vi/TDA8rgsGwXU/hqdefault.jpg",
+      "views": 160,
+      "durationSeconds": 2455,
+      "playlists": [
+        "Long Form Videos"
+      ]
+    },
+    {
+      "id": "8t8QTcscsyQ",
+      "title": "God's Foreshadowing Is Rarely Subtle",
+      "url": "https://www.youtube.com/watch?v=8t8QTcscsyQ",
+      "thumb": "https://i.ytimg.com/vi/8t8QTcscsyQ/hqdefault.jpg",
+      "views": 131,
+      "durationSeconds": 694,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "wfcSJOVMKiQ",
+      "title": "Togi’s $300k Bender Explained: The Mechanics of a Spiritual Fall",
+      "url": "https://www.youtube.com/watch?v=wfcSJOVMKiQ",
+      "thumb": "https://i.ytimg.com/vi/wfcSJOVMKiQ/hqdefault.jpg",
+      "views": 114,
+      "durationSeconds": 2500,
+      "playlists": [
+        "Long Form Videos"
+      ]
+    },
+    {
+      "id": "ZtpyzMCyvHM",
+      "title": "From Blackpill to Xanax Pill: The Reaper Collects @Hat_Flying",
+      "url": "https://www.youtube.com/watch?v=ZtpyzMCyvHM",
+      "thumb": "https://i.ytimg.com/vi/ZtpyzMCyvHM/hqdefault.jpg",
+      "views": 101,
+      "durationSeconds": 3980,
+      "playlists": [
+        "Long Form Videos"
+      ]
+    },
+    {
+      "id": "PZ70qahQnB8",
+      "title": "Your Entire Life Is Already Written",
+      "url": "https://www.youtube.com/watch?v=PZ70qahQnB8",
+      "thumb": "https://i.ytimg.com/vi/PZ70qahQnB8/hqdefault.jpg",
+      "views": 96,
+      "durationSeconds": 855,
+      "playlists": []
+    },
+    {
+      "id": "XlLtUvxhgI4",
+      "title": "Who Makes the Rules? BTW, Cursing People Is 100% Legal",
+      "url": "https://www.youtube.com/watch?v=XlLtUvxhgI4",
+      "thumb": "https://i.ytimg.com/vi/XlLtUvxhgI4/hqdefault.jpg",
+      "views": 87,
+      "durationSeconds": 969,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "nh_lo3xz6rQ",
+      "title": "If You Idolize Someone You Must Surpass Them",
+      "url": "https://www.youtube.com/watch?v=nh_lo3xz6rQ",
+      "thumb": "https://i.ytimg.com/vi/nh_lo3xz6rQ/hqdefault.jpg",
+      "views": 86,
+      "durationSeconds": 848,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "MSgkAUlshks",
+      "title": "I Meditated with Hemi-Sync for 1,185 Days: The Biometric Results",
+      "url": "https://www.youtube.com/watch?v=MSgkAUlshks",
+      "thumb": "https://i.ytimg.com/vi/MSgkAUlshks/hqdefault.jpg",
+      "views": 80,
+      "durationSeconds": 1851,
+      "playlists": [
+        "Long Form Videos"
+      ]
+    },
+    {
+      "id": "Ys1mEf2tdgw",
+      "title": "Turn $20 of AI Tokens into $2,000 of AI Work",
+      "url": "https://www.youtube.com/watch?v=Ys1mEf2tdgw",
+      "thumb": "https://i.ytimg.com/vi/Ys1mEf2tdgw/hqdefault.jpg",
+      "views": 75,
+      "durationSeconds": 322,
+      "playlists": [
+        "One Offs"
+      ]
+    },
+    {
+      "id": "3OEF2hzKCyo",
+      "title": "What is Hemi-Sync? The CIA’s Classified Secret to Psychic Spies",
+      "url": "https://www.youtube.com/watch?v=3OEF2hzKCyo",
+      "thumb": "https://i.ytimg.com/vi/3OEF2hzKCyo/hqdefault.jpg",
+      "views": 74,
+      "durationSeconds": 2082,
+      "playlists": [
+        "Long Form Videos"
+      ]
+    },
+    {
+      "id": "GPNOAp7_K0g",
+      "title": "Area 51 Aliens Mistake Your Astral Projection Form for Buddha",
+      "url": "https://www.youtube.com/watch?v=GPNOAp7_K0g",
+      "thumb": "https://i.ytimg.com/vi/GPNOAp7_K0g/hqdefault.jpg",
+      "views": 71,
+      "durationSeconds": 645,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "h14Ib8-5dzc",
+      "title": "Connor Murphy Dying, Holy Guardian Angel Choronzon, and The Truth",
+      "url": "https://www.youtube.com/watch?v=h14Ib8-5dzc",
+      "thumb": "https://i.ytimg.com/vi/h14Ib8-5dzc/hqdefault.jpg",
+      "views": 69,
+      "durationSeconds": 651,
+      "playlists": [
+        "One Offs"
+      ]
+    },
+    {
+      "id": "Y1sfQPAyIU8",
+      "title": "Da’at Darling Gave Me the Spiritual Ick (So I Learned Psychic Healing)",
+      "url": "https://www.youtube.com/watch?v=Y1sfQPAyIU8",
+      "thumb": "https://i.ytimg.com/vi/Y1sfQPAyIU8/hqdefault.jpg",
+      "views": 68,
+      "durationSeconds": 727,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "kvIqOMRhIKA",
+      "title": "The Illuminati Is A Pyramid Scheme (LITERALLY)",
+      "url": "https://www.youtube.com/watch?v=kvIqOMRhIKA",
+      "thumb": "https://i.ytimg.com/vi/kvIqOMRhIKA/hqdefault.jpg",
+      "views": 68,
+      "durationSeconds": 1920,
+      "playlists": []
+    },
+    {
+      "id": "8ZE2--AFJH0",
+      "title": "Stop \"Believing in Yourself\" & Start Curating Beliefs That Believe in You",
+      "url": "https://www.youtube.com/watch?v=8ZE2--AFJH0",
+      "thumb": "https://i.ytimg.com/vi/8ZE2--AFJH0/hqdefault.jpg",
+      "views": 57,
+      "durationSeconds": 2068,
+      "playlists": [
+        "Long Form Videos"
+      ]
+    },
+    {
+      "id": "LlUAdHDdp7w",
+      "title": "Modern Occultists Get Everything Wrong",
+      "url": "https://www.youtube.com/watch?v=LlUAdHDdp7w",
+      "thumb": "https://i.ytimg.com/vi/LlUAdHDdp7w/hqdefault.jpg",
+      "views": 50,
+      "durationSeconds": 675,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "c_EaLboiiIw",
+      "title": "Money Is Just The Materialists' God Of Karma",
+      "url": "https://www.youtube.com/watch?v=c_EaLboiiIw",
+      "thumb": "https://i.ytimg.com/vi/c_EaLboiiIw/hqdefault.jpg",
+      "views": 49,
+      "durationSeconds": 825,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "I3yIUm72U_E",
+      "title": "What the Heck is a Freemason? (Esoteric Secrets of Solomon's Temple)",
+      "url": "https://www.youtube.com/watch?v=I3yIUm72U_E",
+      "thumb": "https://i.ytimg.com/vi/I3yIUm72U_E/hqdefault.jpg",
+      "views": 48,
+      "durationSeconds": 755,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "POHVXXc4tE0",
+      "title": "The Lindsay Clancy Case is a Psyop",
+      "url": "https://www.youtube.com/watch?v=POHVXXc4tE0",
+      "thumb": "https://i.ytimg.com/vi/POHVXXc4tE0/hqdefault.jpg",
+      "views": 46,
+      "durationSeconds": 833,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "rCVBspw5sww",
+      "title": "Grow Your Brain, Grow Your Gains: The Science of \"Mindful\" Lifting",
+      "url": "https://www.youtube.com/watch?v=rCVBspw5sww",
+      "thumb": "https://i.ytimg.com/vi/rCVBspw5sww/hqdefault.jpg",
+      "views": 45,
+      "durationSeconds": 1859,
+      "playlists": [
+        "Long Form Videos"
+      ]
+    },
+    {
+      "id": "QxOrLbU1cf4",
+      "title": "Esoteric Relationship Maxing: Why Playboys Are Reading Sun Tzu as Dating Advice",
+      "url": "https://www.youtube.com/watch?v=QxOrLbU1cf4",
+      "thumb": "https://i.ytimg.com/vi/QxOrLbU1cf4/hqdefault.jpg",
+      "views": 44,
+      "durationSeconds": 745,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "uofmIe2S1Gc",
+      "title": "The Metaphysics of Blackpill YAD Stomping",
+      "url": "https://www.youtube.com/watch?v=uofmIe2S1Gc",
+      "thumb": "https://i.ytimg.com/vi/uofmIe2S1Gc/hqdefault.jpg",
+      "views": 43,
+      "durationSeconds": 909,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "EJ-UiT1IEtw",
+      "title": "Even a Goth Mommy GF Won't Help You Escape the Matrix",
+      "url": "https://www.youtube.com/watch?v=EJ-UiT1IEtw",
+      "thumb": "https://i.ytimg.com/vi/EJ-UiT1IEtw/hqdefault.jpg",
+      "views": 40,
+      "durationSeconds": 906,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "CxgocSiBLvo",
+      "title": "Giving Away My Entire Viral Clip Pipeline for Free",
+      "url": "https://www.youtube.com/watch?v=CxgocSiBLvo",
+      "thumb": "https://i.ytimg.com/vi/CxgocSiBLvo/hqdefault.jpg",
+      "views": 39,
+      "durationSeconds": 767,
+      "playlists": [
+        "One Offs"
+      ]
+    },
+    {
+      "id": "F3xSg9q4Eg8",
+      "title": "The Kybalion Explained: 7 Ancient Laws for Modern Life, Meditation, and the Gym",
+      "url": "https://www.youtube.com/watch?v=F3xSg9q4Eg8",
+      "thumb": "https://i.ytimg.com/vi/F3xSg9q4Eg8/hqdefault.jpg",
+      "views": 39,
+      "durationSeconds": 2430,
+      "playlists": [
+        "Long Form Videos"
+      ]
+    },
+    {
+      "id": "ZCEekFNFkoc",
+      "title": "Why Your Smart Toaster Is Ruining Your Astral Projection",
+      "url": "https://www.youtube.com/watch?v=ZCEekFNFkoc",
+      "thumb": "https://i.ytimg.com/vi/ZCEekFNFkoc/hqdefault.jpg",
+      "views": 38,
+      "durationSeconds": 764,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "JAllg4A7ER4",
+      "title": "Why Lucid Dreaming Is Ruining Your Astral Projection",
+      "url": "https://www.youtube.com/watch?v=JAllg4A7ER4",
+      "thumb": "https://i.ytimg.com/vi/JAllg4A7ER4/hqdefault.jpg",
+      "views": 37,
+      "durationSeconds": 944,
+      "playlists": []
+    },
+    {
+      "id": "i6V9CwGyFpM",
+      "title": "MK-Ultra Semantics: Why the \"I Am\" Translation is a Language Virus",
+      "url": "https://www.youtube.com/watch?v=i6V9CwGyFpM",
+      "thumb": "https://i.ytimg.com/vi/i6V9CwGyFpM/hqdefault.jpg",
+      "views": 36,
+      "durationSeconds": 809,
+      "playlists": [
+        "One Offs"
+      ]
+    },
+    {
+      "id": "_e7U_e5Db-k",
+      "title": "Cope Tier List",
+      "url": "https://www.youtube.com/watch?v=_e7U_e5Db-k",
+      "thumb": "https://i.ytimg.com/vi/_e7U_e5Db-k/hqdefault.jpg",
+      "views": 34,
+      "durationSeconds": 1959,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "PwAHcSGG8l8",
+      "title": "Why Your Religion Doesn't Make Sense in English (The Translation Matrix)",
+      "url": "https://www.youtube.com/watch?v=PwAHcSGG8l8",
+      "thumb": "https://i.ytimg.com/vi/PwAHcSGG8l8/hqdefault.jpg",
+      "views": 34,
+      "durationSeconds": 304,
+      "playlists": [
+        "One Offs"
+      ]
+    },
+    {
+      "id": "w_AfitPU3Fk",
+      "title": "Summoning Sickness, Dark Night of the Soul, and Why Traditional Occultism Fails",
+      "url": "https://www.youtube.com/watch?v=w_AfitPU3Fk",
+      "thumb": "https://i.ytimg.com/vi/w_AfitPU3Fk/hqdefault.jpg",
+      "views": 32,
+      "durationSeconds": 669,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "R3t9zpmu5VU",
+      "title": "AGI is here...",
+      "url": "https://www.youtube.com/watch?v=R3t9zpmu5VU",
+      "thumb": "https://i.ytimg.com/vi/R3t9zpmu5VU/hqdefault.jpg",
+      "views": 31,
+      "durationSeconds": 165,
+      "playlists": [
+        "One Offs"
+      ]
+    },
+    {
+      "id": "YjbOe88c06g",
+      "title": "Eastern Metaphysics and Non-Binary Identity (In the Age of Kali)",
+      "url": "https://www.youtube.com/watch?v=YjbOe88c06g",
+      "thumb": "https://i.ytimg.com/vi/YjbOe88c06g/hqdefault.jpg",
+      "views": 29,
+      "durationSeconds": 615,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "lJ9Bk0aaC_k",
+      "title": "Using Erevna Astral Projection to Shepherd a Departed Soul from Limbo",
+      "url": "https://www.youtube.com/watch?v=lJ9Bk0aaC_k",
+      "thumb": "https://i.ytimg.com/vi/lJ9Bk0aaC_k/hqdefault.jpg",
+      "views": 29,
+      "durationSeconds": 777,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "_-Y_0O5h3PI",
+      "title": "Why Maslow’s Hierarchy of Needs Is Completely Inverted",
+      "url": "https://www.youtube.com/watch?v=_-Y_0O5h3PI",
+      "thumb": "https://i.ytimg.com/vi/_-Y_0O5h3PI/hqdefault.jpg",
+      "views": 29,
+      "durationSeconds": 821,
+      "playlists": [
+        "Long Form Videos"
+      ]
+    },
+    {
+      "id": "3ZHlfeyIPsE",
+      "title": "I Built an Obsidian Tool to Learn Art History (And It Solved This 400-Year Mystery)",
+      "url": "https://www.youtube.com/watch?v=3ZHlfeyIPsE",
+      "thumb": "https://i.ytimg.com/vi/3ZHlfeyIPsE/hqdefault.jpg",
+      "views": 27,
+      "durationSeconds": 756,
+      "playlists": [
+        "One Offs"
+      ]
+    },
+    {
+      "id": "LrRRL5K3HmM",
+      "title": "Meditation Taught Me (Scorpio M) How to Crack Astrology Girlies",
+      "url": "https://www.youtube.com/watch?v=LrRRL5K3HmM",
+      "thumb": "https://i.ytimg.com/vi/LrRRL5K3HmM/hqdefault.jpg",
+      "views": 27,
+      "durationSeconds": 887,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "WTCZpsHb1uw",
+      "title": "You Need a Backup Religion",
+      "url": "https://www.youtube.com/watch?v=WTCZpsHb1uw",
+      "thumb": "https://i.ytimg.com/vi/WTCZpsHb1uw/hqdefault.jpg",
+      "views": 27,
+      "durationSeconds": 745,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "y3CUyaKwhzE",
+      "title": "Why No Philosopher Has Ever Become God",
+      "url": "https://www.youtube.com/watch?v=y3CUyaKwhzE",
+      "thumb": "https://i.ytimg.com/vi/y3CUyaKwhzE/hqdefault.jpg",
+      "views": 26,
+      "durationSeconds": 625,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "JYkFz9YJC9U",
+      "title": "69 Subscriber Special: What is God? (Finally Solved)",
+      "url": "https://www.youtube.com/watch?v=JYkFz9YJC9U",
+      "thumb": "https://i.ytimg.com/vi/JYkFz9YJC9U/hqdefault.jpg",
+      "views": 25,
+      "durationSeconds": 150,
+      "playlists": [
+        "One Offs"
+      ]
+    },
+    {
+      "id": "D-cukvcSK30",
+      "title": "Before Hell There Was Golden Time",
+      "url": "https://www.youtube.com/watch?v=D-cukvcSK30",
+      "thumb": "https://i.ytimg.com/vi/D-cukvcSK30/hqdefault.jpg",
+      "views": 24,
+      "durationSeconds": 1007,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "pJkwALu5BIw",
+      "title": "Coming Out as an Alien: The Total Absurdity of Human Life",
+      "url": "https://www.youtube.com/watch?v=pJkwALu5BIw",
+      "thumb": "https://i.ytimg.com/vi/pJkwALu5BIw/hqdefault.jpg",
+      "views": 22,
+      "durationSeconds": 1232,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "7GQzHu0w1sg",
+      "title": "Karens, Trolls, and the Art of Punching Ghosts",
+      "url": "https://www.youtube.com/watch?v=7GQzHu0w1sg",
+      "thumb": "https://i.ytimg.com/vi/7GQzHu0w1sg/hqdefault.jpg",
+      "views": 22,
+      "durationSeconds": 793,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "3dIwY_3HuU0",
+      "title": "Some Dreams Should Stay Dreams",
+      "url": "https://www.youtube.com/watch?v=3dIwY_3HuU0",
+      "thumb": "https://i.ytimg.com/vi/3dIwY_3HuU0/hqdefault.jpg",
+      "views": 22,
+      "durationSeconds": 963,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "mt5mmbrDaZc",
+      "title": "KIDS AREN'T POTATOES: How 'Potato Parenting' Perpetuates Karma",
+      "url": "https://www.youtube.com/watch?v=mt5mmbrDaZc",
+      "thumb": "https://i.ytimg.com/vi/mt5mmbrDaZc/hqdefault.jpg",
+      "views": 21,
+      "durationSeconds": 237,
+      "playlists": [
+        "One Offs"
+      ]
+    },
+    {
+      "id": "N1Prl0gtu3c",
+      "title": "No More Beginner Content",
+      "url": "https://www.youtube.com/watch?v=N1Prl0gtu3c",
+      "thumb": "https://i.ytimg.com/vi/N1Prl0gtu3c/hqdefault.jpg",
+      "views": 21,
+      "durationSeconds": 943,
+      "playlists": []
+    },
+    {
+      "id": "u0XlO9xeBjc",
+      "title": "My Cat Went Missing, Contemplating Loss",
+      "url": "https://www.youtube.com/watch?v=u0XlO9xeBjc",
+      "thumb": "https://i.ytimg.com/vi/u0XlO9xeBjc/hqdefault.jpg",
+      "views": 19,
+      "durationSeconds": 1805,
+      "playlists": [
+        "One Offs"
+      ]
+    },
+    {
+      "id": "eCSU8QD-lpA",
+      "title": "Day 0 of Asking God for $23 Million",
+      "url": "https://www.youtube.com/watch?v=eCSU8QD-lpA",
+      "thumb": "https://i.ytimg.com/vi/eCSU8QD-lpA/hqdefault.jpg",
+      "views": 18,
+      "durationSeconds": 1104,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "litjA-GjvaM",
+      "title": "How to Convince Aliens to Meet You in Your Dreams",
+      "url": "https://www.youtube.com/watch?v=litjA-GjvaM",
+      "thumb": "https://i.ytimg.com/vi/litjA-GjvaM/hqdefault.jpg",
+      "views": 18,
+      "durationSeconds": 2019,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "63qNwLpq35w",
+      "title": "I Fired My Social Media Manager. Claude Built Their Local Replacement.",
+      "url": "https://www.youtube.com/watch?v=63qNwLpq35w",
+      "thumb": "https://i.ytimg.com/vi/63qNwLpq35w/hqdefault.jpg",
+      "views": 18,
+      "durationSeconds": 992,
+      "playlists": [
+        "One Offs"
+      ]
+    },
+    {
+      "id": "71MTLBA3BJg",
+      "title": "Why I Take Caffeine Before Meditating: The Lazy Way to Become an Expert",
+      "url": "https://www.youtube.com/watch?v=71MTLBA3BJg",
+      "thumb": "https://i.ytimg.com/vi/71MTLBA3BJg/hqdefault.jpg",
+      "views": 18,
+      "durationSeconds": 952,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "qgqcT_7qKWU",
+      "title": "How I Never Forget Anything I Read (AI + Obsidian)",
+      "url": "https://www.youtube.com/watch?v=qgqcT_7qKWU",
+      "thumb": "https://i.ytimg.com/vi/qgqcT_7qKWU/hqdefault.jpg",
+      "views": 17,
+      "durationSeconds": 663,
+      "playlists": [
+        "AI and Projects and Coding and Obsidian"
+      ]
+    },
+    {
+      "id": "Blvf82zzcD0",
+      "title": "The Human Question and Project Lucifer's Eternal Return",
+      "url": "https://www.youtube.com/watch?v=Blvf82zzcD0",
+      "thumb": "https://i.ytimg.com/vi/Blvf82zzcD0/hqdefault.jpg",
+      "views": 17,
+      "durationSeconds": 917,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "awUhoyL_7mo",
+      "title": "Why I Gave Myself Physio-Kundalini Syndrome",
+      "url": "https://www.youtube.com/watch?v=awUhoyL_7mo",
+      "thumb": "https://i.ytimg.com/vi/awUhoyL_7mo/hqdefault.jpg",
+      "views": 17,
+      "durationSeconds": 883,
+      "playlists": []
+    },
+    {
+      "id": "t5n5UOje6xU",
+      "title": "Devils Never Cry: The Metaphysics of Exorcism",
+      "url": "https://www.youtube.com/watch?v=t5n5UOje6xU",
+      "thumb": "https://i.ytimg.com/vi/t5n5UOje6xU/hqdefault.jpg",
+      "views": 16,
+      "durationSeconds": 1138,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "4b31wwAD12g",
+      "title": "Your Soul Is the Next Global Reserve Currency",
+      "url": "https://www.youtube.com/watch?v=4b31wwAD12g",
+      "thumb": "https://i.ytimg.com/vi/4b31wwAD12g/hqdefault.jpg",
+      "views": 16,
+      "durationSeconds": 1959,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "vIgISzj8wN0",
+      "title": "So You Want to Be a Necromancer",
+      "url": "https://www.youtube.com/watch?v=vIgISzj8wN0",
+      "thumb": "https://i.ytimg.com/vi/vIgISzj8wN0/hqdefault.jpg",
+      "views": 15,
+      "durationSeconds": 1147,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "1TT_75jepBs",
+      "title": "Plato Would Bench 315",
+      "url": "https://www.youtube.com/watch?v=1TT_75jepBs",
+      "thumb": "https://i.ytimg.com/vi/1TT_75jepBs/hqdefault.jpg",
+      "views": 14,
+      "durationSeconds": 837,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "eh131hq0q9A",
+      "title": "Everyone Gets a Story",
+      "url": "https://www.youtube.com/watch?v=eh131hq0q9A",
+      "thumb": "https://i.ytimg.com/vi/eh131hq0q9A/hqdefault.jpg",
+      "views": 13,
+      "durationSeconds": 963,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "YKxXUjQFzxY",
+      "title": "Catching the Three Million Dollar Tuna in Meditation",
+      "url": "https://www.youtube.com/watch?v=YKxXUjQFzxY",
+      "thumb": "https://i.ytimg.com/vi/YKxXUjQFzxY/hqdefault.jpg",
+      "views": 12,
+      "durationSeconds": 847,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "UxaiV8fzhB4",
+      "title": "Ego-Theists Romancing the Imaginary God Virus from Space",
+      "url": "https://www.youtube.com/watch?v=UxaiV8fzhB4",
+      "thumb": "https://i.ytimg.com/vi/UxaiV8fzhB4/hqdefault.jpg",
+      "views": 10,
+      "durationSeconds": 613,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "1ySP41bkGLQ",
+      "title": "If Satan Rules This World, Why Are You Following Conventional Morality?",
+      "url": "https://www.youtube.com/watch?v=1ySP41bkGLQ",
+      "thumb": "https://i.ytimg.com/vi/1ySP41bkGLQ/hqdefault.jpg",
+      "views": 8,
+      "durationSeconds": 922,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "6_lZy4y2j_8",
+      "title": "Money is Fake, But the Pyramid is Real",
+      "url": "https://www.youtube.com/watch?v=6_lZy4y2j_8",
+      "thumb": "https://i.ytimg.com/vi/6_lZy4y2j_8/hqdefault.jpg",
+      "views": 6,
+      "durationSeconds": 783,
+      "playlists": [
+        "Commute Vids"
+      ]
+    },
+    {
+      "id": "tkirMmP7UUg",
+      "title": "So You Want to Summon a Succubus",
+      "url": "https://www.youtube.com/watch?v=tkirMmP7UUg",
+      "thumb": "https://i.ytimg.com/vi/tkirMmP7UUg/hqdefault.jpg",
+      "views": 2,
+      "durationSeconds": 862,
+      "playlists": [
+        "Commute Vids"
+      ]
+    }
+  ]
+}

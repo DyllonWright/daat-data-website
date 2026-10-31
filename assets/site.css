@@ -89,52 +89,121 @@ img, svg { max-width: 100%; height: auto; }
   opacity: 0.8;
 }
 
-/* ─── SITE NAV ──────────────────────────────────────────────────────────────
-   Added 2026-10-31, when the site stopped being one page. Thin, quiet, and
-   it wraps to two rows at 400px rather than scrolling sideways. */
-.sitenav {
+/* ─── MASTHEAD: CENTERED LOCKUP + CENTERED NAV ──────────────────────────────
+   Replaced the logo-left / nav-right bar on 2026-10-31 (overhaul workstream 1).
+   Report A measured the inspiration's masthead: a centered wordmark with a
+   centered, unboxed nav row beneath it, 13px, Title Case, weight 600, no
+   letter-spacing, no separators, 26px per-link gap. Report D names the thing
+   to avoid: a sticky header eating 160px of a phone screen, and a hamburger
+   that hides the whole site behind JavaScript. So this masthead scrolls away,
+   needs no script, and wraps to centered rows rather than scrolling sideways.
+
+   The mark reads as a composite lockup, not a raster: ivory serif words in
+   HTML either side of an inline-SVG ringed planet. Report A prescribes inline
+   SVG over PNG because ivory letterforms and a gold ring fringe badly as a
+   raster on near-black; keeping the words as live text also holds the lockup
+   together across platforms, where SVG <text> metrics drift. The planet
+   stands where a letter would — our own vocabulary, traced from nothing. */
+.masthead {
   position: relative;
   z-index: 2;
+  padding: 1.6rem 1rem 1.1rem;
+  text-align: center;
   border-bottom: 1px solid var(--border-soft);
-  background: rgba(6, 5, 4, 0.72);
+  background: rgba(6, 5, 4, 0.55);
 }
 
-.sitenav .wrap {
-  display: flex;
-  flex-wrap: wrap;
+.lockup {
+  display: inline-flex;
   align-items: center;
-  gap: 0.35rem 1.15rem;
-  padding-top: 0.7rem;
-  padding-bottom: 0.7rem;
-}
-
-.sitenav .mark {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
+  justify-content: center;
+  gap: clamp(0.3rem, 1.6vw, 0.7rem);
   text-decoration: none;
   color: var(--ink);
   font-family: var(--serif);
-  font-size: 1.02rem;
-  margin-right: auto;
+  font-weight: 600;
+  font-size: clamp(1.6rem, 6.4vw, 2.9rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
 }
 
-.sitenav .mark img { width: 26px; }
+.lockup .word {
+  color: var(--ink);
+  text-shadow: 0 0 18px rgba(232, 200, 135, 0.14);
+}
 
-.sitenav a.navlink {
+.lockup:hover .word { color: var(--gold-bright); }
+
+/* The planet sits on the words' optical centre and overshoots their cap height,
+   the way an illuminated initial does — Report A measured 73% overshoot on the
+   inspiration's emblem; this one runs gentler. */
+.lockup .planet {
+  width: 1.55em;
+  height: 1.55em;
+  flex: 0 0 auto;
+  margin-bottom: 0.06em;
+  filter: drop-shadow(0 0 14px rgba(232, 200, 135, 0.2));
+}
+
+.masthead .tagline-mini {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.86rem;
+  color: var(--ink-faint);
+  margin: 0.45rem 0 0;
+}
+
+.sitenav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.55rem 1.6rem;
+  margin: 1.15rem auto 0;
+  /* Wide enough that nine items hold one row on a desktop, and narrow enough
+     that they break into tidy centered rows below it. Report A measured the
+     inspiration at 766px for eleven items; ours run longer per word. */
+  max-width: 880px;
+}
+
+.sitenav a {
   color: var(--ink-dim);
   text-decoration: none;
-  font-size: 0.86rem;
-  letter-spacing: 0.02em;
-  padding: 0.15rem 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  padding: 0.1rem 0;
   border-bottom: 1px solid transparent;
 }
 
-.sitenav a.navlink:hover { color: var(--gold-bright); }
+.sitenav a:hover { color: var(--gold-bright); }
 
-.sitenav a.navlink[aria-current="page"] {
+.sitenav a[aria-current="page"] {
   color: var(--gold);
   border-bottom-color: var(--gold);
+}
+
+/* ─── THE UPSIDE-DOWN TAB (workstream 3b) ───────────────────────────────────
+   The label turns over; the link does not. The transform paints the glyphs
+   differently and rewrites nothing, so a screen reader still announces
+   "Thought of the Day" and the markup still reads in order. Never reverse the
+   characters in the HTML, and never reach for a Unicode upside-down alphabet.
+
+   .flip sits inside the <a>, so the link keeps its own hit area, its focus
+   ring and its place in the flow. inline-block reserves the line box, which
+   keeps the rotated descenders off the row above once the nav wraps. */
+.sitenav .flip {
+  display: inline-block;
+  transform: rotate(180deg);
+}
+
+@media (max-width: 560px) {
+  .masthead { padding: 1.15rem 0.75rem 0.9rem; }
+  .sitenav {
+    gap: 0.5rem 1.1rem;
+    max-width: 22rem;
+  }
+  .sitenav a { font-size: 0.78rem; }
 }
 
 /* ─── HERO BACKGROUND SYSTEM ───────────────────────────────────────────────
@@ -820,6 +889,4 @@ footer .copyline {
   .panel { padding: 1.5rem; }
   .work-card { padding: 1.4rem; }
   .note { padding: 1.15rem 1.25rem; }
-  .sitenav .wrap { gap: 0.3rem 0.9rem; }
-  .sitenav .mark { font-size: 0.95rem; }
 }

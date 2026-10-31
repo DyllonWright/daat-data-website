@@ -1,0 +1,704 @@
+{
+  "_README": [
+    "GENERATED — do not hand-edit. scripts/build-website-data.py writes this",
+    "file from projects/videos/youtube-database.json. Every thought carries the",
+    "sefirah its own published title names, its verbatim text, its date and its",
+    "ID. website/thoughts.html draws one at random on load and streams the rest",
+    "grouped by sefirah, crown to kingdom.",
+    "",
+    "text reads verbatim from the harvest. lines appears only where the text",
+    "itself carries bullet separators."
+  ],
+  "tree": [
+    "Keter",
+    "Chokhmah",
+    "Binah",
+    "Da'at",
+    "Chesed",
+    "Gevurah",
+    "Tiferet",
+    "Netzach",
+    "Hod",
+    "Yesod",
+    "Malkuth"
+  ],
+  "count": 61,
+  "thoughts": [
+    {
+      "id": "CC-lacb0iN8",
+      "sefirah": "Keter",
+      "title": "Leading Out the Knowledge Within",
+      "text": "The crown — will before thought, the spark that starts everything. • Education guides out knowledge that already exists • Unblock innate light by removing mental burdens • True learning reveals how much remains unknown",
+      "published": "2026-08-05",
+      "url": "https://www.youtube.com/watch?v=CC-lacb0iN8",
+      "thumb": "https://i.ytimg.com/vi/CC-lacb0iN8/hqdefault.jpg",
+      "views": 14,
+      "lines": [
+        "The crown — will before thought, the spark that starts everything.",
+        "Education guides out knowledge that already exists",
+        "Unblock innate light by removing mental burdens",
+        "True learning reveals how much remains unknown"
+      ]
+    },
+    {
+      "id": "N4eoWR57MzM",
+      "sefirah": "Keter",
+      "title": "Before Up and Down Split",
+      "text": "The crown — will before thought, the spark that starts everything. Identification collapses the whole view into a single chosen angle Picking the flower of truth leaves you holding loose dead petals Two minutes is plenty of time to solve original sin",
+      "published": "2026-08-18",
+      "url": "https://www.youtube.com/watch?v=N4eoWR57MzM",
+      "thumb": "https://i.ytimg.com/vi/N4eoWR57MzM/hqdefault.jpg",
+      "views": 349
+    },
+    {
+      "id": "L1KQhn-fnTU",
+      "sefirah": "Keter",
+      "title": "Looksmaxxing for the divine gaze",
+      "text": "The crown — will before thought, the spark that starts everything. The female gaze tracks stewardship while God checks generational curses You must looksmaxx across three generations or repeat the material plane Fortunately you have unlimited incarnations to get the routine right",
+      "published": "2026-08-29",
+      "url": "https://www.youtube.com/watch?v=L1KQhn-fnTU",
+      "thumb": "https://i.ytimg.com/vi/L1KQhn-fnTU/hqdefault.jpg",
+      "views": 5
+    },
+    {
+      "id": "62CxKTeLW9g",
+      "sefirah": "Keter",
+      "title": "Word-Virus Trap",
+      "text": "The crown — will before thought, the spark that starts everything. Strip away your creations to find the original spark of will A carpenter without wood must learn to hammer the empty air Socrates got poisoned just for asking people to define their jobs",
+      "published": "2026-09-10",
+      "url": "https://www.youtube.com/watch?v=62CxKTeLW9g",
+      "thumb": "https://i.ytimg.com/vi/62CxKTeLW9g/hqdefault.jpg",
+      "views": 5
+    },
+    {
+      "id": "GDmjQRhyQTE",
+      "sefirah": "Keter",
+      "title": "Tyler Durden Warranty",
+      "text": "The crown — will before thought, the spark that starts everything. Focusing entirely on avoiding death guarantees you miss the living part Every birthday party is secretly just an advance planning meeting for your funeral Spending all your time counting down days leaves you with nothing to spend",
+      "published": "2026-09-21",
+      "url": "https://www.youtube.com/watch?v=GDmjQRhyQTE",
+      "thumb": "https://i.ytimg.com/vi/GDmjQRhyQTE/hqdefault.jpg",
+      "views": 17
+    },
+    {
+      "id": "1nD9Tq0lqGs",
+      "sefirah": "Chokhmah",
+      "title": "Clear Minds Receive Pure Wisdom",
+      "text": "Raw flash insight — the idea that arrives whole, before words. • Action is required when knowledge is missing • True knowledge replaces the need for action • An empty head beats useless thoughts",
+      "published": "2026-08-06",
+      "url": "https://www.youtube.com/watch?v=1nD9Tq0lqGs",
+      "thumb": "https://i.ytimg.com/vi/1nD9Tq0lqGs/hqdefault.jpg",
+      "views": 7,
+      "lines": [
+        "Raw flash insight — the idea that arrives whole, before words.",
+        "Action is required when knowledge is missing",
+        "True knowledge replaces the need for action",
+        "An empty head beats useless thoughts"
+      ]
+    },
+    {
+      "id": "u0ewuwSX-C4",
+      "sefirah": "Chokhmah",
+      "title": "Leary's Four Terrestrial Brain Circuits",
+      "text": "Raw flash insight — the idea that arrives whole, before words. Leary separated early consciousness into oral, pack, semantic, and moral circuits Your oral circuit keeps trying to put nominalism in its mouth Nobody has ever bruised a shin on an identity",
+      "published": "2026-08-19",
+      "url": "https://www.youtube.com/watch?v=u0ewuwSX-C4",
+      "thumb": "https://i.ytimg.com/vi/u0ewuwSX-C4/hqdefault.jpg",
+      "views": 3
+    },
+    {
+      "id": "KbtQUeXEfsY",
+      "sefirah": "Chokhmah",
+      "title": "Planning to boil the ocean",
+      "text": "Raw flash insight — the idea that arrives whole, before words. Setting an impossible scope makes a partial failure beat safe success You apply enough heat to the Atlantic until the chatbot seems human He had to read Garry Tan just to install a tool",
+      "published": "2026-08-30",
+      "url": "https://www.youtube.com/watch?v=KbtQUeXEfsY",
+      "thumb": "https://i.ytimg.com/vi/KbtQUeXEfsY/hqdefault.jpg",
+      "views": 8
+    },
+    {
+      "id": "zzbBDD5bDBc",
+      "sefirah": "Chokhmah",
+      "title": "Fastpass Fallacy",
+      "text": "Raw flash insight — the idea that arrives whole, before words. Money functions as a physical fastpass to bypass moral consequences Buying enough fastpasses eventually turns the pearly gates into a turnstile Justice is blind but still feels the weight of your cash",
+      "published": "2026-09-11",
+      "url": "https://www.youtube.com/watch?v=zzbBDD5bDBc",
+      "thumb": "https://i.ytimg.com/vi/zzbBDD5bDBc/hqdefault.jpg",
+      "views": 28
+    },
+    {
+      "id": "MeUMv0J_nO0",
+      "sefirah": "Chokhmah",
+      "title": "Double Slit Dividend",
+      "text": "Raw flash insight — the idea that arrives whole, before words. Epistemology breaks down the moment the black swan arrives with an axe Three thousand fattening days of absolute statistical proof that Thanksgiving is a myth Philosophy has spent centuries trying to model a universe that is just waiting for the double slit",
+      "published": "2026-09-22",
+      "url": "https://www.youtube.com/watch?v=MeUMv0J_nO0",
+      "thumb": "https://i.ytimg.com/vi/MeUMv0J_nO0/hqdefault.jpg",
+      "views": 6
+    },
+    {
+      "id": "NsJ3toDy5g4",
+      "sefirah": "Binah",
+      "title": "Giving Form to Unspeakable Truth",
+      "text": "The shaping vessel — insight given structure, limits, and form. • Mystic insight exists beyond spoken language • Words attempt to vessel the divine paradox • Understanding perceives what cannot be touched",
+      "published": "2026-08-07",
+      "url": "https://www.youtube.com/watch?v=NsJ3toDy5g4",
+      "thumb": "https://i.ytimg.com/vi/NsJ3toDy5g4/hqdefault.jpg",
+      "views": 43,
+      "lines": [
+        "The shaping vessel — insight given structure, limits, and form.",
+        "Mystic insight exists beyond spoken language",
+        "Words attempt to vessel the divine paradox",
+        "Understanding perceives what cannot be touched"
+      ]
+    },
+    {
+      "id": "TA3e73fbLZ8",
+      "sefirah": "Binah",
+      "title": "Fitting the Sky into Story",
+      "text": "The shaping vessel — insight given structure, limits, and form. At least thirteen ancient traditions feature a dying and resurrecting solar deity Baking the sun into a narrative container stops it from rolling away Commenters rarely look up a definition before declaring war",
+      "published": "2026-08-09",
+      "url": "https://www.youtube.com/watch?v=TA3e73fbLZ8",
+      "thumb": "https://i.ytimg.com/vi/TA3e73fbLZ8/hqdefault.jpg",
+      "views": 583
+    },
+    {
+      "id": "A7WjeVZmQdc",
+      "sefirah": "Binah",
+      "title": "Refusing The Binary Premise",
+      "text": "The shaping vessel — insight given structure, limits, and form. The koan requires snapping the stick instead of answering the binary Breaking the master stick in half immediately produces two smaller sticks Crowley and the Buddha somehow ended up on the same syllabus",
+      "published": "2026-08-20",
+      "url": "https://www.youtube.com/watch?v=A7WjeVZmQdc",
+      "thumb": "https://i.ytimg.com/vi/A7WjeVZmQdc/hqdefault.jpg",
+      "views": 45
+    },
+    {
+      "id": "ihO9P5ZleIQ",
+      "sefirah": "Binah",
+      "title": "Ten-Phone Chamber Effect",
+      "text": "The shaping vessel — insight given structure, limits, and form. Cheap digital miracles mean nothing without someone risking actual skin You cannot harvest quality loosh without verifying the physical pudding first Attention allocators trade cheap miracle claims for ten-phone CAPTCHA chambers",
+      "published": "2026-08-31",
+      "url": "https://www.youtube.com/watch?v=ihO9P5ZleIQ",
+      "thumb": "https://i.ytimg.com/vi/ihO9P5ZleIQ/hqdefault.jpg",
+      "views": 6
+    },
+    {
+      "id": "BDwkW5cxQJQ",
+      "sefirah": "Binah",
+      "title": "Meaty Flesh Loophole",
+      "text": "The shaping vessel — insight given structure, limits, and form. Infinite consciousness requires physical limitation to experience the concept of separation Creating complex biological meat suits just to bypass your own moral perfection Never criticize the snake when it was placed there on purpose",
+      "published": "2026-09-12",
+      "url": "https://www.youtube.com/watch?v=BDwkW5cxQJQ",
+      "thumb": "https://i.ytimg.com/vi/BDwkW5cxQJQ/hqdefault.jpg",
+      "views": 22
+    },
+    {
+      "id": "YA2mXwbaHXM",
+      "sefirah": "Binah",
+      "title": "The Structure of Experience",
+      "text": "The shaping vessel — insight given structure, limits, and form. Sensory data undergoes biological translation into memory before we register existence The gods shipped the material plane without a return policy on raw perception Western philosophers lost their minds trying to find an untouched realm of ideas",
+      "published": "2026-09-23",
+      "url": "https://www.youtube.com/watch?v=YA2mXwbaHXM",
+      "thumb": "https://i.ytimg.com/vi/YA2mXwbaHXM/hqdefault.jpg",
+      "views": 11
+    },
+    {
+      "id": "sD41r-JyX9o",
+      "sefirah": "Da'at",
+      "title": "Living Action Destroys Imagined Fear",
+      "text": "• Imagined fear causes more suffering than reality • Embodied physical action overcomes mind fears • Passion transforms fear into lived courage",
+      "published": "2026-07-28",
+      "url": "https://www.youtube.com/watch?v=sD41r-JyX9o",
+      "thumb": "https://i.ytimg.com/vi/sD41r-JyX9o/hqdefault.jpg",
+      "views": 39,
+      "lines": [
+        "Imagined fear causes more suffering than reality",
+        "Embodied physical action overcomes mind fears",
+        "Passion transforms fear into lived courage"
+      ]
+    },
+    {
+      "id": "lkoGwLeK1es",
+      "sefirah": "Da'at",
+      "title": "Dreams Are Knowledge Lived Not Held",
+      "text": "• Non-linear dream symbols reveal hidden knowledge • Unfulfilled desires speak through symbolic vision • Listening correctly transforms dream insight into action",
+      "published": "2026-08-08",
+      "url": "https://www.youtube.com/watch?v=lkoGwLeK1es",
+      "thumb": "https://i.ytimg.com/vi/lkoGwLeK1es/hqdefault.jpg",
+      "views": 24,
+      "lines": [
+        "Non-linear dream symbols reveal hidden knowledge",
+        "Unfulfilled desires speak through symbolic vision",
+        "Listening correctly transforms dream insight into action"
+      ]
+    },
+    {
+      "id": "at16_3nReFs",
+      "sefirah": "Da'at",
+      "title": "Translating The Symbol Into Fire",
+      "text": "Alchemical INRI translates as through fire all nature is restored Autumn is called fall because December trips over the edge of winter Expecting paper money to fulfill esoteric Latin is a lot for cash",
+      "published": "2026-08-10",
+      "url": "https://www.youtube.com/watch?v=at16_3nReFs",
+      "thumb": "https://i.ytimg.com/vi/at16_3nReFs/hqdefault.jpg",
+      "views": 91
+    },
+    {
+      "id": "Q-onIPlwXTU",
+      "sefirah": "Da'at",
+      "title": "Living Through the Unasked Question",
+      "text": "Asking for higher pay takes one second while dreading it takes months If you conceptualize every outcome you run out of floor space Attributed to some president whose name did not survive the clip",
+      "published": "2026-08-21",
+      "url": "https://www.youtube.com/watch?v=Q-onIPlwXTU",
+      "thumb": "https://i.ytimg.com/vi/Q-onIPlwXTU/hqdefault.jpg",
+      "views": 22
+    },
+    {
+      "id": "xafOv1nnR3M",
+      "sefirah": "Da'at",
+      "title": "Tyler Durden Paradox",
+      "text": "Waiting for extreme trauma to feel present ignores daily lived reality Anesthesia is a terrible long-term substitute for actually being awake Bestsellers are usually written by kids who briefly died on surgical tables",
+      "published": "2026-09-01",
+      "url": "https://www.youtube.com/watch?v=xafOv1nnR3M",
+      "thumb": "https://i.ytimg.com/vi/xafOv1nnR3M/hqdefault.jpg",
+      "views": 10
+    },
+    {
+      "id": "yC5mpvGzOBI",
+      "sefirah": "Da'at",
+      "title": "Tiger-Riding Fallacy",
+      "text": "True competence is finding the line between stimulus and absolute fatigue Procrastination is just a prayer strategy designed to force a miracle Nobody remembers Daedalus because he actually knew how to fly",
+      "published": "2026-09-13",
+      "url": "https://www.youtube.com/watch?v=yC5mpvGzOBI",
+      "thumb": "https://i.ytimg.com/vi/yC5mpvGzOBI/hqdefault.jpg",
+      "views": 26
+    },
+    {
+      "id": "28bSObC84Do",
+      "sefirah": "Da'at",
+      "title": "Da'at: The Architecture of Belief",
+      "text": "Self hypnosis functions as an invisible infrastructure maintaining hierarchy Building your own cell using only approved neuro linguistic programming materials God hiding everywhere except the details where the devil supposedly lives",
+      "published": "2026-09-24",
+      "url": "https://www.youtube.com/watch?v=28bSObC84Do",
+      "thumb": "https://i.ytimg.com/vi/28bSObC84Do/hqdefault.jpg",
+      "views": 12
+    },
+    {
+      "id": "x6q4rs2n1Zo",
+      "sefirah": "Chesed",
+      "title": "Direct Truth Beyond Endless Philosophical Debates",
+      "text": "Expansive giving — abundance that flows outward without counting. • Endless philosophical debates loop in mere word games • Go directly ad fontes for ultimate expansive truth • Words are cheap approximations of pure expansive wisdom",
+      "published": "2026-07-29",
+      "url": "https://www.youtube.com/watch?v=x6q4rs2n1Zo",
+      "thumb": "https://i.ytimg.com/vi/x6q4rs2n1Zo/hqdefault.jpg",
+      "views": 21,
+      "lines": [
+        "Expansive giving — abundance that flows outward without counting.",
+        "Endless philosophical debates loop in mere word games",
+        "Go directly ad fontes for ultimate expansive truth",
+        "Words are cheap approximations of pure expansive wisdom"
+      ]
+    },
+    {
+      "id": "VYndbyWNsJQ",
+      "sefirah": "Chesed",
+      "title": "Abundant Mercy in Every Disguise",
+      "text": "Expansive giving — abundance that flows outward without counting. • Alchemize life's delays into moments of inner abundance • Extend mercy instead of attributing actions to malice • Trust that difficult circumstances conceal hidden angels",
+      "published": "2026-08-09",
+      "url": "https://www.youtube.com/watch?v=VYndbyWNsJQ",
+      "thumb": "https://i.ytimg.com/vi/VYndbyWNsJQ/hqdefault.jpg",
+      "views": 50,
+      "lines": [
+        "Expansive giving — abundance that flows outward without counting.",
+        "Alchemize life's delays into moments of inner abundance",
+        "Extend mercy instead of attributing actions to malice",
+        "Trust that difficult circumstances conceal hidden angels"
+      ]
+    },
+    {
+      "id": "KzbgPy1LEI4",
+      "sefirah": "Chesed",
+      "title": "Feeding higher expression with lower energy",
+      "text": "Expansive giving — abundance that flows outward without counting. Energy cannot be destroyed so trapped lower chakras need creative channels Draining lower chakras requires locating your soul's internal plumbing Rolling on a beach with Connor Murphy rarely clears subtle blockages",
+      "published": "2026-08-11",
+      "url": "https://www.youtube.com/watch?v=KzbgPy1LEI4",
+      "thumb": "https://i.ytimg.com/vi/KzbgPy1LEI4/hqdefault.jpg",
+      "views": 282
+    },
+    {
+      "id": "SIjZwz0FeuI",
+      "sefirah": "Chesed",
+      "title": "Asking before your scheduled turn",
+      "text": "Expansive giving — abundance that flows outward without counting. Most leverage is established entirely outside the formal contract room A hat thrown into an empty ring technically becomes the CEO Quarterly reviews exist so nobody has to grant spontaneous raises",
+      "published": "2026-08-22",
+      "url": "https://www.youtube.com/watch?v=SIjZwz0FeuI",
+      "thumb": "https://i.ytimg.com/vi/SIjZwz0FeuI/hqdefault.jpg",
+      "views": 19
+    },
+    {
+      "id": "MfezaBQwGbw",
+      "sefirah": "Chesed",
+      "title": "Billion Dollar Paradox",
+      "text": "Expansive giving — abundance that flows outward without counting. Asking only for what you need turns prayer into quiet patience God fulfills every prayer instantly by doing absolutely nothing at all Getting exactly what you wished for is usually a terrible surprise",
+      "published": "2026-09-02",
+      "url": "https://www.youtube.com/watch?v=MfezaBQwGbw",
+      "thumb": "https://i.ytimg.com/vi/MfezaBQwGbw/hqdefault.jpg",
+      "views": 4
+    },
+    {
+      "id": "Hg_pAgaggiM",
+      "sefirah": "Chesed",
+      "title": "Archaic Futurist Trap",
+      "text": "Expansive giving — abundance that flows outward without counting. You can master every modern science by using ancient theological shortcuts Firing only three percent of your brain leaves more room for theology Silicon Valley spent billions to reinvent the concept of a library",
+      "published": "2026-09-14",
+      "url": "https://www.youtube.com/watch?v=Hg_pAgaggiM",
+      "thumb": "https://i.ytimg.com/vi/Hg_pAgaggiM/hqdefault.jpg",
+      "views": 2
+    },
+    {
+      "id": "jBl9M4uLUFc",
+      "sefirah": "Chesed",
+      "title": "Assembly Line Ledger",
+      "text": "Expansive giving — abundance that flows outward without counting. Recording daily output makes production climb until the numbers have to be fudged Treating your will as an ingot you shave down until it gleams with production Measuring everything across three and a half dimensions until the future looks oppressive",
+      "published": "2026-09-25",
+      "url": "https://www.youtube.com/watch?v=jBl9M4uLUFc",
+      "thumb": "https://i.ytimg.com/vi/jBl9M4uLUFc/hqdefault.jpg",
+      "views": 15
+    },
+    {
+      "id": "AormCguw0n8",
+      "sefirah": "Gevurah",
+      "title": "Cutting Extravagance To See The Spark",
+      "text": "Disciplined restraint — the cut that keeps mercy from spilling. • Trim complex cosmology to find the divine spark • Cut dramatic visions out of spiritual awakening • Realize we are all dogs in God's car",
+      "published": "2026-07-30",
+      "url": "https://www.youtube.com/watch?v=AormCguw0n8",
+      "thumb": "https://i.ytimg.com/vi/AormCguw0n8/hqdefault.jpg",
+      "views": 11,
+      "lines": [
+        "Disciplined restraint — the cut that keeps mercy from spilling.",
+        "Trim complex cosmology to find the divine spark",
+        "Cut dramatic visions out of spiritual awakening",
+        "Realize we are all dogs in God's car"
+      ]
+    },
+    {
+      "id": "_Ce79J504xw",
+      "sefirah": "Gevurah",
+      "title": "Disciplining Action to End All Work",
+      "text": "Disciplined restraint — the cut that keeps mercy from spilling. Classical Vedic texts view action as an artifact of incomplete knowledge If you trim your work enough you eventually automate yourself into nonexistence A 401k is just funding your future inability to stay busy",
+      "published": "2026-08-12",
+      "url": "https://www.youtube.com/watch?v=_Ce79J504xw",
+      "thumb": "https://i.ytimg.com/vi/_Ce79J504xw/hqdefault.jpg",
+      "views": 114
+    },
+    {
+      "id": "KVI0hmtzgUE",
+      "sefirah": "Gevurah",
+      "title": "Why Minds Demand A Cell",
+      "text": "Disciplined restraint — the cut that keeps mercy from spilling. Unbounded reality demands more cognitive overhead than an inflexible dogma Plato forgot to mention the cave is where all your friends live Most people choose the blue pill while lecturing about the red",
+      "published": "2026-08-23",
+      "url": "https://www.youtube.com/watch?v=KVI0hmtzgUE",
+      "thumb": "https://i.ytimg.com/vi/KVI0hmtzgUE/hqdefault.jpg",
+      "views": 32
+    },
+    {
+      "id": "IYmRDYJIoos",
+      "sefirah": "Gevurah",
+      "title": "Static Demon Trap",
+      "text": "Disciplined restraint — the cut that keeps mercy from spilling. Evil operates by persuading you that doing nothing is safer A couch that urges you to stay seated is spiritually dangerous Always take divine revelation with a generous pinch of table salt",
+      "published": "2026-09-03",
+      "url": "https://www.youtube.com/watch?v=IYmRDYJIoos",
+      "thumb": "https://i.ytimg.com/vi/IYmRDYJIoos/hqdefault.jpg",
+      "views": 5
+    },
+    {
+      "id": "KT-fT3Uwgqc",
+      "sefirah": "Gevurah",
+      "title": "Clancy Razor",
+      "text": "Disciplined restraint — the cut that keeps mercy from spilling. Excuse making for clear guilt reveals how someone will treat your children Using celestial alignments to excuse felony homicide as a casual dating filter People will defend any verdict if the aesthetic matches their feed",
+      "published": "2026-09-15",
+      "url": "https://www.youtube.com/watch?v=KT-fT3Uwgqc",
+      "thumb": "https://i.ytimg.com/vi/KT-fT3Uwgqc/hqdefault.jpg",
+      "views": 4
+    },
+    {
+      "id": "jkoDTe8lH6E",
+      "sefirah": "Gevurah",
+      "title": "Sermon Mount Bypass",
+      "text": "Disciplined restraint — the cut that keeps mercy from spilling. Stripping prayer to a single sentence stops you from asking God for frivolous things Treating the Almighty like a drive thru window saves everyone forty minutes God is too busy fielding elaborate requests to appreciate your hobbies",
+      "published": "2026-09-26",
+      "url": "https://www.youtube.com/watch?v=jkoDTe8lH6E",
+      "thumb": "https://i.ytimg.com/vi/jkoDTe8lH6E/hqdefault.jpg",
+      "views": 15
+    },
+    {
+      "id": "iEVx_LPc9aE",
+      "sefirah": "Tiferet",
+      "title": "Bridging Reality and Ideal Persona",
+      "text": "• Adopt ideal personas to overcome mental limits • Replace learned helplessness with intentional belief • Visualize expert mastery to bridge performance gaps",
+      "published": "2026-07-31",
+      "url": "https://www.youtube.com/watch?v=iEVx_LPc9aE",
+      "thumb": "https://i.ytimg.com/vi/iEVx_LPc9aE/hqdefault.jpg",
+      "views": 31,
+      "lines": [
+        "Adopt ideal personas to overcome mental limits",
+        "Replace learned helplessness with intentional belief",
+        "Visualize expert mastery to bridge performance gaps"
+      ]
+    },
+    {
+      "id": "WkK16WrqZnw",
+      "sefirah": "Tiferet",
+      "title": "Shock and Wonder at the Center",
+      "text": "Schema violations force minds toward either learned helplessness or adaptive resolve Your cognitive model bends until the wonder snaps it cleanly off You can perform public miracles and people will mostly just panic",
+      "published": "2026-08-13",
+      "url": "https://www.youtube.com/watch?v=WkK16WrqZnw",
+      "thumb": "https://i.ytimg.com/vi/WkK16WrqZnw/hqdefault.jpg",
+      "views": 143
+    },
+    {
+      "id": "btcRF-0y_v4",
+      "sefirah": "Tiferet",
+      "title": "Between Scribes and Silicon",
+      "text": "Generational milestones change each time information delivery swaps its hardware Photosynthesising a functional human under blue light and powdered corn snacks The debate only allows for cybernetic synthesis or ancient quills",
+      "published": "2026-08-24",
+      "url": "https://www.youtube.com/watch?v=btcRF-0y_v4",
+      "thumb": "https://i.ytimg.com/vi/btcRF-0y_v4/hqdefault.jpg",
+      "views": 6
+    },
+    {
+      "id": "1GqrRrNYlAQ",
+      "sefirah": "Tiferet",
+      "title": "Word Virus Effect",
+      "text": "Surveillance didn't eliminate civil unrest it just pushed it into language Buying daily bread now requires logged clearance from an invisible computer Everyone fears public social credit while private algorithms quietly call SWAT cars",
+      "published": "2026-09-04",
+      "url": "https://www.youtube.com/watch?v=1GqrRrNYlAQ",
+      "thumb": "https://i.ytimg.com/vi/1GqrRrNYlAQ/hqdefault.jpg",
+      "views": 4
+    },
+    {
+      "id": "r6MmajT2KJc",
+      "sefirah": "Tiferet",
+      "title": "Empty Canvas Hinge",
+      "text": "Boundaries do not restrict creation but provide the space for it To grow a tree you must first lock a seed in darkness Crediting Alan Watts while explicitly begging the audience not to check",
+      "published": "2026-09-16",
+      "url": "https://www.youtube.com/watch?v=r6MmajT2KJc",
+      "thumb": "https://i.ytimg.com/vi/r6MmajT2KJc/hqdefault.jpg",
+      "views": 6
+    },
+    {
+      "id": "rejn8Vdnd50",
+      "sefirah": "Tiferet",
+      "title": "Burning House Buffet Mirage",
+      "text": "The eye's central blind spot is continuously filled in by the brain The stomach must be consulted before the eyes fill up the plate Some people spend their whole lives chasing shiny prizes that never arrive",
+      "published": "2026-09-27",
+      "url": "https://www.youtube.com/watch?v=rejn8Vdnd50",
+      "thumb": "https://i.ytimg.com/vi/rejn8Vdnd50/hqdefault.jpg",
+      "views": 12
+    },
+    {
+      "id": "9eAopPSt0fw",
+      "sefirah": "Netzach",
+      "title": "Enduring the Canvas of Contrast",
+      "text": "• True guides use darkness to bring out light • Wisdom and ignorance together create human meaning • You are the artist painting through the dark",
+      "published": "2026-08-01",
+      "url": "https://www.youtube.com/watch?v=9eAopPSt0fw",
+      "thumb": "https://i.ytimg.com/vi/9eAopPSt0fw/hqdefault.jpg",
+      "views": 157,
+      "lines": [
+        "True guides use darkness to bring out light",
+        "Wisdom and ignorance together create human meaning",
+        "You are the artist painting through the dark"
+      ]
+    },
+    {
+      "id": "9-UqiMUi1FM",
+      "sefirah": "Netzach",
+      "title": "Human drive keeps the tools working",
+      "text": "In 2001 A Space Odyssey the monolith symbolizes tool development advancing intelligence A computer starves to death the moment every human leaves the building Social media turned the toolmaker into the product",
+      "published": "2026-08-14",
+      "url": "https://www.youtube.com/watch?v=9-UqiMUi1FM",
+      "thumb": "https://i.ytimg.com/vi/9-UqiMUi1FM/hqdefault.jpg",
+      "views": 8
+    },
+    {
+      "id": "BFuU3Bft_Oc",
+      "sefirah": "Netzach",
+      "title": "Outlasting the demon of later",
+      "text": "Sloth begins when the comfort of avoidance outweighs the outcome Saying later accidentally files your chores under ancient demonic jurisdiction Ecclesiastes already scheduled the exact moment you were supposed to start",
+      "published": "2026-08-25",
+      "url": "https://www.youtube.com/watch?v=BFuU3Bft_Oc",
+      "thumb": "https://i.ytimg.com/vi/BFuU3Bft_Oc/hqdefault.jpg",
+      "views": 11
+    },
+    {
+      "id": "mckwBD41shg",
+      "sefirah": "Netzach",
+      "title": "Blue Glasses Loop",
+      "text": "Language loops forever when we use words to define other words You sent telepathic shot glasses but they arrived as table glasses Arguing about simulation theory just adds three more words to clear up",
+      "published": "2026-09-05",
+      "url": "https://www.youtube.com/watch?v=mckwBD41shg",
+      "thumb": "https://i.ytimg.com/vi/mckwBD41shg/hqdefault.jpg",
+      "views": 16
+    },
+    {
+      "id": "ny65YdL2x24",
+      "sefirah": "Netzach",
+      "title": "Endurance Outlasts the Initial Mood",
+      "text": "Sin does not damage the soul but drives a wedge between mind and matter Mechanizing union with God requires better source material than a roleplaying rulebook Western literature runs in circles describing the soul without ever checking the plumbing",
+      "published": "2026-09-15",
+      "url": "https://www.youtube.com/watch?v=ny65YdL2x24",
+      "thumb": "https://i.ytimg.com/vi/ny65YdL2x24/hqdefault.jpg",
+      "views": 11
+    },
+    {
+      "id": "W90GOoKfrNU",
+      "sefirah": "Hod",
+      "title": "When Proof Is Automated Attention Governs",
+      "text": "Instrumental reason uses rhetorical tricks to construct logically airtight arguments Your pocket portal requires precise phrasing or the demon brings bad citations Aristotle mocked sophists but now tech giants charge trillions for them",
+      "published": "2026-08-15",
+      "url": "https://www.youtube.com/watch?v=W90GOoKfrNU",
+      "thumb": "https://i.ytimg.com/vi/W90GOoKfrNU/hqdefault.jpg",
+      "views": 516
+    },
+    {
+      "id": "OuqFy925Ow0",
+      "sefirah": "Hod",
+      "title": "Measuring the Margin of Collision",
+      "text": "A fatal collision and a near miss differ only by milliseconds Parking inside the hurricane eye requires matching its precise forward velocity People rarely check their storm prep until the Tower card shows",
+      "published": "2026-08-26",
+      "url": "https://www.youtube.com/watch?v=OuqFy925Ow0",
+      "thumb": "https://i.ytimg.com/vi/OuqFy925Ow0/hqdefault.jpg",
+      "views": 5
+    },
+    {
+      "id": "hopUTUOi-R0",
+      "sefirah": "Hod",
+      "title": "Six Business Days Law",
+      "text": "Vague ideas require six days of quiet sorting before they become actionable Ideas cannot legally form without six full business days of administrative rest Real Sabbath rest is actually just reorganizing your mental filing cabinet",
+      "published": "2026-09-08",
+      "url": "https://www.youtube.com/watch?v=hopUTUOi-R0",
+      "thumb": "https://i.ytimg.com/vi/hopUTUOi-R0/hqdefault.jpg",
+      "views": 7
+    },
+    {
+      "id": "W3CnZL6bH5E",
+      "sefirah": "Hod",
+      "title": "Hedonistic Treadmill",
+      "text": "Constantly swapping out partners like clinical bucket tests prevents crossing streams together Aristotle watched ancient cattle optimize themselves straight into a river current Soul music gets blamed for algorithms while people treat romance like a spreadsheet",
+      "published": "2026-09-18",
+      "url": "https://www.youtube.com/watch?v=W3CnZL6bH5E",
+      "thumb": "https://i.ytimg.com/vi/W3CnZL6bH5E/hqdefault.jpg",
+      "views": 8
+    },
+    {
+      "id": "MRcY699c1zU",
+      "sefirah": "Yesod",
+      "title": "Your Face Is The Ultimate Resume",
+      "text": "• Your face channels every expression from the mind • Neural circuitry scans first impressions in milliseconds • Unfiltered clarity is the most dangerous weapon",
+      "published": "2026-08-03",
+      "url": "https://www.youtube.com/watch?v=MRcY699c1zU",
+      "thumb": "https://i.ytimg.com/vi/MRcY699c1zU/hqdefault.jpg",
+      "views": 6,
+      "lines": [
+        "Your face channels every expression from the mind",
+        "Neural circuitry scans first impressions in milliseconds",
+        "Unfiltered clarity is the most dangerous weapon"
+      ]
+    },
+    {
+      "id": "yM7oWdZNjn8",
+      "sefirah": "Yesod",
+      "title": "Waiting In The Line Of Chance",
+      "text": "An expert child pose looks identical to a beginner doing it Jonah had to stay perfectly folded until the fish noticed him Skepticism usually arrives right after waiting three days too long",
+      "published": "2026-08-16",
+      "url": "https://www.youtube.com/watch?v=yM7oWdZNjn8",
+      "thumb": "https://i.ytimg.com/vi/yM7oWdZNjn8/hqdefault.jpg",
+      "views": 176
+    },
+    {
+      "id": "06Ifnk2F4jw",
+      "sefirah": "Yesod",
+      "title": "Birth Requires A Full Exit",
+      "text": "Hermit crabs do not renovate shells they abandon them for larger ones Structural insect damage simply means your foundation needs an immediate yacht Every incoming master is just someone occupying an abandoned shell",
+      "published": "2026-08-27",
+      "url": "https://www.youtube.com/watch?v=06Ifnk2F4jw",
+      "thumb": "https://i.ytimg.com/vi/06Ifnk2F4jw/hqdefault.jpg",
+      "views": 15
+    },
+    {
+      "id": "7wc1qWqTu9Y",
+      "sefirah": "Yesod",
+      "title": "Gift Horse Trap",
+      "text": "Over-analyzing a delivered idea destroys it before it can take root Dentists inspecting wooden horses will find soldiers instead of teeth People prefer a resurrected corpse over simply following the instructions",
+      "published": "2026-09-08",
+      "url": "https://www.youtube.com/watch?v=7wc1qWqTu9Y",
+      "thumb": "https://i.ytimg.com/vi/7wc1qWqTu9Y/hqdefault.jpg",
+      "views": 4
+    },
+    {
+      "id": "28XcsAZaZlU",
+      "sefirah": "Yesod",
+      "title": "Time Crystallized Exchange",
+      "text": "Power acts as the transactional unit driving the mechanics of this world Kings occupying the throne without fitting the title must still pay the invoice",
+      "published": "2026-09-19",
+      "url": "https://www.youtube.com/watch?v=28XcsAZaZlU",
+      "thumb": "https://i.ytimg.com/vi/28XcsAZaZlU/hqdefault.jpg",
+      "views": 8
+    },
+    {
+      "id": "JY95lG_Gr4M",
+      "sefirah": "Malkuth",
+      "title": "The Kingdom Belongs to Practice",
+      "text": "• Practice grounds scripture into physical reality • Blindly worshipping signs misses the living point • Wisdom belongs to doers not scroll keepers",
+      "published": "2026-08-04",
+      "url": "https://www.youtube.com/watch?v=JY95lG_Gr4M",
+      "thumb": "https://i.ytimg.com/vi/JY95lG_Gr4M/hqdefault.jpg",
+      "views": 64,
+      "lines": [
+        "Practice grounds scripture into physical reality",
+        "Blindly worshipping signs misses the living point",
+        "Wisdom belongs to doers not scroll keepers"
+      ]
+    },
+    {
+      "id": "ts8cpR2cwNY",
+      "sefirah": "Malkuth",
+      "title": "Theology Made Out Of Flesh",
+      "text": "The traditional sign of the cross traces a five-pointed upright pentagram Pipe the lower chakras straight into the skull until reason controls the pressure Reddit atheists measure theological capacity using standard hardware store buckets",
+      "published": "2026-08-17",
+      "url": "https://www.youtube.com/watch?v=ts8cpR2cwNY",
+      "thumb": "https://i.ytimg.com/vi/ts8cpR2cwNY/hqdefault.jpg",
+      "views": 202
+    },
+    {
+      "id": "1tChTM32OSo",
+      "sefirah": "Malkuth",
+      "title": "Matching Your Colors Inwardly",
+      "text": "Outcome independence means the lift exists entirely for itself An inflatable slime bounces correctly once his organs color coordinate Sam Hyde and League of Legends share the exact same ontology",
+      "published": "2026-08-28",
+      "url": "https://www.youtube.com/watch?v=1tChTM32OSo",
+      "thumb": "https://i.ytimg.com/vi/1tChTM32OSo/hqdefault.jpg",
+      "views": 12
+    },
+    {
+      "id": "LQr4h5lMIkk",
+      "sefirah": "Malkuth",
+      "title": "Fun God Paradox",
+      "text": "Absolute visibility of every human detail destroys our ability to have heroes Redcoats would have used geographic tracking to preemptively arrest midnight riders Only the comedians survive when the state inspects your digital footprint",
+      "published": "2026-09-09",
+      "url": "https://www.youtube.com/watch?v=LQr4h5lMIkk",
+      "thumb": "https://i.ytimg.com/vi/LQr4h5lMIkk/hqdefault.jpg",
+      "views": 130
+    },
+    {
+      "id": "BXENOxJsRlQ",
+      "sefirah": "Malkuth",
+      "title": "Blue Charm Tithe",
+      "text": "A broken charm is physical proof that abstract envy hit solid ground Celebrate losing your bead because cheap glass just took a ghost bullet Bragging about good luck simply gives the universe a target to hit",
+      "published": "2026-09-20",
+      "url": "https://www.youtube.com/watch?v=BXENOxJsRlQ",
+      "thumb": "https://i.ytimg.com/vi/BXENOxJsRlQ/hqdefault.jpg",
+      "views": 41
+    }
+  ]
+}
