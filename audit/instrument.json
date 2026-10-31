@@ -2131,7 +2131,7 @@
         "gaps": [
           "No widely available English primary text names itself without decontextualizing a closed or partly closed tradition. Left empty on purpose rather than filled with an extraction."
         ],
-        "note": "Publishing an entry text here risks exactly the appropriation the split exists to avoid. Route through the Temple capability scan and the substitution ledger in docs/SERVICES-AND-PROOF-OF-SKILL.md before anything appears publicly."
+        "note": "Publishing an entry text here risks exactly the appropriation the split exists to avoid. Route through the Temple capability scan and the substitution ledger in docs/business/SERVICES-AND-PROOF-OF-SKILL.md before anything appears publicly."
       },
       "code": "IPWLC"
     },
@@ -2273,7 +2273,7 @@
       "version": "0.6.0",
       "date": "2026-09-18",
       "change": "Rebuilt q04 for comprehension and added a separately reported fit measure with copy for weak matches.",
-      "why": "Sixteen mock personas: q04's unglossed quotation lost four of eight low-context readers while carrying 1.5x weight, and a disengaged persona received a confident result at coherence 9. See docs/INSTRUMENT-TEST-LOG.md.",
+      "why": "Sixteen mock personas: q04's unglossed quotation lost four of eight low-context readers while carrying 1.5x weight, and a disengaged persona received a confident result at coherence 9. See docs/funnel/INSTRUMENT-TEST-LOG.md.",
       "breaks_scoring": false
     }
   ],

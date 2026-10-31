@@ -9,7 +9,7 @@ this counts as.
 nominative fair use. Keep every line descriptive. Nothing here may read as *"an alternative
 to"* or *"based on"* another instrument, no comparative-advertising claim may appear, and no
 other instrument gets disparaged — that stance costs nothing and the tone rule stands on its
-own merits anyway. See `docs/INSTRUMENT-ONTOLOGY-AUDIT.md` → Compliance.
+own merits anyway. See `docs/funnel/INSTRUMENT-ONTOLOGY-AUDIT.md` → Compliance.
 
 ---
 

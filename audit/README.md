@@ -1,7 +1,7 @@
 # The Ontology Audit — data contract
 
-Status: v0.1, dated 2026-09-18. Phase 0 of `docs/MVP-BUILD-PLAN.md`. The instrument itself
-lives in `docs/INSTRUMENT-ONTOLOGY-AUDIT.md`; this folder holds the machine-readable form and
+Status: v0.1, dated 2026-09-18. Phase 0 of `docs/funnel/MVP-BUILD-PLAN.md`. The instrument itself
+lives in `docs/funnel/INSTRUMENT-ONTOLOGY-AUDIT.md`; this folder holds the machine-readable form and
 (later) the page that runs it.
 
 ## The fact layer and the prose layer stay separate
@@ -76,7 +76,7 @@ website/audit/
 ## Open
 
 - Coherence-score coefficients read `"status": "uncalibrated"`. They need a few hundred real
-  runs before the numbers mean anything (`docs/MVP-BUILD-PLAN.md` → Phase 4, run logging).
+  runs before the numbers mean anything (`docs/funnel/MVP-BUILD-PLAN.md` → Phase 4, run logging).
 - Position citations read `"status": "temple-pending"` — that pass belongs to the Temple
   capability scan, per the routing in the build plan. Do not run it from this repo.
 - Question wording stays **unfrozen** until the phase-0 audit lands. Nothing should build 32

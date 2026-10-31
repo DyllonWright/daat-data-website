@@ -7,7 +7,7 @@
    Pages (website/README.md).
 
    Palette and layout rules come from the 2026-07-19 revision passes recorded
-   in docs/WEBSITE-DESIGN-LEARNINGS.md. Read that file before changing
+   in docs/website/WEBSITE-DESIGN-LEARNINGS.md. Read that file before changing
    anything here — several of these values exist because a prettier choice
    failed first.
    ═══════════════════════════════════════════════════════════════════════════ */
@@ -251,7 +251,7 @@ header.hero p.value-prop {
 
 /* ─── PAGE HERO (project pages) ─────────────────────────────────────────────
    Deliberately quieter than the hub hero and carrying no artwork: principle 1
-   in docs/WEBSITE-DESIGN-LEARNINGS.md says art belongs with the landing,
+   in docs/website/WEBSITE-DESIGN-LEARNINGS.md says art belongs with the landing,
    subordinated. A project page earns its weight on the words. */
 header.page-hero {
   position: relative;

@@ -1,7 +1,7 @@
 # Deploying this page
 
 This folder holds the v0 static landing page for Daat Data Consulting (brand
-decided 2026-07-14 — see `docs/POSITIONING.md`). It follows the same free hosting pipeline documented in
+decided 2026-07-14 — see `docs/business/POSITIONING.md`). It follows the same free hosting pipeline documented in
 the sibling `free-website-workflow` repo: **GitHub stores the file, Cloudflare
 Pages serves it, both stay on free tiers.** Total cost: $0.00.
 
@@ -11,13 +11,13 @@ this repo holds business documents generally, not just the site. The steps
 below account for that.
 
 > Design and copy lessons from the 2026-07-19 revision passes live in
-> `docs/WEBSITE-DESIGN-LEARNINGS.md` — read that before the next visual or
+> `docs/website/WEBSITE-DESIGN-LEARNINGS.md` — read that before the next visual or
 > copy change.
 
 ## Brand reskin (2026-07-19)
 
 The page now carries the ivory/gold/black chiaroscuro treatment drawn from the
-brand art delivered in the repo-root folder `branding logo pfp and banner art/`:
+brand art delivered in the repo-root folder `brand/`:
 
 - `website/assets/logo.png` — copied from `profile pic.png` (ivory "DD" serif
   monogram, gold Saturn ring, sun flare on black). Serves as the favicon, the
@@ -31,7 +31,7 @@ brand art delivered in the repo-root folder `branding logo pfp and banner art/`:
 in three spellings across live surfaces — "Da'at Data" (banner art and the
 YouTube bio header, observed 2026-07-19), "daathdata" with an "h" (the business
 email, Linktree, and Threads handle), and "Daat Data Consulting" (the decided
-brand, 2026-07-14, see `docs/POSITIONING.md`). The site keeps the decided
+brand, 2026-07-14, see `docs/business/POSITIONING.md`). The site keeps the decided
 spelling; the art and channels keep theirs. Reconcile before launch.
 
 **From the owner's YouTube bio (2026-07-19), folded in or flagged:**
@@ -47,7 +47,7 @@ spelling; the art and channels keep theirs. Reconcile before launch.
   that differs from the site's footer draft. **Flag for legal review:** the
   attorney reviewing the footer disclaimer should see the bio wording too, so
   the two surfaces end up consistent — see the legal-caution rule in
-  `CLAUDE.md` and `docs/POSITIONING.md`. Neither wording got changed here.
+  `CLAUDE.md` and `docs/business/POSITIONING.md`. Neither wording got changed here.
 - The bio's Linktree (`linktr.ee/daathdata`) stays unlinked on this page —
   the Discord/Cal.com funnel remains the site's primary path.
 
@@ -67,7 +67,7 @@ the Open Graph / Twitter-card image at full strength. **Flags:**
 
 - The hero and premises now name divination practices publicly — the owner
   (and the attorney reviewing the footer disclaimer) should confirm the lines
-  stay inside the positioning boundaries in `docs/POSITIONING.md`. The copy
+  stay inside the positioning boundaries in `docs/business/POSITIONING.md`. The copy
   makes no predictive, medical, or outcome claims by design.
 - **Display spelling now reads "Da'at Data Consulting"** in the hero, page
   title, and social metas, per the owner's 2026-07-19 layout spec (matching
@@ -93,7 +93,7 @@ differs, and the gap matters:
   completed attachment.
 
 **This repo holds the current, correct copy of the site.** Full diagnosis, the
-DNS evidence, and the fix sequence live in `docs/INFRASTRUCTURE.md` → **Known
+DNS evidence, and the fix sequence live in `docs/website/INFRASTRUCTURE.md` → **Known
 problems** and **Recommended next actions**. Repointing the existing Pages
 project at this repo (build output directory `website`) resolves both — no
 migration, one settings change.
@@ -129,7 +129,7 @@ video list lives once in `data/videos.json`. See **Structure** below.
 
 ⚠️ **None of that reaches the public yet.** The Pages project builds a
 different repository, and `daatdata.net` returns 522 — both verified still open
-on 2026-10-31. See the reality check below and `docs/INFRASTRUCTURE.md`.
+on 2026-10-31. See the reality check below and `docs/website/INFRASTRUCTURE.md`.
 
 ## Structure (restructured 2026-10-31)
 
@@ -163,7 +163,7 @@ folder over http to preview it (`python -m http.server` from `website/`);
 Cloudflare Pages serves it over http, where it works.
 
 **Asset provenance** — what each file in `assets/` is and where it came from —
-lives in `docs/PROJECTS.md`, along with the publish boundary that governs what
+lives in `docs/fleet/PROJECTS.md`, along with the publish boundary that governs what
 may enter this folder at all. Read it before copying anything in from a sibling
 repo. Every one of those repos reads private; this folder goes to the public web.
 
@@ -181,12 +181,12 @@ repo. Every one of those repos reads private; this folder goes to the public web
 
 **Still open:**
 
-- **Newsletter provider** — no account exists. `docs/NEWSLETTER-PIPELINE.md`
+- **Newsletter provider** — no account exists. `docs/funnel/NEWSLETTER-PIPELINE.md`
   compares Buttondown, beehiiv and Substack, and leans Buttondown for its
   markdown-native drafting and API. **The owner needs to create that account**;
   once it exists, swap the plain address for the provider's embed form.
 - **Footer disclaimer wording** — marked `SYNC WITH ATTORNEY-APPROVED WORDING`
-  on `index.html` and `consulting.html`; paraphrases `docs/POSITIONING.md` and
+  on `index.html` and `consulting.html`; paraphrases `docs/business/POSITIONING.md` and
   has not received legal review. Not final.
 - **⚖️ `exodus.html`, line by line.** Written against
   `../project-exodus/docs/IP-AND-CLAIMS.md` §2, §7 and §9 — trademarks absent
@@ -202,7 +202,7 @@ No longer optional and no longer hypothetical:
 
 - **Domain:** `daatdata.net`, registered 2026-07-25 through Namecheap (~$12/yr),
   DNS delegated to Cloudflare. It does **not** serve yet — see the reality
-  check above. `docs/INFRASTRUCTURE.md` carries the record and the fix.
+  check above. `docs/website/INFRASTRUCTURE.md` carries the record and the fix.
 - **Email:** `contact@daatdata.net` forwards to the owner's Gmail via
   Cloudflare Email Routing, tested working. Receive-only for now.
 - **QR codes:** already scripted, not hand-made. `discord/assets/generate-qr.py`
