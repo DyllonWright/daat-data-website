@@ -1,0 +1,29 @@
+{
+  "_README": [
+    "POETRY — A STUB, DOGEARED. The owner set this page aside on 2026-10-31 and",
+    "returns to it later. The array below stays empty on purpose, and the page",
+    "renders the waiting line instead of a layout built against invented verse.",
+    "",
+    "NOTHING REACHES THIS FILE AUTOMATICALLY. 89 pieces sit split and gitignored",
+    "under poetry-source/, each awaiting a metadata block the owner fills in.",
+    "Only a piece marked would_publish: yes crosses over, and the owner moves it",
+    "himself. Read projects/poetry/README.md before touching any of it, and read",
+    "CLAUDE.md on why poetry-source/ never enters git: those files hold dated",
+    "journal entries, named people and private reflection in the same pages as",
+    "the verse.",
+    "",
+    "Fields, once pieces arrive:",
+    "  title   the piece's own title, as the owner titles it.",
+    "  text    the verse itself. Line breaks survive verbatim — the page sets",
+    "          white-space: pre-line and left-aligns inside a centered block.",
+    "  credit  optional. A date, a place, a note.",
+    "",
+    "Every piece gets its own full bay with generous margin, and a four-line",
+    "piece carries the same typographic authority as a sixty-line one. Report C",
+    "section 4 works that out in full; the rules already sit in assets/site.css."
+  ],
+
+  "waiting": "The verse waits on its author. He knows where it lives.",
+
+  "poems": []
+}

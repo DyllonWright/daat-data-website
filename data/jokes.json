@@ -1,0 +1,28 @@
+{
+  "_README": [
+    "HORRIBLE IDEAS. The loosest voice on the site: E-Prime gags, inversions,",
+    "one-liners. Adding one means appending one object to the array below and",
+    "editing nothing else, anywhere.",
+    "",
+    "Fields:",
+    "  text   the line itself, as it reads on the page. Verbatim.",
+    "  aside  optional. A quieter second beat under the line. Keep it short, or",
+    "         leave it null — most lines land harder without one.",
+    "",
+    "The owner writes these. Nothing here gets generated, and nothing here gets",
+    "padded to make the page look fuller: Report C's rule on thin states says a",
+    "short list presented with confidence reads as a deliberate selection, and a",
+    "short list surrounded by filler reads as an incomplete build.",
+    "",
+    "emptyState renders in place of the list when the array runs empty."
+  ],
+
+  "emptyState": "Nothing horrible enough yet.",
+
+  "jokes": [
+    {
+      "text": "I am NOT that I am NOT.",
+      "aside": "The owner's, and the one that started the section."
+    }
+  ]
+}

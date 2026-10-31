@@ -1176,3 +1176,216 @@ footer .copyline {
   .wall-card .shot img { transition: none; }
   .wall-card:hover .shot img { transform: none; }
 }
+
+/* ─── THE APHORISTIC STREAM (workstream 3) ──────────────────────────────────
+   Report C ranks this pattern first among the ones worth taking: an unbroken,
+   unadorned vertical stream of discrete thoughts. No card chrome, no padding
+   games, no borders around each entry. The only furniture is a hairline rule
+   between entries and air around them. */
+.draw {
+  text-align: center;
+  padding: 1rem 0 0;
+}
+
+.draw .sefirah {
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.72rem;
+  color: var(--gold);
+  margin: 0 0 1rem;
+}
+
+.draw .thought {
+  font-family: var(--serif);
+  font-size: clamp(1.45rem, 4.4vw, 2.1rem);
+  line-height: 1.3;
+  color: var(--ink);
+  max-width: 20ch;
+  margin: 0 auto 1.1rem;
+}
+
+.draw .gloss {
+  color: var(--ink-dim);
+  max-width: 34rem;
+  margin: 0 auto 1.6rem;
+  font-size: 1rem;
+}
+
+/* A bulleted gloss centres its mass and keeps its lines left-aligned, the
+   same move Report C documents for verse. Centred list items read ragged. */
+ul.gloss {
+  display: inline-block;
+  text-align: left;
+  list-style: none;
+  padding: 0;
+}
+
+ul.gloss li {
+  margin-bottom: 0.45rem;
+  padding-left: 1.1rem;
+  position: relative;
+}
+
+ul.gloss li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.stream {
+  max-width: 44rem;
+  margin: 0 auto;
+}
+
+.stream-group {
+  margin: 0 0 3.25rem;
+}
+
+.stream-group > h3 {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.78rem;
+  font-family: inherit;
+  font-weight: 600;
+  color: var(--gold);
+  border-bottom: 1px solid var(--border-soft);
+  padding-bottom: 0.6rem;
+  margin-bottom: 1.6rem;
+}
+
+.stream-group > h3 .tally {
+  float: right;
+  color: var(--ink-faint);
+  letter-spacing: 0.1em;
+}
+
+.stream-item {
+  margin: 0 0 1.9rem;
+}
+
+.stream-item a {
+  font-family: var(--serif);
+  font-size: 1.22rem;
+  line-height: 1.35;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--gold);
+}
+
+.stream-item a:hover { color: var(--gold-bright); }
+
+.stream-item a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+.stream-item p {
+  color: var(--ink-dim);
+  font-size: 0.95rem;
+  margin: 0.45rem 0 0;
+}
+
+.stream-item ul {
+  color: var(--ink-dim);
+  font-size: 0.95rem;
+  margin: 0.45rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.stream-item .when {
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-top: 0.4rem;
+}
+
+/* ─── HORRIBLE IDEAS ────────────────────────────────────────────────────────
+   The loosest voice on the site gets the plainest furniture: one line, one
+   bay, nothing around it. A joke in a card reads as a product feature. */
+.gag-list {
+  max-width: 40rem;
+  margin: 0 auto;
+  list-style: none;
+  padding: 0;
+}
+
+.gag {
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 3.6vw, 1.75rem);
+  line-height: 1.35;
+  color: var(--ink);
+  text-align: center;
+  margin: 0 0 3rem;
+}
+
+.gag .aside {
+  display: block;
+  font-family: inherit;
+  font-size: 0.86rem;
+  color: var(--ink-faint);
+  margin-top: 0.7rem;
+  font-style: normal;
+}
+
+/* ─── VERSE BAYS (poetry) ───────────────────────────────────────────────────
+   Report C section 4 solves the long-versus-short problem four ways: its own
+   full section bay per piece, text left-aligned inside a centered block so
+   deliberate line breaks survive while the mass centres, identical
+   typographic authority on every title however short the piece, and a spot
+   illustration to balance a short one. The page ships as a stub, so these
+   rules wait here for the first batch the owner clears. */
+.verse-bay {
+  margin: 0 0 4.5rem;
+  text-align: center;
+}
+
+.verse-bay h2 {
+  font-size: clamp(1.3rem, 3.4vw, 1.6rem);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-family: inherit;
+  font-weight: 600;
+  margin-bottom: 1.4rem;
+}
+
+.verse-bay .verse {
+  display: inline-block;
+  text-align: left;
+  font-family: var(--serif);
+  font-size: clamp(1.05rem, 2.6vw, 1.22rem);
+  line-height: 1.75;
+  color: var(--ink);
+  white-space: pre-line;
+  margin: 0;
+}
+
+.verse-bay .credit {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-top: 1.2rem;
+}
+
+/* The dogear: this page waits on the owner, and says so rather than faking
+   depth with invented verse. */
+.dogear {
+  max-width: 34rem;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--ink-dim);
+}
+
+.dogear .fold {
+  display: block;
+  width: 3.5rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 2rem auto;
+}
