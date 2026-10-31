@@ -156,6 +156,24 @@
     </div>
   </section>
 
+  <!-- THE SHELF, FLOATED (overhaul workstream 2). It sits below the first
+       screen on purpose: Report D warns that anything eating the first screen
+       on a dark canvas destroys the starfield, and the brief rules the
+       carousel out as a hero. Twelve cards here; all 69 on shelf.html. -->
+  <section id="shelf">
+    <div class="section-heading">
+      <h2>What people actually watched</h2>
+      <p>The twelve the counter picked, newest reading of it.</p>
+    </div>
+    <div class="carousel"
+         data-source="data/channel.json"
+         data-limit="12"
+         data-label="The twelve most watched"></div>
+    <div class="cta-row" style="margin-top: 1.75rem;">
+      <a class="btn btn-secondary" href="shelf.html">The whole shelf</a>
+    </div>
+  </section>
+
   <section id="follow">
     <div class="section-heading">
       <h2>Catch the next one</h2>
@@ -232,5 +250,6 @@
 
 </div>
 
+<script src="assets/carousel.js"></script>
 </body>
 </html>

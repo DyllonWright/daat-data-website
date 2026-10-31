@@ -890,3 +890,289 @@ footer .copyline {
   .work-card { padding: 1.4rem; }
   .note { padding: 1.15rem 1.25rem; }
 }
+
+/* ─── THE ARC CAROUSEL (workstream 2) ───────────────────────────────────────
+   Geometry from Report B's position-by-position table for a 7-card window.
+   Every position lives in CSS rather than in JavaScript, so the narrow-screen
+   flattening happens in a media query and the script only ever sets a card's
+   data-pos. Three of Report B's twelve ranked decisions bind here:
+
+   1. z-index computes as 100 − |i| × 10, written per position below. Naive DOM
+      order makes a receding card clip in front of the focused one mid-motion.
+   2. Cards at ±420px blow a 400px document out to 1200px, so .arc-stage holds
+      overflow: hidden and the narrow rules flatten the arc to ±170px.
+   3. Only transform and opacity animate. Never left, top or margin.
+
+   The focal object behind the arc draws as an original Saturn, inline SVG,
+   from the same ring motif as the masthead lockup. */
+.carousel {
+  position: relative;
+  margin: 0 auto;
+  max-width: 1100px;
+}
+
+/* The arc needs more room than the 960px reading column, so its own section
+   opts into a wider wrap. Prose never does: Report A calls a 95-character
+   measure a readability defect, and the reading column stays at 660px. */
+.wrap.wide { max-width: 1180px; }
+
+.arc-stage {
+  position: relative;
+  overflow: hidden;
+  perspective: 1000px;
+  perspective-origin: 50% 50%;
+  height: calc(var(--card-w) * 0.5625 + 5.5rem);
+  --card-w: clamp(210px, 26vw, 300px);
+  touch-action: pan-y;
+}
+
+.arc-saturn {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: calc(var(--card-w) * 1.7);
+  transform: translate(-50%, -50%);
+  opacity: 0.17;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.arc-card {
+  position: absolute;
+  left: 50%;
+  top: 1.5rem;
+  width: var(--card-w);
+  margin-left: calc(var(--card-w) / -2);
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--bg-panel);
+  text-decoration: none;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+              opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  -webkit-box-reflect: below 6px linear-gradient(to bottom,
+    rgba(0, 0, 0, 0) 62%, rgba(0, 0, 0, 0.28) 100%);
+}
+
+.arc-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.arc-card:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+/* The empty card: a series with nothing published reads as intentional, not
+   broken (process learning 8 in WEBSITE-DESIGN-LEARNINGS.md). */
+.arc-card.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, rgba(201, 162, 75, 0.07), var(--bg-panel) 60%);
+}
+
+.arc-card.empty span {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  color: var(--ink-faint);
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.arc-card[data-pos="0"]  { transform: translate3d(0, 0, 0) rotateY(0deg) scale(1); opacity: 1; z-index: 100; }
+.arc-card[data-pos="-1"] { transform: translate3d(-145px, 6px, -90px) rotateY(25deg) scale(0.89); opacity: 0.8; z-index: 30; }
+.arc-card[data-pos="1"]  { transform: translate3d(145px, 6px, -90px) rotateY(-25deg) scale(0.89); opacity: 0.8; z-index: 30; }
+.arc-card[data-pos="-2"] { transform: translate3d(-280px, 24px, -200px) rotateY(38deg) scale(0.78); opacity: 0.5; z-index: 20; }
+.arc-card[data-pos="2"]  { transform: translate3d(280px, 24px, -200px) rotateY(-38deg) scale(0.78); opacity: 0.5; z-index: 20; }
+.arc-card[data-pos="-3"] { transform: translate3d(-420px, 48px, -320px) rotateY(45deg) scale(0.65); opacity: 0.2; z-index: 10; }
+.arc-card[data-pos="3"]  { transform: translate3d(420px, 48px, -320px) rotateY(-45deg) scale(0.65); opacity: 0.2; z-index: 10; }
+
+.arc-card[data-pos="out"] {
+  transform: translate3d(0, 60px, -420px) scale(0.5);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* The label never slides with the cards — Report B ranks a sliding title
+   sixth among the twelve, for motion fatigue. It cross-fades in place. */
+.arc-label {
+  text-align: center;
+  margin-top: 0.9rem;
+  min-height: 4.2rem;
+  transition: opacity 0.2s ease;
+}
+
+.arc-label.fading { opacity: 0; }
+
+.arc-label .arc-title {
+  font-family: var(--serif);
+  font-size: clamp(1.02rem, 2.4vw, 1.25rem);
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 auto;
+  max-width: 34rem;
+  line-height: 1.35;
+}
+
+.arc-label .arc-meta {
+  font-size: 0.8125rem;
+  color: var(--gold);
+  margin: 0.35rem 0 0;
+}
+
+.arc-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.1rem;
+  margin-top: 0.9rem;
+}
+
+.arc-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  background: rgba(6, 5, 4, 0.6);
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.arc-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold-bright);
+}
+
+.arc-btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+.arc-count {
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  letter-spacing: 0.08em;
+  min-width: 5.5rem;
+  text-align: center;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Narrow screens: the arc flattens, the Y-rotation goes to zero, and nothing
+   reaches past the stage's own edge. Report B, decision 2. */
+@media (max-width: 640px) {
+  .arc-stage {
+    --card-w: min(280px, 72vw);
+    height: calc(var(--card-w) * 0.5625 + 5rem);
+  }
+  /* A single focal card with a flanking edge either side, the fallback Report B
+     names for narrow screens: offset by about 75% of the card's own width, so
+     the neighbour peeks past the focused card's edge and the stage clips the
+     rest. Nothing reaches past the stage, so the document never spills. */
+  .arc-card[data-pos="-1"] { transform: translate3d(calc(var(--card-w) * -0.76), 4px, 0) scale(0.85); opacity: 0.42; }
+  .arc-card[data-pos="1"]  { transform: translate3d(calc(var(--card-w) * 0.76), 4px, 0) scale(0.85); opacity: 0.42; }
+  .arc-card[data-pos="-2"] { transform: translate3d(calc(var(--card-w) * -1.1), 14px, 0) scale(0.7); opacity: 0.16; }
+  .arc-card[data-pos="2"]  { transform: translate3d(calc(var(--card-w) * 1.1), 14px, 0) scale(0.7); opacity: 0.16; }
+  .arc-card[data-pos="-3"] { transform: translate3d(calc(var(--card-w) * -1.35), 22px, 0) scale(0.6); opacity: 0.06; }
+  .arc-card[data-pos="3"]  { transform: translate3d(calc(var(--card-w) * 1.35), 22px, 0) scale(0.6); opacity: 0.06; }
+}
+
+/* Vestibular safety, Report B decision 7: no 3D, no travel, just the swap. */
+@media (prefers-reduced-motion: reduce) {
+  .arc-stage { perspective: none; }
+  .arc-card {
+    transition: opacity 0.15s linear;
+    transform: none !important;
+  }
+  .arc-card[data-pos="-1"], .arc-card[data-pos="1"],
+  .arc-card[data-pos="-2"], .arc-card[data-pos="2"],
+  .arc-card[data-pos="-3"], .arc-card[data-pos="3"],
+  .arc-card[data-pos="out"] { opacity: 0; pointer-events: none; }
+  .arc-card[data-pos="0"] { opacity: 1; }
+}
+
+/* ─── THE WALL: every published cut ─────────────────────────────────────────
+   The channel holds 69 of them, so the catalogue renders as thumbnails rather
+   than as the text cards the four scripted series use. Thumbnails arrive as
+   plain lazy images from i.ytimg.com; no YouTube iframe loads anywhere on this
+   site without a click (Report D, do-not-copy 5). Each tile locks its aspect
+   ratio, so nothing jumps as the images land. */
+.video-wall {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
+  gap: 1.2rem;
+}
+
+.wall-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+
+.wall-card .shot {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--bg-panel);
+}
+
+.wall-card .shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+.wall-card:hover .shot { border-color: var(--gold); }
+.wall-card:hover .shot img { transform: scale(1.03); }
+
+.wall-card:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+.wall-card h3 {
+  font-size: 0.98rem;
+  line-height: 1.35;
+  margin: 0.65rem 0 0.2rem;
+}
+
+.wall-card .meta {
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.wall-more {
+  display: block;
+  margin: 2rem auto 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wall-card .shot img { transition: none; }
+  .wall-card:hover .shot img { transform: none; }
+}

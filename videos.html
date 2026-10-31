@@ -77,7 +77,7 @@
 
 <header class="page-hero">
   <div class="wrap">
-    <p class="kicker">Four series</p>
+    <p class="kicker">Sixty-nine published, four series written</p>
     <h1>Scripts that take something apart <em>in front of you.</em></h1>
     <p class="standfirst">
       Every line passes the same filter before it reaches a microphone: no form of the verb
@@ -89,7 +89,29 @@
 
 <div class="wrap">
 
-  <section class="first" id="series">
+  <!-- THE CATALOGUE, ADDED 2026-10-31 (overhaul workstream 2).
+       data/videos.json describes four scripted series, three of which have
+       published nothing — and read alone it told a visitor that the channel
+       had never cut anything. The channel contradicts that 69 times. The wall
+       below renders data/channel.json, which scripts/build-website-data.py
+       derives from the hub's verified record, most viewed first. The two
+       files stay separate on purpose: one holds public framing, the other
+       holds facts. The video the owner keeps unlisted appears in neither. -->
+  <section class="first" id="catalogue">
+    <div class="section-heading left">
+      <h2>Everything published</h2>
+      <p>Sixty-nine cuts, ordered by what the counter did rather than by what they weigh.
+        The arc version of this shelf lives on <a href="shelf.html">The Shelf</a>.</p>
+    </div>
+    <div class="wall" data-source="data/channel.json" data-step="24"></div>
+  </section>
+
+  <section id="series">
+    <div class="section-heading left">
+      <h2>The four scripted series</h2>
+      <p>Written against a fixed constraint and held back from the channel until each one
+        cuts. These sit apart from the catalogue above.</p>
+    </div>
     <!-- Rendered from data/videos.json. The fallback below shows if the fetch
          fails — which it does when the page opens over file:// rather than
          over http. Serve the folder locally to preview it; Cloudflare Pages
@@ -99,7 +121,8 @@
     <noscript>
       <div class="note">
         <h3>The list needs JavaScript</h3>
-        <p>This page reads its video list from <code>data/videos.json</code> at load time, so
+        <p>This page reads its lists from <code>data/channel.json</code> and
+          <code>data/videos.json</code> at load time, so
           a single edit in a single file adds a video. Without JavaScript the browser cannot
           read that file. The series themselves live on
           <a href="https://www.youtube.com/@DaatData" target="_blank" rel="noopener">the YouTube channel</a>.</p>
@@ -235,5 +258,6 @@
 })();
 </script>
 
+<script src="assets/wall.js"></script>
 </body>
 </html>
