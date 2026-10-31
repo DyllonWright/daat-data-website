@@ -1,0 +1,825 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Da'at Data — shared stylesheet
+   ───────────────────────────────────────────────────────────────────────────
+   Extracted 2026-10-31 from the inline <style> block that website/index.html
+   carried alone (618 lines, one page). Every page now links this file instead
+   of duplicating it. No build step: plain CSS, served as-is by Cloudflare
+   Pages (website/README.md).
+
+   Palette and layout rules come from the 2026-07-19 revision passes recorded
+   in docs/WEBSITE-DESIGN-LEARNINGS.md. Read that file before changing
+   anything here — several of these values exist because a prettier choice
+   failed first.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Palette: ivory monogram, gold Saturn ring, sun-flare chiaroscuro on
+   near-black — drawn from the brand art in website/assets/. */
+:root {
+  --bg-deep: #060504;
+  --bg-panel: #0d0b08;
+  --border-soft: rgba(201, 162, 75, 0.22);
+  --gold: #c9a24b;
+  --gold-bright: #e8c887;
+  --gold-deep: #8a6a2a;
+  --ink: #f2ead9;
+  --ink-dim: #b8ae9a;
+  --ink-faint: #8a8171;
+  --max-width: 960px;
+  --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  padding: 0;
+  /* Chiaroscuro: a warm sun glow breaks from the upper left and fades into
+     deep black toward the lower right — the banner's light-versus-shadow motif. */
+  background:
+    radial-gradient(ellipse 90% 60% at 12% -8%, rgba(232, 200, 135, 0.16), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 100% 110%, rgba(0, 0, 0, 0.9), transparent 60%),
+    linear-gradient(155deg, #0b0906 0%, var(--bg-deep) 55%, #030202 100%);
+  background-color: var(--bg-deep);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+h1, h2, h3 {
+  font-family: var(--serif);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  margin: 0 0 0.5em 0;
+}
+
+a { color: var(--gold); }
+
+/* Nothing overflows a 400px viewport: long words and URLs wrap rather than
+   pushing the page sideways. */
+p, li, h1, h2, h3, td, th, figcaption { overflow-wrap: break-word; }
+
+img, svg { max-width: 100%; height: auto; }
+
+.wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Decorative starfield — pure CSS, no images, no JS; warm-tinted to match the art */
+.stars {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(242, 234, 217, 0.5), transparent),
+    radial-gradient(1px 1px at 80% 10%, rgba(232, 200, 135, 0.4), transparent),
+    radial-gradient(1.5px 1.5px at 60% 70%, rgba(242, 234, 217, 0.35), transparent),
+    radial-gradient(1px 1px at 30% 85%, rgba(232, 200, 135, 0.3), transparent),
+    radial-gradient(1px 1px at 90% 60%, rgba(242, 234, 217, 0.4), transparent),
+    radial-gradient(1.5px 1.5px at 45% 35%, rgba(232, 200, 135, 0.25), transparent),
+    radial-gradient(1px 1px at 15% 55%, rgba(242, 234, 217, 0.3), transparent);
+  background-repeat: repeat;
+  background-size: 100% 100%;
+  opacity: 0.8;
+}
+
+/* ─── SITE NAV ──────────────────────────────────────────────────────────────
+   Added 2026-10-31, when the site stopped being one page. Thin, quiet, and
+   it wraps to two rows at 400px rather than scrolling sideways. */
+.sitenav {
+  position: relative;
+  z-index: 2;
+  border-bottom: 1px solid var(--border-soft);
+  background: rgba(6, 5, 4, 0.72);
+}
+
+.sitenav .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 1.15rem;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+}
+
+.sitenav .mark {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  text-decoration: none;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 1.02rem;
+  margin-right: auto;
+}
+
+.sitenav .mark img { width: 26px; }
+
+.sitenav a.navlink {
+  color: var(--ink-dim);
+  text-decoration: none;
+  font-size: 0.86rem;
+  letter-spacing: 0.02em;
+  padding: 0.15rem 0;
+  border-bottom: 1px solid transparent;
+}
+
+.sitenav a.navlink:hover { color: var(--gold-bright); }
+
+.sitenav a.navlink[aria-current="page"] {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+
+/* ─── HERO BACKGROUND SYSTEM ───────────────────────────────────────────────
+   Background images are designed WITHOUT embedded text or logos so they can
+   sit at full atmospheric strength (0.45 opacity) without competing with the
+   HTML copy above. Three art-directed slots handle desktop / tablet / mobile.
+
+   ASSET SPEC (replace placeholder banner.png with purpose-built images):
+     hero-bg-desktop.jpg  — 1920×900px  · 16:9  · safe zone: center 50% horiz
+     hero-bg-tablet.jpg   — 1024×800px  · 4:3   · safe zone: center 60% horiz
+     hero-bg-mobile.jpg   —  768×900px  · 5:6   · safe zone: full width, keep
+                                                    top + bottom edges dark
+
+   AI PROMPT CORE (add to any generator):
+     "deep space, Saturn-like planet, warm gold and ivory on near-black,
+      cinematic chiaroscuro, NO TEXT, NO LOGOS, center area dark and empty
+      for text overlay" + desired pixel dimensions.
+
+   TODO: replace assets/banner.png references below once purpose-built images
+   are ready. Raise opacity toward 0.5–0.6 when the background has no
+   competing embedded typography.
+   ─────────────────────────────────────────────────────────────────────── */
+header.hero {
+  position: relative;
+  padding: 4rem 0 5.5rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Desktop slot — swap url() for hero-bg-desktop.jpg when ready */
+header.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Temporary: banner.png blurred to dissolve its embedded text until a
+     purpose-built desktop background (no typography) replaces it. */
+  background: url("banner.png") center 30% / cover no-repeat;
+  opacity: 0.35;
+  filter: blur(12px);
+  /* When replaced with a text-free image: remove filter, raise opacity to ~0.5 */
+}
+
+/* Tablet slot — swap for hero-bg-tablet.jpg when ready */
+@media (max-width: 1023px) {
+  header.hero::before {
+    background-image: url("banner.png"); /* → hero-bg-tablet.jpg */
+    background-position: center 35%;
+  }
+}
+
+/* Mobile slot — swap for hero-bg-mobile.jpg when ready */
+@media (max-width: 767px) {
+  header.hero::before {
+    background-image: url("banner.png"); /* → hero-bg-mobile.jpg */
+    background-position: center top;
+  }
+}
+
+header.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 85% 75% at 50% 40%, transparent 0%, rgba(6, 5, 4, 0.55) 70%, var(--bg-deep) 100%),
+    linear-gradient(180deg, rgba(6, 5, 4, 0.4) 0%, transparent 30%, transparent 55%, var(--bg-deep) 100%);
+}
+
+header.hero .wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-logo {
+  width: clamp(84px, 10vw, 112px);
+  height: auto;
+  margin-bottom: 1.25rem;
+  filter: drop-shadow(0 0 20px rgba(232, 200, 135, 0.22));
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.8rem;
+  color: var(--ink);
+  margin-bottom: 0.6rem;
+}
+
+.tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  color: var(--gold);
+  margin: 0 auto 2.25rem;
+}
+
+header.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  max-width: 800px;
+  margin: 0 auto 0.7em;
+  line-height: 1.2;
+}
+
+header.hero h1 em {
+  font-style: italic;
+  color: var(--gold-bright);
+}
+
+header.hero p.value-prop {
+  font-size: clamp(1.05rem, 2.4vw, 1.25rem);
+  color: var(--ink-dim);
+  max-width: 620px;
+  margin: 0 auto 2.5rem;
+}
+
+/* ─── PAGE HERO (project pages) ─────────────────────────────────────────────
+   Deliberately quieter than the hub hero and carrying no artwork: principle 1
+   in docs/WEBSITE-DESIGN-LEARNINGS.md says art belongs with the landing,
+   subordinated. A project page earns its weight on the words. */
+header.page-hero {
+  position: relative;
+  padding: 3.5rem 0 3rem;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+header.page-hero .kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.72rem;
+  color: var(--gold);
+  margin-bottom: 0.9rem;
+}
+
+header.page-hero h1 {
+  font-size: clamp(1.9rem, 5vw, 2.9rem);
+  line-height: 1.18;
+  max-width: 760px;
+  margin-bottom: 0.6em;
+}
+
+header.page-hero h1 em {
+  font-style: italic;
+  color: var(--gold-bright);
+}
+
+header.page-hero .standfirst {
+  font-size: clamp(1.02rem, 2.3vw, 1.18rem);
+  color: var(--ink-dim);
+  max-width: 640px;
+  margin: 0;
+}
+
+/* ─── PROSE ─────────────────────────────────────────────────────────────── */
+.prose {
+  max-width: 660px;
+}
+
+.prose p { margin: 0 0 1.15rem; }
+
+.prose p.lead {
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+
+.prose h3 {
+  font-size: 1.22rem;
+  margin-top: 2.25rem;
+}
+
+.prose ul {
+  padding-left: 1.2rem;
+  color: var(--ink-dim);
+}
+
+.prose li { margin-bottom: 0.5rem; }
+
+.prose cite {
+  display: block;
+  font-style: normal;
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+  margin-top: 0.6rem;
+}
+
+/* Standalone aphorisms. Principle 2: these carry the page, so give them air
+   and never crowd them with supporting copy. */
+.premise-list {
+  display: grid;
+  gap: 2.5rem;
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.premise {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 2.8vw, 1.5rem);
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 0;
+}
+
+.premise em {
+  font-style: normal;
+  color: var(--gold-bright);
+}
+
+/* A pull-line inside a project page: one aphorism, left-aligned, gold rule. */
+.pull {
+  font-family: var(--serif);
+  font-size: clamp(1.25rem, 3vw, 1.6rem);
+  line-height: 1.45;
+  color: var(--ink);
+  border-left: 2px solid var(--gold);
+  padding: 0.1rem 0 0.1rem 1.25rem;
+  margin: 2.5rem 0;
+  max-width: 620px;
+}
+
+.pull em {
+  font-style: normal;
+  color: var(--gold-bright);
+}
+
+/* ─── BUTTONS ───────────────────────────────────────────────────────────── */
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.cta-row.left { justify-content: flex-start; }
+
+.btn {
+  display: inline-block;
+  padding: 0.85rem 1.75rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  border: 1px solid transparent;
+}
+
+.btn:hover { transform: translateY(-1px); }
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold) 45%, var(--gold-deep) 100%);
+  color: #171105;
+  box-shadow: 0 6px 24px rgba(201, 162, 75, 0.3);
+}
+
+.btn-secondary {
+  background: rgba(6, 5, 4, 0.6);
+  border-color: var(--border-soft);
+  color: var(--ink);
+}
+
+.btn-secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold-bright);
+}
+
+/* ─── SECTIONS ──────────────────────────────────────────────────────────── */
+section {
+  padding: 4.5rem 0;
+  border-top: 1px solid var(--border-soft);
+}
+
+section.first { border-top: 0; }
+
+section .section-heading {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+section .section-heading.left {
+  text-align: left;
+}
+
+section .section-heading h2 {
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+}
+
+/* Thin gold rule under each section heading — the ring motif in miniature */
+section .section-heading h2::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 1px;
+  margin: 0.6rem auto 0;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+section .section-heading.left h2::after {
+  margin-left: 0;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+section .section-heading p {
+  color: var(--ink-dim);
+  max-width: 560px;
+  margin: 0.5rem auto 0;
+}
+
+section .section-heading.left p { margin-left: 0; }
+
+/* ─── THE WORK (hub listing) ────────────────────────────────────────────────
+   Replaced the three service tiers in the same grid slot on 2026-10-31. The
+   sun → eclipse → Saturn light-to-shadow progression survives as the accent
+   system (principle 5: CSS accents beat extra images), now carrying four
+   bodies of work rather than three price points. */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  gap: 1.5rem;
+}
+
+.work-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-soft);
+  border-top: 2px solid var(--gold);
+  border-radius: 14px;
+  padding: 1.75rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.work-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.work-card h3 {
+  font-size: 1.28rem;
+  margin-bottom: 0.45em;
+}
+
+.work-card p {
+  color: var(--ink-dim);
+  font-size: 0.95rem;
+  margin: 0 0 1.1rem;
+}
+
+.work-card .more {
+  margin-top: auto;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.work-sun {
+  border-top-color: var(--gold-bright);
+  background: linear-gradient(180deg, rgba(232, 200, 135, 0.09), var(--bg-panel) 55%);
+}
+
+.work-eclipse {
+  border-top-color: var(--gold);
+  background: linear-gradient(180deg, rgba(201, 162, 75, 0.05), var(--bg-panel) 55%);
+}
+
+.work-saturn {
+  border-top-color: var(--gold-deep);
+  background: linear-gradient(180deg, rgba(138, 106, 42, 0.05), var(--bg-panel) 55%);
+}
+
+.work-shadow {
+  border-top-color: rgba(138, 106, 42, 0.55);
+  background: linear-gradient(180deg, rgba(138, 106, 42, 0.03), var(--bg-panel) 55%);
+}
+
+/* The eyebrow tag on a work card and on a video series */
+.tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+
+.tag.quiet { color: var(--ink-faint); }
+
+/* ─── PANELS ────────────────────────────────────────────────────────────── */
+.panel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-soft);
+  border-top: 2px solid var(--gold);
+  border-radius: 14px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.panel.left { text-align: left; }
+
+.panel h3 { font-size: 1.25rem; }
+
+.panel p {
+  color: var(--ink-dim);
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+.panel p:last-child { margin-bottom: 0; }
+
+/* The contact address, set large enough to read and copy at a glance. */
+.address {
+  font-family: var(--serif);
+  font-size: clamp(1.15rem, 3.4vw, 1.5rem);
+  color: var(--gold-bright);
+  text-decoration: none;
+  overflow-wrap: break-word;
+}
+
+.address:hover { color: var(--ink); }
+
+/* ─── VIDEO SERIES ──────────────────────────────────────────────────────────
+   One page holds all four series (website/videos.html). Three of the four
+   have published nothing yet, and a series with an empty shelf has to read as
+   intentional rather than broken — hence .series-status, which states the
+   stage in plain words instead of showing a hole. */
+.series {
+  border-top: 1px solid var(--border-soft);
+  padding: 3.25rem 0;
+}
+
+.series:first-of-type { border-top: 0; padding-top: 1.5rem; }
+
+.series h2 {
+  font-size: clamp(1.45rem, 3.6vw, 1.95rem);
+  margin-bottom: 0.35em;
+}
+
+.series .series-blurb {
+  color: var(--ink-dim);
+  max-width: 620px;
+  margin: 0 0 0.9rem;
+}
+
+.series .series-shape {
+  font-size: 0.84rem;
+  color: var(--ink-faint);
+  letter-spacing: 0.03em;
+  margin: 0 0 1.75rem;
+}
+
+.series-status {
+  border-left: 2px solid var(--gold-deep);
+  padding: 0.15rem 0 0.15rem 1.1rem;
+  margin: 0 0 1.5rem;
+  max-width: 620px;
+  color: var(--ink-dim);
+  font-size: 0.95rem;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.1rem;
+}
+
+.video-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  padding: 1.35rem 1.4rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+a.video-card:hover {
+  border-color: var(--gold);
+}
+
+.video-card h3 {
+  font-size: 1.06rem;
+  line-height: 1.35;
+  margin-bottom: 0.4em;
+}
+
+.video-card p {
+  color: var(--ink-dim);
+  font-size: 0.9rem;
+  margin: 0 0 1rem;
+}
+
+.video-card .state {
+  margin-top: auto;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-faint);
+}
+
+a.video-card .state { color: var(--gold); }
+
+/* ─── COVER LAYOUT (the novel) ──────────────────────────────────────────── */
+.cover-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.cover-layout img {
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 719px) {
+  .cover-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.75rem;
+  }
+  .cover-layout .cover-art {
+    max-width: 260px;
+  }
+}
+
+/* ─── MEASUREMENT TABLE (Exodus) ────────────────────────────────────────────
+   Scrolls inside its own box on a narrow screen so the page itself never
+   scrolls sideways at 400px. */
+.table-scroll {
+  overflow-x: auto;
+  margin: 0 0 1.25rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  background: var(--bg-panel);
+}
+
+table.measure {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 420px;
+  font-size: 0.92rem;
+}
+
+table.measure th,
+table.measure td {
+  text-align: left;
+  padding: 0.75rem 1.1rem;
+  border-bottom: 1px solid rgba(201, 162, 75, 0.12);
+}
+
+table.measure th {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+table.measure tr:last-child td { border-bottom: 0; }
+
+table.measure td:last-child { color: var(--ink-dim); }
+
+/* ─── NOTES, EVIDENCE, SAFETY ───────────────────────────────────────────────
+   .note        — a quiet aside, including the "what's coming" foreshadow
+   .evidence    — the honest negative finding, stated in our own voice
+   .safety      — the headphone/medical safety text
+   The last two carry wording constrained by ../project-exodus/docs/IP-AND-CLAIMS.md
+   (§7 claim language, §9 safety and honest-evidence text). Do not reword either
+   without reading that file. */
+.note {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-soft);
+  border-left: 2px solid var(--gold);
+  border-radius: 12px;
+  padding: 1.4rem 1.6rem;
+  max-width: 660px;
+  color: var(--ink-dim);
+  font-size: 0.95rem;
+}
+
+.note h3 {
+  font-size: 1.02rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  margin-bottom: 0.6em;
+  font-family: inherit;
+  font-weight: 600;
+}
+
+.note p:last-child { margin-bottom: 0; }
+
+.evidence {
+  border-left: 2px solid var(--ink-faint);
+  padding: 0.2rem 0 0.2rem 1.25rem;
+  margin: 2rem 0;
+  max-width: 660px;
+  color: var(--ink-dim);
+  font-size: 0.97rem;
+}
+
+.evidence strong { color: var(--ink); }
+
+.safety {
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  max-width: 660px;
+  font-size: 0.87rem;
+  color: var(--ink-faint);
+  line-height: 1.7;
+}
+
+/* ─── SOCIAL / FOOTER ───────────────────────────────────────────────────── */
+.social-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.social-link {
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.social-link:hover {
+  border-color: var(--gold);
+  color: var(--gold-bright);
+}
+
+footer .social-row { margin-bottom: 1.5rem; }
+
+footer .social-link {
+  font-size: 0.8rem;
+  padding: 0.45rem 1.1rem;
+}
+
+footer {
+  padding: 3rem 0 4rem;
+  border-top: 1px solid var(--border-soft);
+}
+
+footer .disclaimer {
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+  max-width: 720px;
+  margin: 0 auto 1.5rem;
+  text-align: center;
+  line-height: 1.7;
+}
+
+footer .copyline {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+}
+
+/* ─── NARROW SCREENS ────────────────────────────────────────────────────────
+   Checked at 400px: no horizontal scroll on any page. */
+@media (max-width: 480px) {
+  .wrap { padding: 0 1rem; }
+  header.hero { padding: 3rem 0 3.5rem; }
+  header.page-hero { padding: 2.5rem 0 2.25rem; }
+  section { padding: 3rem 0; }
+  .series { padding: 2.5rem 0; }
+  .btn { width: 100%; text-align: center; }
+  .cta-row { flex-direction: column; }
+  .panel { padding: 1.5rem; }
+  .work-card { padding: 1.4rem; }
+  .note { padding: 1.15rem 1.25rem; }
+  .sitenav .wrap { gap: 0.3rem 0.9rem; }
+  .sitenav .mark { font-size: 0.95rem; }
+}

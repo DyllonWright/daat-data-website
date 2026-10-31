@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Videos — Da'at Data</title>
+<meta name="description" content="Four video series: esoteric machinery translated for a layperson, identity dissolution in three minutes, hidden history and the words that carry it, and standalone work outside the backbones.">
+
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="stylesheet" href="assets/site.css">
+<meta property="og:title" content="Videos — Da'at Data">
+<meta property="og:description" content="Four video series: esoteric machinery translated for a layperson, identity dissolution in three minutes, hidden history and the words that carry it, and standalone work outside the backbones.">
+<meta property="og:image" content="assets/banner.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Videos — Da'at Data">
+<meta name="twitter:description" content="Four video series: esoteric machinery translated for a layperson, identity dissolution in three minutes, hidden history and the words that carry it, and standalone work outside the backbones.">
+<meta name="twitter:image" content="assets/banner.png">
+
+<!-- ONE PAGE FOR ALL FOUR SERIES — the call, and why (2026-10-31).
+     The brief left this open: one page, or one per series. One page wins here
+     on the evidence, not on taste:
+       · Two of the four series have published nothing. Four separate pages
+         would mean two near-empty pages, which reads as a broken site rather
+         than an intentional one. On a single page, a series with an empty
+         shelf sits beside two that do not, and its status line carries it.
+       · "Adding a video is one edit in one file" survives better. One page
+         consuming one JSON file keeps the data in one place and the rendering
+         in one place. Four pages would either duplicate the render logic or
+         need a router — and this site has no build step to hold either.
+       · The four series share one audience and one argument. A reader who
+         came for identity dissolution is the reader for the explainers.
+     Revisit when any single series publishes enough to deserve its own page.
+
+     THE DATA LIVES IN website/data/videos.json. Add a video there, not here. -->
+</head>
+<body>
+
+<div class="stars" aria-hidden="true"></div>
+
+<nav class="sitenav">
+  <div class="wrap">
+    <a class="mark" href="index.html"><img src="assets/logo.png" alt="">Da'at Data</a>
+    <a class="navlink" href="videos.html" aria-current="page">Videos</a>
+    <a class="navlink" href="exodus.html">Project Exodus</a>
+    <a class="navlink" href="treatise.html">Treatise</a>
+    <a class="navlink" href="exit-interview.html">Exit Interview</a>
+    <a class="navlink" href="consulting.html">Consulting</a>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="wrap">
+    <p class="kicker">Four series</p>
+    <h1>Scripts that take something apart <em>in front of you.</em></h1>
+    <p class="standfirst">
+      Every line passes the same filter before it reaches a microphone: no form of the verb
+      "to be", a named reflex it has to hit, and nothing in the narration that explains the
+      machinery doing the work. The constraint shapes the writing more than any topic does.
+    </p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="first" id="series">
+    <!-- Rendered from data/videos.json. The fallback below shows if the fetch
+         fails — which it does when the page opens over file:// rather than
+         over http. Serve the folder locally to preview it; Cloudflare Pages
+         serves it over http, where fetch works. -->
+    <div id="series-root"></div>
+
+    <noscript>
+      <div class="note">
+        <h3>The list needs JavaScript</h3>
+        <p>This page reads its video list from <code>data/videos.json</code> at load time, so
+          a single edit in a single file adds a video. Without JavaScript the browser cannot
+          read that file. The series themselves live on
+          <a href="https://www.youtube.com/@DaatData" target="_blank" rel="noopener">the YouTube channel</a>.</p>
+      </div>
+    </noscript>
+  </section>
+
+  <section id="follow">
+    <div class="section-heading">
+      <h2>Catch the next one</h2>
+    </div>
+    <div class="panel-grid">
+      <div class="panel">
+        <h3>YouTube</h3>
+        <p>Where the finished cuts land.</p>
+        <a class="btn btn-primary" href="https://www.youtube.com/@DaatData" target="_blank" rel="noopener">The channel</a>
+      </div>
+      <div class="panel">
+        <h3>By email</h3>
+        <!-- No form here, on purpose. See the comment in index.html → #follow. -->
+        <p>No list exists yet. Write to the address below and I add you to the first one.</p>
+        <p><a class="address" href="mailto:contact@daatdata.net">contact@daatdata.net</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="social-row">
+      <a class="social-link" href="https://www.youtube.com/@DaatData" target="_blank" rel="noopener">YouTube</a>
+      <a class="social-link" href="https://www.tiktok.com/@DaatData" target="_blank" rel="noopener">TikTok</a>
+      <a class="social-link" href="https://www.instagram.com/DaatData" target="_blank" rel="noopener">Instagram</a>
+      <a class="social-link" href="https://x.com/DaatData" target="_blank" rel="noopener">X</a>
+      <a class="social-link" href="https://www.threads.com/@DaatData" target="_blank" rel="noopener">Threads</a>
+    </div>
+    <p class="copyline">&copy; 2026 Daat Data Consulting.</p>
+  </footer>
+
+</div>
+
+<script>
+/* Renders data/videos.json into #series-root. Vanilla, no dependencies, no
+   build step. Every string reaches the DOM through textContent, never innerHTML. */
+(function () {
+  var root = document.getElementById('series-root');
+  if (!root) { return; }
+
+  var STATE_LABEL = {
+    published: 'Watch on YouTube',
+    written:   'Script finished · not cut yet',
+    drafting:  'In the works'
+  };
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) { n.className = cls; }
+    if (text) { n.textContent = text; }
+    return n;
+  }
+
+  function videoCard(v) {
+    var published = typeof v.url === 'string' && v.url.length > 0;
+    var card = el(published ? 'a' : 'div', 'video-card');
+    if (published) {
+      card.href = v.url;
+      card.target = '_blank';
+      card.rel = 'noopener';
+    }
+    card.appendChild(el('h3', null, v.title || 'Untitled'));
+    if (v.blurb) { card.appendChild(el('p', null, v.blurb)); }
+    var state = published ? 'published' : (v.state || 'drafting');
+    card.appendChild(el('span', 'state', STATE_LABEL[state] || STATE_LABEL.drafting));
+    return card;
+  }
+
+  function seriesBlock(s) {
+    var wrap = el('div', 'series');
+
+    if (s.number) { wrap.appendChild(el('span', 'tag', 'Series ' + s.number)); }
+    wrap.appendChild(el('h2', null, s.title || 'Untitled series'));
+    if (s.blurb) { wrap.appendChild(el('p', 'series-blurb', s.blurb)); }
+    if (s.shape) { wrap.appendChild(el('p', 'series-shape', s.shape)); }
+    if (s.status) { wrap.appendChild(el('p', 'series-status', s.status)); }
+
+    var vids = Array.isArray(s.videos) ? s.videos : [];
+    if (vids.length) {
+      var grid = el('div', 'video-grid');
+      vids.forEach(function (v) { grid.appendChild(videoCard(v)); });
+      wrap.appendChild(grid);
+    }
+
+    if (s.coming) {
+      var note = el('div', 'note');
+      note.style.marginTop = vids.length ? '1.75rem' : '0';
+      note.appendChild(el('h3', null, "What's coming"));
+      note.appendChild(el('p', null, s.coming));
+      wrap.appendChild(note);
+    }
+
+    return wrap;
+  }
+
+  function fail(msg) {
+    root.textContent = '';
+    var note = el('div', 'note');
+    note.appendChild(el('h3', null, 'The list did not load'));
+    note.appendChild(el('p', null, msg));
+    var p = el('p');
+    var a = el('a', null, 'Go to the YouTube channel');
+    a.href = 'https://www.youtube.com/@DaatData';
+    a.target = '_blank';
+    a.rel = 'noopener';
+    p.appendChild(a);
+    note.appendChild(p);
+    root.appendChild(note);
+  }
+
+  fetch('data/videos.json', { cache: 'no-cache' })
+    .then(function (r) {
+      if (!r.ok) { throw new Error('HTTP ' + r.status); }
+      return r.json();
+    })
+    .then(function (data) {
+      var list = (data && Array.isArray(data.series)) ? data.series : [];
+      if (!list.length) { throw new Error('no series'); }
+      root.textContent = '';
+      list.forEach(function (s) { root.appendChild(seriesBlock(s)); });
+    })
+    .catch(function () {
+      fail('This page reads its list from data/videos.json, and that read failed. '
+         + 'Opening the file straight off disk does that — a browser blocks the read '
+         + 'over file://. Served over http it works.');
+    });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+{
+  "_README": [
+    "THE ONE PLACE A VIDEO GETS ADDED. website/videos.html reads this file at",
+    "runtime and renders it; adding a video means appending one object to the",
+    "right series' \"videos\" array here, and editing nothing else, anywhere.",
+    "",
+    "Fields on a video:",
+    "  title    the video's own title, as published. Shown verbatim.",
+    "  blurb    one or two sentences of public framing, in the site's voice.",
+    "           Written fresh — never pasted from the script repo's production",
+    "           notes, which read as internal craft documentation.",
+    "  url      the direct YouTube watch URL, or null.",
+    "           null renders a non-clickable card showing the stage instead.",
+    "           NO PLAYLIST URLS — no comprehensive playlist exists. Link each",
+    "           video directly, and never guess a URL.",
+    "  state    'published' | 'written' | 'drafting'. Ignored when url holds a",
+    "           value: a card with a URL always reads as published.",
+    "",
+    "Fields on a series:",
+    "  status   plain words for what the shelf holds right now. A series with",
+    "           nothing published must read as intentional, not broken — this",
+    "           line does that work, so keep it honest and keep it specific.",
+    "  coming   optional. The foreshadow line: hint at the shape, withhold the",
+    "           detail. No dates, no prices, no scope, no 'launching soon'.",
+    "",
+    "Source of the series structure: ../youtube-script-drafts-daat-data (private;",
+    "docs/PROJECTS.md). Nothing here reads that repo — this file holds a hand-",
+    "written copy of what the public needs to know, and nothing more."
+  ],
+
+  "series": [
+    {
+      "id": "esoteric-to-exoteric",
+      "number": "01",
+      "title": "Esoteric to Exoteric",
+      "blurb": "Take one piece of esoteric machinery — a philosophical claim, a buried mechanism, an assumption running backwards — and hand it over in a form a person can carry out of the room and use.",
+      "shape": "Three to twelve minutes, depending on how far down the thing goes.",
+      "status": "Three scripts finished. None cut yet.",
+      "coming": "The fourth one sits half-written, and it goes after a word everybody uses and nobody defines.",
+      "videos": [
+        {
+          "title": "Why Religion Is Dying: Semantic Suicide Bombers",
+          "blurb": "A faith does not die when people stop believing it. It dies when the words stop pointing at anything, and five paradoxes walk in through the gap.",
+          "url": null,
+          "state": "written"
+        },
+        {
+          "title": "Schizophrenia Doesn't Exist. English Does.",
+          "blurb": "What a diagnosis names, and what the grammar underneath it already decided before any doctor spoke.",
+          "url": null,
+          "state": "written"
+        },
+        {
+          "title": "Your Politics Built the Cage. Both of You.",
+          "blurb": "Two sides, one architecture. Neither wing of a cage reads as an exit.",
+          "url": null,
+          "state": "written"
+        }
+      ]
+    },
+    {
+      "id": "you-are-not-x",
+      "number": "02",
+      "title": "You Are Not X",
+      "blurb": "Each one takes a label a viewer wears and asks what it would cost to set it down. Not a refutation of the politics or the creed — a look at what the word does to the person wearing it.",
+      "shape": "About three minutes. Black screen, white text, nothing else.",
+      "status": "Four scripts finished. None cut yet.",
+      "coming": "The list of labels runs longer than the ones already written, and the uncomfortable ones remain.",
+      "videos": [
+        {
+          "title": "You Are Not a Republican",
+          "blurb": "The promises set beside the results: jobs, borders, money, family. What a person owes a word that stopped matching the thing.",
+          "url": null,
+          "state": "written"
+        },
+        {
+          "title": "You Are Not a Democrat",
+          "blurb": "The same operation, run the other direction, on the same machinery.",
+          "url": null,
+          "state": "written"
+        },
+        {
+          "title": "You Are Not a Christian",
+          "blurb": "Two thousand years of schism, and the question of what survives when the label comes off.",
+          "url": null,
+          "state": "written"
+        },
+        {
+          "title": "You Are Not Joe Sixpack",
+          "blurb": "Somebody invented the ordinary man to sell things to. The costume fits so well it stopped reading as a costume.",
+          "url": null,
+          "state": "written"
+        }
+      ]
+    },
+    {
+      "id": "conspiracy-crafter",
+      "number": "03",
+      "title": "Conspiracy Crafter",
+      "blurb": "Hidden history, and the words that carry it. These build a frame a viewer does not hold yet, then leave them holding it — and leave the seams visible, because a frame you can see works better than one you cannot.",
+      "shape": "Two forms: a five-minute contemplative cut, and a three-minute one that never slows down.",
+      "status": "Nothing published. Two scripts in the works, both at reference-draft stage — the templates got built against them, so they go last rather than first.",
+      "coming": "One concerns what a language can do to the people inside it. The other concerns a word that stops a thing from existing by refusing to say it.",
+      "videos": []
+    },
+    {
+      "id": "one-offs",
+      "number": "04",
+      "title": "One-Offs",
+      "blurb": "Standalone work that fits none of the backbones above. Same per-line discipline, bespoke spine, one episode at a time.",
+      "shape": "Whatever the subject needs.",
+      "status": "Nothing listed here yet. One script finished and a second in progress, both held back pending a decision about what belongs on a public shelf.",
+      "coming": null,
+      "videos": []
+    }
+  ]
+}
