@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+<!--
+  THE CHIBI SATURNS — Da'at Data's own emoji sheet.
+
+  One ringed planet, one plushie face, eight expressions. They scatter across
+  the site the way an old personal homepage scattered little animated glyphs,
+  except these come out of our own vocabulary rather than a clip-art folder:
+  the gold ring, the ivory highlight, the orange sun flare as a blush.
+  Nothing here traces anything.
+
+  HOW IT WORKS (external sprite + <use>, same origin, relative path):
+
+    <svg class="sat" aria-hidden="true"><use href="assets/planet-sprite.svg#sat-smile"/></svg>
+
+  Every face reuses one <g id="sat-base"> and adds only its own eyes, mouth
+  and accessory, so the body gets drawn once in this file rather than eight
+  times. Adding a ninth face means one edit here and nothing anywhere else.
+
+  COLOUR. The body paints the custom property sat-body (default #c9a24b) and the ring's lit half
+  paints currentColor. Both cross into the <use> clone; ordinary page CSS does
+  NOT — a selector like .sat .eye cannot reach inside the cloned tree. Recolour
+  one instance by setting the sat-body custom property or color on the outer <svg>, never by
+  selecting the parts.
+
+  ACCESSIBILITY. A sprinkle takes aria-hidden="true" and no title. A face that
+  carries meaning the surrounding text does not already give takes role="img"
+  with an aria-label.
+
+  WEIGHT. The whole sheet costs a few KB, caches once, and serves every page.
+-->
+<defs>
+
+  <!-- The body, the ring, and the blush. Every face starts here. -->
+  <g id="sat-base">
+    <g transform="rotate(-14 32 36)">
+      <path d="M 4 36 A 28 7.5 0 0 1 60 36" fill="none" stroke="#8a6a2a" stroke-width="2.6" stroke-linecap="round"/>
+    </g>
+    <circle cx="32" cy="32" r="17" fill="var(--sat-body, #c9a24b)"/>
+    <circle cx="25" cy="24" r="4.6" fill="#f7ecd4" opacity="0.32"/>
+    <ellipse cx="21.5" cy="35" rx="3.2" ry="1.9" fill="#ff7a18" opacity="0.42"/>
+    <ellipse cx="42.5" cy="35" rx="3.2" ry="1.9" fill="#ff7a18" opacity="0.42"/>
+    <g transform="rotate(-14 32 36)">
+      <path d="M 60 36 A 28 7.5 0 0 1 4 36" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <!-- Two round eyes with an ivory catchlight: the default face. -->
+  <g id="sat-eyes">
+    <circle cx="26" cy="30" r="2.8" fill="#1a1309"/>
+    <circle cx="38" cy="30" r="2.8" fill="#1a1309"/>
+    <circle cx="27.1" cy="29" r="0.9" fill="#f7ecd4"/>
+    <circle cx="39.1" cy="29" r="0.9" fill="#f7ecd4"/>
+  </g>
+
+  <symbol id="sat-smile" viewBox="0 0 64 64">
+    <use href="#sat-base"/>
+    <use href="#sat-eyes"/>
+    <path d="M 27 37 q 5 4.5 10 0" fill="none" stroke="#1a1309" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="sat-wink" viewBox="0 0 64 64">
+    <use href="#sat-base"/>
+    <path d="M 23 30 q 3 -3 6 0" fill="none" stroke="#1a1309" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="38" cy="30" r="2.8" fill="#1a1309"/>
+    <circle cx="39.1" cy="29" r="0.9" fill="#f7ecd4"/>
+    <path d="M 27 37 q 5 4.5 10 0" fill="none" stroke="#1a1309" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- The horns go on the Horrible Ideas page, and nowhere solemn. -->
+  <symbol id="sat-devil" viewBox="0 0 64 64">
+    <use href="#sat-base"/>
+    <path d="M 21 19 q 1 -5 5 -6 q -2 3 -0.5 7 z" fill="#ff7a18"/>
+    <path d="M 43 19 q -1 -5 -5 -6 q 2 3 0.5 7 z" fill="#ff7a18"/>
+    <use href="#sat-eyes"/>
+    <path d="M 26 36 q 6 6 12 0 q -6 2 -12 0" fill="#1a1309"/>
+  </symbol>
+
+  <symbol id="sat-halo" viewBox="0 0 64 64">
+    <use href="#sat-base"/>
+    <ellipse cx="32" cy="12.5" rx="8" ry="2.6" fill="none" stroke="#f7ecd4" stroke-width="1.8" opacity="0.9"/>
+    <use href="#sat-eyes"/>
+    <path d="M 27 37 q 5 4.5 10 0" fill="none" stroke="#1a1309" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="sat-sleepy" viewBox="0 0 64 64">
+    <use href="#sat-base"/>
+    <path d="M 23 30 q 3 3 6 0" fill="none" stroke="#1a1309" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 35 30 q 3 3 6 0" fill="none" stroke="#1a1309" stroke-width="2" stroke-linecap="round"/>
+    <ellipse cx="32" cy="38" rx="2" ry="2.6" fill="#1a1309"/>
+    <path d="M 47 20 h 5 l -5 5 h 5" fill="none" stroke="#f7ecd4" stroke-width="1.4" opacity="0.8"/>
+  </symbol>
+
+  <symbol id="sat-shock" viewBox="0 0 64 64">
+    <use href="#sat-base"/>
+    <circle cx="26" cy="29" r="3.6" fill="#1a1309"/>
+    <circle cx="38" cy="29" r="3.6" fill="#1a1309"/>
+    <circle cx="27.3" cy="27.7" r="1.2" fill="#f7ecd4"/>
+    <circle cx="39.3" cy="27.7" r="1.2" fill="#f7ecd4"/>
+    <ellipse cx="32" cy="38.5" rx="2.6" ry="3.2" fill="#1a1309"/>
+  </symbol>
+
+  <symbol id="sat-smug" viewBox="0 0 64 64">
+    <use href="#sat-base"/>
+    <path d="M 22.5 29.5 h 6.5" fill="none" stroke="#1a1309" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 35 29.5 h 6.5" fill="none" stroke="#1a1309" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 27 38 q 6 2 10 -2" fill="none" stroke="#1a1309" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- For a dead link, a dead idea, or a joke that did not survive the edit. -->
+  <symbol id="sat-done-for" viewBox="0 0 64 64">
+    <use href="#sat-base"/>
+    <path d="M 23.5 27.5 l 5 5 M 28.5 27.5 l -5 5" fill="none" stroke="#1a1309" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 35.5 27.5 l 5 5 M 40.5 27.5 l -5 5" fill="none" stroke="#1a1309" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 27 39 q 5 -4 10 0" fill="none" stroke="#1a1309" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- A bare ring, for dividers and bullets. No face, no body. -->
+  <symbol id="sat-ring" viewBox="0 0 64 64">
+    <g transform="rotate(-14 32 32)">
+      <ellipse cx="32" cy="32" rx="28" ry="7.5" fill="none" stroke="currentColor" stroke-width="2.4"/>
+    </g>
+    <circle cx="32" cy="32" r="3.2" fill="#ff7a18" opacity="0.8"/>
+  </symbol>
+
+</defs>
+</svg>

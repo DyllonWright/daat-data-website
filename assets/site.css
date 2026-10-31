@@ -1389,3 +1389,129 @@ ul.gloss li::before {
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
   margin: 2rem auto;
 }
+
+/* ─── THE CHIBI SATURNS, AND THE REST OF THE NET ART (workstream 4) ─────────
+   The owner's call, 2026-10-31: the site gets its own emoji — a cute ringed
+   planet with eight expressions — and they scatter around the pages the way an
+   old personal homepage scattered little glyphs. Every one of them comes out
+   of our own vocabulary: the gold ring, the ivory highlight, the orange sun
+   flare as a blush. Nothing lifted, nothing traced, no clip art.
+
+   They live in one external sprite (assets/planet-sprite.svg) referenced with
+   <use>, so eight faces cost one cached request across nine pages and a ninth
+   face stays a one-file edit. Two consequences worth knowing: the sprite must
+   stay same-origin (a cross-origin sprite renders blank in every browser), and
+   page CSS cannot select the parts inside the clone. Recolour an instance with
+   --sat-body and color, which do cross in.
+
+   Animated SVG rather than GIF throughout: a GIF's 256-colour palette bands
+   these gold gradients badly on near-black and its matte fringes against the
+   starfield. Report D's weight ceiling (<250 KB per page) holds easily — the
+   whole sheet costs a few KB. */
+.sat {
+  width: 1.5em;
+  height: 1.5em;
+  display: inline-block;
+  vertical-align: -0.35em;
+  color: var(--gold-bright);
+  flex: 0 0 auto;
+}
+
+.sat-lg { width: 3.4rem; height: 3.4rem; }
+.sat-xl { width: 5.5rem; height: 5.5rem; }
+
+/* The page's own conceit, stated by the mascot: this one hangs over. */
+.sat-flip { transform: rotate(180deg); }
+
+/* A Saturn that wobbles once when the pointer reaches it. */
+.sat-wobble { transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.sat-wobble:hover { transform: rotate(-12deg) scale(1.08); }
+
+/* The rotating ring divider — the ring motif in motion, slowly enough that it
+   reads as drift rather than as a spinner. */
+.ring-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 3.5rem 0;
+}
+
+.ring-divider::before,
+.ring-divider::after {
+  content: "";
+  height: 1px;
+  width: min(32%, 180px);
+  background: linear-gradient(90deg, transparent, var(--border-soft), transparent);
+}
+
+.ring-divider .sat {
+  width: 2.6rem;
+  height: 2.6rem;
+  animation: ring-drift 24s linear infinite;
+}
+
+@keyframes ring-drift {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* The 88×31 button, in our own palette. The idiom transfers; the artwork
+   stays ours — no borrowed webring badge, no "under construction" sign. */
+.button88 {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: 88px;
+  height: 31px;
+  padding: 0 0.35rem;
+  border: 1px solid var(--gold-deep);
+  border-radius: 3px;
+  background: linear-gradient(135deg, #140f06, #060504);
+  color: var(--gold-bright);
+  font-size: 9px;
+  line-height: 1.1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.button88:hover { border-color: var(--gold); color: var(--ink); }
+
+.button88:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+.button88 .sat {
+  width: 19px;
+  height: 19px;
+  vertical-align: middle;
+}
+
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+/* The starfield drifts a few pixels and takes a minute doing it. */
+@keyframes star-drift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-6px, 4px, 0); }
+}
+
+.stars {
+  animation: star-drift 90s ease-in-out infinite alternate;
+}
+
+/* Every piece of this honours the setting, including the drift. */
+@media (prefers-reduced-motion: reduce) {
+  .stars,
+  .ring-divider .sat { animation: none; }
+  .sat-wobble { transition: none; }
+  .sat-wobble:hover { transform: none; }
+}
