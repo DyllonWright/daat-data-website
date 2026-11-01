@@ -159,8 +159,22 @@ Leaving `url` as `null` renders a non-clickable card showing the stage instead.
 **One caveat the no-build constraint buys:** `videos.html` reads that JSON with
 `fetch()` at load time, which browsers block over `file://`. Opening the file
 straight off disk shows an explanatory message rather than the list. Serve the
-folder over http to preview it (`python -m http.server` from `website/`);
-Cloudflare Pages serves it over http, where it works.
+folder over http to preview it; Cloudflare Pages serves it over http, where it
+works.
+
+**Preview with `python scripts/serve-website.py`, not `python -m http.server`.**
+Pages drops the `.html` extension, so every internal link reads `href="videos"`.
+`http.server` answers 404 for all of them and the nav stops working. The script
+mirrors the rewriting, including the 308s Pages issues for `/videos.html` and
+`/videos/`, so a local preview matches what a visitor gets.
+
+It differs from Pages in exactly one way, deliberately: a missing file returns
+an honest 404 locally, where Pages answers 200 with the site's own HTML
+fallback. Two consequences follow, and both have cost real time —
+a probe that checks only `response.ok` passes locally and fails in production,
+and polling production for a status code reports success for a page that has
+not deployed yet. Check the content type; poll for a string the new version
+contains.
 
 **Asset provenance** — what each file in `assets/` is and where it came from —
 lives in `docs/fleet/PROJECTS.md`, along with the publish boundary that governs what
