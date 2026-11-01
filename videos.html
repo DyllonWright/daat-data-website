@@ -4,35 +4,33 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Videos — Da'at Data</title>
-<meta name="description" content="Four video series: esoteric machinery translated for a layperson, identity dissolution in three minutes, hidden history and the words that carry it, and standalone work outside the backbones.">
+<meta name="description" content="Sixty-nine cuts that take a word, a story or a borrowed frame apart out loud, down to the parts.">
 
 <link rel="icon" type="image/png" href="assets/favicon-64.png">
 <link rel="stylesheet" href="assets/site.css">
 <meta property="og:title" content="Videos — Da'at Data">
-<meta property="og:description" content="Four video series: esoteric machinery translated for a layperson, identity dissolution in three minutes, hidden history and the words that carry it, and standalone work outside the backbones.">
+<meta property="og:description" content="Sixty-nine cuts that take a word, a story or a borrowed frame apart out loud, down to the parts.">
 <meta property="og:image" content="assets/banner.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Videos — Da'at Data">
-<meta name="twitter:description" content="Four video series: esoteric machinery translated for a layperson, identity dissolution in three minutes, hidden history and the words that carry it, and standalone work outside the backbones.">
+<meta name="twitter:description" content="Sixty-nine cuts that take a word, a story or a borrowed frame apart out loud, down to the parts.">
 <meta name="twitter:image" content="assets/banner.png">
 
-<!-- ONE PAGE FOR ALL FOUR SERIES — the call, and why (2026-10-31).
-     The brief left this open: one page, or one per series. One page wins here
-     on the evidence, not on taste:
-       · Two of the four series have published nothing. Four separate pages
-         would mean two near-empty pages, which reads as a broken site rather
-         than an intentional one. On a single page, a series with an empty
-         shelf sits beside two that do not, and its status line carries it.
-       · "Adding a video is one edit in one file" survives better. One page
-         consuming one JSON file keeps the data in one place and the rendering
-         in one place. Four pages would either duplicate the render logic or
-         need a router — and this site has no build step to hold either.
-       · The four series share one audience and one argument. A reader who
-         came for identity dissolution is the reader for the explainers.
-     Revisit when any single series publishes enough to deserve its own page.
+<!-- PUBLISHED WORK ONLY — the call, and why (2026-10-31).
+     This page used to carry a second section describing four scripted series,
+     their status lines, and seven scripts by title, none of them cut. The
+     owner ruled it out on 2026-10-31: the site does not talk about work a
+     visitor cannot watch. That also closed a quieter risk — one of those
+     seven titles names the video he keeps unlisted.
 
-     THE DATA LIVES IN website/data/videos.json. Add a video there, not here. -->
+     So the page holds the catalogue and nothing else. website/data/videos.json
+     stays in the repo as his own record of the series; no page reads it now.
+     Restoring the section means restoring the renderer with it; the git
+     history before this commit carries both.
+
+     THE CATALOGUE LIVES IN website/data/channel.json, which
+     scripts/build-website-data.py derives from the hub's verified record. -->
 </head>
 <body>
 
@@ -77,31 +75,36 @@
 
 <header class="page-hero">
   <div class="wrap">
-    <p class="kicker">Sixty-nine published, four series written</p>
-    <h1>Scripts that take something apart <em>in front of you.</em></h1>
+    <p class="kicker">Sixty-nine on the channel</p>
+    <h1>Take the thing apart, <em>out where you can see it.</em></h1>
     <p class="standfirst">
-      Every line passes one filter before it reaches a microphone: no form of the verb
-      "to be", and nothing in the narration that explains the machinery doing the work.
+      A word you use every day. A story you never checked. A frame somebody handed you
+      young. One at a time, out loud, down to the parts — and what you rebuild afterwards
+      stays your business.
     </p>
   </div>
 </header>
 
 <div class="wrap">
 
-  <!-- THE CATALOGUE, ADDED 2026-10-31 (overhaul workstream 2).
-       data/videos.json describes four scripted series, three of which have
-       published nothing — and read alone it told a visitor that the channel
-       had never cut anything. The channel contradicts that 69 times. The wall
-       below renders data/channel.json, which scripts/build-website-data.py
-       derives from the hub's verified record, most viewed first. The two
-       files stay separate on purpose: one holds public framing, the other
-       holds facts. The video the owner keeps unlisted appears in neither. -->
+  <!-- THE CATALOGUE. The wall renders data/channel.json, which
+       scripts/build-website-data.py derives from the hub's verified record,
+       most viewed first. The video the owner keeps unlisted appears in it
+       nowhere, and the harvest flags it so it stays that way. -->
   <section class="first" id="catalogue">
     <div class="section-heading left">
       <h2>Everything published</h2>
       <p>Ordered by the counter. The arc version lives on <a href="shelf.html">The Shelf</a>.</p>
     </div>
     <div class="wall" data-source="data/channel.json" data-step="24"></div>
+
+    <noscript>
+      <div class="note">
+        <h3>The catalogue needs JavaScript</h3>
+        <p>All sixty-nine sit on
+          <a href="https://www.youtube.com/@DaatData" target="_blank" rel="noopener">the YouTube channel</a>.</p>
+      </div>
+    </noscript>
   </section>
 
     <!-- Quiet punctuation between two long sections: the ring motif,
@@ -110,26 +113,6 @@
     <div class="ring-divider" aria-hidden="true">
       <svg class="sat" aria-hidden="true"><use href="assets/planet-sprite.svg#sat-ring"/></svg>
     </div>
-
-  <section id="series">
-    <div class="section-heading left">
-      <h2>The four scripted series</h2>
-      <p>Written, not cut. These sit apart from the catalogue above.</p>
-    </div>
-    <!-- Rendered from data/videos.json. The fallback below shows if the fetch
-         fails — which it does when the page opens over file:// rather than
-         over http. Serve the folder locally to preview it; Cloudflare Pages
-         serves it over http, where fetch works. -->
-    <div id="series-root"></div>
-
-    <noscript>
-      <div class="note">
-        <h3>The list needs JavaScript</h3>
-        <p>The series live on
-          <a href="https://www.youtube.com/@DaatData" target="_blank" rel="noopener">the YouTube channel</a>.</p>
-      </div>
-    </noscript>
-  </section>
 
   <section id="follow">
     <div class="section-heading">
@@ -162,104 +145,6 @@
   </footer>
 
 </div>
-
-<script>
-/* Renders data/videos.json into #series-root. Vanilla, no dependencies, no
-   build step. Every string reaches the DOM through textContent, never innerHTML. */
-(function () {
-  var root = document.getElementById('series-root');
-  if (!root) { return; }
-
-  var STATE_LABEL = {
-    published: 'Watch on YouTube',
-    written:   'Script finished · not cut yet',
-    drafting:  'In the works'
-  };
-
-  function el(tag, cls, text) {
-    var n = document.createElement(tag);
-    if (cls) { n.className = cls; }
-    if (text) { n.textContent = text; }
-    return n;
-  }
-
-  function videoCard(v) {
-    var published = typeof v.url === 'string' && v.url.length > 0;
-    var card = el(published ? 'a' : 'div', 'video-card');
-    if (published) {
-      card.href = v.url;
-      card.target = '_blank';
-      card.rel = 'noopener';
-    }
-    card.appendChild(el('h3', null, v.title || 'Untitled'));
-    if (v.blurb) { card.appendChild(el('p', null, v.blurb)); }
-    var state = published ? 'published' : (v.state || 'drafting');
-    card.appendChild(el('span', 'state', STATE_LABEL[state] || STATE_LABEL.drafting));
-    return card;
-  }
-
-  function seriesBlock(s) {
-    var wrap = el('div', 'series');
-
-    if (s.number) { wrap.appendChild(el('span', 'tag', 'Series ' + s.number)); }
-    wrap.appendChild(el('h2', null, s.title || 'Untitled series'));
-    if (s.blurb) { wrap.appendChild(el('p', 'series-blurb', s.blurb)); }
-    if (s.shape) { wrap.appendChild(el('p', 'series-shape', s.shape)); }
-    if (s.status) { wrap.appendChild(el('p', 'series-status', s.status)); }
-
-    var vids = Array.isArray(s.videos) ? s.videos : [];
-    if (vids.length) {
-      var grid = el('div', 'video-grid');
-      vids.forEach(function (v) { grid.appendChild(videoCard(v)); });
-      wrap.appendChild(grid);
-    }
-
-    if (s.coming) {
-      var note = el('div', 'note');
-      note.style.marginTop = vids.length ? '1.75rem' : '0';
-      note.appendChild(el('h3', null, "What's coming"));
-      note.appendChild(el('p', null, s.coming));
-      wrap.appendChild(note);
-    }
-
-    return wrap;
-  }
-
-  function fail() {
-    root.textContent = '';
-    var note = el('div', 'note');
-    note.appendChild(el('h3', null, 'The list did not load'));
-    var p = el('p');
-    var a = el('a', null, 'Go to the YouTube channel');
-    a.href = 'https://www.youtube.com/@DaatData';
-    a.target = '_blank';
-    a.rel = 'noopener';
-    p.appendChild(a);
-    note.appendChild(p);
-    root.appendChild(note);
-  }
-
-  fetch('data/videos.json', { cache: 'no-cache' })
-    .then(function (r) {
-      if (!r.ok) { throw new Error('HTTP ' + r.status); }
-      return r.json();
-    })
-    .then(function (data) {
-      var list = (data && Array.isArray(data.series)) ? data.series : [];
-      if (!list.length) { throw new Error('no series'); }
-      root.textContent = '';
-      list.forEach(function (s) { root.appendChild(seriesBlock(s)); });
-    })
-    .catch(function () {
-      /* Whoever serves this folder locally wants to know why: a browser blocks
-         the read over file://, so the fetch fails when the page opens straight
-         off disk and works the moment it arrives over http. A visitor can act
-         on none of that, so the note on screen says only that the list did not
-         load, and points at the channel. */
-      fail();
-    });
-})();
-</script>
 
 <script src="assets/wall.js"></script>
 <script src="assets/chime.js"></script>
