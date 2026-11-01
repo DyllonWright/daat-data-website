@@ -53,6 +53,16 @@
     <stop offset="0.5" stop-color="#2b1d07" stop-opacity="0.18"/>
     <stop offset="1" stop-color="#2b1d07" stop-opacity="0"/>
   </radialGradient>
+  <!-- The sun flare, as a bloom rather than a disc. It shipped as a hard
+       orange circle at full opacity and read as a red dot stuck on the
+       artwork; fading it to nothing at the rim makes it behave like light.
+       Spelled longhand on purpose: a literal double hyphen inside an XML
+       comment makes a browser refuse the whole sprite. -->
+  <radialGradient id="sat-flare" cx="50%" cy="50%" r="50%">
+    <stop offset="0" stop-color="#ffc07a" stop-opacity="0.8"/>
+    <stop offset="0.42" stop-color="#ff7a18" stop-opacity="0.28"/>
+    <stop offset="1" stop-color="#ff7a18" stop-opacity="0"/>
+  </radialGradient>
   <clipPath id="sat-body-clip">
     <circle cx="32" cy="32" r="17"/>
   </clipPath>
@@ -165,7 +175,7 @@
     <g transform="rotate(-14 32 32)">
       <ellipse cx="32" cy="32" rx="28" ry="7.5" fill="none" stroke="currentColor" stroke-width="2.4"/>
     </g>
-    <circle cx="32" cy="32" r="3.2" fill="#ff7a18" opacity="0.8"/>
+    <circle cx="32" cy="32" r="7.5" fill="url(#sat-flare)"/>
   </symbol>
 
 </defs>

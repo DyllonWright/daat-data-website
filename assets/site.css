@@ -1457,6 +1457,36 @@ ul.gloss li::before {
   to { transform: rotate(360deg); }
 }
 
+/* THE LOCKUP RING, TURNING.
+   The owner asked for the banner's ring to turn around the planet, and
+   wondered whether that wanted a low-poly GIF. It does not, and a GIF would
+   cost more than it returns: a raster fringes on near-black, which is the
+   reason Report A put the lockup in inline SVG to begin with; it would ship
+   as a binary asset needing a provenance line; it would ignore
+   prefers-reduced-motion, which this site honours everywhere; and it would
+   hold one size while the lockup scales with the viewport.
+
+   A ring seen from a moving angle foreshortens — it opens, narrows toward
+   edge-on, and opens again. scaleY on the two arc groups draws exactly that,
+   and a few degrees of sweep keeps it from reading as a pulse. Both arcs
+   carry the same animation, so they stay in step while the body sits between
+   them in paint order and never moves.
+
+   The arcs keep their rotate(-18 48 48) attribute for the no-animation case,
+   since a CSS transform replaces a presentation attribute rather than adding
+   to it. */
+.lockup .planet .ring {
+  transform-box: view-box;
+  transform-origin: 48px 50px;
+  animation: lockup-ring-turn 18s ease-in-out infinite;
+}
+
+@keyframes lockup-ring-turn {
+  0%   { transform: rotate(-18deg) scaleY(1); }
+  50%  { transform: rotate(-11deg) scaleY(0.12); }
+  100% { transform: rotate(-18deg) scaleY(1); }
+}
+
 /* The 88×31 button, in our own palette. The idiom transfers; the artwork
    stays ours — no borrowed webring badge, no "under construction" sign. */
 .button88 {
@@ -1507,6 +1537,7 @@ ul.gloss li::before {
 /* Every piece of this honours the setting, including the drift. */
 @media (prefers-reduced-motion: reduce) {
   .stars,
+  .lockup .planet .ring,
   .ring-divider .sat { animation: none; }
   .sat-wobble { transition: none; }
   .sat-wobble:hover { transform: none; }
