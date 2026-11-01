@@ -784,12 +784,32 @@ a.video-card .state { color: var(--gold); }
 /* ─── MEASUREMENT TABLE (Exodus) ────────────────────────────────────────────
    Scrolls inside its own box on a narrow screen so the page itself never
    scrolls sideways at 400px. */
+/* The measurement table sets a 420px minimum inside a 360px viewport. The
+   wrapper contains it correctly and the document never spills, so nothing
+   breaks — but nothing signalled that a column sat off the right edge
+   either, so a phone reader saw a truncated table and never learned
+   otherwise (finding 12).
+
+   Two gold edge glows, in the retro idiom. The trick: the covering layers
+   scroll with the content (background-attachment: local) while the glows
+   stay put, so each glow hides itself once that end reaches the edge. A
+   visitor sees a glow exactly while something remains in that direction, and
+   the whole thing costs no JavaScript and no extra element. */
 .table-scroll {
   overflow-x: auto;
   margin: 0 0 1.25rem;
   border: 1px solid var(--border-soft);
   border-radius: 12px;
-  background: var(--bg-panel);
+  background-color: var(--bg-panel);
+  background-image:
+    linear-gradient(to right, var(--bg-panel) 40%, rgba(13, 11, 8, 0)),
+    linear-gradient(to left, var(--bg-panel) 40%, rgba(13, 11, 8, 0)),
+    radial-gradient(farthest-side at 0 50%, rgba(201, 162, 75, 0.45), rgba(201, 162, 75, 0)),
+    radial-gradient(farthest-side at 100% 50%, rgba(201, 162, 75, 0.45), rgba(201, 162, 75, 0));
+  background-position: left center, right center, left center, right center;
+  background-size: 44px 100%, 44px 100%, 16px 100%, 16px 100%;
+  background-repeat: no-repeat;
+  background-attachment: local, local, scroll, scroll;
 }
 
 table.measure {
