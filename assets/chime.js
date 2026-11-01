@@ -11,6 +11,15 @@
  * this script probes for it once, finds nothing, and stops — no console noise,
  * no broken click, no dead <audio> in the markup.
  *
+ * THE PROBE READS THE CONTENT TYPE, not just r.ok. Cloudflare Pages answers a
+ * missing file with 200 and the site's own HTML fallback, so
+ * daatdata.net/assets/gong.mp3 returned 200 text/html while the file did not
+ * exist and r.ok read true. The handlers went on a file that would never play,
+ * and the rejected play() got swallowed, so the only symptom read as a Saturn
+ * that silently did nothing. Served locally the same path returns a real 404,
+ * which is why the logic looked sound on this machine. Anything audio/ counts
+ * as the file; anything else counts as the fallback.
+ *
  * Keeping it from being annoying:
  *   · a four-second lockout, so a hammered planet rings once
  *   · a quarter volume
@@ -39,7 +48,10 @@
 
   function ready() {
     return fetch(SOUND, { method: 'HEAD' })
-      .then(function (r) { return r.ok; })
+      .then(function (r) {
+        var type = (r.headers.get('content-type') || '').toLowerCase();
+        return r.ok && type.indexOf('audio/') === 0;
+      })
       .catch(function () { return false; });
   }
 
