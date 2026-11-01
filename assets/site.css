@@ -14,6 +14,52 @@
 
 /* Palette: ivory monogram, gold Saturn ring, sun-flare chiaroscuro on
    near-black — drawn from the brand art in website/assets/. */
+/* ─── THE SERIF, SELF-HOSTED ────────────────────────────────────────────────
+   Cormorant Garamond carries the new-age half of the whole look: it reads as
+   mystery school, and the generic fallback reads as a blog. The stack named
+   it with no @font-face and no webfont link anywhere, so the face rendered
+   only for a visitor who already had it installed. Android ships none of the
+   three named faces, so every heading, the lockup, the hero thesis, the three
+   premises and the Thought of the Day changed face on a phone — which is what
+   the owner saw on Android Edge (audit finding 1).
+
+   TWO FILES COVER FOUR FACES. Google serves this family as a variable font,
+   one upright and one italic, each carrying the whole weight axis. So the
+   site gets 400 and 600 in both styles for 77 KB rather than four static
+   cuts, and the browser synthesises nothing.
+
+   Licence: SIL Open Font License 1.1, which permits redistribution. The
+   licence text ships beside the files at assets/fonts/OFL.txt, as the OFL
+   requires. Provenance in docs/fleet/PROJECTS.md under Asset provenance.
+
+   font-display: swap, so the text paints immediately in the fallback and
+   reflows when the face lands. A visitor on a slow connection reads sooner
+   and never stares at invisible text.
+
+   No build step, no npm, no external request: relative paths to two files in
+   this repository. Nothing here calls fonts.googleapis.com at runtime. */
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("fonts/cormorant-garamond-latin.woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("fonts/cormorant-garamond-latin-italic.woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
   --bg-deep: #060504;
   --bg-panel: #0d0b08;
