@@ -59,6 +59,24 @@ h1, h2, h3 {
 
 a { color: var(--gold); }
 
+/* THE FOCUS RING, ONCE, FOR EVERYTHING.
+
+   Report D's accessibility finding, and the one the overhaul left half-done.
+   Five component rules carried this ring and nothing else did, so every nav
+   link, the lockup, both hero buttons and every footer link fell back to the
+   browser's own outline: 1px of rgb(16, 16, 16), drawn on a near-black page
+   and therefore invisible. A keyboard visitor could not see where they stood.
+
+   One rule reaches every link, button and control on all ten pages. The five
+   component copies repeated these exact two declarations and came out with it.
+
+   Never replace this with `outline: none`. An absent ring and an unreadable
+   ring fail a keyboard visitor identically. */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
 /* Nothing overflows a 400px viewport: long words and URLs wrap rather than
    pushing the page sideways. */
 p, li, h1, h2, h3, td, th, figcaption { overflow-wrap: break-word; }
@@ -966,11 +984,6 @@ footer .copyline {
   display: block;
 }
 
-.arc-card:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 4px;
-}
-
 /* The empty card: a series with nothing published reads as intentional, not
    broken (process learning 8 in WEBSITE-DESIGN-LEARNINGS.md). */
 .arc-card.empty {
@@ -1053,11 +1066,6 @@ footer .copyline {
 .arc-btn:hover {
   border-color: var(--gold);
   color: var(--gold-bright);
-}
-
-.arc-btn:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 4px;
 }
 
 .arc-count {
@@ -1151,11 +1159,6 @@ footer .copyline {
 
 .wall-card:hover .shot { border-color: var(--gold); }
 .wall-card:hover .shot img { transform: scale(1.03); }
-
-.wall-card:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 4px;
-}
 
 .wall-card h3 {
   font-size: 0.98rem;
@@ -1281,11 +1284,6 @@ ul.gloss li::before {
 }
 
 .stream-item a:hover { color: var(--gold-bright); }
-
-.stream-item a:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 4px;
-}
 
 .stream-item p {
   color: var(--ink-dim);
@@ -1481,11 +1479,6 @@ ul.gloss li::before {
 }
 
 .button88:hover { border-color: var(--gold); color: var(--ink); }
-
-.button88:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 4px;
-}
 
 .button88 .sat {
   width: 19px;
