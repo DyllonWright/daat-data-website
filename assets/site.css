@@ -208,6 +208,7 @@ img, svg { max-width: 100%; height: auto; }
    the way an illuminated initial does — Report A measured 73% overshoot on the
    inspiration's emblem; this one runs gentler. */
 .lockup {
+  z-index: 1;
   /* The light sweep stops at the wordmark's own edge, so it needs the
      lockup's half-width. assets/globe.js measures it and writes --sweep
      here; this value only applies before that runs, or without JavaScript. */
@@ -235,6 +236,8 @@ img, svg { max-width: 100%; height: auto; }
 }
 
 .sitenav {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -1760,9 +1763,11 @@ ul.gloss li::before {
    scripts/apply-masthead.py, so the field needs no script at runtime and a
    visitor with JavaScript off sees the same sky. */
 .starfield {
-  position: fixed;
+  /* The dense cluster belongs to the banner. The page keeps the sparse
+     .stars sprinkle above, which is a different, quieter layer. */
+  position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
   overflow: hidden;
   pointer-events: none;
 }
@@ -1815,12 +1820,12 @@ ul.gloss li::before {
 
    Only transform and opacity animate, per the arc-carousel rule above. */
 .nebula {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 78vh;
-  z-index: -2;
+  /* Inside the banner, not behind the page. These ran as fixed layers at
+     viewport height, which put the gas behind the whole site; the masthead
+     is the thing that is meant to have weather. */
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   overflow: hidden;
   pointer-events: none;
   -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 34%, transparent 100%);
@@ -1839,9 +1844,9 @@ ul.gloss li::before {
 /* Gold, top centre: the glow the body background already breaks from the
    upper left, given a shape and a drift. */
 .neb-gold {
-  width: 46rem;
-  height: 46rem;
-  top: -16rem;
+  width: 30rem;
+  height: 30rem;
+  top: -13rem;
   left: 18%;
   background: radial-gradient(circle, rgba(232, 200, 135, 0.5) 0%,
     rgba(201, 162, 75, 0.18) 45%, rgba(0, 0, 0, 0) 72%);
@@ -1852,10 +1857,10 @@ ul.gloss li::before {
 /* Ember, upper right: the sun-flare orange, far enough out to stay a hue
    rather than a light source. */
 .neb-ember {
-  width: 38rem;
-  height: 38rem;
-  top: -10rem;
-  right: -8rem;
+  width: 26rem;
+  height: 26rem;
+  top: -9rem;
+  right: -6rem;
   background: radial-gradient(circle, rgba(255, 122, 24, 0.42) 0%,
     rgba(138, 106, 42, 0.16) 48%, rgba(0, 0, 0, 0) 74%);
   opacity: 0.28;
@@ -1865,10 +1870,10 @@ ul.gloss li::before {
 /* Violet, left: distance. The one cloud that is not in the brand palette,
    and it earns its place by sitting far enough back to read as depth. */
 .neb-violet {
-  width: 44rem;
-  height: 44rem;
-  top: -6rem;
-  left: -14rem;
+  width: 28rem;
+  height: 28rem;
+  top: -7rem;
+  left: -9rem;
   background: radial-gradient(circle, rgba(92, 56, 140, 0.45) 0%,
     rgba(46, 28, 74, 0.2) 50%, rgba(0, 0, 0, 0) 75%);
   opacity: 0.3;
@@ -1877,9 +1882,9 @@ ul.gloss li::before {
 
 /* Teal, a trace, centre right: cold light at the far edge of a warm frame. */
 .neb-teal {
-  width: 26rem;
-  height: 26rem;
-  top: 6rem;
+  width: 17rem;
+  height: 17rem;
+  top: -1rem;
   right: 22%;
   background: radial-gradient(circle, rgba(74, 150, 160, 0.4) 0%,
     rgba(0, 0, 0, 0) 70%);
@@ -1914,8 +1919,7 @@ ul.gloss li::before {
 /* A phone paints a 120px blur across four big boxes for a decoration nobody
    came for. Two clouds, a lighter blur, and the mask pulls in. */
 @media (max-width: 640px) {
-  .nebula { height: 56vh; }
-  .neb { filter: blur(80px); }
+  .neb { filter: blur(56px); }
   /* The masthead stands about 165px tall on a phone, so a craft holding
      104px above the lockup's centre parks outside it and gets clipped by
      the overflow rule. It hovers closer in, and smaller. */

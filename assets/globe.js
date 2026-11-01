@@ -638,6 +638,42 @@
      scripts/apply-masthead.py writes a still Saturn into the lockup so a
      visitor with no JavaScript gets a correctly drawn ringed globe rather
      than a hole. When this file runs it clears that and takes over. */
+  /* ── ONE CLOCK ACROSS THE WHOLE VISIT ─────────────────────────────────
+     Every page load used to restart the band from zero, so the wheel began
+     at the Sun and the first craft was always the disc, however many pages
+     a visitor opened. The sky now carries an epoch in localStorage and
+     every page picks the clock up where the last one left it: a reader
+     moving through the site sees the wheel keep turning and a different
+     craft each time, because the cycle never rewinds.
+
+     A fresh browser starts the epoch at a random point in the 198s craft
+     cycle rather than at zero, so a first visit does not open on the same
+     craft for everybody.
+
+     Private windows and blocked storage throw here, and the fallback is
+     the old behaviour rather than an error. */
+  var elapsed = 0;
+  try {
+    var KEY = "daat-sky-epoch";
+    var epoch = window.localStorage.getItem(KEY);
+    if (!epoch) {
+      epoch = String(Date.now() - Math.floor(Math.random() * 198000));
+      window.localStorage.setItem(KEY, epoch);
+    }
+    elapsed = Date.now() - Number(epoch);
+    if (!(elapsed >= 0)) { elapsed = 0; }
+  } catch (err) { elapsed = 0; }
+
+  /* The craft run on CSS, so they take the offset as a negative delay: an
+     animation with delay -d opens at phase d. Each craft keeps its own
+     33-second place in the queue on top of the shared offset. */
+  var CRAFT_CYCLE = 198;
+  var crafts = document.querySelectorAll(".masthead .craft");
+  for (var c = 0; c < crafts.length; c++) {
+    var phase = ((elapsed / 1000) + c * 33) % CRAFT_CYCLE;
+    crafts[c].style.animationDelay = (-phase).toFixed(2) + "s";
+  }
+
   var planets = document.querySelectorAll(".lockup .planet");
   if (!planets.length) { return; }
 
@@ -650,7 +686,9 @@
   }
 
   function drawAll(now) {
-    for (var j = 0; j < globes.length; j++) { globes[j].draw(now / 1000); }
+    /* The wheel continues from wherever the last page left it. */
+    var t = (now + elapsed) / 1000;
+    for (var j = 0; j < globes.length; j++) { globes[j].draw(t); }
   }
 
   /* The light sweep stops at the wordmark's edge, so it has to know how
