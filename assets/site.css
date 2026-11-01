@@ -1487,6 +1487,62 @@ ul.gloss li::before {
   100% { transform: rotate(-18deg) scaleY(1); }
 }
 
+/* ─── TECHNE: THE PLUGIN CHIPS ──────────────────────────────────────────
+   Seven public repositories, linked out and nothing more. The publish
+   boundary governs the private fleet; these sit on GitHub already, so a link
+   publishes nothing a visitor could not reach by typing the owner's name.
+   No submodule, no symlink, no copied asset — the rule stays intact.
+
+   A chip carries the tool's name and one line about it. The 88x31 button next
+   door sets the idiom: a bordered pill on near-black, gold on a dark
+   gradient. These run wider because a name alone tells a reader nothing. */
+.chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.chip {
+  flex: 1 1 15rem;
+  max-width: 20rem;
+  padding: 0.75rem 1.05rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  background: linear-gradient(135deg, #140f06, var(--bg-panel) 70%);
+  text-decoration: none;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.chip:hover,
+.chip:focus-visible {
+  border-color: var(--gold-deep);
+  transform: translateY(-2px);
+}
+
+.chip .chip-name {
+  display: block;
+  color: var(--gold-bright);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.chip .chip-line {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--ink-dim);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip { transition: none; }
+  .chip:hover,
+  .chip:focus-visible { transform: none; }
+}
+
 /* The 88×31 button, in our own palette. The idiom transfers; the artwork
    stays ours — no borrowed webring badge, no "under construction" sign. */
 .button88 {
