@@ -17,17 +17,15 @@
 <meta name="twitter:description" content="Sixty-nine cuts that take a word, a story or a borrowed frame apart out loud, down to the parts.">
 <meta name="twitter:image" content="assets/banner.png">
 
-<!-- PUBLISHED WORK ONLY — the call, and why (2026-10-31).
-     This page used to carry a second section describing four scripted series,
-     their status lines, and seven scripts by title, none of them cut. The
-     owner ruled it out on 2026-10-31: the site does not talk about work a
-     visitor cannot watch. That also closed a quieter risk — one of those
-     seven titles names the video he keeps unlisted.
+<!-- PUBLISHED WORK ONLY (2026-10-31, the owner's call). The page shows the
+     catalogue and nothing else: no status lines, no unreleased titles,
+     nothing a visitor cannot go and watch.
 
-     So the page holds the catalogue and nothing else. website/data/videos.json
-     stays in the repo as his own record of the series; no page reads it now.
-     Restoring the section means restoring the renderer with it; the git
-     history before this commit carries both.
+     website/data/videos.json stays in the repo as his own record of the
+     series. No page reads it now, and restoring a section here means
+     restoring its renderer with it; the history before this commit carries
+     both, with the full reasoning. Deliberately not repeated here — this
+     comment ships to the public web inside every copy of the page.
 
      THE CATALOGUE LIVES IN website/data/channel.json, which
      scripts/build-website-data.py derives from the hub's verified record. -->
@@ -94,8 +92,8 @@
 
   <!-- THE CATALOGUE. The wall renders data/channel.json, which
        scripts/build-website-data.py derives from the hub's verified record,
-       most viewed first. The video the owner keeps unlisted appears in it
-       nowhere, and the harvest flags it so it stays that way. -->
+       most viewed first. That record decides what reaches this page; see
+       projects/videos/README.md for what it leaves out and why. -->
   <section class="first" id="catalogue">
     <div class="section-heading left">
       <h2>Everything published</h2>
