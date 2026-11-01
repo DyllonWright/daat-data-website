@@ -171,6 +171,12 @@ img, svg { max-width: 100%; height: auto; }
 .masthead {
   position: relative;
   z-index: 2;
+  /* The band contains its own weather. A craft crossing on translate3d(64vw)
+     and a light sweeping past the wordmark both reach outside this box, and
+     without this the document grew sideways — measured at 756px of scroll
+     width against a 375px viewport, which is the horizontal-scroll fault the
+     phone audit already closed once. */
+  overflow: hidden;
   padding: 1.6rem 1rem 1.1rem;
   text-align: center;
   border-bottom: 1px solid var(--border-soft);
@@ -201,9 +207,20 @@ img, svg { max-width: 100%; height: auto; }
 /* The planet sits on the words' optical centre and overshoots their cap height,
    the way an illuminated initial does — Report A measured 73% overshoot on the
    inspiration's emblem; this one runs gentler. */
+.lockup {
+  /* The light sweep stops at the wordmark's own edge, so it needs the
+     lockup's half-width. assets/globe.js measures it and writes --sweep
+     here; this value only applies before that runs, or without JavaScript. */
+  --sweep: 220px;
+  position: relative;
+}
+
+/* The planet carries the ring armature now, which reaches well past the
+   body, so the box runs wider than the old flat disc did. The body itself
+   draws at about a third of it. */
 .lockup .planet {
-  width: 1.55em;
-  height: 1.55em;
+  width: 3.2em;
+  height: 3.2em;
   flex: 0 0 auto;
   margin-bottom: 0.06em;
   filter: drop-shadow(0 0 14px rgba(232, 200, 135, 0.2));
@@ -1545,34 +1562,384 @@ ul.gloss li::before {
   to { transform: rotate(360deg); }
 }
 
-/* THE LOCKUP RING, TURNING.
-   The owner asked for the banner's ring to turn around the planet, and
-   wondered whether that wanted a low-poly GIF. It does not, and a GIF would
-   cost more than it returns: a raster fringes on near-black, which is the
-   reason Report A put the lockup in inline SVG to begin with; it would ship
-   as a binary asset needing a provenance line; it would ignore
-   prefers-reduced-motion, which this site honours everywhere; and it would
-   hold one size while the lockup scales with the viewport.
+/* ── THE EFFULGENCE BEHIND THE WORDMARK ──────────────────────────────
+   The letters were the one flat thing left in a band where everything
+   else is drawn. A light now crosses behind them east to west, on the
+   cosmic wind's heading and a 44s clock, and it WRAPS: each word is
+   drawn four times in register from the same glyphs — a heavy blur for
+   the spill, a mid blur, a tight bright one for the edge catch, and the
+   ivory wordmark untouched on top. The spill cannot help but be
+   letter-shaped, because it is the letters, blurred.
 
-   A ring seen from a moving angle foreshortens — it opens, narrows toward
-   edge-on, and opens again. scaleY on the two arc groups draws exactly that,
-   and a few degrees of sweep keeps it from reading as a pulse. Both arcs
-   carry the same animation, so they stay in step while the body sits between
-   them in paint order and never moves.
+   Nothing brightens the inside of a glyph. Light behind a letter rims
+   its edges and spills around them; it does not illuminate its face.
 
-   The arcs keep their rotate(-18 48 48) attribute for the no-animation case,
-   since a CSS transform replaces a presentation attribute rather than adding
-   to it. */
-.lockup .planet .ring {
-  transform-box: view-box;
-  transform-origin: 48px 50px;
-  animation: lockup-ring-turn 18s ease-in-out infinite;
+   DIALLED BACK once the band ran all at once. On its own the light read
+   as subtle; against the wind, the dust, the craft and a morphing globe
+   it was one more thing competing, so strength drops to .55, the bloom
+   to .26 and the ray fan to .1 — the fan took the deepest cut because it
+   is the most decorative part and the least load-bearing. The light now
+   reads as weather the band happens to have rather than as an event. */
+.glow { position:absolute; top:50%; left:50%; width:360px; height:170px;
+        margin:-85px 0 0 -180px; border-radius:50%; pointer-events:none;
+        z-index:1; opacity:.26; mix-blend-mode:screen; filter:blur(30px);
+        background:radial-gradient(ellipse at center,
+          rgba(255,238,196,.55), rgba(232,200,135,.22) 42%, transparent 72%);
+        animation:cross-ew 22s cubic-bezier(.45,0,.55,1) infinite alternate; }
+/* THE SWEEP TURNS AROUND RATHER THAN RESTARTING.
+   It used to run a fixed 600px and snap back to the right-hand end, which
+   spent most of the cycle off the wordmark and then teleported. Now the
+   travel is exactly the lockup's own half-width plus a margin — measured
+   at runtime into --sweep, since the lockup's width moves with the
+   viewport — so the light turns the moment it clears the last letter.
+
+   animation-direction:alternate does the reversal, and the easing is
+   ease-in-out so it decelerates into each turn instead of bouncing off a
+   wall. East to west, then west to east, then back.
+
+   THE BAND'S CLOCKS ARE 22 AND 33. The sweep takes 22 seconds each way:
+   22 letters of the Hebrew alphabet, 22 paths on the Tree, 22 Major
+   Arcana — the number this whole body of work already runs on, and it
+   arrived here by accident before anyone looked for it. The craft cross
+   every 33. The two meet every 66 seconds (3 x 22, 2 x 33) and part
+   again, so the band has a slow pulse nobody has to be told about. The
+   wind moved to 220s and 440s to join them. */
+@keyframes cross-ew {
+  from { transform:translate3d(var(--sweep,260px),0,0); }
+  to   { transform:translate3d(calc(var(--sweep,260px) * -1),0,0); }
+}
+/* THE FAN TRAVELS WITH THE BLOOM, NOT BESIDE IT.
+   These two shared one 44s keyframe and still drew apart: measured against
+   the band, they coincided at 0s and 22s and sat 88px apart horizontally
+   and 137px vertically at 33s. The cause is composition order — the
+   independent `rotate` property is applied BEFORE `transform`, so the
+   fan's translate3d was running in its own rotated frame and its path
+   turned with it. One element cannot carry both.
+
+   So the travel goes on a wrapper and the spin on the child inside it.
+   The wrapper translates in screen space, the fan turns about its own
+   centre, and the two stay locked to the bloom for the whole sweep.
+
+   Both also sit 18px higher than the band's midline, because the lockup
+   does — the nav underneath pulls the flex centre down, and a light
+   source centred on the box rather than on the words lit the gap. */
+.rays { position:absolute; top:50%; left:50%; width:300px; height:300px;
+        margin:-150px 0 0 -150px; pointer-events:none; z-index:1;
+        animation:cross-ew 22s cubic-bezier(.45,0,.55,1) infinite alternate; }
+.rays i { display:block; width:100%; height:100%;
+        opacity:.1; mix-blend-mode:screen; filter:blur(5px);
+        background:repeating-conic-gradient(from 0deg,
+          rgba(255,236,186,.2) 0deg 3deg, transparent 3deg 22.5deg);
+        -webkit-mask-image:radial-gradient(circle,#000 8%,transparent 62%);
+        mask-image:radial-gradient(circle,#000 8%,transparent 62%);
+        animation:turn 180s linear infinite; }
+@keyframes turn { to { transform:rotate(360deg); } }
+
+.wordwrap { position:relative; display:inline-block; color:#f2ead9; --eff:.55; }
+/* NO mix-blend-mode HERE, AND THE BOX IS WHY. A blurred element with
+   screen blending composites its whole bounding rectangle rather than
+   only the glyph pixels, so each word sat in a faint lit box with visible
+   vertical edges — the "invisible box" in the band. Warm light on
+   near-black loses nothing by compositing normally. */
+.wordwrap .layer { position:absolute; left:0; top:0; white-space:nowrap;
+        pointer-events:none;
+        -webkit-mask-image:linear-gradient(100deg,
+          transparent 36%, #000 46%, #000 54%, transparent 64%);
+        mask-image:linear-gradient(100deg,
+          transparent 36%, #000 46%, #000 54%, transparent 64%);
+        -webkit-mask-size:320% 100%; mask-size:320% 100%;
+        -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
+        animation:sweep-mask 22s cubic-bezier(.45,0,.55,1) infinite alternate; }
+.wordwrap .halo { color:#ffcf7a; filter:blur(14px); opacity:calc(.9 * var(--eff)); }
+.wordwrap .mid  { color:#ffe3a6; filter:blur(5px);  opacity:calc(.55 * var(--eff)); }
+.wordwrap .rim  { color:#fff6dc; filter:blur(1.6px); opacity:calc(.45 * var(--eff)); }
+.wordwrap .face { position:relative; }
+/* With mask-size 320%, a RISING mask-position walks the hot band LEFT —
+   the gradient is wider than the box, so the two move opposite ways. The
+   old range fell from 320% to -120%, which sent the lit stretch east
+   while the bloom behind it went west: the letters were being lit by
+   something travelling the other way. 14% to 86% clears both ends. */
+@keyframes sweep-mask {
+  from { -webkit-mask-position:14% 0; mask-position:14% 0; }
+  to   { -webkit-mask-position:86% 0; mask-position:86% 0; }
 }
 
-@keyframes lockup-ring-turn {
-  0%   { transform: rotate(-18deg) scaleY(1); }
-  50%  { transform: rotate(-11deg) scaleY(0.12); }
-  100% { transform: rotate(-18deg) scaleY(1); }
+/* The clouds ride the wind too, but on a wrapper: each cloud already
+   animates its own transform for the float, and one element cannot run
+   two transforms. The wind alternates rather than loops, because a cloud
+   this size never needs to wrap — it only needs to be going somewhere. */
+.gust { position:absolute; inset:0; animation:gust 150s ease-in-out infinite alternate; }
+.gust-slow { animation-duration:230s; }
+@keyframes gust { from { transform:translate3d(60px,0,0); } to { transform:translate3d(-90px,0,0); } }
+
+.mote { position:absolute; border-radius:50%; filter:blur(26px); pointer-events:none;
+        mix-blend-mode:screen; opacity:.4; }
+
+/* ── COSMIC WIND ──────────────────────────────────────────────────────
+   A slow right-to-left drift. Most of the sky holds still — a field where
+   everything moves reads as a screensaver, and the fixed stars are what
+   give the moving ones something to move against. Two parallax layers
+   carry a minority of the stars, the near one roughly twice the speed of
+   the far one, and each layer holds its field twice over and travels
+   exactly half its own width, so the loop closes with no seam. */
+.drift { position:absolute; inset:0; width:200%; will-change:transform; }
+.drift-far { animation:wind 440s linear infinite; }
+.drift-near { animation:wind 220s linear infinite; }
+.drift > div { position:absolute; top:0; bottom:0; width:50%; }
+.drift > div:last-child { left:50%; }
+@keyframes wind { from { transform:translate3d(0,0,0); } to { transform:translate3d(-50%,0,0); } }
+
+
+/* ── THE INTERLUDE CRAFT ──────────────────────────────────────────────
+   The six from the signature shorts' alien interlude, redrawn as SVG from
+   ClipPipeline's signature/ufo.py (disc, glocke, visitor, noodle, apple,
+   lasagna). One crosses every 33 seconds, the set repeats every 198, and
+   each is on screen for three seconds at the outside.
+
+   THE PASS SPLITS INTO EQUAL THIRDS. One second in, one second bobbing
+   over the sphere, one second away. A craft that crossed at a constant
+   rate would read as a sprite on a conveyor; the stop is what makes it
+   read as something that came to look, and the bob is what keeps the stop
+   from reading as a pause button. It holds WELL ABOVE the sphere rather
+   than on it: the quasar's jets and Mercury's pulse rings both reach far
+   past the limb, and a craft parked at the surface would sit inside them.
+
+   Three seconds of a 198-second cycle is
+   1.51515% of it, so every keyframe below lives inside that sliver and
+   each third is 0.50505% — the rest of the cycle parks it off-stage at
+   zero opacity.
+
+   The easing is per-keyframe: a keyframe's timing function governs the
+   segment that STARTS there, so the decelerate sits on the entry and the
+   accelerate sits on the hold.
+
+   NOT A COPIED ASSET. The originals are drawn in Python with PIL and live
+   in a private repo; these are silhouettes redrawn in this file. Porting
+   the real renders to the site would be a deliberate hand-copy into
+   website/assets/ with a provenance line, per the publish boundary. */
+.craft { position:absolute; left:50%; top:50%; width:72px; margin:-20px 0 0 -36px;
+         opacity:0; pointer-events:none; will-change:transform,opacity;
+         animation:flyby 198s linear var(--at) infinite; }
+@keyframes flyby {
+  0%       { opacity:0; transform:translate3d(64vw,var(--lane,-30px),0) rotate(0deg);
+             animation-timing-function:cubic-bezier(.12,.86,.22,1); }
+  0.06%    { opacity:.92; }
+  0.50505% { opacity:.92; transform:translate3d(0,var(--hold,-104px),0) rotate(0deg);
+             animation-timing-function:ease-in-out; }
+  0.63131% { transform:translate3d(-2px,calc(var(--hold,-104px) - 8px),0) rotate(-3deg);
+             animation-timing-function:ease-in-out; }
+  0.75758% { transform:translate3d(2px,calc(var(--hold,-104px) + 6px),0) rotate(3deg);
+             animation-timing-function:ease-in-out; }
+  0.88384% { transform:translate3d(-1px,calc(var(--hold,-104px) - 5px),0) rotate(-2deg);
+             animation-timing-function:ease-in-out; }
+  1.0101%  { opacity:.92; transform:translate3d(0,var(--hold,-104px),0) rotate(0deg);
+             animation-timing-function:cubic-bezier(.72,0,.9,.38); }
+  1.44%    { opacity:.8; }
+  1.51515% { opacity:0; transform:translate3d(-64vw,var(--exit,-78px),0) rotate(var(--spin,-10deg)); }
+  100%     { opacity:0; transform:translate3d(-64vw,var(--exit,-78px),0) rotate(var(--spin,-10deg)); }
+}
+
+
+/* ─── THE STARS THAT POP IN ──────────────────────────────────────────────
+   The other half of the e-reader GUI's background (gui/public/style.css,
+   ".star" and "@keyframes twinkle"), and the half that carries the effect:
+   each star fades up out of nothing, peaks, and fades back out on its own
+   clock, so the sky breathes instead of sitting there.
+
+   TWO DETAILS DO THE WORK, AND BOTH COME STRAIGHT FROM THE SOURCE. The
+   keyframes run opacity 0 at both ends, never a dim-to-dimmer cycle, which
+   is what makes a star appear rather than brighten. And the fill mode runs
+   backwards, so a star stays invisible through its start delay — without it
+   every star paints at once on load and the field flashes before it settles.
+
+   OVERFLOW HIDDEN IS LOAD-BEARING. The two drifting layers inside run 200%
+   wide so the wind can loop on itself, and without the clip here the
+   document grows to twice the viewport and scrolls sideways.
+
+   The positions, sizes, delays and tints come out of the seeded generator in
+   scripts/apply-masthead.py, so the field needs no script at runtime and a
+   visitor with JavaScript off sees the same sky. */
+.starfield {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  background: var(--tint, #f2ead9);
+  /* The static fallback, for reduced motion; the animation overrides it. */
+  opacity: 0.4;
+  box-shadow: 0 0 var(--glow, 3px) var(--tint, rgba(242, 234, 217, 0.8));
+  animation: twinkle var(--dur, 5s) ease-in-out var(--delay, 0s) infinite backwards;
+}
+
+/* A five-point star, cut from the box. clip-path discards the glow, which
+   costs nothing at three to five pixels. */
+.star.point {
+  border-radius: 0;
+  box-shadow: none;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%,
+    50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+/* A crisp pixel: no glow, no rounding. The cheapest star in the sky. */
+.star.pixel {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.3); background-color: var(--tint, #f2ead9); }
+  50% { opacity: var(--max-op, 0.9); transform: scale(1.2); background-color: #fff; }
+}
+
+/* ─── THE MARQUEE NEBULA ─────────────────────────────────────────────────
+   Deep space behind the banner: four blurred clouds drifting on long,
+   mutually offset cycles. Adapted from the owner's
+   e-reader-screenshot-transcriber GUI (gui/public/style.css, "Organic
+   Drifting Nebula Gas Clouds") — the technique travels, the palette does
+   not. That GUI runs quasar cyan, violet and magenta; this site runs ivory,
+   gold and sun-flare orange on near-black, so gold and ember lead here, one
+   deep violet sits behind them for distance, and the teal stays a trace.
+
+   THREE THINGS KEEP IT SUBTLE RATHER THAN SOUPY. It masks to nothing by 60%
+   of its height, so the gas frames the masthead and leaves the reading
+   column alone. It sits at z-index -2, under the starfield at -1, so stars
+   read in front of cloud. And overflow: hidden contains a 120px blur that
+   would otherwise push the document sideways.
+
+   Only transform and opacity animate, per the arc-carousel rule above. */
+.nebula {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 78vh;
+  z-index: -2;
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 34%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 34%, transparent 100%);
+}
+
+.neb {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  filter: blur(110px);
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+}
+
+/* Gold, top centre: the glow the body background already breaks from the
+   upper left, given a shape and a drift. */
+.neb-gold {
+  width: 46rem;
+  height: 46rem;
+  top: -16rem;
+  left: 18%;
+  background: radial-gradient(circle, rgba(232, 200, 135, 0.5) 0%,
+    rgba(201, 162, 75, 0.18) 45%, rgba(0, 0, 0, 0) 72%);
+  opacity: 0.34;
+  animation: neb-drift-gold 38s ease-in-out infinite alternate;
+}
+
+/* Ember, upper right: the sun-flare orange, far enough out to stay a hue
+   rather than a light source. */
+.neb-ember {
+  width: 38rem;
+  height: 38rem;
+  top: -10rem;
+  right: -8rem;
+  background: radial-gradient(circle, rgba(255, 122, 24, 0.42) 0%,
+    rgba(138, 106, 42, 0.16) 48%, rgba(0, 0, 0, 0) 74%);
+  opacity: 0.28;
+  animation: neb-drift-ember 44s ease-in-out infinite alternate;
+}
+
+/* Violet, left: distance. The one cloud that is not in the brand palette,
+   and it earns its place by sitting far enough back to read as depth. */
+.neb-violet {
+  width: 44rem;
+  height: 44rem;
+  top: -6rem;
+  left: -14rem;
+  background: radial-gradient(circle, rgba(92, 56, 140, 0.45) 0%,
+    rgba(46, 28, 74, 0.2) 50%, rgba(0, 0, 0, 0) 75%);
+  opacity: 0.3;
+  animation: neb-drift-violet 52s ease-in-out infinite alternate;
+}
+
+/* Teal, a trace, centre right: cold light at the far edge of a warm frame. */
+.neb-teal {
+  width: 26rem;
+  height: 26rem;
+  top: 6rem;
+  right: 22%;
+  background: radial-gradient(circle, rgba(74, 150, 160, 0.4) 0%,
+    rgba(0, 0, 0, 0) 70%);
+  opacity: 0.16;
+  animation: neb-pulse-teal 29s ease-in-out infinite alternate;
+}
+
+@keyframes neb-drift-gold {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-2.5rem, 2rem, 0) scale(1.08); }
+  100% { transform: translate3d(2rem, -1.5rem, 0) scale(0.95); }
+}
+
+@keyframes neb-drift-ember {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(3rem, -2rem, 0) scale(1.1); }
+  100% { transform: translate3d(-2rem, 1.5rem, 0) scale(0.93); }
+}
+
+@keyframes neb-drift-violet {
+  0% { transform: translate3d(0, 0, 0) scale(0.96); }
+  50% { transform: translate3d(-2rem, -2.5rem, 0) scale(1.12); }
+  100% { transform: translate3d(2.5rem, 1.5rem, 0) scale(1); }
+}
+
+@keyframes neb-pulse-teal {
+  0% { opacity: 0.11; transform: scale(1); }
+  50% { opacity: 0.2; transform: scale(1.16); }
+  100% { opacity: 0.13; transform: scale(0.94); }
+}
+
+/* A phone paints a 120px blur across four big boxes for a decoration nobody
+   came for. Two clouds, a lighter blur, and the mask pulls in. */
+@media (max-width: 640px) {
+  .nebula { height: 56vh; }
+  .neb { filter: blur(80px); }
+  /* The masthead stands about 165px tall on a phone, so a craft holding
+     104px above the lockup's centre parks outside it and gets clipped by
+     the overflow rule. It hovers closer in, and smaller. */
+  /* The lanes and the exits come in as inline custom properties from the
+     generator, spread across 118px of height for a desktop masthead. That
+     spread does not fit a phone's, so it collapses here — !important
+     because an inline property otherwise wins. Each craft still arrives on
+     its own clock and leaves with its own tumble. */
+  .craft {
+    --hold: -100px;
+    --lane: -40px !important;
+    --exit: -54px !important;
+    width: 54px;
+    margin: -15px 0 0 -27px;
+  }
+
+  /* Half the sky, and no glow to composite, on a phone. */
+  .star:nth-child(2n) { display: none; }
+  .star { box-shadow: none; }
+  /* Half the sky, and no glow to composite, on a phone. */
+  .star:nth-child(2n) { display: none; }
+  .star { box-shadow: none; }
+  .neb-violet,
+  .neb-teal { display: none; }
 }
 
 /* ─── TECHNE: THE PLUGIN CHIPS ──────────────────────────────────────────
@@ -1681,8 +2048,23 @@ ul.gloss li::before {
 /* Every piece of this honours the setting, including the drift. */
 @media (prefers-reduced-motion: reduce) {
   .stars,
-  .lockup .planet .ring,
-  .ring-divider .sat { animation: none; }
+  .ring-divider .sat,
+  .neb,
+  .gust,
+  .drift,
+  .craft,
+  .rays i,
+  .glow,
+  .wordwrap .layer { animation: none; }
+  /* A star with its animation cancelled falls back to the flat opacity on
+     .star, so the sky stays populated rather than emptying out. */
+  .star { animation: none; }
+  /* The lit layers go entirely. Frozen, they would leave a lick of glow
+     stuck on whichever part of the word the mask happened to stop over,
+     which reads as a rendering fault rather than as light. The wordmark
+     stands in plain ivory instead. */
+  .wordwrap .layer { opacity: 0; }
+  .glow, .rays { opacity: 0.12; }
   .sat-wobble { transition: none; }
   .sat-wobble:hover { transform: none; }
 }
