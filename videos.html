@@ -125,10 +125,7 @@
     <noscript>
       <div class="note">
         <h3>The list needs JavaScript</h3>
-        <p>This page reads its lists from <code>data/channel.json</code> and
-          <code>data/videos.json</code> at load time, so
-          a single edit in a single file adds a video. Without JavaScript the browser cannot
-          read that file. The series themselves live on
+        <p>The series live on
           <a href="https://www.youtube.com/@DaatData" target="_blank" rel="noopener">the YouTube channel</a>.</p>
       </div>
     </noscript>
@@ -228,11 +225,10 @@
     return wrap;
   }
 
-  function fail(msg) {
+  function fail() {
     root.textContent = '';
     var note = el('div', 'note');
     note.appendChild(el('h3', null, 'The list did not load'));
-    note.appendChild(el('p', null, msg));
     var p = el('p');
     var a = el('a', null, 'Go to the YouTube channel');
     a.href = 'https://www.youtube.com/@DaatData';
@@ -255,9 +251,12 @@
       list.forEach(function (s) { root.appendChild(seriesBlock(s)); });
     })
     .catch(function () {
-      fail('This page reads its list from data/videos.json, and that read failed. '
-         + 'Opening the file straight off disk does that — a browser blocks the read '
-         + 'over file://. Served over http it works.');
+      /* Whoever serves this folder locally wants to know why: a browser blocks
+         the read over file://, so the fetch fails when the page opens straight
+         off disk and works the moment it arrives over http. A visitor can act
+         on none of that, so the note on screen says only that the list did not
+         load, and points at the channel. */
+      fail();
     });
 })();
 </script>

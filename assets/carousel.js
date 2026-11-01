@@ -220,13 +220,15 @@
     render('first');
   }
 
-  function fail(root, source) {
+  /* Whoever serves this folder locally wants to know why this fires: a browser
+     blocks the read over file://, so the fetch fails when the page opens
+     straight off disk and works the moment it arrives over http. A visitor can
+     act on none of that, so the note on screen says only that the shelf did
+     not load, and points at the channel. */
+  function fail(root) {
     root.textContent = '';
     var note = el('div', 'note');
     note.appendChild(el('h3', null, 'The shelf did not load'));
-    note.appendChild(el('p', null, 'This shelf reads ' + source + ' at load time, and that read '
-      + 'failed. Opening the file straight off disk does that — a browser blocks the read '
-      + 'over file://. Served over http it works.'));
     var p = el('p');
     var a = el('a', null, 'Go to the YouTube channel');
     a.href = 'https://www.youtube.com/@DaatData';
@@ -260,7 +262,7 @@
         if (limit > 0) { list = list.slice(0, limit); }
         build(root, list, label);
       })
-      .catch(function () { fail(root, source); });
+      .catch(function () { fail(root); });
   }
 
   document.addEventListener('DOMContentLoaded', function () {
