@@ -16,6 +16,7 @@
 (function () {
   var STEP_MS = 400;
   var DRAG_MIN = 40;
+  var PRELOAD = 5;
   var NS = 'http://www.w3.org/2000/svg';
 
   var reduced = window.matchMedia
@@ -71,6 +72,18 @@
     var stage = el('div', 'arc-stage');
     stage.appendChild(saturn('arc-saturn'));
 
+    /* Every card sits in the same box on the stage, stacked by transform, so
+       loading="lazy" buys only the first paint: measured over http from
+       website/, the shelf fetched all 69 thumbnails the moment the carousel
+       scrolled into view, 1.49 MB in one burst. The viewport test the
+       attribute runs cannot help when sixty-nine boxes share one rectangle.
+
+       So the src waits for render() instead, and lands only on a card within
+       PRELOAD of the focus — two wider than the arc draws, which gives a card
+       its picture before it slides in. The attribute stays: it still covers
+       the window between build and the first render. */
+    var thumbs = [];
+
     var cards = items.map(function (item, i) {
       var card;
       if (item.empty) {
@@ -82,11 +95,12 @@
         card.target = '_blank';
         card.rel = 'noopener';
         var img = el('img');
-        img.src = item.thumb;
         img.alt = '';
         img.loading = 'lazy';
         img.decoding = 'async';
+        img.setAttribute('data-thumb', item.thumb);
         card.appendChild(img);
+        thumbs[i] = img;
       }
       card.setAttribute('role', 'group');
       card.setAttribute('aria-roledescription', 'slide');
@@ -138,6 +152,11 @@
         card.setAttribute('data-pos', near ? String(d) : 'out');
         card.tabIndex = d === 0 ? 0 : -1;
         card.setAttribute('aria-hidden', near ? 'false' : 'true');
+
+        var img = thumbs[i];
+        if (img && !img.getAttribute('src') && Math.abs(d) <= PRELOAD) {
+          img.src = img.getAttribute('data-thumb');
+        }
       });
       var item = items[index];
       count.textContent = (index + 1) + ' / ' + items.length;
