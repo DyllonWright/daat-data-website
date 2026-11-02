@@ -89,7 +89,18 @@
     return out;
   })();
 
-  function backdrop() {
+  /* The whole spiral as one continuous path, used only by the falling motes.
+     The data's own line is drawn separately in front, broken at the silences. */
+  function spiralPath(t0, t1) {
+    var d = "", i, pt;
+    for (i = 0; i <= 420; i++) {
+      pt = polar(new Date(t0 + (t1 - t0) * (i / 420)).toISOString().slice(0, 10), t0, t1);
+      d += (i ? " L " : "M ") + pt[0].toFixed(1) + " " + pt[1].toFixed(1);
+    }
+    return d;
+  }
+
+  function backdrop(t0, t1) {
     var s = '<svg class="back" viewBox="-34 -30 668 662" aria-hidden="true">';
     s += '<defs><radialGradient id="pp-fade">' +
          '<stop offset="18%" stop-color="#fff" stop-opacity="0"/>' +
@@ -97,51 +108,71 @@
          '<stop offset="100%" stop-color="#fff" stop-opacity="0"/></radialGradient>' +
          '<mask id="pp-softmask"><circle cx="' + CX + '" cy="' + CY + '" r="' + (ROUT + 20) +
          '" fill="url(#pp-fade)"/></mask>' +
+         /* the quadrants have no edges of their own; this is what makes them weather */
+         '<filter id="pp-nebula" x="-14%" y="-14%" width="128%" height="128%">' +
+         '<feGaussianBlur stdDeviation="19"/></filter>' +
          '<radialGradient id="pp-eh">' +
          '<stop offset="48%" stop-color="var(--pp-horizon)" stop-opacity="1"/>' +
          '<stop offset="100%" stop-color="var(--pp-horizon)" stop-opacity="0"/>' +
          '</radialGradient></defs>';
-    s += '<g class="pp-wedges" mask="url(#pp-softmask)" opacity="var(--pp-wedge)">';
+    s += '<g class="pp-wedges" mask="url(#pp-softmask)" opacity="var(--pp-wedge)">' +
+         '<g filter="url(#pp-nebula)">';
     SEASONS.forEach(function (sn, i) {
-      var a0 = (i * 90 - 90) * Math.PI / 180,
-          a1 = ((i + 1) * 90 - 90) * Math.PI / 180, R = ROUT + 20;
+      /* overlapping past 90 degrees, so neighbours bleed into one another */
+      var a0 = (i * 90 - 90 - 13) * Math.PI / 180,
+          a1 = ((i + 1) * 90 - 90 + 13) * Math.PI / 180, R = ROUT + 26;
       s += '<path class="s-' + sn[0] + '" d="M ' + CX + ' ' + CY +
            ' L ' + (CX + R * Math.cos(a0)).toFixed(1) + ' ' + (CY + R * Math.sin(a0)).toFixed(1) +
            ' A ' + R + ' ' + R + ' 0 0 1 ' + (CX + R * Math.cos(a1)).toFixed(1) + ' ' +
            (CY + R * Math.sin(a1)).toFixed(1) + ' Z" fill="' + cvar(sn[0]) + '"/>';
     });
-    s += '</g><g class="pp-debris" mask="url(#pp-softmask)" opacity="var(--pp-debris)">';
+    s += '</g></g>';
+    /* the field. Each mote's pulse is delayed by how far out it sits, so the
+       swell reads as one ripple travelling through them rather than 320 twitches. */
+    s += '<g class="pp-debris" mask="url(#pp-softmask)" opacity="var(--pp-debris)">';
     DEBRIS.forEach(function (d) {
-      s += '<circle class="s-' + d.k + '" style="--o:' + d.o.toFixed(2) + '" cx="' +
-           d.x.toFixed(1) + '" cy="' + d.y.toFixed(1) + '" r="' + d.r.toFixed(2) +
-           '" fill="' + cvar(d.k) + '"/>';
+      var dist = Math.sqrt((d.x - CX) * (d.x - CX) + (d.y - CY) * (d.y - CY));
+      var delay = -((dist - RIN) / (ROUT - RIN)) * 5.2;
+      s += '<circle class="s-' + d.k + '" style="--o:' + d.o.toFixed(2) +
+           ';--d:' + delay.toFixed(2) + 's" cx="' + d.x.toFixed(1) + '" cy="' +
+           d.y.toFixed(1) + '" r="' + d.r.toFixed(2) + '" fill="' + cvar(d.k) + '"/>';
     });
     s += '</g>';
+    /* three motes running the spiral inward, which is the only direction it goes */
+    var dpath = spiralPath(t0, t1);
+    s += '<g class="pp-stream" mask="url(#pp-softmask)">';
+    [0, 1, 2].forEach(function (n) {
+      s += '<path class="pp-mote m' + n + '" d="' + dpath + '" pathLength="1000" ' +
+           'fill="none" stroke="var(--pp-gold)" stroke-linecap="round"/>';
+    });
+    s += "</g>";
     /* the centre. The spiral stops at r=62, so nothing ever crosses it. */
     s += '<circle cx="' + CX + '" cy="' + CY + '" r="44" fill="url(#pp-eh)"/>' +
-         '<circle class="pp-ring" cx="' + CX + '" cy="' + CY + '" r="31" fill="none" ' +
-         'stroke="var(--pp-gold)" stroke-width=".8" opacity=".4" stroke-dasharray="9 7"/>' +
-         '<circle cx="' + CX + '" cy="' + CY + '" r="25" fill="none" stroke="var(--pp-gold)" ' +
-         'stroke-width="1.7" opacity=".9"/>' +
-         '<circle cx="' + CX + '" cy="' + CY + '" r="21" fill="var(--pp-horizon)"/>' +
+         '<circle cx="' + CX + '" cy="' + CY + '" r="22" fill="var(--pp-horizon)" ' +
+         'stroke="var(--pp-gold)" stroke-width="1.2" stroke-opacity=".55"/>' +
          '<text class="pp-ehlab" x="' + CX + '" y="' + (CY + 48) + '" text-anchor="middle" ' +
          'fill="var(--pp-gold)">DA’AT</text>';
     return s + "</svg>";
   }
 
+  /* The spiral starts on 1 March of the first year, not at the first poem, so every
+     year label lands on the same ray straight up. It opens with a few empty weeks;
+     that costs nothing and buys a readable axis. */
+  function span() {
+    var y0 = +POEMS[0].date.slice(0, 4);
+    var t0 = T(y0 + "-03-01");
+    if (t0 > T(POEMS[0].date)) { t0 = T((y0 - 1) + "-03-01"); }
+    return [t0, T(POEMS[POEMS.length - 1].date)];
+  }
+
   function drawDial() {
-    var t0 = T(POEMS[0].date), t1 = T(POEMS[POEMS.length - 1].date);
+    var sp = span(), t0 = sp[0], t1 = sp[1];
     var s = '<svg class="front" viewBox="-34 -30 668 662" role="img" aria-label="' +
       'A spiral of ' + POEMS.length + ' poems. One loop is one year, winding inward from the ' +
       'first year at the rim toward a dark centre at the last. Position around each loop is the ' +
       'time of year, so every season keeps a fixed bearing. Dotted stretches are months with ' +
       'nothing written.">';
-    SEASONS.forEach(function (_, i) {
-      var a = (i * 90 - 90) * Math.PI / 180;
-      s += '<line class="pp-spoke" x1="' + CX + '" y1="' + CY + '" x2="' +
-           (CX + (ROUT + 14) * Math.cos(a)).toFixed(1) + '" y2="' +
-           (CY + (ROUT + 14) * Math.sin(a)).toFixed(1) + '"/>';
-    });
+    /* No spokes. The quadrants are weather in the backdrop, not compartments. */
     /* the guide, broken wherever he stopped writing */
     var run = [], runSilent = null, i, ms, pt, quiet;
     function flush() {
@@ -177,14 +208,9 @@
            (act ? cvar(sn[0]) : "var(--pp-soft)") + '" style="font-weight:' +
            (act ? 500 : 400) + '">' + sn[1] + "</text>";
     });
-    /* the first year sits where the spiral actually starts, with the rest */
-    var st = polar(POEMS[0].date, t0, t1);
-    s += '<circle cx="' + st[0].toFixed(1) + '" cy="' + st[1].toFixed(1) +
-         '" r="2" fill="var(--pp-soft)"/><text class="pp-ylab" x="' +
-         (st[0] + 7).toFixed(1) + '" y="' + (st[1] - 5).toFixed(1) + '">' +
-         POEMS[0].date.slice(0, 4) + "</text>";
+    /* every year on the same ray, the first one included */
     var y, iso, p;
-    for (y = +POEMS[0].date.slice(0, 4) + 1;
+    for (y = +POEMS[0].date.slice(0, 4);
          y <= +POEMS[POEMS.length - 1].date.slice(0, 4); y++) {
       iso = y + "-03-01";
       if (T(iso) < t0 || T(iso) > t1) { continue; }
@@ -204,7 +230,9 @@
            '"><title>' + esc(q.title) + " · " + q.lines + " lines</title></circle>";
     });
     var dial = document.getElementById("poem-dial");
-    if (!dial.querySelector(".back")) { dial.insertAdjacentHTML("afterbegin", backdrop()); }
+    if (!dial.querySelector(".back")) {
+      dial.insertAdjacentHTML("afterbegin", backdrop(t0, t1));
+    }
     var old = dial.querySelector(".front");
     if (old) { old.outerHTML = s + "</svg>"; }
     else { dial.insertAdjacentHTML("beforeend", s + "</svg>"); }
