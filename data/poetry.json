@@ -62,7 +62,7 @@
     },
     "theme": {
       "label": "Theme",
-      "blurb": "What the piece circles. Up to three, and a piece may sit in none of them.",
+      "blurb": "Provisional. The real list gets derived from the context the owner writes per piece, once enough of them exist.",
       "multiple": true,
       "max": 3,
       "values": [
@@ -116,7 +116,9 @@
           "label": "Occult",
           "blurb": "Ritual, symbol, the hidden order"
         }
-      ]
+      ],
+      "provisional": true,
+      "note": "DERIVED, NOT DECREED. These ten buckets stand in until the owner has written context on a batch of pieces; the final set comes out of what he actually wrote, minimal enough that every bucket holds verse. Rewriting this list and reassigning the pieces costs one --import."
     },
     "form": {
       "label": "Form",
