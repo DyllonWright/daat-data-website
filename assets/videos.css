@@ -130,6 +130,9 @@
    The tag names the register, never the subject, and the hook beside it
    points at the argument rather than at anyone's conduct — see the rules in
    website/data/hooks.json, which travel with the lines they govern. */
+/* The line now holds the tag alone, and only on the entries that carry one.
+   A standing label over all ten repeated itself down the page and made the
+   tag read as decoration rather than as a frame. */
 .reel-source {
   display: flex;
   align-items: center;

@@ -48,6 +48,14 @@
     "  hook  one line, in the site's voice, that makes a stranger curious.",
     "  tag   optional. The register to read it in. \"Satire\" where it ribs.",
     "",
+    "  title  optional. A shorter display title for this page only. The link",
+    "         still goes to the real video and channel.json keeps the",
+    "         published title untouched — that file reads GENERATED and no",
+    "         hand may edit it. Use this where a title written for the",
+    "         YouTube algorithm reads badly cold on a public hub page. The",
+    "         thumbnail still carries whatever artwork it carries; an",
+    "         override changes the page's own words, never the picture.",
+    "",
     "Order follows view count, most watched first. Keep the reel to ten."
   ],
   "entries": [
@@ -76,7 +84,8 @@
     {
       "id": "TDA8rgsGwXU",
       "tag": "Esoterica",
-      "hook": "Forty minutes on Da'at, the sephirah the Tree counts but never numbers. A lurid title over a close reading."
+      "hook": "Forty minutes on Da'at, the sephirah the Tree counts but never numbers.",
+      "title": "Decoding Da'at: The 11th Hidden Sephirah"
     },
     {
       "id": "8t8QTcscsyQ",

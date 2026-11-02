@@ -127,9 +127,14 @@
     shot.rel = 'noopener';
     shot.tabIndex = -1;
     shot.setAttribute('aria-hidden', 'true');
+    /* hooks.json may carry a shorter display title. The link still goes to the
+       real video and channel.json keeps the published title untouched; only
+       what this page prints changes. See that file's README for the why. */
+    var shownTitle = hook.title || v.title;
+
     var img = el('img');
     img.src = v.thumb;
-    img.alt = 'Thumbnail for the video “' + v.title + '”';
+    img.alt = 'Thumbnail for the video “' + shownTitle + '”';
     img.loading = 'lazy';
     img.decoding = 'async';
     img.width = 480;
@@ -139,23 +144,21 @@
 
     var body = el('div', 'reel-body');
 
-    /* The label line carries the standing 'Why watch it', and, where the entry
-       names one, a tag beside it. A tag marks how to read the video — 'Satire'
-       above all — and it travels with the hook rather than sitting in a
-       disclaimer at the top of the page that a skimming visitor scrolls past.
-       The tag describes the register, never the subject. */
-    var src = el('p', 'reel-source');
-    src.appendChild(el('span', null, 'Why watch it'));
+    /* A tag marks how to read the video — 'Satire' above all — and it travels
+       with the hook rather than sitting in a disclaimer at the top of the page
+       that a skimming visitor scrolls past. It describes the register, never
+       the subject. An entry without one shows no label: a standing 'Why watch
+       it' over all ten read as noise, and left the tag looking decorative. */
     if (hook.tag) {
-      var tag = el('span', 'reel-tag', hook.tag);
-      src.appendChild(tag);
+      var src = el('p', 'reel-source');
+      src.appendChild(el('span', 'reel-tag', hook.tag));
+      body.appendChild(src);
       item.classList.add('is-tagged');
     }
-    body.appendChild(src);
     body.appendChild(el('p', 'reel-summary', hook.hook));
 
     var cap = el('figcaption', 'reel-cap');
-    var a = el('a', null, v.title);
+    var a = el('a', null, shownTitle);
     a.href = v.url;
     a.target = '_blank';
     a.rel = 'noopener';
