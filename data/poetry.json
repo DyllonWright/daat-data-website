@@ -1,30 +1,1607 @@
 {
   "_README": [
-    "POETRY. The page at website/poetry.html renders this file and nothing else:",
-    "the waiting line below while `poems` sits empty, and a chronology rail, a",
-    "filter bar and one bay per piece once verse arrives.",
+    "POETRY. The page at poetry.html renders this file and nothing else: its waiting",
+    "line while `poems` sits empty, and the spiral plus the 28-chapter grimoire once",
+    "verse arrives.",
     "",
-    "NOTHING REACHES THIS FILE BY HAND. 89 pieces sit split and gitignored under",
-    "poetry-source/, each awaiting a metadata block the owner fills in through the",
-    "local tool. Only would_publish: yes crosses over, and only the fields in",
-    "scripts/poetry-curate.py -> PUBLIC travel with it. Write it with:",
+    "NOTHING REACHES THIS FILE BY HAND. Write it with, in the hub repo:",
     "    python scripts/poetry-curate.py --publish",
-    "Read projects/poetry/README.md before touching any of it, and CLAUDE.md on",
-    "why poetry-source/ never enters git: those files hold dated journal entries,",
-    "named people and private reflection in the same pages as the verse.",
+    "Only would_publish: yes crosses, and poetry-curate.py -> PUBLIC decides which",
+    "fields travel. Never written_for, occasion, redactions_needed, notes or kind, and",
+    "never `context`: the raw context stays private in poetry-source/ forever.",
     "",
-    "A piece carries: slug, title, text (line breaks survive verbatim — the page",
-    "sets white-space: pre-line), written, written_precision, year, era, lines,",
-    "length_band, season, time_of_day, age, mood, disposition, what_i_was_reading,",
-    "theme (a list), form. Never written_for, occasion, redactions_needed, notes",
-    "or kind — those stay in poetry-source/ whatever anybody types anywhere.",
+    "`notes` here is NOT that context. It is the reviewed public note, written from the",
+    "context in third person with every claim about another living person's health,",
+    "sexual history, drinking or parenting removed, then signed off piece by piece by",
+    "the owner on 2026-11-02. It is tracked in the hub at projects/poetry/public-notes.json.",
     "",
-    "`facets` below holds a copy of projects/poetry/taxonomy.json, so the page",
-    "labels its filters off the same list the curation tool draws its chips from.",
-    "Edit the taxonomy, not this copy; --publish refreshes it."
+    "A piece carries: slug, title, text (line breaks verbatim), date (ISO), written,",
+    "written_precision, year, era, lines, length_band, season, age, theme, form, notes,",
+    "moods, image, and ci (its chapter's index in `chapters`).",
+    "",
+    "`chapters` are the journal notes in date order. `pairs` are pieces that answer each",
+    "other. `facets` is a copy of projects/poetry/taxonomy.json. Edit the hub, not this."
   ],
   "waiting": "The verse waits on its author. He knows where it lives.",
-  "poems": [],
+  "poems": [
+    {
+      "slug": "1stupid-words--03-first-unnamed",
+      "text": "When I gaze upon her visage now\nI can't help but then wonder how\n\nThe vulgar words she crafts that be \nWhile the nobility of her spirit I see\n\nAre like the storm that comes before \nthe flowers bloom and shine once more \n\nHer delicate physique I think\nmixed with the fiery spirit I seek\nIs poison to my mind so weak\n\nHow Midas touch turns things to gold\nSo too this poison my thoughts I hold\nNever-more will my heart be so cold \n\nI love you jade my heart and soul \nPlease tell me not to be so bold\n\nBut I cant help the way I feel \nThe things inside are no small deal \n\nI want to be the one for you\nThere isn't anything I won't do\n\nFor Slaying beasts or climbing heights\nAre trivial when you're in my sights\n\nMy depths and limits know no bound \nWhen it comes to bringing your crown \n\nI want so bad to let these-thoughts out\nSo much indeed that I might just shout \n\nI LOVE YOU JADE AAAA@AAA@AAAAAAAAAAA",
+      "title": "Jade",
+      "written": "Apr 2, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "25",
+      "length_band": "long",
+      "season": "spring",
+      "year": "2021",
+      "date": "2021-04-02",
+      "notes": [
+        "Possibly the first poem he wrote. He was not certain either.",
+        "For a girl named Jade. Never shown to her.",
+        "The fragment \"Read as trochees\" was meant to sit above it as a reading instruction. Whether the cadence landed is still open."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 0
+    },
+    {
+      "slug": "1stupid-words--04-second-unnamed",
+      "text": "Walking through a forest where the leaves never stop falling \nWhere the sky is always cloudy, thunder threatening to unleash a torrential downpour\nThe woodland creatures have all fled, taken shelter, gone silent \nNow no one remains except you, marching on towards the distant future \n\nDoes the choice to continue down this path even matter? \nThe leaves never stop falling\nThe sky never changes\nThe creatures will never return \n\nFor some time he pondered motionlessly\nA tree to the side of the path noticed \nSlowly, steadily, extending a slender root out to him\nGrasping one of his rough boots, but this did little to break his thought\nSo struck by compassion, the tree began to shake and rustle its branches \nThe pain of losing the branches was great\nUnbearable had it not been to free the traveler from his mental labyrinth\nA ray of light broke through the clouds\nPiercing through the newly made cracks in the canopy  \nGently grazing his worn, tired cheeks\nRespite in this moment, something he had not felt \nThe root he noticed, the broken branches he saw\nThen the tree, pointing up directly towards the sunlight\nSo grateful he was to this gentle tree, he picked one of its seeds and placed it in his bag\nThe light, now gone, lives only in his mind \nWith the will to continue, to move on forward, to honor this tree, that fills his heart\nNo more stopping, no more wasted time\nGo, be, the path stretches on \nIts time to move, its time to dance \nThe traveler stepped forward again and again, never ceasing his rhythm until he would reach his end",
+      "title": "(Second; Unnamed)",
+      "written": "Apr 2, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "28",
+      "length_band": "long",
+      "season": "spring",
+      "year": "2021",
+      "date": "2021-04-02",
+      "notes": [
+        "An argument with himself about whether to keep writing poems for women.",
+        "He proposed \"The Woodland Wanderer\" as a title, then left it unnamed.",
+        "He kept writing them for another five years."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 0
+    },
+    {
+      "slug": "2more-mediocre-poetry--02-pt1",
+      "text": "Like the tide descends on the shoreline\nAn angel appeared to me today\nWashing away the sand on the beach \nSo too this angel swept away my mind\n\nTo try to put it into words would be an affront to her grace \nFor she truly is an angel\nHer full beauty only explainable by the Lord's divine blessing\nBut being the fool I am, I shall try to capture a fraction of my feelings with these words to come \n\nHer smile, so bright, will set gossamer cloth aflame \nHer eyes, so soothing, will calm a rampaging beast\nHer voice, so delicate, will lullaby you into a trance \nHer gestures, so graceful, will entertain better than any ballet\n\nJust the sight of this angel brings respite to the eyes\nFor beholding such a heavenly being is something your heart will never forget \nA blessing, she is, to all that she meets\nFlowers bloom in the wake of her footsteps \nThe rain stops falling, the sky clears up\nThe sun shines when she comes into view \nTime stops at the sound of her voice \nMiracles begin to happen at the thought of her\nI truly am blessed to have witnessed the Lord's divine gift to the world ",
+      "title": "Pt1.",
+      "written": "Apr 29, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "21",
+      "length_band": "long",
+      "season": "spring",
+      "time_of_day": "written over a day/night",
+      "theme": [
+        "longing"
+      ],
+      "year": "2021",
+      "date": "2021-04-29",
+      "notes": [
+        "A friend had told him to write things down to get them out of his head. This is what came out.",
+        "For a girl he barely spoke to. Written across a day and a night.",
+        "He was twenty."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 1
+    },
+    {
+      "slug": "2more-mediocre-poetry--03-pt2",
+      "text": "Like the sun surely rises each morn\nMy heart fills with energy at the prospect of a new day \n\nTime has swept away the past, and thrust the present upon ourselves \nEach passing moment, time relentlessly casts this curse upon all\nA curse, it appears, to those living in the past \nA blessing, however, to those alive in the now\nA harbinger of the end, to the minds of the future\n\nEach second, gone, replaced by the next \nSo fear not the regrets of the past \nSo flee not to the uncertainty of the future\nSo find peace in the present \n\nAmidst the tides of life, the waves never stop churning \nSeek not to stop the motion, clinging on to the past \nStruggle not against the current, fighting for a future not meant to be \nLove the Ocean of life and trust in her waves\nLet her carry you to the highest crests and the lowest troughs \n\nOne day, the Ocean of life tossed me into a storm.\nStrong winds changing directions rapidly, temperature freezing cold to burning hot, the waves battered by lightning\nMy fear of approaching the storm was great\nThe longer I hesitated, the strong the wind, hotter my surroundings, the more thunderous the strikes\nUntil I finally gave in to her might and let the Ocean guide me towards the spiral of chaos\nMy ears ringing, my skin began to sting from the heat, my mind filled with the terror of death\nThe end was in sight \nBut not so fast\nThe Ocean takes and gives in mysterious ways \nFor when we reached the heart of the storm\nThe winds ceased \nThe air felt cool \nThe clouds funneled outwards and the sky opened up \nAn island appeared in the center of the storm \nA treasure chest upon this sandy shore \nRadiating a sense of familiarity and comfort, I approached the decorative box \nThe key, she told me, was alive inside me\nAnd the box revealed its contents at my touch \nLove \nLove, guarded by the most viscous tempest \nLove, only reachable within the moment\nLove, the freedom to truly be alive \nA gift from the Ocean, a gift to change my life\n\nSo I resolved to continue this journey\nWhere the storm goes, I go\nBecause the center of the storm is where I belong \nIn love, in peace, with my treasure. \nWith you. ",
+      "title": "Pt2.",
+      "written": "Apr 29, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "44",
+      "length_band": "long",
+      "season": "spring",
+      "time_of_day": "writen over a day/days",
+      "theme": [
+        "longing"
+      ],
+      "year": "2021",
+      "date": "2021-04-29",
+      "notes": [
+        "A continuation. They had mutual friends and little else.",
+        "He showed her both parts eventually. She found them endearing. He never established whether she knew they were about her.",
+        "They walked an empty campus together once, COVID tapering off. She mentioned she was single. He did not take the hint.",
+        "She was, by his account, the most striking woman he had seen in person, and that did a fair amount of the writing.",
+        "He calls it self-sabotage now: he spent the day fantasising about it instead of seizing it."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 1
+    },
+    {
+      "slug": "3boring-poems--02-about-the-girl-with-lonely-eyes-the-raven",
+      "text": "The Raven soars into the night sky\nRising above the tormented soil\nHer guiding light a faint moon's glimmer\nLike a silver bullet piercing the crisp air\n\nApproaching her final destination, Solitude\nA golden cage once, now stained black\nDesecrated by the penumbra of hate \nA flower wilts in the distance\n\nThe Raven beats her cold wings melodically\nEmitting a discordant harmony \nEvoking in all a deep primal fear\n\nFrostbitten by a single glance \nPetrified by her lonely eyes \nTime stops dead at her approach \n\nA promise forgotten, a breach of trust \nNo end in sight, her torture draws on\n\nHer sorrows ignored, an apathetic crowd\nHead held high, but drowning within \n\nIf only they knew, if only they could see\n\nSilence in Raven's tears, deafness in the air\n\nPt 2. The Raven's Rebirth \n\nHer frozen tears paint the sky crystal blue\nRaven, a crashing comet, death descending\nFrom this end, new beginning surging out\n\nWrapped into Fervor's zealous embrace",
+      "title": "About the girl with lonely eyes - The Raven",
+      "written": "Jul 3, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "25",
+      "length_band": "long",
+      "season": "summer",
+      "form": "free-verse",
+      "year": "2021",
+      "date": "2021-07-03",
+      "notes": [
+        "He worked at a gym that summer and spent it writing about the people he watched.",
+        "This one for a woman on the stair stepper who looked thoroughly unhappy. The feeling was closer to recognition than to attraction.",
+        "Part two never got written."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 2
+    },
+    {
+      "slug": "3boring-poems--03-the-tigress",
+      "text": "Slinking around the verdant underbrush \nDonning a prideful smile, she prowls about\nGaze locked on target, prey frozen stiff\n\nLife and Death standing near Action's table\nThe Tigress desiring her guest's company\nSinking in her ravenous bite, an invitation\n\nTo dine with Death, walking on with Life \nPerched at the summit, alone with her prize\nIsolated by her grandiose semblance \n\nFerocity rivaled solely by ambition \nCloaked with insurmountable determination \nObtrusive appearance veiling elegance\n\nResting behind her fearsome fangs, \nA blessed being perceives the world \n\nUnderneath her battle-scarred skin, \nA curious creature caresses the land \n\nBeyond her proud sauntering, \nA sagacious spirit begets immeasurable grace\n\nPeering through the eyes of the many \nUnable to see past the surface skin-deep\nI wonder if I am the only one \nWho caught sight of the Tigress true nature ",
+      "title": "The Tigress",
+      "written": "Jul 3, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "22",
+      "length_band": "long",
+      "season": "summer",
+      "year": "2021",
+      "date": "2021-07-03",
+      "notes": [
+        "For Jocelyn, a bodybuilder. He wrote it out by hand and gave it to her on a first date, at a park.",
+        "She liked it. They dated through the summer, until he went back to school.",
+        "She had, in his description, the spirit of a tigress.",
+        "See The Tiger, written after it ended."
+      ],
+      "moods": [
+        "happy"
+      ],
+      "image": {
+        "file": "tigress.jpg",
+        "caption": "July 2021. He worked at the gym; she trained there."
+      },
+      "ci": 2
+    },
+    {
+      "slug": "3boring-poems--04-the-pearl",
+      "text": "Adrift a tropical gyre \nLife's swift current sweeping onward\nRising and falling, the tides in motion\n\nUpon a time the water's fervor waned\nA glimpse into the deep I glanced\nShrouded in gloom, the ocean empty\n\nThen suddenly, stirring all to life\nA sweeping sensation, a warm embrace\nFears fading, hope conquering despair\n\nThe glimmering pearl sparkling gently\nA soft radiance illuminating my gaze\nRepose winning over the mind \n\nSurface smooth as fine gossamer silk \nPolished to precious perfection \nThe flawless, finest jewel \n\nThe flow forging a fine melody\nA song soothing to spirit and soul\nIt calls to me as a choir of angels\n\nCaptivating, inspiring, awestruck \nA newfound spirit rising out\nMotivation amplified by the heart of the pearl\n\nWithin my reach, center to my view\nSo far away, but so close to admire\nCourage to claim this natural wonder\n\nI must act, now or never",
+      "title": "The pearl",
+      "written": "Jul 3, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "25",
+      "length_band": "long",
+      "season": "summer",
+      "year": "2021",
+      "date": "2021-07-03",
+      "notes": [
+        "A carpe diem poem, shown to a woman at the gym.",
+        "She liked it. Nothing came of it.",
+        "His retrospective note: at twenty, six foot, and in the best shape of his life, this read as endearing rather than alarming."
+      ],
+      "moods": [
+        "happy"
+      ],
+      "ci": 2
+    },
+    {
+      "slug": "3boring-poems--05-the-plague",
+      "text": "I HATE how they look \nI hate HOW they look \nI hate how THEY look \nI hate how they LOOK \n\nCreeping creatures surrounding my sight\nMalice filling minds, weapons closed in hand\n\nPestilence piercing peacefulness\nDespair devouring delight\nSickness scourging sanity\n\nWhen will it end? \n\nSuffering taking hold of all my senses\nFeelings fade to numbness \nAny pleasure repressed from perception \nOther emotions repossessed by pain \nRetreat unavailable, punishment unavoidable\n\nWhen will it end? \n\nPlunging the knife, she scoffs ecstatically\nSmirking at the crimson staining her nails\nEnjoying each and every torturous moment \nTwisting the blade, savoring the finale\nI hate the way this feels \n\nWhen will it end? \n\nShe looks disappointed\nWas I not enough? \nShe speaks dispassionately\nCan't you see I'm trying? \nShe withdraws nauseated\n\nWhen will it end? \n\nHer boundless spite, her infinite agony\n10,000 judgments that I never spoke\nTime after time, dawn drawing near\nA pain in my heart as we drift apart\nLittle did I even know you\n\nThis must be the end",
+      "title": "The Plague",
+      "written": "Jul 3, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "34",
+      "length_band": "long",
+      "season": "summer",
+      "year": "2021",
+      "date": "2021-07-03",
+      "notes": [
+        "Written while sitting with his own fear of rejection.",
+        "Addressed less to a person than to a type: the unobtainable woman.",
+        "I Love the Way They Look is its deliberate mirror."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 2
+    },
+    {
+      "slug": "3boring-poems--06-the-answer",
+      "text": "To answer your question, this is for you\nAnd the Plague, regretfully about you too\n\nStop reading this now if you do not care\nAbout the daft whims of a humiliated fool\nElse bear with me as I try to make amends\nWith my scattered, misguided emotions \n\nLifting the veil of doubt, I will try to see\nThe way it plainly presents itself to me\nWithout painful prejudice, ill will cast away\nTo express what lies buried below my decay \n\nA need, a want, a desire for what? \nFor attention? Or power? How about lust?\nWhat do I seek? Where is it found? \nWhy don't I finally answer this all now. \n\nInside your smile, your laugh, your smirk\nI lose my sense of passing time at work\nFilling my eyes with soft, pleasant sights\nEmbracing my heart with homebound lights\nA high like none other, when I'm close by you\nI wonder, if perhaps, you feel this way too\n\nYet I struggle to act, thoughts freezing over\nI clench my teeth, I look away for cover\nNo, these feelings aren't sane\nThey aren't meant for my brain \nI try with all my might\nTo put up a good fight \nBut they just won't get out of my sight \n\nAlas the only thing left to do \nIs writing this silly love poem for you \nSo shall I begin with some words of praise \nTo help with navigating this messy maze \n\nYour hair like you figure, so sleek and slender \nCascading behind, showing your splendor\n\nYour voice a fine tune, soothing my ears \nPutting to rest my darkest of fears \n\nYour words honest with a sense of candor\nMaking you seem all the more grander \n\nA playfulness of spirit, a heart made of gold \nYour glory, your grace, my duty to extoll\nThe virtue you possess over beauty divine\nSnatching my heart away, it must be a sign\n\n\nLooking forward to seeing",
+      "title": "The Answer-",
+      "written": "Jul 3, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "42",
+      "length_band": "long",
+      "season": "summer",
+      "year": "2021",
+      "date": "2021-07-03",
+      "notes": [
+        "Written immediately after The Plague.",
+        "About a coworker he wanted to ask out and never did.",
+        "Unfinished. He suggests cutting the last line and publishing it anyway."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 2
+    },
+    {
+      "slug": "3boring-poems--07-the-trailblazer",
+      "text": "Erupting from the mountain top \nDrifting down without any stop \nHe yanks himself from Death's swift grip\nSurviving the gauntlet, resuming his trip\n\nScarred and wounded, his body in tatters\nDetermination in heart, that's all that matters\nWillpower strong, he embarks on a mission \nChasing the wind, setting off with ambition\n\nUntil he encounters a formidable foe \nOne whose purpose is disseminating Woe\nUnsheathing the sword, he draws his Hope\nApproaching the giant, target in scope \n\nClashing their blades, slipping his slashes\nBlood smeared vision, both covered in lashes",
+      "title": "The Trailblazer",
+      "written": "Jul 3, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "14",
+      "length_band": "short",
+      "season": "summer",
+      "year": "2021",
+      "date": "2021-07-03",
+      "notes": [
+        "For a friend from the gym who kept him motivated.",
+        "An attempt to branch out — a poem about a man doing something impressive, rather than another one about a woman.",
+        "Intended as an epic. Abandoned early."
+      ],
+      "ci": 2
+    },
+    {
+      "slug": "3boring-poems--08-a-distant-isle",
+      "text": "Afloat the ocean \n\nSometimes\nSoft waves dredging foam up to the shore\nOther times\nRough waves crashing debris onto the beach \n\nAlways \nA trove of treasures radiating brightly\nDazzling the countless onlookers \n\nUnreachable, unobtainable, unworthy\nSailors pass by in awe\nThis paradise seemingly out of reach\nFilling their heads with \"what ifs\" \nFilling their hearts with unrealistic hopes\n\nThe lonely island carries on \nDesperate for another's empathy\n\nIf only they could understand the island's language \nIf only they could see past the blinding treasure",
+      "title": "A distant isle",
+      "written": "Jul 3, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "17",
+      "length_band": "short",
+      "season": "summer",
+      "year": "2021",
+      "date": "2021-07-03",
+      "notes": [
+        "Written watching the gym floor fill with people he would never know.",
+        "He describes feeling like an island."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 2
+    },
+    {
+      "slug": "4good-poems--03-the-ring",
+      "text": "A treasure, and a place, \nMeet at Time's rendezvous \nWhen Fate's cold embrace \nSlowly melted through \n\nAnd revealing a prize \nThat lay deeply within \nOnce sheltered from eyes \nBrought out by a grin \n\nWith a large risky leap\nJumping into the unknown \nWaking up from a sleep\nClimbing onto the throne \n\nThe world in his hand\nFilling out to his palm \nShadows crumbling to sand\nTurn uncertainty to calm \n\nA change in perspective \nBrought on by desire \nNo longer defective \nA heart lit on fire \n\nUnfettered new wings \nRising up to the sky \nTo the place of kings\nLocked on with both eye\n\nA castle so grand \nAfloat on the clouds\nCascading the land \nDrawing great crowds\n\nAnd Life's gracious gift \nExtending out with care \nOnto his finger swift\nA bright gold light flare\n\nThe ring now he bears\nGilded by finest gold\nWith ample joy he shares\nThe mirror to his soul",
+      "title": "The ring",
+      "written": "Jul 19, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "36",
+      "length_band": "long",
+      "season": "summer",
+      "year": "2021",
+      "date": "2021-07-19",
+      "notes": [
+        "A coworker's graduation ring went missing. Gold, and recovered in a spot too specific to be an accident.",
+        "The staff reviewed the cameras. It became an incident.",
+        "Not about a woman, which makes it unusual here."
+      ],
+      "ci": 3
+    },
+    {
+      "slug": "4good-poems--04-my-gem",
+      "text": "Water trickling through the stream steady\nWater guiding me till I'm finally ready \nAn abundance of stones fill out my sight\nThe decision mine, to choose which is right\n\nPlunging down my hand into the frigid flow \nI pluck up a stone from the waters below\nGrabbing my attention, but only for a minute\nI drop the stone back, and quickly forget it \n\nOn and on, the cycle continued\nRound and round, this process renewed\nStone after stone, all seeming the same \n\"Wait just a minute!\" I suddenly exclaim\n\nGently filling my hand, a stone there lies \nShining, shimmering, captivating my eyes\nEnthralled, entranced by this natural beauty\nI must make it mine, it will be my duty\n\nHeld up to the sun, making light amplified \nHeld close to my heart, bringing love inside\nA gem, a stone, taken up into my life\nA story, a beginning, with fulfillment rife\n\nContinuing on, trekking further downstream\nI can't help but fear this be but a dream\nPinching my skin, feeling the pain \nNope, I'm alive, still here and sane \n\nWater changing color at my footsteps below\nMy heart beating boldy, beginning to grow\nNever feeling before, a sensation so happy\nNever getting before, what I needed so badly\n\nOther stones lay around, but not do I care\nThe gem and my heart, a perfect pair\nMy gem, a gift, sent from the Divine\nMy gem, a hope, all a part His Grand Design",
+      "title": "My Gem",
+      "written": "Jul 19, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "32",
+      "length_band": "long",
+      "season": "summer",
+      "year": "2021",
+      "date": "2021-07-19",
+      "notes": [
+        "On the prospect of a relationship that might actually work.",
+        "Written after a few good dates with Jocelyn."
+      ],
+      "moods": [
+        "happy"
+      ],
+      "ci": 3
+    },
+    {
+      "slug": "4good-poems--05-i-love-the-way-they-look",
+      "text": "I LOVE the way they look\nI love the WAY they look\nI love the way THEY look\nI love the way they LOOK\n\nThose two, right over there, a couple standing side by side\nWith just glimpse at their visages, took hold of the bystander's eye\nNever having viewed before, such a pleasant pair of smiles\nTheir dazzling aura, its radiance seemingly extending out for miles\n\nThe couple, their eyes, are locked onto each other \nThough a minute goes by, they continue for another \nUntil suddenly breaking his gaze, he lets out a lively laugh \nShe too, in turn, reciprocates a gentle giggle to this gaffe \n\nContinuing on together, their stroll down the boardwalk\nMouths moving in pattern, engaged in a pleasant talk\nHonesty in heart, expressed by their pure nature\nJoy into the world, delivered by their pristine picture\n\nHaving reached the date's end, and just slightly still in sight\nComing closely together, tightly hugging with all their might\nTheir date a success, filling onlookers with glee \nHe leans in for a kiss, bashfully returning it does she \n\nSeeing two spirits aflame, brought together by fate \nHoping that someday, the bystander might be able to relate \nLike a wick catching spark, their lives feel a bit brighter\nThe day marching on, their hopes raised a bit higher \n\nThough just a fleeting moment, it runs around in their mind \nWishing and wondering, perhaps something similar they might find \nPicturing the couple again, so sweet, so simple, so real \nFeeling the warmth shared, in their hearts the couple an ideal ",
+      "title": "I love the way they look",
+      "written": "Jul 19, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "28",
+      "length_band": "long",
+      "season": "summer",
+      "year": "2021",
+      "date": "2021-07-19",
+      "notes": [
+        "The mirror of The Plague. Same subject, opposite weather.",
+        "About a couple who appeared to have it sorted."
+      ],
+      "moods": [
+        "happy"
+      ],
+      "ci": 3
+    },
+    {
+      "slug": "4good-poems--06-the-hummingbird-from-heaven",
+      "text": "Closing my eyes and hoping to see \nA guardian, an angel protecting me \nOpening my eyes and feeling nearby \nThe gentle fluttering of an avian ally\n\nThe Hummingbird sent from Heaven on high\nWiping away a tear from my eye \nThe sorrow, the pain, any tragic event\nAll blown away by this bird's movement \n\nI can't help but wonder if this is a sign\nWhen I needed it most, becoming mine\nCalming my nerves and embracing my heart\nNegative feelings starting their depart \n\nOh Hummingbird, how are you here today\nWorking your wonders in a mysterious way\nSent by someone watching above \nFilling me with comfort, safety, and love \n\nI know you must go, but we'll meet again \nSooner or later, when things come to end \nWe'll be there together, side by side \nWith hand in hand, walking stride by stride \n\nUntil that day comes, I'll try to be strong \nI'll look out for you, keep singing your song",
+      "title": "The Hummingbird from Heaven",
+      "written": "Jul 19, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "22",
+      "length_band": "long",
+      "season": "summer",
+      "year": "2021",
+      "date": "2021-07-19",
+      "notes": [
+        "For Jocelyn, who had a hummingbird tattooed on the back of her neck.",
+        "She read the bird as protection. It had turned up at several decisive moments in her life.",
+        "He notes, from a distance, that a tattoo was an unusual conclusion for a devout Christian to reach."
+      ],
+      "moods": [
+        "happy"
+      ],
+      "ci": 3
+    },
+    {
+      "slug": "4good-poems--07-within-your-arms",
+      "text": "The warmth of a thousand blazing bonfires \nThe cheerfulness of a rich holiday feast \nOur hearts mimicking the tide's rhythm swift\nA safehouse securely soothing my skin \n\nHolding in my mind, sweet images of you\nHolding in my hand, your palms so cute\nDelicate and fragile, but firm and strong\nCalloused knuckles, shifting smoothly along\n\nTime drifting away without anyone's notice \nYour loving touches conjuring a blissful lul\nEach second adding depth to my happiness\nUntil, like your affection, its limit boundless\n\nHer patience envied by saints most pious ",
+      "title": "Within your arms",
+      "written": "Jul 19, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "13",
+      "length_band": "short",
+      "season": "summer",
+      "year": "2021",
+      "date": "2021-07-19",
+      "notes": [
+        "About being touched.",
+        "She was his first girlfriend, at twenty. He describes himself as touch-starved before her."
+      ],
+      "moods": [
+        "happy"
+      ],
+      "ci": 3
+    },
+    {
+      "slug": "4good-poems--08-for-carson",
+      "text": "Open your eyes.\n\nHis golden locks flailed in front of his eyes, partially obscuring his vision. Losing his footing as the sweat trickled down his face, he steadied himself. Death chasing closer, nipping at his heels. The sound of fetters clinking and clanking together pounded in his eardrums louder, louder. Fear striking at his heart telling it to beat faster, faster. \n\nDriving himself down the mountain, he mustered all the power in his worn down body. His lungs burning hotter than ever before, he panted hard as he was running out of breath. Breaching the hazy horizon, and with a breath of fresh air, the oasis grabbed hold of his gaze. With safety just barely in sight, the finish line seemed so close. Finally his hardships are coming to a close. \n\nBut the feeling of relief was short-lived. Reaching out from the freezing fog behind, the cold hand of Death grabbed hold of his ankle. Memories of the time he spent with Death crept up from a place long forgotten. A wave of calm fell over his soul. Death showing him a life of comfort, a life of pleasure, a life of the past. A life he used to have in a time not so long ago. \n\nWith a chuckle and a grin, Death lured Carson in. \"See, isn't this so nice?\" Asked Death with a cackle. And opening a manacle, Carson slowly reached over. Placing his left hand in first, he gave in to Death's pleasing lure. \"I knew you'd come back. You belong with me here, in the time of our past.\" Death said, letting out a hysterical laugh. Sweeter than peach nectar and smooth as silk, Death charming him in with his promising words. \n\nAs his right hand resigned into Death's trick, a sudden thought graced his mind. \n\nIs this what I want? A life without suffering, just giving into ease? He thought as his mind began to wade into Death's lull.\n\n No, this doesn't have to be it. It's not my time yet. Carson awakening from his hypnosis ",
+      "title": "For Carson",
+      "written": "Jul 19, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "8",
+      "length_band": "epigram",
+      "season": "summer",
+      "year": "2021",
+      "date": "2021-07-19",
+      "notes": [
+        "For a man at the gym who lifted with more ego than judgement.",
+        "The conceit: a race to the grave, Carson against Death.",
+        "Never finished. Carson thought it was lame."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 3
+    },
+    {
+      "slug": "5new-words--04-the-day-time-stopped",
+      "text": "The sunlight fell upon the cracked soil \nAs a sweltering heat stirred the stiff air\nHow long must the weary laborer toil \nHow long must we wage war against despair \n\nBecause on that day when the end felt near \nNo man could predict what would come next\nThey held their actions and waited in fear \nPraying their futures would not be hexed \n\nSo on that day when trees held their breath \nThe Earth trembled at the powerful hands\nAnd the spirits swirled away from death \nErupting in unison and coloring the lands\n\nAnd on that day when the world stood still\nNo creature dared shatter the freezing silence \nFor the time had come to fulfill His will\nAnd to do so graciously, without violence\n\nFinally an end, or a beginning new truth \nBlessed by Fortune and embraced by Love\nMolting new wings forged from youth\nFlowing pure life, emulating the Dove",
+      "title": "The Day Time Stopped",
+      "written": "Aug 1, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "20",
+      "length_band": "short",
+      "season": "summer",
+      "year": "2021",
+      "date": "2021-08-01",
+      "notes": [
+        "The same day, from closer in.",
+        "He had a few weeks left on the schedule and used them to keep writing."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 4
+    },
+    {
+      "slug": "5new-words--03-the-tiger",
+      "text": "The Tiger hidden inside me \nIs the one thing I must be \nStronger than ever before \nA power that I cannot ignore \n\nSurging up without a doubt \nLetting out a screaming shout \nAs the Raven's talons pierce skin \nMy hate, my rage, my pain flows in \n\nBut swallowing up the hopeless despair \nIn my heart, a faint, soft voice there \nRemember what it is that I saw \nThat tender, loving spirit of awe \n\nAnd ripping out the talons deep \nDespite my agony, I took the leap \nTo find that piece always missing \nThat peace, called joy, always wishing\n\nNo matter the cost, or high the price \nI resolve to rid myself of vice \nLiving out the way of the Tigress \nSurvival no longer feeling lifeless \n\nShe showed me how I should be \nBlazing a new trail, setting me free \nPursuing the path to such new heights \nSearching, hunting, chasing those sights\n\nBut at the Tiger's center remaining steady \nHolding her words always at the ready \nTo become your truest, happiest self \nI'll be praying for you, without a doubt ",
+      "title": "The Tiger",
+      "written": "Aug 1, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "28",
+      "length_band": "long",
+      "season": "summer",
+      "year": "2021",
+      "date": "2021-08-01",
+      "notes": [
+        "The companion piece to The Tigress, written after it ended.",
+        "She gave his things back one Friday after his shift. They made protein ice cream, watched the sunset out of the back of her car, and swapped belongings in the parking lot.",
+        "See also The Day Time Stopped."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 4
+    },
+    {
+      "slug": "5new-words--02-the-note",
+      "text": "A note placed upon our door\nI wonder what it might be for\nMeaning of the message murky\nAlthough the quote quite quirky\nIts purpose I wish to know more\nAnd the heart at the bottom I cannot ignore\nLest this be a sly ruse\nThis poem, I beg, you do excuse",
+      "title": "The Note",
+      "written": "Aug 1, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "8",
+      "length_band": "epigram",
+      "season": "summer",
+      "year": "2021",
+      "date": "2021-08-01",
+      "notes": [
+        "Written after he moved back onto campus for his sophomore year.",
+        "The neighbours left a note on the door, suggestive enough to merit a reply.",
+        "It came from a room of four women. He replied in verse.",
+        "It went nowhere."
+      ],
+      "moods": [
+        "happy"
+      ],
+      "ci": 4
+    },
+    {
+      "slug": "6now-words--02-the-me-i-was-with-you",
+      "text": "To be the me I was with you\nTo keep the flame alive \nTo see the world with that same view\nTo take it in and thrive \n\nTo be the me I was with you\nTo hold that courage in my hand\nTo make the step into a new\nTo harvest the fruits of the land\n\nThe me I was within your eye\nThe picture-perfect scene\nThe power I felt flowing inside\nThe love that is unseen\n\nThe me I am within your mind\nThe me I’m meant to be\nThe me, right now, that you will find\nThe me that conquered me\n\nA me that exists because of you\nA dream rooted into reality\nA me that became one of the few\nA grasp firm onto causality \n\nA fine future falling into place\nA set of wings starting to sprout\nA goddess as my guiding grace\nA destiny my desire to carry out",
+      "title": "The me I was with you",
+      "written": "Aug 28, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "24",
+      "length_band": "long",
+      "season": "summer",
+      "year": "2021",
+      "date": "2021-08-28",
+      "notes": [
+        "An inventory of who he had been while it lasted."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 5
+    },
+    {
+      "slug": "6now-words--03-without-title",
+      "text": "The stage was decorated extravagantly with emptiness\nAs time creeps forward ever so slowly, the clock strikes midnight \nHush now, as silence descended to drown out the lonely spectators\nThe play, with no protagonist, is about to begin\nThe play, without an audience, never reached its end\n \nHow dreary the lives of the useless antagonists\nHow weary the minds of the slothful, dampened spirits\nThese nameless words falling into a forsaken mind\nThese nameless verses working to change something in kind\n\nWhat does it take to restore sight to the blind?\nWhat does it take to show love to the maligned?\n\nWhatever the heart holds closest as it desires\nIs found in the flowing dance of fervent fires\nAnd to enter the song is as simple as this\nGrab hold of their hands exuding such vis\n\nStep by step, waltzing back into the light\nThe play truly beginning now, the stage blazing bright\nForgetting what’s been done to restrain your vivacity \nRejoicing for it’s the time to restore your voracity\n\nI want you to know a great secret of mine\nMy secret I’ll share, a gift from the Divine\nThat Heaven is only found once you’ve been through enough Hell\nThere lies joy, so boundless, such I cannot even begin to spell\n\nThough the highway to Heaven is paved by pain\nThe journey, the suffering, the dance done not in vain \nBecause for you there exists such a beautiful domain\nIt’s been patiently waiting all along for you to attain\n\nShould these words not suffice\nThe nameless poem I’ll write twice\nI simply want you to see\nThe truth you can be\n\nSo even if the future may seem remote\nPlease, please, don’t give up your hope\nAnd try not to let your audience down \nPut on your best smile, do away with that frown\n\nDance my dance, I’ll even teach it to you\nTry it for once, it might change your view\nFor life’s silliest challenges are faced by the funniest clowns \nCome enroll in the circus and you’ll never be let down",
+      "title": "Without title",
+      "written": "Aug 28, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "39",
+      "length_band": "long",
+      "season": "summer",
+      "year": "2021",
+      "date": "2021-08-28",
+      "notes": [
+        "For Anna, who played in e-sports. He showed it to her once.",
+        "She did not understand it. They went on something adjacent to a date.",
+        "She folded him paper cranes. They are still on his monitor."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "image": {
+        "file": "cranes.jpg",
+        "caption": "The cranes she folded. Still on his monitor."
+      },
+      "ci": 5
+    },
+    {
+      "slug": "6now-words--04-i-thought-i-had-witnessed-venus-perfection-before-but-in-rea",
+      "text": "On my trek toward the festival in glee \nI happened upon quite a sight to see\nA dazzling light shone out through the dark \nMy curiosity ignited as quick as a spark\n\nA soft, pale emerald gaze fell upon me \nAnd following so a figure of divinity\nThe trees clamored about in her wake \nNature dancing and applauding for her sake\n\nTwisting about our paths with fate \nGenerous gods granting gifts so great\nA delightful presence and sagacious grace\nHer aura so pure and how sweet her face\n\nFor the visage I saw and began to adore\nDotted with freckles and cuteness galore\nVerdant green eyes bringing new meaning\nA symphony of creation, I must be dreaming\n\nSleek brown hair blazing golden in the sun\nA spitting image of Venus, my heart overrun\nHer smile could end a thousand year war\nAnd the warmth lasting a thousand more \n\nEloquently extending her delicate hand \nAesthetic designs arriving on command\nProducing such intricate, realistic art \nPicture or painting unable to tell apart \n\nAwestruck admiring her skill and splendor \nHer patience, nature, and gestures so tender\nForgetting my journey's original intent \nDiscovering happiness, a place I'm content",
+      "title": "I thought I had witnessed Venus' perfection before, but in reality that was merely a shadow of the true beauty I beheld right beside me",
+      "written": "Aug 28, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "28",
+      "length_band": "long",
+      "season": "summer",
+      "year": "2021",
+      "date": "2021-08-28",
+      "notes": [
+        "For Izzy. They met because the piano room was locked on a holiday.",
+        "He was waiting to take Anna in and demonstrate that he could play. Izzy was waiting for the art building, also locked.",
+        "They waited together and he read her some of his other poems. This one came shortly after.",
+        "She did not understand it. He misread the evening, held out for a proper date first, and that was the end of it.",
+        "The longest title in the collection, by a wide margin."
+      ],
+      "moods": [
+        "happy"
+      ],
+      "ci": 5
+    },
+    {
+      "slug": "7-post-crest--02-into-the-chasm",
+      "text": "The flames slept soundly without a care in the world. Their role was fulfilled and so they kept to themselves. Unaware such a commotion would rouse them back into motion. They've sprung back to life, aiming to usurp the throne, to once again reign with their splendorous Hellish domain. \n\nAs is my duty to life, I will bring these flames forth with all my might. \nSince these once dormant entities have been restored with vim and vigor.\nAnd because to attempt to live without them is to willingly lack a necessary sight. \nSo hand in hand, as the Angels and Demons dance, I look on, concealing a sinister snicker. \nFor the truth that I’ve known has been long overthrown and of this all I must write. \n\nBlight, desire of an envious curse \nCoarse, promises of a lustful allure\nRancor, satisfaction of a gluttonous taste \nHaste, ruination of a slothful descent\nTorment, eyes of a wrathful aim\nShame, anger of a prideful flavor\nAver, dishonesty of a greedy lie \n\nFalling into Hell from the gates of Heaven\nLanding onto a pile of ravens’ mutilated wings\nUnable to breathe from the weight of the sins\nYet despite this, he rises swiftly\n\nGravel crumbling underneath heavy footsteps\nAshes overhead crowning the spiteful horizon\nBurning flesh of beast and man scent the land\nYet despite this, he marches undeterred \n\nSun relentlessly scorning Earth for revenge \nFoliage withering into disgusting remains\nDemons cackling at their affliction of agony\nYet despite this, he climbs steadily\n\nTumbling boulders down blocking the path\nFlooding the terrain to slow down advance\nBreaking the bridges to stop all progress\nYet despite this, he arrives prominently\n\nTarnished by vile blood and foul soot\nRending the souls of the foolish victims\nCondemned to Hell for all eternity\nYet despite this, he dances elegantly \n\nLooking down at suffering atop the crest\nSeeing heinous spawns of evil without end\nGnawing each other to disfigured shreds \nYet despite this, he invites entreatingly \n\nEndless pits splitting terrain to tatters\nMagma spitting forth from every crevice \nShrieks crying for mercy rattle the air\nYet despite this, he prays calmly\n\nOceans receding into isolated deserts \nBuildings crumbling into abandoned ruble \nAngels gaily shaking hands with demons \nYet despite this, he focuses pensively\n\nCastigating the wholly innocent with hexes\nExalting the wickedly guilty with treasures\nComfort for suffering, suffering for comfort \nYet despite this, he appreciates earnestly\n\nIn the end, all that remained was himself and his mind.\nAll the suffering perfectly reflected the desire he failed to deny.\nThe reality, the gravity, the situation is always by himself defined.\nComing to understand that of Heaven and Hell, fate he cannot defy. \nSo meeting the end, he conceded to bend to the Will, but never to resign.",
+      "title": "Into the chasm",
+      "written": "Sep 28, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "54",
+      "length_band": "long",
+      "season": "autumn",
+      "year": "2021",
+      "date": "2021-09-28",
+      "notes": [
+        "After Nietzsche, Sisyphus, and Prometheus.",
+        "The question driving it: how can the Church be right if everyone inside it behaves badly.",
+        "54 lines. The chapter where the subject stops being women for a while."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 6
+    },
+    {
+      "slug": "7-post-crest--03-in-the-past",
+      "text": "Like the nostalgic return to one's hometown\nI long for scenes of once familiar contentment\n\nThe softness of her hands \nThe anticipation of our plans \nPainting a portrait of unthinkable colors\n\nWith a gentle caress \nIn her flawless dress \nSweeping away all the troubles of the world\n\nCalmly calling \nSensually stalling\nBoth knowing this eventually wouldn't last\n\nWith a shearing force \nWithout any remorse \nHalting this tale too good to be true\n\nThe firmness in her command\nThe empowerment of my hand \nDriving in new meaning to a bitter feeling\n\nAs strong iron is forged by an intense flame\nI steady myself with focus on her gift, Hope",
+      "title": "In the Past",
+      "written": "Sep 28, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "19",
+      "length_band": "short",
+      "season": "autumn",
+      "year": "2021",
+      "date": "2021-09-28",
+      "notes": [
+        "About Caler, met during Week of Welcome through a mutual friend. Named, she told him, after a billboard.",
+        "Very southern, very strange. They kissed one night and dated loosely after.",
+        "He is not certain whether the poem is about her or about Jocelyn. She reminded him of someone."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 6
+    },
+    {
+      "slug": "7-post-crest--04-the-descent",
+      "text": "There was once a boy who walked alone through the night. On the same trip he'd taken many times since he was a child. He turned along the same bend and ducked under the same low branches. Crossing the rickety wooden bridge and seeing his cozy home coming into sight. A long day behind him, as he opens the door. He was greeted by a deafening sound and a blinding sight. Silence. Pitch black. Deafness. Darkness. Swallowing him whole. When usually at this time he would be wrapped in his mother's vigorous embrace, instead a cage of frost took hold of his limbs. When usually at this time he would be romping with a frabjous smile, instead a sharp frown dominated his visage. The words he uttered subsequently he would remember forever. \n\nThe snapping of bones, the tearing of flesh \nThe hate in the heart, now rekindled afresh \nThe weakness within the spirit and of the skin\nThe willingness to surpass with devilish sin \n\nBending the rules and testing their wills\nGod and Devil dance exciting many thrills\nConstructing a tune that mortals call fate \nDestructing that noise by unrelenting hate\n\nThe pieces in place, players seeming ready \nThe dice rigged in secret, the end set already\nThe weak making rules, restraining the strong \nThe wise realizing this game feels so wrong\n\nPowerless to change the clock set in motion\nKings abusing the throne fearing no remotion\nWeakness ordained to permeate so densely\nAnger, rage, and hate amplified immensely\n\nThe crest impossible to reach on your own \nThe ambition too steep to topple the throne\nThe plentiful times trying to throw off destiny\nThe heart's tenacious grasp holding ineffably \n\nOne thousand deaths he would spend to win\nTo rip from the gods their fate and their sin\nNever bending to the cruel, twisted, and ill\nFor he brings forth the future by his very will \n\nThough time a currency and suffering a price\nThe fight carries on regardless the strife \nWho concedes first, the man or the god? \nWho reaches truth, the man or the fraud? ",
+      "title": "The descent",
+      "written": "Sep 28, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "29",
+      "length_band": "long",
+      "season": "autumn",
+      "year": "2021",
+      "date": "2021-09-28",
+      "notes": [
+        "His own favourite, for the last line.",
+        "On what it feels like to stop sorting the world into good and evil, left and right, angel and devil.",
+        "To become, in his phrase, an infant among gods. The bottom being the only place from which the twilight of the idols is visible.",
+        "Also about beating his gym mentor, and watching him take it badly."
+      ],
+      "moods": [
+        "happy"
+      ],
+      "ci": 6
+    },
+    {
+      "slug": "7-post-crest--05-the-lot",
+      "text": "I see the lot. \nPerched atop the clouds \nLooking down from the air \nPeople covered in shrouds\nPeople trapped by snare\n\nI sing of their fates\nI warn of their demise\nFor I've been in their states\nAnd from such I've arise\n\nPrepare your ears\nTo heed my rhymes\nAnd away I'll steer\nYou from these crimes\n\nAfloat the wretched sea of the putrid masses\nThoraces distended, stammering to the tune\nRuin, creeping into each of their actions\nFractions of their true selves, never realized\n\nWalk now through the painless gate\nTalk now with such fluid prate\nFilling their lives with vulgar chatter\nSpreading their lies with boastful smatter\n\nAvoiding the truth that shreds their facade \nDodging the changes to correct their fraud\nListen and hear how they all lied\nTry and discern the honesty inside\n\nFear, weakness, anger, doubt\nCoping through grasping for endless clout\nPity, sorrow, shame, despair\nWading through the motions without a care\n\nDeficiencies in the heart and soul \nReplenished by the vapid and dull\nA fruitless pursuit of the transient relief\nA twisted race that concludes so brief\n\nReplace the wasteful gluttonous urge \nWith a desire to thrive and with power surge\nTo conquer the day, reap a wondrous prize\nTo cultivate hope and gather new allies\n\nTo unfetter the chains of complacency\nTo break free the shackles of vacancy\nChallenging life with the most daring feats\nEarning the trophies through many defeats\n\nLosing is sometimes a part of the day\nBut quitting ought never make any headway\nFull of weakness but desiring to be strong \nPursuing the journey although it be long \n\nGathering wisdom and forging a path\nWillingly setting out to find the aftermath\nYou must take your shot, even into the dark \nYou will see it causes a splendorous spark\n\nHold these words in heart and mind\nAnd at once towards victory begin to find\nThe way that was realized for your sake \nThe way, although not easy, you must take",
+      "title": "The lot",
+      "written": "Sep 28, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "53",
+      "length_band": "long",
+      "season": "autumn",
+      "year": "2021",
+      "date": "2021-09-28",
+      "notes": [
+        "Written from a perch above the breezeway, watching people go about their day.",
+        "After the bovine existence, and the Nicomachean Ethics.",
+        "His conclusion at the time: cookie-cutter lives, husks being filled. 53 lines of it."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 6
+    },
+    {
+      "slug": "7-post-crest--06-those-cedar-eyes",
+      "text": "Those cedar stained eyes \nLooking back at me \nThat playful smile \nA joyous sight to see \n\nSweetness glazing over her coarse words \nLevity in her tone, as jovial as the birds\nWholesome notions from her friendly jests \nA gracefulness within, her aura suggests\n\nThough we meet just in passing \nAnd our time spent together so brief \nAfter departure feeling enchanted \nAnd the daily burdens overcome by relief\n\nCuriosity waging war against my mind\nInciting action, to see what future I find\nSo I wrote this poem to placate that feeling\nMy intentions made plain by this revealing\n\nA fleeting thought descending like a feather\nWhat world might exist with us together",
+      "title": "Those cedar eyes",
+      "written": "Sep 28, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "18",
+      "length_band": "short",
+      "season": "autumn",
+      "year": "2021",
+      "date": "2021-09-28",
+      "notes": [
+        "For Sarah. They had mutual friends, overlapping schedules, and the same cafe most weeks.",
+        "He never showed it to her. She transferred."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 6
+    },
+    {
+      "slug": "8the-windbreaker--02-the-carrion-crow",
+      "text": "Like the midnight shade cascades over fields\nShrouding Day's visage under Night's veil\nThe stillness seems to calm every creature \nThat is except for the carrion crow \n\nWhen sleep takes root and bears dreamy fruit\nThe carrion crow sings with a whisper \n\nWhen joy inspires and impels one's desires \nThe carrion crow reclines with a hush\n\nBold black wings inciting fear and chaos\nBut within them a sense of warmth\n\nGrievous curses hurled at the carrion crow \nBut always falling short they miss \n\nSo distant soaring beyond vulgarity \nSo magnificent dancing among the stars \n\nThe carrion crow seeks on its mission \nTo shelter a deeply fragile heart\n\nPerched on the forking split branch \nA choice that has yet to be made \n\nSharpening its talons against tough cedar\nPruning its feathers with meticulous care\n\nHow sweet the carrion crow treats itself \nHow rotten an image pressed upon others \n\nBut to the patient observer her nature true \nSagacious bird's wisdom on wild display",
+      "title": "The Carrion Crow",
+      "written": "Oct 19, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "24",
+      "length_band": "long",
+      "season": "autumn",
+      "year": "2021",
+      "date": "2021-10-19",
+      "notes": [
+        "Written around Halloween, working out what a spooky poem could be."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 7
+    },
+    {
+      "slug": "8the-windbreaker--03-silk",
+      "text": "Slender streams cascade the throne \nFlowing, dancing, racing through the heart\nApproaching the edge of my sight, I long \n\nEscaping the magnetic resonant feeling \nDrawing upon stoic veils of protection \nA concoction of dissonance wells up within \n\nThe heat of her fingertips \nThe fragrance of her presence \nFearing that I might come to hate her\n\nFetters granting such unbridled freedom \nLiberation, the enemy of my desire \nShuffling the deck, wringing the neck \nPouring out every ounce of emotion ",
+      "title": "Silk",
+      "written": "Oct 19, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "13",
+      "length_band": "short",
+      "season": "autumn",
+      "year": "2021",
+      "date": "2021-10-19",
+      "notes": [
+        "On how new relationships hold until they don't.",
+        "He notes he was getting wiser, having now watched it happen."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 7
+    },
+    {
+      "slug": "9-winter-poems--02-for-mya",
+      "text": "Stirring from the void, so black and bleak\nA familiar warmth, yet a feeling unique \nJust a singular glance at her tender visage \nSoothing the eyes with her flawless image \n\nWith an affable spirit and a timid voice \nWriting you this poem as no other choice \nWondering why in our cordial conversation\nMy heart interjects with pleasant palpitation\n\nLike an excursion into a coniferous forest\nI find myself lost in her eyes most purist\nChestnut brown and overpowering my gaze\nEnchanting, entrancing into a dreamy daze\n\nLike a castaway stranded on a scorching isle\nHer smile provides strength to beat any trial\nRenewing what previously withered and fell\nRevitalizing that spirit with a magical spell\n\nA dream of sharing these festive holidays\nWithout further ado and without more delays\nThis poem for you both honest and true \nEntrusting my heart and my words to just you",
+      "title": "For Mya",
+      "written": "Dec 15, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "20",
+      "length_band": "short",
+      "season": "winter",
+      "year": "2021",
+      "date": "2021-12-15",
+      "notes": [
+        "For a woman who checked him in at the gym after he had stopped working there.",
+        "He never showed it to her, and never made a move."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 8
+    },
+    {
+      "slug": "9-winter-poems--03-we-are-the-one",
+      "text": "Searing \nSlicing \nTearing \nDicing \nYou wouldn't last a single minute in the cage \n\nPain ignored through desperate desire \nStruggle endured through blazing fire\nYet for you, your outcome will be void\n\nFruitlessly try and try again \nUntil the world meets a dead end \nBut know this, your journey will be vain\n\nInscribing beautiful hope into the sand\nNourishing lives by the sacred hand \nHow pointless! You will all crumble to dust\n\nSlaving away the many numbered days \nConjuring a fearsome, tormented haze\nWhy do so? You won't change the finale\n\nHis name is irrelevant as he lives many lives\nHungering for contest and begging for strife\nDancing on fate atop the sharpest of knives\nHis suffering plentiful and with meaning rife",
+      "title": "We Are the One",
+      "written": "Dec 15, 2021",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "21",
+      "length_band": "long",
+      "season": "winter",
+      "year": "2021",
+      "date": "2021-12-15",
+      "notes": [
+        "On unrequited love as a standing condition rather than an event.",
+        "His framing at the time: pure of heart, and repeatedly run over."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 8
+    },
+    {
+      "slug": "10spring-cool-poems--02-rot-in-hell",
+      "text": "Get up, now. Weakness is a waste of time, \nStand back up, I won't count. \nPitiful, pity creeping down your spine, \nKnow this, your best will NEVER beat mine. \n\nGet up, here. Sit atop all of your lies. \nDrain your blood, dripping time slow. \nSavor your fear, I'll grin ear to ear, \nSing your loudest scream, I'd love to hear. \n\nAh…  \nWhat happens… \nWhen I… \n\nTake… \n… your hopes and your dreams? \n\nMisappropriate… \n… your faith and your cause? \n\nRip away… \n… your regard for your crimes? \n\nListen…\n… to your delusions when you lie? \n\nVeil… \n… your sanity till you die? \n\nShatter down\nTo Hell\nYour remembrance\n\nI'll pretend to be your savior, \nTo lead you out of your great misery, \nAnd then say, in pure malice\n\"GO ROT IN HELL\"\n\nI can paint you red with blood, \nWhen there's nowhere else to go, \nI have all the time in the world, \nCry for mercy but I'll never get bored. \n\nHow does it finally feel? \nSuffocating, it's your turn to pray. \nI don't need to make it short and sweet, \nKneel till you bleed but I won't change, \n\nFigure it out. \nApproaching the limits of your sanity. \nRealize when there's no other way to live, \nRotting in hell is all you have to do to win, \n\nLosing your senses from immolation\nYou'll beg to go rot in hell, \nBut any request for release is met by a sinful, \n\"SHUT THE FUCK UP!\"\n\nThere's nowhere left for you to run. \nI might be sick of all this entertainment, \nBut I had it coming, the joke's on me now. \nI should've seen the silver thread in fate. ",
+      "title": "Rot in hell",
+      "written": "Mar 25, 2022",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "48",
+      "length_band": "long",
+      "season": "spring",
+      "year": "2022",
+      "date": "2022-03-25",
+      "notes": [
+        "His gym mentor took third place twice at a powerlifting meet. He took second twice, beating him by about fifteen pounds.",
+        "The mentor read it as a claim to superiority. He maintains he was only curious, though he grants the point.",
+        "By his account the man's life turned downward from there. The identity had been the load-bearing thing, and it broke.",
+        "48 lines, the longest piece here. He also credits the man with teaching him most of what he knows about lifting."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "image": {
+        "file": "the-meet.jpg",
+        "caption": "The meet. Two seconds against his mentor's two thirds. Other faces blurred."
+      },
+      "ci": 9
+    },
+    {
+      "slug": "10spring-cool-poems--03-littia",
+      "text": "Like silver thread spun down the prison wall\nLeaping forth, escaping to an umbral fall \n\nTumultuous waves embracing the escapee \nPotential in hand, finally breaking free \n\nWashed ashore, not a single soul in sight \nUntil a gentle bird nearby took flight\n\nRestoring the courage to survive the storm\nHoping that the days might finally be warm\n\nHesitation in accepting release from dystopia\nA poem of my thoughts for you Littia",
+      "title": "Littia",
+      "written": "Mar 25, 2022",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "10",
+      "length_band": "short",
+      "season": "spring",
+      "year": "2022",
+      "date": "2022-03-25",
+      "notes": [
+        "Written quickly for a match on a dating app. She thought it was cute.",
+        "She then told him she had a child. At twenty-one he knew he would not be the one to step into that, and said nothing further.",
+        "He dates his policy of not investing in strangers to this one."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 9
+    },
+    {
+      "slug": "11temp--02-temp",
+      "text": "Waking up to a dull dream\nLaying still wishing for the past\nRipe fruit not as sweet as it seems\nA deep regret surfacing at last\n\nFor what purpose am I contending?\nFor a pointless struggle, never-ending?\n\nAs I looked into my shattered reflection \nI prepare the tools for a wretched dissection \n\nFalling for a future in the making \nBut failing to negotiate the cost\nWith a wavering conviction overtaking \nHappiness' sweet home slowly became lost\n\nEmotions swirl violently down the drain\nUntil finally all that's left is pain \nAnd a dreadful aching destroys my brain \nCeaselessly repeating this pounding refrain \n\nI hate you. \nI hate you. I hate you so much.\n\nLeave me alone.\n\nBegging for attention \nYou're my sanity prevention \n\nI wish for such delight \nAs to see you rotting in my sight\n\nAnd your crocodile tear\nReminding me never to draw near\n\nTo watch you suffer from afar\nBrings me a pleasure to nothing par\n\nHoping you will one day fall\nAnd I stand towering above you tall\n\nFor you to realize your flaw \nAnd to be humbled enough to crawl \n\nI pray you'll never come back to me \nAnd if you do, please perform my lobotomy\n\nBecause I'd rather choke on air\nThan be near you or your presence there \n\nIt's not your fault I feel this way\nIt's an illness I would like to say\nI really just need help \nAnd nobody seems to truly care because why would they? There's nothing in it for then to listen to a schizophrenic God complex autist. And for the kindhearted people who do care, I always treated them with skepticism because in my experience relationships have always been transactional and therefore they must have some ulterior motive. I was naive to trust the one person who gave me a chance. I thought things would finally become good, but in reality, life is not a fairy tale. Those few weeks were the happiest I have ever been in my life and nothing else even compares to the elation and joy I felt waking up each day I was deluded by thinking there was someone who wanted me. I am at my witts end and am unable to cope. Nobody will truly love me, as I am marked. Marked with autism or an ugly face or something hidden to me. There is no cope, only contending with fate. Struggling is all I can do. I am a good swimmer, but I will eventually sink in water without a life vest. I thought I had a life vest. Even only if temporarily, until I realized it was only a piece of driftwood. But the hope of the life vest is enough to keep going. Keep going, keep coping. Keep going and keep coping. Until I run out of going or I run out of coping. Inb4 \"false dichotomy\" . I will not consume corn syrup and I will not just be happy consuming.",
+      "title": "Temp",
+      "written": "Jun 25, 2022",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "39",
+      "length_band": "long",
+      "season": "summer",
+      "year": "2022",
+      "date": "2022-06-25",
+      "notes": [
+        "Something close to a breakdown, written down.",
+        "On his expectations of women and of conventional relationships, and on being mocked for being direct about either.",
+        "39 lines. Filed under a placeholder title he never replaced."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 10
+    },
+    {
+      "slug": "12falling-words--02-caler-lol",
+      "text": "Standing here \nFace to face \nYet worlds apart\n\nTears welling up\nHolding back the truth \nOf a future undefined \n\nLooking eye to eye \nI see the end \nSo crystal clear \n\nA withered rose \nFalling sideways \nShattering the pane \n\nCorrupting image \nFreeing my mind \nLet it be \n\nA piece of me\nI see in you\nSo wonderfully \n\nYet I speak these words\nAnd you hear me not \nHelplessly \n\nA change I have yet to make \nA feeling I have yet to break \nStealing my will to be \nTearing at my sanity \n\nWhy can I reach any goal\nExcept the one to make me whole \nStriking out every pitch you've thrown \nIn this sad game that's become my home\n\nWhat will it take for you to know me \nMaybe such a day will never be \nI can't let you go without great pain \nBut with you too I may not remain ",
+      "title": "Caler lol",
+      "written": "Aug 16, 2022",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "33",
+      "length_band": "long",
+      "season": "summer",
+      "year": "2022",
+      "date": "2022-08-16",
+      "notes": [
+        "About Caler. The title says so.",
+        "He was happy, then worked out it probably could not go anywhere, and did not want to repeat the four failures before it."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 11
+    },
+    {
+      "slug": "12falling-words--04-here",
+      "text": "An evening mist cascades across barren land\nAn orange moon hums a melancholy tune\nA September pumpkin sprouts into bloom\nThe scarecrow weeps at his useless hands\n\nThe nightingale singing faithfully\nDrowns in the crow's vast shadow\nI hear it\nI feel it \nBut it's not to be seen, yet\n\nA star glimmering on the horizon \nFalls to me from heaven \nI see it\nI feel it\nBut it's not to be realized, yet\n\nA familiar scent drifting amid the air\nReminds me of my home \nI cherish it\nI feel it\nBut it's not to be embraced, yet\n\nA blackened canvas against the empty night \nThe intentional drop added to an endless sea\nOvercome with the fear of what might not be\nStaking my heart on such a meaningless fight",
+      "title": "Here",
+      "written": "Aug 16, 2022",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "23",
+      "length_band": "long",
+      "season": "summer",
+      "year": "2022",
+      "date": "2022-08-16",
+      "notes": [
+        "Autumn again, and the days getting shorter.",
+        "On being honest versus protecting himself."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 11
+    },
+    {
+      "slug": "12falling-words--05-idk-lol",
+      "text": "Swelling with fury, the moon waxes full \nEnthralling the stargazers with a vicious pull\n\nA gate sealed tightly before the dead of night \nAn impassable obstacle blocking all sight\n\nHow many tries might it take to unmake?\nHow many times to correct that mistake?\n\nRegret.\n\nAlas, the malady having run its course \nVivacity dissipating with no recourse\n\nBelieving in a hope beyond the twilight \nThinking my efforts enough to make right\n\nWondering what lies beyond immolation\nMy prayers dwindle, longing for salvation \n\nTranquility I fought so hard to find\nLying dormant here inside my mind\n\nBrought explicitly into view \nWhile pondering what are you",
+      "title": "Idk lol",
+      "written": "Aug 16, 2022",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "17",
+      "length_band": "short",
+      "season": "summer",
+      "year": "2022",
+      "date": "2022-08-16",
+      "notes": [
+        "The same question, still unresolved."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 11
+    },
+    {
+      "slug": "13-pride--02-now",
+      "text": "Awakening from a slumber deep\nFeeling so strange but so unique \n\nI see the sun rise and make its way \nInto the sky to begin the day \n\nBut one also rising with a glory \nSetting out forth to write history \n\nA sublime pride filling the stride \nWhen it's you I'm walking beside\n\nAll the worries, doubts, and fear\nStand no chance when you draw near\n\nYou, my sword, shield, and heart\nYou, my Lord's best work of art",
+      "title": "Now",
+      "written": "Sep 19, 2022",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "12",
+      "length_band": "short",
+      "season": "autumn",
+      "year": "2022",
+      "date": "2022-09-19",
+      "notes": [
+        "Written while happy. Probably just after meeting Caler."
+      ],
+      "moods": [
+        "happy"
+      ],
+      "ci": 12
+    },
+    {
+      "slug": "13-pride--03-schizo-rant-lol",
+      "text": "The feeling of mutual attraction is the highest good in life. Nothing is more central to the fundamentals of conscience feeling than is affirmation of the self by the other. The desiring of the self from the other and the desiring of the other by the self. \n\nThe mind exists and because of this it plays a role in shaping its surroundings. But to what extent the mind can influence the physical world is determined by limits beyond the mind itself. ",
+      "title": "On Mutual Attraction",
+      "written": "Sep 19, 2022",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "2",
+      "length_band": "epigram",
+      "season": "autumn",
+      "year": "2022",
+      "date": "2022-09-19",
+      "notes": [
+        "Filed as \"Schizo rant lol\". Retitled at his request.",
+        "Two lines. Written after an evening with Caler that stopped short and left him elated.",
+        "Short, and he kept it anyway."
+      ],
+      "moods": [
+        "happy"
+      ],
+      "ci": 12
+    },
+    {
+      "slug": "13-pride--04-the-veil",
+      "text": "Donning the mask \nEmbracing the stage \nEnduring the task \nEluding the sage \n\nStepping out into the performer's light \nSuppressing the urge to give in to flight\nThe crowd cheers, anticipating the show \nThe curtain retreats, lights dimming low\n\nAn empty stage, full of potential \nStarting the play, the silence torrential\n\nShattering the frigid stiffness of the air\nA colorful display bursting with flair \n\nYou enter the stage, exuding such delight \nYou enter the stage, claiming my sight\n\nExpressing the story with such great passion\nCaptivating the senses with heavenly fashion \n\nYou danced with grace til the curtain call \nAnd hid your face, the veil soon to fall\n\nBut I know better than to see you for \nWhat you keep secret behind locked door\n\nWhen everyone sees your masks in awe\nThe true face beyond the veil I saw \n\nUshering in feelings never known before \nInexhaustible in nature and growing more\n\nFleeing the stage you depart from gaze\nEntrancing my heart in a stunning daze\n\nSuch a lovely spectacle you put on display \nCreating new feelings in such a vivid way ",
+      "title": "The veil",
+      "written": "Sep 19, 2022",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "28",
+      "length_band": "long",
+      "season": "autumn",
+      "year": "2022",
+      "date": "2022-09-19",
+      "notes": [
+        "For Anna, after a Discord call. There had been e-sports drama and a long cooling-off.",
+        "On polite society, and the parts people agree to play."
+      ],
+      "ci": 12
+    },
+    {
+      "slug": "13-pride--05-time-to-time",
+      "text": "Another hollow day passes again \nAs I wonder how you've been \nI can't remember when we last talked\nThe feelings of regret just never depart\n\nNow time starts ticking again\nAs my worries flood back in \nOnly wishing for one final time\nFor the chance again to make you mine\n\nYour words filling my barren mind \nPiercing my heart so sweet and kind\nWith empty promises all that remain \nWill I never overcome this pain?\n\nNot too late to say goodbye \nI should have checked on you from time to time\nThese feelings oh so real I can't deny \nI had the chance back then I shouldn't have shied away",
+      "title": "Time to time",
+      "written": "Sep 19, 2022",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "16",
+      "length_band": "short",
+      "season": "autumn",
+      "year": "2022",
+      "date": "2022-09-19",
+      "notes": [
+        "Caler was moving back to Wisconsin after graduation, to raise horses.",
+        "That settled it."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 12
+    },
+    {
+      "slug": "13-pride--06-dragon",
+      "text": "Emerging from the lake of fire \nDemonic heart filled with ire \nBound together by a spiteful hate \nOverwhelming with a force so great \n\nPure destructive spirit free\nCorrupting all the eye can see\nRipping apart what I call me \nBringing an end to all that be \n\nBehold, the Prophet of Pain \nDespair at the name \nWitness his solemn refrain \n\nBehold, the Arbiter of Love \nSeek protection from above \nAs delicate as a dove \n\nBehold, the Demiurge of Desire \nEnjoy the great amplifier \nBelieve in his justifier\n\nClawing at the seams\nScreaming for release \nCrushing others' dreams\nObtaining all-pervading peace \n\nTo slash a life before its due time\nTo spoil the sacred banquet of saints\nTo trample over what you hold divine \nTo relish in your unwarrented agony \n\nAll tributes for my Dragon's feast \nAll things I couldn't care for in the least",
+      "title": "Dragon",
+      "written": "Sep 19, 2022",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "27",
+      "length_band": "long",
+      "season": "autumn",
+      "year": "2022",
+      "date": "2022-09-19",
+      "notes": [
+        "Written with nowhere to put any of it.",
+        "What he remembers is the energy coming back afterwards."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 12
+    },
+    {
+      "slug": "13-pride--07-alter-ego",
+      "text": "The new moon hums her sweet tune \nAs silver light cascades into placid waters \nUntouched by the rest of the world \nIsolated from senseless, mean vulgarities\n\nAlone, I gaze at the pool of omneity \nSerenity taking hold of all of my senses \nI ponder my calling from the depths below\n\"Swim, swim, swim, to your dance with me.\"\n\nAnd soon enough, I've caught myself adrift \nRecklessly persuaded by your innocent eyes \nDefying the laws I've guarded so devoutly\n\"Seek, seek, seek, find your peace in me.\" \n\nOne hundred billion stars guide your touch\nNever leaving room for a second judgment \nTime awaits your delicate decrees patiently \n\"Go, go, go to your secret place.\" \n\nAs I snap back to my substantial sense of self\nWith the taste of bliss lingering on my lips \nFragments of a forgotten past flood back in\nConvincing myself I despise the new moon so",
+      "title": "Alter Ego",
+      "written": "Sep 19, 2022",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "20",
+      "length_band": "short",
+      "season": "autumn",
+      "year": "2022",
+      "date": "2022-09-19",
+      "notes": [
+        "For Peyton, newly met at the gym.",
+        "Title borrowed from an obscure Eurobeat track of the same name.",
+        "They did end up dating."
+      ],
+      "moods": [
+        "happy"
+      ],
+      "ci": 12
+    },
+    {
+      "slug": "14-style--02-style-with-a-capital-s",
+      "text": "Waking up with a dream in hand \nWaking up to an unimaginable land \nA blanket of warmth protecting my skin \nUshering a new age of paradise in \n\nI lose my sense of self in your sincere eyes \nI see your sweet style that soothes the soul \nBeholding the world's most worthy prize \nRecognizing the becloudings of my goal\n\nSeeking far and wide with seemingly no end\nThe fruit of my labor, making a new friend",
+      "title": "Style - With a capital S",
+      "written": "Oct 4, 2022",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "10",
+      "length_band": "short",
+      "season": "autumn",
+      "year": "2022",
+      "date": "2022-10-04",
+      "notes": [
+        "For Emma, a new friend. As direct as he was, and not interested beyond friendship.",
+        "He showed it to her partly to find out where he stood."
+      ],
+      "moods": [
+        "happy"
+      ],
+      "ci": 13
+    },
+    {
+      "slug": "14-style--03-forget",
+      "text": "Every time I look deep into another's eyes \nSomething stirs in me \nThe times we shared, temporary and fleeting\nFragments of our memories \nEven though you've gone far from my side \nI can't dodge this feeling \n\nEven though I'm in another's loving arms\nI long for your healing \nWhy can't I be happy with what I've got\nAppearing perfect on paper\nWhy now, after how long I've sought \nFailing to sate my desire\n\nIt tears at the corners of my heart\nRacing from another's touch\nWondering if it will ever again start\nTo feel the same as it did with you \nHolding onto this worthless attachment\nChipping away at my betterment \n\nIt might have been better if we never met\nI would have far much less to regret\nBy none other than myself I have beset \nLeaving no choice than to try and forget ",
+      "title": "Forget",
+      "written": "Oct 4, 2022",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "22",
+      "length_band": "long",
+      "season": "autumn",
+      "year": "2022",
+      "date": "2022-10-04",
+      "notes": [
+        "An audit of the failures so far, written while things with Peyton were unsettled."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 13
+    },
+    {
+      "slug": "14-style--04-in-other-words",
+      "text": "The tide receding from a sandy shore\nUnder the moonlight night sky\nIlluminates our footprints clearly\nSo as the time together passes by\n\nPausing here, face to face \nI draw upon your wondrous grace \nTo make it known and for you to see \nWhat so freely has been given unto me\n\nThunder in my hand\nThe earth quakes by your command\nFire in my chest \nYour presence brings out my best\nLiberty in stride\nYour conviction strengthens my pride\nVivacity in my breath \nNo longer fearing facing Death \n\nThe stars in your eyes so brightly shining \nFrees the binds on my heart once confining\nAs we walk quietly through the crisp night\nWith everything around us feeling just right\n\nThere's nowhere else I'd rather stay\nThere's nothing else I'd rather say \nIn other words… ",
+      "title": "In other words",
+      "written": "Oct 4, 2022",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "23",
+      "length_band": "long",
+      "season": "autumn",
+      "year": "2022",
+      "date": "2022-10-04",
+      "notes": [
+        "Written for Peyton as a gift on a date. Title from the Sinatra song. The ending is omitted.",
+        "She had given him a Halloween desk ornament, a crow on a skull. He took it as a decent memento mori.",
+        "He is not sure she understood the poem. He wrote it after she said yes."
+      ],
+      "moods": [
+        "happy"
+      ],
+      "ci": 13
+    },
+    {
+      "slug": "15-renew--02-falling-falling-falling",
+      "text": "Falling falling falling\nLike crimson foliage \nForbidden love is the sweetest fruit \nWould you like a bite?\n\nFalling falling falling\nA million beautiful days go by\nVanishing into a daze \nWhen you draw near\n\nCalling calling calling \nFrom a voice nowhere in sight \nSnapping out of trance \nWould you ignite the dynamite?\n\nStalling stalling stalling\nThe darkness on the horizon\nLooming over every prayer\nBlazing sorrowful tears into gold\n\nCrawling crawling crawling \nWitness the birth of a trillion stars\nFrom the blood you've shed \nWhy would you steal such a precious thing?\n\nBawling bawling bawling \nStruck down with no remorse \nWrathful blessings crown the worthy \nEmbroider your heart with every frustration\n\nAppalling appalling appalling \nSeething envy drowning out reason\nTurning the blue moon to gray \nWould you like to paint my misery?",
+      "title": "Falling, falling, falling",
+      "written": "Oct 28, 2022",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "28",
+      "length_band": "long",
+      "season": "autumn",
+      "year": "2022",
+      "date": "2022-10-28",
+      "notes": [
+        "From a Eurobeat track he had on repeat: \"Cicada Shell\", KIHOW, TOHO Euro Splash.",
+        "What he took from it was how little of anything stays."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 14
+    },
+    {
+      "slug": "15-renew--03-nothing",
+      "text": "You were my everything \nEverything that I wished \nEverything that I missed \nIt all returns to nothing \n\nYou kissed my faceless lips\nBringing hope to a desolate heart\nBringing feelings to numbness\nIt all comes back to nothing\n\nYou promised my forever\nLooked into my eyes\nLooked into my lies\nNow my world is ending \n\nYou held my stained hands\nLetting you down \nLetting you drown \nIt all comes back to love\n\nYou endured my prideful pain\nSpending one million years\nSpending one million tears\nIt all returns to nothing \n\nI'll never love again\nTill sweet death comes\n\n\n\"Komm susser tod\" ",
+      "title": "Nothing",
+      "written": "Oct 28, 2022",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "23",
+      "length_band": "long",
+      "season": "autumn",
+      "year": "2022",
+      "date": "2022-10-28",
+      "notes": [
+        "After the end of Evangelion.",
+        "Also after Peyton, and after Caler stopped replying."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 14
+    },
+    {
+      "slug": "16-hedgehog-words--02-junsui",
+      "text": "Too afraid to say\nThe whereabouts of a calloused heart\nToo timid to stay\nFeeling like fate will forcefully depart\n\n\nMelting \nInto a smiling lavender field \nUntil every sensation yield \nAwaiting the peaceful scene \nSo blissfully pristine \n\nSinking\nInto a weightless silver lining\nA beclouding so mystifying \nFamiliarity in those eyes\nA part of me I deeply despise \n\nDrifting\nAway from the me that's not me\nToward the me that I can't be \nThe one held inside your hand\nSurely failing to take command\n\nRegardless,\nYou\nRefuse all extinction \nExist despite distinction \nKill the urge to kill\nSpite the urge to spite\n\nThe puzzle piece I left long ago\nThe self I abandoned to freeze in the snow \nNow shining through its enveloping glow \nClinging onto hope, driving my spirit to grow\n\nPeaceful as water reflecting sweet moonlight\nTranquil as doves sleeping soundly at midnight\nOverwhelming clarity piercing the air\nFinally realizing the answer of my prayer\n\nIs staring right back at me \nJunsui ",
+      "title": "Junsui",
+      "written": "Nov 16, 2022",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "35",
+      "length_band": "long",
+      "season": "autumn",
+      "year": "2022",
+      "date": "2022-11-16",
+      "notes": [
+        "For Emma, whom he was falling for by then. Genuine, in his description, and too sweet for her own good.",
+        "He glosses junsui as sweet. It more precisely means pure.",
+        "They spent a great deal of time together and went on something like a date. Both too anxious to do anything further about it."
+      ],
+      "moods": [
+        "happy"
+      ],
+      "ci": 15
+    },
+    {
+      "slug": "17-seraphim--02-seraphim",
+      "text": "seraphim, im  torn between worlds, of what i believe and i think is real\nseraphim, oh what will it be, do you think its worthy of saving\nwhen things fall apart, and back to the start, will you see how long ive been waiting\nseraphim, im torn between worlds, what i think and what i feel\nout from  your heart, bound from the start, eternal wonder embracing\nseraphim, i see where you live, not a place, nor a feeling\ntaking my hand, as we once began, into the light of surveilling\nseraphim, im lost between worlds, what i cant see and what i cant know\nagain and again, send or rescind, the tide calls me back to your interstice\nseraphim, oh why cant i be, what you need, or what you think true\nend and an end, your voice i defend, until theres nothing but bleeding\nseraphim, oh why is it me, the one you chose to uphold the duty\nthe one you cant be, the one who's not seen, the one who's not worthy of mending\nseraphim, please lie to me, i know you more than you do\nretreat through the weeds, abandon those deeds, but you wont i know you too well\nseraphim, i need you to look at what you already know\nseraphim, whatever it be, I believe you wont let me go",
+      "title": "Seraphim",
+      "written": "Jan 7, 2023",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "17",
+      "length_band": "short",
+      "season": "winter",
+      "year": "2023",
+      "date": "2023-01-07",
+      "notes": [
+        "Written in one sitting, straight into a DM, for a girl named Sophia.",
+        "He was deep in Gnosticism and chaos magic theory, and read the coincidence of her name as a message.",
+        "They had started a philosophy club together. The synchronicities accumulated from there.",
+        "Also prompted by a Eurobeat track called Seraphim.",
+        "By his own account he was word-salading at her. She half liked it."
+      ],
+      "moods": [
+        "happy"
+      ],
+      "ci": 16
+    },
+    {
+      "slug": "17-seraphim--03-wilt",
+      "text": "Saturn outshines the stars so blindingly\nPushing our paths to bend so windingly\nFeeling my freedoms condemned to wilt\nReaping the rewards He whimsically will't",
+      "title": "Wilt",
+      "written": "Jan 7, 2023",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "4",
+      "length_band": "epigram",
+      "season": "winter",
+      "year": "2023",
+      "date": "2023-01-07",
+      "notes": [
+        "Four lines, one sitting, looking at a full moon."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 16
+    },
+    {
+      "slug": "17-seraphim--04-rose",
+      "text": "A rose petal drifted downstream\nAnd brought me a timeless dream.\n\nThat placates the tumultuous tide,\nWith just one gaze.\nThat breezes the stifling stillness,\nWith just one graze.\n\nThat rose who felt so soft and sweet,\nShe swiftly swept me off my feet.\nAnd to my soul, she gently speak,\nWith a resonating voice, tone unique.\n\nMy rose, gently swaying so heavy a heart.\nDancing toward peace, just before we depart.\nFor Time unyielding, he plans to tear us apart, \nYet our love existed, even before his start.",
+      "title": "Rose",
+      "written": "Jan 7, 2023",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "14",
+      "length_band": "short",
+      "season": "winter",
+      "year": "2023",
+      "date": "2023-01-07",
+      "notes": [
+        "A crush. Probably Sophia."
+      ],
+      "moods": [
+        "happy"
+      ],
+      "ci": 16
+    },
+    {
+      "slug": "17-seraphim--05-mary-hagia-sophia",
+      "text": "When I looked, it wasn't there.\nSo I listened while She spoke.\nWhat I dreamed, I wouldn't dare. \nSo I slept until She awoke.\n\nAnd opened blind eyes with truth divine.\nAccepting her gifts as rightfully mine,\nI’ve reconciled my right and wrong.\nAnd see that to my other half, I belong.\n\nGently lowering her hands to me,\nShe embraced tightly, with sincerity.\nThrough the weary heart’s endless days,\nThat fleeting feeling, yet timeless stays. \n\nTo assuage the anger, sorrow, and rage,\nShe tames the truculent tiger encaged.\nAnd by gracious touch and subtle art,\nShe mends the wounds once torn apart.\n\nShe, the cure to all that ails.\nShe, the wind behind my sails.\nWithin her eyes, a tranquil sea,\nThat fills my heart, eternally.\n\nWhile I gaze upon the starry sky,\nMemories of her flash on by. \nThough trillions of stars shine above,\nHer smile eclipses them all with love.\n\nLet us, beneath the moonlight, dance.\nAnd never again miss this chance.\nTo share the rhythm of our hearts,\nAndn’t quell a love before it starts.\n\nIf more than words are needed to,\nProve the depth of my love so true,\nThen take my hand, I’ll promise you,\nMy life, my future, my all, I do.",
+      "title": "Mary ( Hagia Sophia )",
+      "written": "Jan 7, 2023",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "32",
+      "length_band": "long",
+      "season": "winter",
+      "year": "2023",
+      "date": "2023-01-07",
+      "notes": [
+        "Definitely Sophia. He was in love with her, and studying Gnosticism, and by then the two were not separable.",
+        "Hagia Sophia means Holy Wisdom. He was aware of that."
+      ],
+      "moods": [
+        "happy"
+      ],
+      "ci": 16
+    },
+    {
+      "slug": "18spring-season--03-mary-hagia-sophia-2",
+      "text": "As the rhythm starts,\nFrom our drumming hearts,\nTime stops.\n\nRacing towards the past,\nHours never last,\nFor us.\n\nStanding beside you,\nMy feelings renew,\nAs we,\n\nWith farewell in mind,\nOur hands in a bind,\nDepart.\n\nRemember time shared,\nAnd how our fates paired,\nForever.\n\nFar from being lost,\nOr found at a cost,\nYet I know.\n\nThe sorrow I bear,\nThe promise I swear,\nYou are,\n\nSo close yet so far,\nThe memories are,\nAlways mine.\n\nNote: Read the last line of each block.",
+      "title": "Mary (Hagia Sophia) 2",
+      "written": "Mar 11, 2023",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "25",
+      "length_band": "long",
+      "season": "spring",
+      "year": "2023",
+      "date": "2023-03-11",
+      "notes": [
+        "A double poem. Read the last line of each group for the second one.",
+        "Written as his undergraduate degree ended, when he thought he would not see her again.",
+        "The choice in front of him was to escalate or to stop. He wanted to stay."
+      ],
+      "moods": [
+        "happy"
+      ],
+      "ci": 17
+    },
+    {
+      "slug": "19-sophia--03-eternity",
+      "text": "The promise from an Angel's lips \nSo joyous that my whole heart skips\n\nThough time and space us separate \nOur futures freely formed our fate \n \nThe key to Heaven clearly here \nI know it true when you drawn near \n\nThe answer to all inquiry \nLies solely in eternity ",
+      "title": "Eternity",
+      "written": "Jun 3, 2023",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "8",
+      "length_band": "epigram",
+      "season": "summer",
+      "year": "2023",
+      "date": "2023-06-03",
+      "notes": [
+        "About Sophia, like the rest of this chapter."
+      ],
+      "moods": [
+        "happy"
+      ],
+      "ci": 18
+    },
+    {
+      "slug": "19-sophia--05-that-wise-butterfly-came-in-through-my-dream-and-returned-to",
+      "text": "The full moon cloaked in thunderous skies,\nAlone in darkness, with restless mind.\nMemories of you, make my heart rise,\nTo my soul's perfect home, sweet and kind.\n\nHer touch so tender, her smile so shy,\nGates of Heaven lying in her eyes.\nLove on our lips, we do not deny,\nThat stirring feeling of butterflies.\n\nYet Time demands us remain apart.\nSo with my whole Spirit I will fight,\nThrough Hell to reclaim my other heart.\nNever stopping until she is Wright. \n\nAnticipating that sacred day,\nI steel myself and patiently pray.",
+      "title": "That wise butterfly came in through my dream and returned to me the words that be:",
+      "written": "Jun 3, 2023",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "14",
+      "length_band": "short",
+      "season": "summer",
+      "year": "2023",
+      "date": "2023-06-03",
+      "notes": [
+        "From a dream. The title is most of the poem."
+      ],
+      "moods": [
+        "happy"
+      ],
+      "ci": 18
+    },
+    {
+      "slug": "20-six-o-clock--02-fatima-fa-ti-ma",
+      "text": "Tenacious eyes,\nFree the warmth wrapped in a dormant spirit.\n\nFamiliar voice,\nMends the memories of sundered worlds.\n\nStylish soul,\nEchos the homeless heart's rhythmic dance.\n\nUnseen moon,\nForces Fate's hidden hand into action. \n\nBeckoning tides,\nWash away the penumbra of uncertainty. \n\nUncharted maps,\nDisclose the precision of secret treasures.\n\nConcealed semaphores,\nReveal the reality within the right direction.\n\nPaused time,\nAffords only us this momentary recognition.",
+      "title": "Fatima (Fa ti ma)",
+      "written": "Jul 22, 2023",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "16",
+      "length_band": "short",
+      "season": "summer",
+      "year": "2023",
+      "date": "2023-07-22",
+      "notes": [
+        "For a woman from the gym, between relationships.",
+        "He had coached her on deadlifts, largely to stop her loading more than she could hold.",
+        "He never showed her the poem, but told her it existed."
+      ],
+      "moods": [
+        "happy"
+      ],
+      "ci": 19
+    },
+    {
+      "slug": "21-the-undertaker--03-aun-ahora-hora-cambiado",
+      "text": "Mi corazón está lleno y vacío, // My heart is full and empty\nTú eres demasiado y suficiente. // You are too much and enough\nMi tiempo es satisfactorio y insatisfactorio, // My time is worthwhile and worthless\nPorque eres mi primera y mi final. // Because you are my first and final\n\nCuando la hora ha cambiado, // When the hour has changed\nCuando ha dado un giro inesperado, // When the tables have turned\nCuando ahora eres sólo recuerdo, // When you are only memory\nY ya no frente de mi. // And you are no longer near me\n\nAún ahora, todavía siento el zumbido, // Yet now, I still feel the thrumming\nDel corazón que me diste. //  Of the heart you gave me. \nY cuando el sonido de mi corazón se desvanezca // And when the sound of my heart fades\nEspero que sientas lo mismo, // I hope you feel the same\n((pero entiendo si no es tu caso.)) // ((But I understand))",
+      "title": "Aún Ahora - Hora Cambiado",
+      "written": "Sep 2, 2023",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "13",
+      "length_band": "short",
+      "season": "autumn",
+      "year": "2023",
+      "date": "2023-09-02",
+      "notes": [
+        "He was learning Spanish for Sophia, and had her proofread this.",
+        "She told him the grammar was bad. He agrees.",
+        "It did not deter him."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 20
+    },
+    {
+      "slug": "21-the-undertaker--05-the-undertaker",
+      "text": "Two soulless pupils staring back at me,\nNothing else reflected off that vacant sea.\n\nDrawing in an ocean of blood \nSlaughtered \n\nDead eyes never again blink.\nSevered throats never again shriek.\n\nThrown into Satan's sinister thrall,\nHelpless. My hands delivered them all.\n\nHave to kill \nSo you know exactly how it feels \n\n\nDrown in a sea of blood\n\nDestined to die beneath her corpse \n\n\nMeant to rot in a cesspit of despair \n\nMeant to die as a waste of air\n\nRaised as a child ashore of hate \n\nNever to death be slain\n\n\nDon't feel a thing \n\n\nSenses all but gone \n\n\nCan't cry from the pain \n\nNot the same\n\nI may not be what I think I am \n\n\nWhat am I?\nStoker of the flames \n\n\nAsh coated lungs \n\nBrimstone stained skys \n\nI want to survive \n\nJust about to die \n\nFaster ",
+      "title": "The Undertaker",
+      "written": "Sep 2, 2023",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "28",
+      "length_band": "long",
+      "season": "autumn",
+      "year": "2023",
+      "date": "2023-09-02",
+      "notes": [
+        "From Berserk, and from Guts.",
+        "Unfinished in places. Kept anyway."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 20
+    },
+    {
+      "slug": "21-the-undertaker--06-9-4-2023",
+      "text": "i need to find my peace\ni cannot exist in this limbo interstice between worlds much longer\nan ounce can feel like a ton and a ton like an ounce\nthere can be a million reasons not and one reason for, and a million reasons for and one  reason not\nwhichever decision you make was already made before, it merely unfolds\nbut what is dead should stay dead and what is alive should remain alive, worlds should not intersect\nI have been keeping alive what I feel might no longer be possible by my own efforts\nyou have time, but just enough time to make up your mind\nelse I am unable to keep the facade any longer\nid rather speak face to face than through the veil of uncertainty\nand I am unable to process this less it is through prose\nsorry for dancing around the topic\nbut I need to know\nshould i stay or should I go\nwhich would make you happier I need to know\nI need to finally reap what I have sown",
+      "title": "I Need to Find my Peace",
+      "written": "Sep 2, 2023",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "16",
+      "length_band": "short",
+      "season": "autumn",
+      "year": "2023",
+      "date": "2023-09-02",
+      "notes": [
+        "Filed under its date. Retitled at his request.",
+        "Written in a transitional stretch: texting Sophia on and off over the summer, then deciding to come back for graduate school.",
+        "He thinks it began as a Discord message that got away from him."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 20
+    },
+    {
+      "slug": "22-live--02-try",
+      "text": "Drinking this glass,\nReminiscing our past.\n\nTasting sweet cherry wine,\nWishing you’d be mine.\n\nBurning my throat,\nSavoring all we wrote.\n\nThough these feelings fleeting,\nMany mistakes worth repeating.\n\nEmptying this cup,\nKnowing the time’s up.\n\nRegretting only one thing,\nBecoming merely a fling.\n\nKnowing the reasons why,\nOur romance must die,\n\nSo let this be our final goodbye,\nLest you, too, are longing to re-try.",
+      "title": "Try…",
+      "written": "2023-09-22",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "16",
+      "length_band": "short",
+      "season": "autumn",
+      "time_of_day": "21:31 (night)",
+      "year": "2023",
+      "date": "2023-09-22",
+      "notes": [
+        "Written while considering a glass of wine and some chicken tenders.",
+        "He never took to drinking, but kept the occasional glass for the look of it. It made him mildly sad every time.",
+        "There is a photograph that goes with this one."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "image": {
+        "file": "try.jpg",
+        "caption": "The wine and the chicken tenders, as described."
+      },
+      "ci": 21
+    },
+    {
+      "slug": "22-live--04-sublime-shadows",
+      "text": "(Hearing them all, faint whispers call…)\n(Summons I heed, a future freed…)\n\nSeasons revolve, hurt hearts evolve.\nSun soon reclines, new moonlight shines, \n\nFruit from the tree, reveal the key,  \nDare destiny, God’s mission see.\n\nVast visions of, Heavenly love,\nSerenity, infinity.\n\nSaturn’s blessing, fate progressing,\nUnleashing thee, to capture me.\n\nWith single gaze, cast worlds ablaze.\nBeyond black eyes, burning truth lies,\n\nHer touch unknown, yet like my own.\nAngelic grace, spurs my heart’s pace.\n\nDivinely planned, within my hand, \nFor right or wrong, we both belong.\n\nTo Death’s dire grips, equal eclipse,\nEmpty echoes, sublime shadows.",
+      "title": "Sublime Shadows",
+      "written": "2023-09-22",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "18",
+      "length_band": "short",
+      "season": "autumn",
+      "time_of_day": "21:31 (night)",
+      "year": "2023",
+      "date": "2023-09-22",
+      "notes": [
+        "On his prayers, on Saturn, and on chaos magic.",
+        "Also on meeting Alexis."
+      ],
+      "ci": 21
+    },
+    {
+      "slug": "23-you--03-among-us-poem-for-my-birthday",
+      "text": "Many go their entire lives thinking, seeking, and asking. \nSubsisting solely on the fleeting fruits of their acting.\n\nBut I’ve tasted the tranquility at the heart of non-action.\nAs our souls danced among the stars with sweet satisfaction. \n\nHumbly heeding God’s gracious gift of such understanding:\n“Finally, in being found, you will find your everything.”",
+      "title": "\\[AMONG] Us  (Poem for my birthday)",
+      "written": "2023-10-15",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "6",
+      "length_band": "epigram",
+      "season": "autumn",
+      "time_of_day": "22:12 (night)",
+      "year": "2023",
+      "date": "2023-10-15",
+      "notes": [
+        "A birthday poem, and a deliberately funny one.",
+        "On his own inaction, which by this point he found amusing."
+      ],
+      "moods": [
+        "happy"
+      ],
+      "ci": 22
+    },
+    {
+      "slug": "23-you--04-seasons",
+      "text": "All this life is such\nBut to own, his each\n\nClose enough to touch\nYet too far to ever reach\n\nI stare at my puzzled face\nWhile facing worlds apart\n\nSave for a moment’s grace\nFar too soon we depart\n\nAnd hear these thoughts clearly\nYou must wear each burial mask\n\nDesperate to hold on so dearly\nCompelled to complete each task\n\nSpeaking through what’s not said \nPay your debts before its too late\n\nI sing my melody for the dead\nTo get just revenge for such hate \n\nTo revive the fragmented spirit \nYou’ve had ",
+      "title": "Seasons",
+      "written": "2023-10-15",
+      "written_precision": "file-dated",
+      "era": "pre-ai",
+      "lines": "18",
+      "length_band": "short",
+      "season": "autumn",
+      "time_of_day": "22:12 (night)",
+      "year": "2023",
+      "date": "2023-10-15",
+      "notes": [
+        "On change, and on perspective. Unfinished."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 22
+    },
+    {
+      "slug": "24-new-a-season-s-change--02-music-over",
+      "text": "Betwixt our fates a wonderous dance,\nThat stoked pure flames of fiery romance.\nSide by side, we stepped to the tune,\nSoaring our love long over the moon.\n\nTides of fortune brought upon my shore,\nAn angel, from God, I could not ignore.\nShe opened my eyes to something unknown,\nWithin her soft hands, my heart’d tenfold grown.\n\nThough our hours together, seemed to last forever,\nHoping I’d never depart, this home for my heart,\nNow clearly watching tears mix, with the tides receding,\nIn the echoes of waves, hear our song finally retreating.",
+      "title": "Music Over",
+      "written": "2023-12-10",
+      "written_precision": "file-dated",
+      "era": "post-ai",
+      "lines": "12",
+      "length_band": "short",
+      "season": "winter",
+      "time_of_day": "22:19 (night)",
+      "year": "2023",
+      "date": "2023-12-10",
+      "notes": [
+        "Named for a Super Eurobeat track he liked. The poem has nothing of the song in it.",
+        "This one is about the moment the music stops.",
+        "It marks the end of things with Alexis, a few months after they started."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 23
+    },
+    {
+      "slug": "24-new-a-season-s-change--03-2023-12-23",
+      "text": "Partial Poem at gym\n\nMomentary recognitions \nGroundless superstitions\n\nDancing beyond perception\nCircumscribing limitless affection\n\nThe words she's not saying \nThe prayers you’re not praying \n\nRinging loud in vast silence \nCursing quietly in deaf defiance ",
+      "title": "[[2023-12-23]]",
+      "written": "2023-12-10",
+      "written_precision": "file-dated",
+      "era": "post-ai",
+      "lines": "9",
+      "length_band": "short",
+      "season": "winter",
+      "time_of_day": "22:19 (night)",
+      "year": "2023",
+      "date": "2023-12-10",
+      "notes": [
+        "A fragment, written at the gym. He thinks between sets of squats.",
+        "Cross-referenceable against his training spreadsheet, if anyone cared to.",
+        "Incomplete, and marked as such."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 23
+    },
+    {
+      "slug": "25-affective--02-cant-change",
+      "text": "```\nDon’t you ever wonder why\nNothing ever seems to change.\nAnd if it does its for the worse…\n```\nHaven’t you been left alone,\nSuch a warm heart, charred to stone.\nHaven’t you been lost, then found,\nOnly to be tossed around.\n\nHold your breath, let others speak.\nWhy is every word so bleak?\nGlad you’re here, let’s not pretend.\nWhy won’t this Hell ever end?\n\nClose your eyes, but never sleep,\nPromises weren’t made to keep.\nOpen them again, once more,\nFind the same thing at your door.\n\nHey, don’t you know?\nWe’re freely forced to share this fate, and…\nHey, don’t you see?\nDespite the change, we’re still the same.\n\nThat burning question of the soul,\nRampaging wild without control.\nTo free the shackles of such doubt,\nI would gladly tear my heart out.\n\nWell, what do you say?\nDo you really want a change?\nKnowing you’ll never truly change?\n\nWell, what do you think?\nDo you really want to change?\nEven if things end up just the same?\n\nSomething old, now new, feels strange.\nSomething, it appears, has changed.",
+      "title": "(Can’t) Change",
+      "written": "2024-09-07",
+      "written_precision": "file-dated",
+      "era": "post-ai",
+      "lines": "33",
+      "length_band": "long",
+      "season": "autumn",
+      "time_of_day": "14:12 (afternoon)",
+      "year": "2024",
+      "date": "2024-09-07",
+      "notes": [
+        "The opening lines are lifted from Oingo Boingo's \"Change\".",
+        "On expectations being overturned, and on the thing that actually changed being his reading of them.",
+        "He notes he was no longer naive, or indefinitely hopeful.",
+        "The nine-month silence before this poem, and the six after it, are not an accident of the archive."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 24
+    },
+    {
+      "slug": "26-bee-leaf--02-a-bee-leaf",
+      "text": "_(after the sound of rain)_\n\nA bee leaf drifts —\n… As Yews watched, \n\nFalling from the vine —\n… Around it whorled,\n\nPassed misty trees —\n… Seeing new roots,\n\nCrossing the vale —\n… It lightly soared,\n\nDueling rain for sky —\n… Thrown far too high,\n\nAcross the pond — \n… Or to the shore,\n\nJust its choice luck —\n… And fate’s hand nigh,\n\nBelow clear water lies —\n… A lotus’ flower spry,\n\nWith seaward sun setting, the little lotus sighed, — \n… “Come, let your bee leaf rest at my side.”\n\n\n\n\n\n\n\n\n\n\n\n\n\n\na belief wavers, as you(r)(s) (selves) watch,\nit falls from divine, to go all around the world\npassing the mysteries (of the past), to see new routes\ncrossing the veil of illusion, a bright light of clarity revealed\nduality reigns above all in this world, with its throne way too high to contest\nyet still there’s a cross (of Christ) to ponder or to be sure in\nBy justice, action, luck, or fate almost intervening\nYou can (clearly) see past the obvious lies, that there is a lot of good (blooming flowers of life)\nThe Son (of God) said (set) the words (for you to see) as delicately as a flower and slightly worn out from the commotion, but ultimately grants rest to the restless belief through faith  \n\nChatGPT got close:",
+      "title": "'A Bee Leaf'",
+      "written": "2025-03-25",
+      "written_precision": "file-dated",
+      "era": "post-ai",
+      "lines": "29",
+      "length_band": "long",
+      "season": "spring",
+      "time_of_day": "21:50 (night)",
+      "year": "2025",
+      "date": "2025-03-25",
+      "notes": [
+        "A double poem. Read it for sound and you get one poem; for sense, another.",
+        "On belief altering the thing it looks at, and on words doing the altering."
+      ],
+      "moods": [
+        "happy"
+      ],
+      "ci": 25
+    },
+    {
+      "slug": "26-bee-leaf--03-a-bee-leaf",
+      "text": "_(phonetic unraveling)_\n\n> **A bee leaf drifts —**  \n> → _A belief drifts._  \n> (Belief leaving, departing.)\n\n> **As Yews watched,**  \n> → _As you watch._  \n> (You, the witness. The observer.)\n\n> **Falling from the vine —**  \n> → _Falling from divine._  \n> (Separation from God, source, union.)\n\n> **Around it whorled,**  \n> → _A round world._  \n> (The cycle, the samsara, the karmic spin.)\n\n> **Passed misty trees —**  \n> → _Past mysteries._  \n> (Leaving mystery behind—or passing through it.)\n\n> **Seeing new roots,**  \n> → _Seeing new routes._  \n> (New paths, foundations, beginnings.)\n\n> **Crossing the vale —**  \n> → _Crossing the veil._  \n> (Threshold. Between worlds. Between self and soul.)\n\n> **It lightly soared,**  \n> → _Enlightly sword._  \n> (Enlightenment / sword: discernment, slicing illusion.)\n\n> **Dueling rain for sky —**  \n> → _Do you long, reign for sky?_  \n> (A longing, a reaching, a spiritual struggle.)\n\n> **Thrown far too high,**  \n> → _Throne far to high._  \n> (Attempting to ascend, to reach a throne or height not meant for now.)\n\n> **Across the pond —**  \n> → _A cross uponed._  \n> (Crucifixion. Burden. Symbol of death and rebirth.)\n\n> **Or to the shore,**  \n> → _Or to the sure._  \n> (Safe ground. Certainty. Settling.)\n\n> **Just its choice luck —**  \n> → _Justice, choice, luck._  \n> (Fate, karma, free will.)\n\n> **And fate’s hand nigh,**  \n> → _And faith’s hand nigh._  \n> (Fate or faith? The hand of either close at hand.)\n\n> **Below clear water lies —**  \n> → _Be low. Clear what lies._  \n> (Humility. Purification. See through the lie.)\n\n> **A lotus’ flower spry,**  \n> → _A load is for our spry._  \n> (Bearing burden lightly. The playful soul.)\n\n> **With seaward sun setting, the little lotus sighed —**  \n> → _See word. Son setting. The little light aside._  \n> (End of cycle. Word made flesh withdrawing. Divine feminine calling.)\n\n> **“Come, let your bee leaf rest at my side.”**  \n> → _“Come, let your belief rest at my side.”_  \n> (A final invitation to let your restless searching find stillness in the Beloved.)",
+      "title": "**'A Bee Leaf'**",
+      "written": "2025-03-25",
+      "written_precision": "file-dated",
+      "era": "post-ai",
+      "lines": "55",
+      "length_band": "long",
+      "season": "spring",
+      "time_of_day": "21:50 (night)",
+      "year": "2025",
+      "date": "2025-03-25",
+      "notes": [
+        "The translation of the piece above. They are meant to be read together.",
+        "55 lines, the longest thing in the collection."
+      ],
+      "moods": [
+        "happy"
+      ],
+      "ci": 25
+    },
+    {
+      "slug": "27-t--02-0011",
+      "text": "I don't have a story.\nI don't have a place.\nI've only a memory. \nI've only her face.\n\nA man walks intentionally through a shady grove. A September morning's mist covers his footprints, trailing behind in the soft wetland grass. Though the day is just beginning, to the man today never began. \nNothing but a gently worn trail guides the way. The sun peaks over the soft hills in the distance, signaling the fog's time to fade. Deep in his chest, a bottomless pit starts to form. As he approaches his end to the journey that never began, the memories start to swarm. \nHe stops at an unassuming tombstone, the name and dates lost to the abrasion of time. Kneeling to her, a subtle wave of grief stirs inside, but he soon forgets that feeling as it drowns in the larger sea of purposelessness. The roughness of the stone and chill of the earth ground the man, reminding him he is still present, if even only in body. Time passes, but it isn't worth counting in his reality. Lost in the past, staring down every one of his mistakes, the present choice loses all meaning. The tree resting his head resembles closely the texture of his 12 gauge’s stock. The numbness in his hands prevents the icy feeling of the cold iron trigger. With nothing to fear, nothing to be afraid of, and nothing to look for, nothing to look forward to, he wonders if today might just be the day. The note folded tidily in a leather bound journal is the only thing that keeps the man company. ",
+      "title": "0011",
+      "written": "2025-11-01",
+      "written_precision": "file-dated",
+      "era": "post-ai",
+      "lines": "7",
+      "length_band": "epigram",
+      "season": "autumn",
+      "time_of_day": "09:41 (morning)",
+      "year": "2025",
+      "date": "2025-11-01",
+      "notes": [
+        "A bad night, written down.",
+        "Imagined from the position of a man also in his last moments.",
+        "Partial. Seven lines."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 26
+    },
+    {
+      "slug": "28-co-creation--02-untitled-2",
+      "text": "Hannah is a primarily female given name of Hebrew origin, meaning ==\"grace,\" \"favor,\" or \"He (God) has favored me\"==. Derived from the Hebrew name _Channah_, it is a timeless, popular biblical name associated with devotion, as it is the name of the mother of the prophet Samuel.\n\n\nTrying to find the words\nSpeechless, to an extent\n\nIt makes me happy to make her things\n\nTime apart is important for the soul.\n\nAlmost feeling anxious about things being too perfect\n\nThe words will come when I don’t force them.\n\nHer touch felt natural, like a glove.\n\nHer eyes held a hundred trillion stars",
+      "title": "(untitled)",
+      "written": "2026-02-15",
+      "written_precision": "file-dated",
+      "era": "post-ai",
+      "lines": "9",
+      "length_band": "short",
+      "season": "winter",
+      "time_of_day": "20:14 (evening)",
+      "year": "2026",
+      "date": "2026-02-15",
+      "notes": [
+        "About Hannah, briefly.",
+        "They were not compatible, and it did not last.",
+        "He suggests the opening section could go.",
+        "The most recent poem here, and the only one written in the same year as this page."
+      ],
+      "moods": [
+        "sad"
+      ],
+      "ci": 27
+    }
+  ],
   "facets": {
     "_README": [
       "THE FACETS. One source of truth for every bucket a reader sorts by, read by",
@@ -203,5 +1780,207 @@
         }
       ]
     }
-  }
+  },
+  "chapters": [
+    {
+      "raw": "1Stupid Words",
+      "title": "Stupid Words",
+      "date": "2021-04-02",
+      "count": 2
+    },
+    {
+      "raw": "2More mediocre poetry",
+      "title": "More mediocre poetry",
+      "date": "2021-04-29",
+      "count": 2
+    },
+    {
+      "raw": "3Boring poems",
+      "title": "Boring poems",
+      "date": "2021-07-03",
+      "count": 7
+    },
+    {
+      "raw": "4Good poems",
+      "title": "Good poems",
+      "date": "2021-07-19",
+      "count": 6
+    },
+    {
+      "raw": "5New words",
+      "title": "New words",
+      "date": "2021-08-01",
+      "count": 3
+    },
+    {
+      "raw": "6Now Words",
+      "title": "Now Words",
+      "date": "2021-08-28",
+      "count": 3
+    },
+    {
+      "raw": "7 Post Crest",
+      "title": "Post Crest",
+      "date": "2021-09-28",
+      "count": 5
+    },
+    {
+      "raw": "8The Windbreaker",
+      "title": "The Windbreaker",
+      "date": "2021-10-19",
+      "count": 2
+    },
+    {
+      "raw": "9 Winter Poems",
+      "title": "Winter Poems",
+      "date": "2021-12-15",
+      "count": 2
+    },
+    {
+      "raw": "10Spring Cool Poems",
+      "title": "Spring Cool Poems",
+      "date": "2022-03-25",
+      "count": 2
+    },
+    {
+      "raw": "11Temp",
+      "title": "Temp",
+      "date": "2022-06-25",
+      "count": 1
+    },
+    {
+      "raw": "12falling words",
+      "title": "falling words",
+      "date": "2022-08-16",
+      "count": 3
+    },
+    {
+      "raw": "13 pride",
+      "title": "pride",
+      "date": "2022-09-19",
+      "count": 6
+    },
+    {
+      "raw": "14 Style",
+      "title": "Style",
+      "date": "2022-10-04",
+      "count": 3
+    },
+    {
+      "raw": "15 renew",
+      "title": "renew",
+      "date": "2022-10-28",
+      "count": 2
+    },
+    {
+      "raw": "16 Hedgehog Words",
+      "title": "Hedgehog Words",
+      "date": "2022-11-16",
+      "count": 1
+    },
+    {
+      "raw": "17 seraphim",
+      "title": "seraphim",
+      "date": "2023-01-07",
+      "count": 4
+    },
+    {
+      "raw": "18Spring Season",
+      "title": "Spring Season",
+      "date": "2023-03-11",
+      "count": 1
+    },
+    {
+      "raw": "19 Sophia",
+      "title": "Sophia",
+      "date": "2023-06-03",
+      "count": 2
+    },
+    {
+      "raw": "20 Six o'Clock",
+      "title": "Six o'Clock",
+      "date": "2023-07-22",
+      "count": 1
+    },
+    {
+      "raw": "21 The Undertaker",
+      "title": "The Undertaker",
+      "date": "2023-09-02",
+      "count": 3
+    },
+    {
+      "raw": "22 Live",
+      "title": "Live",
+      "date": "2023-09-22",
+      "count": 2
+    },
+    {
+      "raw": "23 You",
+      "title": "You",
+      "date": "2023-10-15",
+      "count": 2
+    },
+    {
+      "raw": "24 New (A Season's Change)",
+      "title": "New (A Season's Change)",
+      "date": "2023-12-10",
+      "count": 2
+    },
+    {
+      "raw": "25 Affective",
+      "title": "Affective",
+      "date": "2024-09-07",
+      "count": 1
+    },
+    {
+      "raw": "26 Bee Leaf",
+      "title": "Bee Leaf",
+      "date": "2025-03-25",
+      "count": 2
+    },
+    {
+      "raw": "27 t",
+      "title": "t",
+      "date": "2025-11-01",
+      "count": 1
+    },
+    {
+      "raw": "28 Co-Creation",
+      "title": "Co-Creation",
+      "date": "2026-02-15",
+      "count": 1
+    }
+  ],
+  "pairs": [
+    [
+      "3boring-poems--03-the-tigress",
+      "5new-words--03-the-tiger",
+      "named as a pair"
+    ],
+    [
+      "3boring-poems--05-the-plague",
+      "4good-poems--05-i-love-the-way-they-look",
+      "direct mirror"
+    ],
+    [
+      "17-seraphim--05-mary-hagia-sophia",
+      "18spring-season--03-mary-hagia-sophia-2",
+      "sequel"
+    ],
+    [
+      "26-bee-leaf--02-a-bee-leaf",
+      "26-bee-leaf--03-a-bee-leaf",
+      "poem and its translation"
+    ],
+    [
+      "2more-mediocre-poetry--02-pt1",
+      "2more-mediocre-poetry--03-pt2",
+      "Pt1 / Pt2"
+    ],
+    [
+      "3boring-poems--05-the-plague",
+      "3boring-poems--06-the-answer",
+      "written immediately after"
+    ]
+  ]
 }

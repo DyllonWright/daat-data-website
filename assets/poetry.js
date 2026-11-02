@@ -1,305 +1,488 @@
 /* ─── THE POETRY TAB ───────────────────────────────────────────────────────
-   Renders whatever data/poetry.json holds and says so plainly when it holds
-   nothing. It never invents a line, and it shows no filter a reader cannot
-   use: a bucket with no pieces behind it stays out of the bar.
+   Renders data/poetry.json and nothing else; if `poems` is empty the page
+   keeps its waiting line and none of this draws. That file is written by
+   `python scripts/poetry-curate.py --publish` in the hub repo. Nothing
+   reaches it by hand and the private fields never travel — the hub's
+   projects/poetry/README.md says which, and poetry-curate.py's PUBLIC list
+   enforces it upstream of here.
 
-   Three pieces of furniture, in reading order down the page:
+   Replaced the chronology rail and facet bar on 2026-11-02, when the verse
+   actually arrived and the shape of it became knowable. Two things now:
 
-     the wheel    a chronology rail — one stop per year that carries verse,
-                  chevrons at each end, arrow keys, scroll-snap. The Eleven
-                  Days day-stepper, turned sideways and given a decade.
-     the sorting  era / theme / form / length, drawn off the `facets` block
-                  that scripts/poetry-curate.py copies out of
-                  projects/poetry/taxonomy.json. One list, one source.
-     the bays     one full bay per piece, a preface above the verse. Report C
-                  section 4: a four-line piece carries the same typographic
-                  authority as a sixty-line one.
+     the dial   a spiral, one loop per year, winding INWARD — 2021 at the rim,
+                2026 at the centre. Inward on purpose: 2021 alone holds nearly
+                half the pieces and wants the circumference. Angle is position
+                in the year, so a season keeps a fixed bearing across five
+                loops. Dotted stretches are months he kept nothing from; that
+                negative space is the point, not an artefact. The animated
+                layer is a SEPARATE svg behind the interactive one, drawn once
+                and never touched, so a click never restarts a 7-minute turn.
 
-   The facet values live on the poem objects. Nothing private reaches this
-   file — poetry-curate.py's PUBLIC list decides that, upstream.
+     the book   28 chapters, which were the journal notes, shut by default.
+                One poem opens at a time, with its verse, its photograph where
+                one exists, and the reviewed note behind the "?".
 ───────────────────────────────────────────────────────────────────────────*/
 (function () {
   "use strict";
 
-  var FACET_ORDER = ["era", "theme", "form", "length_band"];
-  var state = { year: "", era: "", theme: "", form: "", length_band: "" };
-  var data = null;
+  var SEASONS = [["spring", "Spring"], ["summer", "Summer"],
+                 ["autumn", "Autumn"], ["winter", "Winter"]];
+  var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+             "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  var MOOD_FACE = { happy: "sat-smile", sad: "sat-done-for" };
+  var QUIET_MONTHS = 3;
+  var CX = 300, CY = 300, ROUT = 252, RIN = 62;
 
-  function el(tag, cls, text) {
-    var n = document.createElement(tag);
-    if (cls) { n.className = cls; }
-    if (text !== undefined && text !== null) { n.textContent = text; }
-    return n;
-  }
+  var POEMS = [], CHAPTERS = [], PAIRS = [], MOODS = {}, SILENCES = [];
+  var season = null, sel = null, lastPick = {};
 
-  function values(facet) {
-    var f = data.facets && data.facets[facet];
-    if (!f) { return []; }
-    return f.values || (f.bands || []);
-  }
-
-  function labelFor(facet, slug) {
-    var hit = values(facet).filter(function (v) { return v.slug === slug; })[0];
-    return hit ? hit.label : slug;
-  }
-
-  function holds(poem, facet, slug) {
-    var v = poem[facet];
-    if (Array.isArray(v)) { return v.indexOf(slug) > -1; }
-    return v === slug;
-  }
-
-  /* A bucket earns a chip by having verse behind it. */
-  function live(facet) {
-    return values(facet).filter(function (v) {
-      return data.poems.some(function (p) { return holds(p, facet, v.slug); });
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
     });
   }
-
-  function matches(poem) {
-    if (state.year && poem.year !== state.year) { return false; }
-    return FACET_ORDER.every(function (facet) {
-      return !state[facet] || holds(poem, facet, state[facet]);
-    });
+  function T(iso) { return new Date(iso + "T00:00:00Z").getTime(); }
+  function months(a, b) { return Math.round((T(b) - T(a)) / 2629800000); }
+  function pretty(iso) {
+    var p = iso.split("-");
+    return MON[+p[1] - 1] + " " + (+p[2]) + ", " + p[0];
+  }
+  function shortd(iso) {
+    var p = iso.split("-");
+    return MON[+p[1] - 1] + " ’" + p[0].slice(2);
+  }
+  function cvar(name) {
+    return getComputedStyle(document.documentElement)
+             .getPropertyValue("--pp-" + name).trim() || "#888";
+  }
+  function count(k) {
+    return POEMS.filter(function (p) { return p.season === k; }).length;
   }
 
-  /* Every year that carries verse, with the count the other filters leave
-     standing. A year the current sorting empties stays on the rail — the
-     chronology keeps its shape — but says so and sits back. */
-  function years() {
-    var seen = {}, under = {};
-    data.poems.forEach(function (p) {
-      if (!p.year) { return; }
-      seen[p.year] = (seen[p.year] || 0) + 1;
-      if (FACET_ORDER.every(function (f) { return !state[f] || holds(p, f, state[f]); })) {
-        under[p.year] = (under[p.year] || 0) + 1;
-      }
-    });
-    return Object.keys(seen).sort().map(function (y) {
-      return { year: y, count: seen[y], live: under[y] || 0 };
-    });
+  /* ── the spiral ───────────────────────────────────────────────────────── */
+  function yearFrac(iso) {
+    var p = iso.split("-").map(Number);
+    return (((p[1] - 3 + 12) % 12) + (p[2] - 1) / 31) / 12;
   }
-
-  /* ── The wheel ──────────────────────────────────────────────────────────
-     A rail of years rather than a calendar grid: these dates come off journal
-     files, so most of them mean "around then". The rail says that much and no
-     more. The Eleven Days engine, where a reader plugs in any date at all,
-     waits for its own page — docs/website/WEBSITE-ROADMAP.md. */
-  function wheel(root) {
-    var stops = years();
-    if (stops.length < 2) { return; }
-
-    var box = el("div", "date-wheel");
-    box.setAttribute("role", "group");
-    box.setAttribute("aria-label", "Jump through the years");
-
-    var back = el("button", "wheel-step", "‹");
-    back.setAttribute("aria-label", "Earlier");
-    var rail = el("div", "wheel-rail");
-    var fwd = el("button", "wheel-step", "›");
-    fwd.setAttribute("aria-label", "Later");
-
-    var everything = data.poems.filter(function (p) {
-      return FACET_ORDER.every(function (f) { return !state[f] || holds(p, f, state[f]); });
-    }).length;
-    var all = el("button", "wheel-stop is-all");
-    all.appendChild(el("span", "stop-year", "All"));
-    all.appendChild(el("span", "stop-count",
-      everything === 1 ? "1 piece" : everything + " pieces"));
-    all.onclick = function () { state.year = ""; draw(); };
-    rail.appendChild(all);
-
-    stops.forEach(function (stop) {
-      var b = el("button", "wheel-stop" + (stop.live ? "" : " is-empty"));
-      b.dataset.year = stop.year;
-      b.appendChild(el("span", "stop-year", stop.year));
-      b.appendChild(el("span", "stop-count",
-        stop.live === 1 ? "1 piece" : stop.live + " pieces"));
-      b.onclick = function () {
-        state.year = state.year === stop.year ? "" : stop.year;
-        draw();
-      };
-      rail.appendChild(b);
-    });
-
-    function step(by) {
-      var order = [""].concat(stops.map(function (s) { return s.year; }));
-      var at = order.indexOf(state.year) + by;
-      if (at < 0 || at >= order.length) { return; }
-      state.year = order[at];
-      draw();
-    }
-    back.onclick = function () { step(-1); };
-    fwd.onclick = function () { step(1); };
-    rail.tabIndex = 0;
-    rail.onkeydown = function (e) {
-      if (e.key === "ArrowLeft") { step(-1); e.preventDefault(); }
-      if (e.key === "ArrowRight") { step(1); e.preventDefault(); }
+  function polar(iso, t0, t1) {
+    var prog = (T(iso) - t0) / (t1 - t0);
+    var r = ROUT - (ROUT - RIN) * prog;
+    var a = (yearFrac(iso) * 360 - 90) * Math.PI / 180;
+    return [CX + r * Math.cos(a), CY + r * Math.sin(a)];
+  }
+  /* seeded, so the debris does not shimmer every time the dial redraws */
+  function rng(seed) {
+    return function () {
+      seed = (seed * 1664525 + 1013904223) >>> 0;
+      return seed / 4294967296;
     };
-
-    box.appendChild(back);
-    box.appendChild(rail);
-    box.appendChild(fwd);
-    root.appendChild(box);
-
-    var current = rail.querySelector(state.year
-      ? '.wheel-stop[data-year="' + state.year + '"]'
-      : ".wheel-stop.is-all");
-    if (current) {
-      current.setAttribute("aria-current", "true");
-      current.scrollIntoView({ block: "nearest", inline: "center" });
-    }
   }
+  var DEBRIS = (function () {
+    var r = rng(20210402), out = [], i, ang, rad, q;
+    for (i = 0; i < 320; i++) {
+      ang = r() * Math.PI * 2;
+      rad = RIN + 10 + Math.pow(r(), 0.62) * (ROUT + 18 - RIN - 10);
+      q = Math.floor(((((ang * 180 / Math.PI + 90) % 360) + 360) % 360) / 90);
+      out.push({ x: CX + rad * Math.cos(ang), y: CY + rad * Math.sin(ang),
+                 r: 0.4 + r() * 1.5, k: SEASONS[q][0], o: 0.10 + r() * 0.30 });
+    }
+    return out;
+  })();
 
-  /* ── The sorting ────────────────────────────────────────────────────── */
-  function sorting(root) {
-    var bar = el("div", "sorting");
-    var drew = false;
-
-    FACET_ORDER.forEach(function (facet) {
-      var options = live(facet);
-      if (options.length < 2) { return; }
-      drew = true;
-      var group = el("div", "sort-group");
-      var spec = data.facets[facet];
-      group.appendChild(el("span", "sort-label", spec.label));
-      var chips = el("div", "sort-chips");
-      options.forEach(function (v) {
-        var b = el("button", "sort-chip", v.label);
-        if (v.blurb) { b.title = v.blurb; }
-        b.setAttribute("aria-pressed", state[facet] === v.slug);
-        b.onclick = function () {
-          state[facet] = state[facet] === v.slug ? "" : v.slug;
-          draw();
-        };
-        chips.appendChild(b);
-      });
-      group.appendChild(chips);
-      bar.appendChild(group);
+  function backdrop() {
+    var s = '<svg class="back" viewBox="-34 -30 668 662" aria-hidden="true">';
+    s += '<defs><radialGradient id="pp-fade">' +
+         '<stop offset="18%" stop-color="#fff" stop-opacity="0"/>' +
+         '<stop offset="78%" stop-color="#fff" stop-opacity="1"/>' +
+         '<stop offset="100%" stop-color="#fff" stop-opacity="0"/></radialGradient>' +
+         '<mask id="pp-softmask"><circle cx="' + CX + '" cy="' + CY + '" r="' + (ROUT + 20) +
+         '" fill="url(#pp-fade)"/></mask>' +
+         '<radialGradient id="pp-eh">' +
+         '<stop offset="48%" stop-color="var(--pp-horizon)" stop-opacity="1"/>' +
+         '<stop offset="100%" stop-color="var(--pp-horizon)" stop-opacity="0"/>' +
+         '</radialGradient></defs>';
+    s += '<g class="pp-wedges" mask="url(#pp-softmask)" opacity="var(--pp-wedge)">';
+    SEASONS.forEach(function (sn, i) {
+      var a0 = (i * 90 - 90) * Math.PI / 180,
+          a1 = ((i + 1) * 90 - 90) * Math.PI / 180, R = ROUT + 20;
+      s += '<path class="s-' + sn[0] + '" d="M ' + CX + ' ' + CY +
+           ' L ' + (CX + R * Math.cos(a0)).toFixed(1) + ' ' + (CY + R * Math.sin(a0)).toFixed(1) +
+           ' A ' + R + ' ' + R + ' 0 0 1 ' + (CX + R * Math.cos(a1)).toFixed(1) + ' ' +
+           (CY + R * Math.sin(a1)).toFixed(1) + ' Z" fill="' + cvar(sn[0]) + '"/>';
     });
-
-    if (drew) { root.appendChild(bar); }
+    s += '</g><g class="pp-debris" mask="url(#pp-softmask)" opacity="var(--pp-debris)">';
+    DEBRIS.forEach(function (d) {
+      s += '<circle class="s-' + d.k + '" style="--o:' + d.o.toFixed(2) + '" cx="' +
+           d.x.toFixed(1) + '" cy="' + d.y.toFixed(1) + '" r="' + d.r.toFixed(2) +
+           '" fill="' + cvar(d.k) + '"/>';
+    });
+    s += '</g>';
+    /* the centre. The spiral stops at r=62, so nothing ever crosses it. */
+    s += '<circle cx="' + CX + '" cy="' + CY + '" r="44" fill="url(#pp-eh)"/>' +
+         '<circle class="pp-ring" cx="' + CX + '" cy="' + CY + '" r="31" fill="none" ' +
+         'stroke="var(--pp-gold)" stroke-width=".8" opacity=".4" stroke-dasharray="9 7"/>' +
+         '<circle cx="' + CX + '" cy="' + CY + '" r="25" fill="none" stroke="var(--pp-gold)" ' +
+         'stroke-width="1.7" opacity=".9"/>' +
+         '<circle cx="' + CX + '" cy="' + CY + '" r="21" fill="var(--pp-horizon)"/>' +
+         '<text class="pp-ehlab" x="' + CX + '" y="' + (CY + 48) + '" text-anchor="middle" ' +
+         'fill="var(--pp-gold)">DA’AT</text>';
+    return s + "</svg>";
   }
 
-  /* ── One bay ────────────────────────────────────────────────────────── */
-  function preface(poem) {
-    var row = el("p", "preface");
-    var bits = [];
-
-    if (poem.era) {
-      var era = el("span", "era-mark " + poem.era, labelFor("era", poem.era));
-      era.title = poem.era === "pre-ai"
-        ? "Written before the machines"
-        : "Written after the machines arrived";
-      bits.push(era);
-    }
-    if (poem.written) {
-      var when = el("span", "when", poem.written);
-      if (poem.written_precision === "file-dated") {
-        when.textContent = "around " + poem.written;
-        when.title = "Dated off the journal file it came out of, so: approximately";
+  function drawDial() {
+    var t0 = T(POEMS[0].date), t1 = T(POEMS[POEMS.length - 1].date);
+    var s = '<svg class="front" viewBox="-34 -30 668 662" role="img" aria-label="' +
+      'A spiral of ' + POEMS.length + ' poems. One loop is one year, winding inward from the ' +
+      'first year at the rim toward a dark centre at the last. Position around each loop is the ' +
+      'time of year, so every season keeps a fixed bearing. Dotted stretches are months with ' +
+      'nothing written.">';
+    SEASONS.forEach(function (_, i) {
+      var a = (i * 90 - 90) * Math.PI / 180;
+      s += '<line class="pp-spoke" x1="' + CX + '" y1="' + CY + '" x2="' +
+           (CX + (ROUT + 14) * Math.cos(a)).toFixed(1) + '" y2="' +
+           (CY + (ROUT + 14) * Math.sin(a)).toFixed(1) + '"/>';
+    });
+    /* the guide, broken wherever he stopped writing */
+    var run = [], runSilent = null, i, ms, pt, quiet;
+    function flush() {
+      if (run.length > 1) {
+        s += '<polyline class="' + (runSilent ? "pp-silent" : "pp-guide") +
+             '" points="' + run.join(" ") + '"/>';
       }
-      bits.push(when);
     }
-    if (poem.age) { bits.push(el("span", null, "at " + poem.age)); }
-    if (poem.season) { bits.push(el("span", null, labelFor("season", poem.season))); }
-    if (poem.time_of_day) { bits.push(el("span", null, poem.time_of_day)); }
-    if (poem.form) { bits.push(el("span", null, labelFor("form", poem.form))); }
-
-    (poem.theme || []).forEach(function (slug) {
-      var t = el("button", "theme-mark", labelFor("theme", slug));
-      t.onclick = function () {
-        state.theme = state.theme === slug ? "" : slug;
-        draw();
-      };
-      bits.push(t);
+    for (i = 0; i <= 900; i++) {
+      ms = t0 + (t1 - t0) * (i / 900);
+      pt = polar(new Date(ms).toISOString().slice(0, 10), t0, t1);
+      quiet = SILENCES.some(function (v) { return ms > v.a && ms < v.b; });
+      if (runSilent === null) { runSilent = quiet; }
+      if (quiet !== runSilent) {
+        run.push(pt[0].toFixed(1) + "," + pt[1].toFixed(1));
+        flush(); run = []; runSilent = quiet;
+      }
+      run.push(pt[0].toFixed(1) + "," + pt[1].toFixed(1));
+    }
+    flush();
+    SILENCES.filter(function (v) { return v.g >= 6; }).forEach(function (v) {
+      var p = polar(new Date((v.a + v.b) / 2).toISOString().slice(0, 10), t0, t1);
+      var ang = Math.atan2(p[1] - CY, p[0] - CX);
+      s += '<text class="pp-sillab" x="' + (p[0] + 13 * Math.cos(ang)).toFixed(1) +
+           '" y="' + (p[1] + 13 * Math.sin(ang) + 3).toFixed(1) +
+           '" text-anchor="middle">' + v.g + ' mo</text>';
     });
-
-    bits.forEach(function (bit, i) {
-      if (i) { row.appendChild(el("span", "sep", "·")); }
-      row.appendChild(bit);
+    SEASONS.forEach(function (sn, i) {
+      var a = ((i * 90) + 45 - 90) * Math.PI / 180, rr = ROUT + 30, act = (season === sn[0]);
+      s += '<text class="pp-slab" data-season="' + sn[0] + '" tabindex="0" role="button" ' +
+           'aria-pressed="' + act + '" x="' + (CX + rr * Math.cos(a)).toFixed(0) +
+           '" y="' + (CY + rr * Math.sin(a) + 4).toFixed(0) + '" text-anchor="middle" fill="' +
+           (act ? cvar(sn[0]) : "var(--pp-soft)") + '" style="font-weight:' +
+           (act ? 500 : 400) + '">' + sn[1] + "</text>";
     });
-    return bits.length ? row : null;
+    /* the first year sits where the spiral actually starts, with the rest */
+    var st = polar(POEMS[0].date, t0, t1);
+    s += '<circle cx="' + st[0].toFixed(1) + '" cy="' + st[1].toFixed(1) +
+         '" r="2" fill="var(--pp-soft)"/><text class="pp-ylab" x="' +
+         (st[0] + 7).toFixed(1) + '" y="' + (st[1] - 5).toFixed(1) + '">' +
+         POEMS[0].date.slice(0, 4) + "</text>";
+    var y, iso, p;
+    for (y = +POEMS[0].date.slice(0, 4) + 1;
+         y <= +POEMS[POEMS.length - 1].date.slice(0, 4); y++) {
+      iso = y + "-03-01";
+      if (T(iso) < t0 || T(iso) > t1) { continue; }
+      p = polar(iso, t0, t1);
+      s += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) +
+           '" r="2" fill="var(--pp-soft)"/><text class="pp-ylab" x="' +
+           (p[0] + 7).toFixed(1) + '" y="' + (p[1] - 5).toFixed(1) + '">' + y + "</text>";
+    }
+    POEMS.forEach(function (q) {
+      var pt2 = polar(q.date, t0, t1);
+      var r = 2 + Math.min(5, Math.sqrt(+q.lines || 1) * 0.75);
+      var on = (season === null || q.season === season);
+      s += '<circle class="pp-dot' + (on ? "" : " dim") + (sel === q.slug ? " sel" : "") +
+           '" data-s="' + q.slug + '" tabindex="0" role="button" cx="' + pt2[0].toFixed(1) +
+           '" cy="' + pt2[1].toFixed(1) + '" r="' + r.toFixed(1) + '" fill="' + cvar(q.season) +
+           '" fill-opacity=".88" aria-label="' + esc(q.title) + ', ' + pretty(q.date) +
+           '"><title>' + esc(q.title) + " · " + q.lines + " lines</title></circle>";
+    });
+    var dial = document.getElementById("poem-dial");
+    if (!dial.querySelector(".back")) { dial.insertAdjacentHTML("afterbegin", backdrop()); }
+    var old = dial.querySelector(".front");
+    if (old) { old.outerHTML = s + "</svg>"; }
+    else { dial.insertAdjacentHTML("beforeend", s + "</svg>"); }
+    if (season) { dial.setAttribute("data-season", season); }
+    else { dial.removeAttribute("data-season"); }
   }
 
-  function bay(poem) {
-    var art = el("article", "verse-bay");
-    art.id = "p-" + poem.slug;
-    art.appendChild(el("h2", null, poem.title || "Untitled"));
-    var pre = preface(poem);
-    if (pre) { art.appendChild(pre); }
-    art.appendChild(el("p", "verse", poem.text));
-    if (poem.what_i_was_reading) {
-      art.appendChild(el("p", "credit", "reading: " + poem.what_i_was_reading));
-    }
-    if (poem.mood || poem.disposition) {
-      art.appendChild(el("p", "credit", [poem.mood, poem.disposition].filter(Boolean).join(" · ")));
-    }
-    return art;
+  /* ── side rail ────────────────────────────────────────────────────────── */
+  function readout(p) {
+    document.getElementById("poem-readout").innerHTML = p
+      ? '<p class="t">' + esc(p.title) + '</p><p class="m">' + pretty(p.date) +
+        (p.age ? " · age " + p.age : "") + " · " + p.lines +
+        (+p.lines === 1 ? " line" : " lines") + " · " + p.season + "</p>"
+      : '<p class="e">Hover the spiral, or pick a dot.</p>';
+  }
+  function choose(slug) {
+    sel = (sel === slug ? null : slug);
+    render();
+    if (!sel) { readout(null); return; }
+    var p = POEMS.filter(function (q) { return q.slug === sel; })[0];
+    var ch = document.getElementById("pp-ch-" + p.ci);
+    var row = document.getElementById("pp-p-" + sel);
+    if (ch) { ch.open = true; }
+    if (row) { row.open = true; row.scrollIntoView({ behavior: "smooth", block: "center" }); }
+    readout(p);
+  }
+  function pickSeason(k) { season = (season === k ? null : k); sel = null; render(); }
+
+  /* ── the book ─────────────────────────────────────────────────────────── */
+  function buildBook() {
+    var h = "";
+    CHAPTERS.forEach(function (c, ci) {
+      var items = POEMS.filter(function (p) { return p.ci === ci; });
+      if (!items.length) { return; }
+      if (ci > 0 && CHAPTERS[ci - 1]) {
+        var g = months(CHAPTERS[ci - 1].date, c.date);
+        if (g > QUIET_MONTHS) {
+          h += '<div class="pp-gap" style="--w:' + Math.min(96, g * 9) + 'px">' +
+               '<span class="lb">' + g + ' months</span><span class="ln2"></span></div>';
+        }
+      }
+      h += '<details class="pp-ch" id="pp-ch-' + ci + '"><summary>' +
+           '<span class="no">' + String(ci + 1).padStart(2, "0") + '</span>' +
+           '<span class="ti">' + esc(c.title) + '</span>' +
+           '<span class="me">' + shortd(c.date) + " · " + items.length +
+           '</span></summary><div class="pp-chbody">';
+      items.forEach(function (p) {
+        var mir = PAIRS.filter(function (x) { return x[0] === p.slug || x[1] === p.slug; })
+          .map(function (x) {
+            var other = POEMS.filter(function (q) {
+              return q.slug === (x[0] === p.slug ? x[1] : x[0]);
+            })[0];
+            return other ? esc(other.title) +
+              ' <span style="color:var(--pp-soft)">— ' + esc(x[2]) + "</span>" : null;
+          }).filter(Boolean);
+        var tags = [p.age ? "age " + p.age : "", p.season + " " + (p.year || ""),
+                    (p.theme || []).join(" · ")].filter(Boolean).join(" · ");
+        h += '<details class="pp-p" id="pp-p-' + p.slug + '" data-s="' + p.slug +
+             '" data-se="' + p.season + '"><summary>' +
+             '<span class="dt">' + shortd(p.date) + '</span>' +
+             '<span class="nm">' + esc(p.title) + '</span>' +
+             '<span class="rt">' +
+             (p.image ? '<span class="pp-pic" title="Has a photograph">ph</span>' : "") +
+             '<span class="se" style="background:' + cvar(p.season) + '" title="' + p.season +
+             '"></span><span class="ln">' + p.lines + '</span>' +
+             '<span class="pp-q" title="Context">?</span></span></summary>' +
+             '<div class="pp-pbody">' +
+             '<div class="pp-bay"><p class="pp-verse">' + esc(p.text) + "</p></div>" +
+             (p.image ? '<figure class="pp-shot"><img src="assets/poetry/' +
+               esc(p.image.file) + '" alt="' + esc(p.image.caption) + '" loading="lazy">' +
+               '<figcaption>' + esc(p.image.caption) + "</figcaption></figure>" : "") +
+             '<div class="pp-ctx">' +
+             (p.notes && p.notes.length
+               ? "<ul>" + p.notes.map(function (n) {
+                   return "<li>" + esc(n) + "</li>";
+                 }).join("") + "</ul>"
+               : "") +
+             (mir.length ? '<p class="mir">Answers → ' + mir.join("; ") + "</p>" : "") +
+             '<p class="tags">' + esc(tags) + "</p>" +
+             "</div></div></details>";
+      });
+      h += "</div></details>";
+    });
+    document.getElementById("grimoire").innerHTML =
+      h + '<p class="pp-empty" id="pp-none" hidden>Nothing from that season.</p>';
   }
 
-  /* ── The draw ───────────────────────────────────────────────────────── */
-  function draw() {
-    var root = document.querySelector(".poems");
-    if (!root) { return; }
-    root.textContent = "";
+  function syncAll() {
+    var btn = document.getElementById("pp-allbtn");
+    var shut = Array.prototype.slice
+      .call(document.querySelectorAll("#grimoire .pp-ch:not(.hide)"))
+      .some(function (d) { return !d.open; });
+    btn.textContent = shut ? "Open all" : "Close all";
+  }
 
-    /* The hero's standfirst says "none of them here yet", which stops being
-       true the moment a piece crosses. The page corrects its own copy rather
-       than leaving a stale sentence above live verse. */
-    var stand = document.querySelector(".page-hero .standfirst");
-    if (stand && data.poems.length) {
-      stand.textContent = data.poems.length === 1
-        ? "One piece has crossed over. The other eighty-eight sit where only their author reads them."
-        : data.poems.length + " pieces have crossed over, oldest first. The rest sit where only their author reads them.";
-    }
-
-    if (!data.poems.length) {
-      var box = el("div", "dogear");
-      box.appendChild(el("p", null, data.waiting || "The verse waits on its author."));
-      box.appendChild(el("span", "fold"));
-      root.appendChild(box);
-      return;
-    }
-
-    wheel(root);
-    sorting(root);
-
-    /* Oldest first, whatever order the data file happens to hold. */
-    var showing = data.poems.filter(matches).sort(function (a, b) {
-      return (a.year || "0000").localeCompare(b.year || "0000");
+  function render() {
+    drawDial();
+    Array.prototype.forEach.call(document.querySelectorAll(".pp-chip"), function (b) {
+      var a = (season === b.getAttribute("data-season"));
+      b.setAttribute("aria-pressed", String(a));
+      b.classList.toggle("dim", season !== null && !a);
     });
-    var tally = el("p", "tally");
-    tally.textContent = showing.length === data.poems.length
-      ? data.poems.length + " pieces, oldest first"
-      : showing.length + " of " + data.poems.length + " pieces";
-    if (showing.length !== data.poems.length) {
-      var clear = el("button", "clear", "clear");
-      clear.onclick = function () {
-        state = { year: "", era: "", theme: "", form: "", length_band: "" };
-        draw();
-      };
-      tally.appendChild(document.createTextNode(" · "));
-      tally.appendChild(clear);
-    }
-    root.appendChild(tally);
+    var shown = 0;
+    Array.prototype.forEach.call(document.querySelectorAll("#grimoire .pp-p"), function (el) {
+      var on = (season === null || el.getAttribute("data-se") === season);
+      el.classList.toggle("hide", !on);
+      el.classList.toggle("sel", sel === el.getAttribute("data-s"));
+      if (!on && el.open) { el.open = false; }
+      if (on) { shown++; }
+    });
+    Array.prototype.forEach.call(document.querySelectorAll("#grimoire .pp-ch"), function (el) {
+      var any = Array.prototype.slice.call(el.querySelectorAll(".pp-p"))
+        .some(function (p) { return !p.classList.contains("hide"); });
+      el.classList.toggle("hide", !any);
+      if (season !== null && any) { el.open = true; }
+      if (season === null && !sel) { el.open = false; }
+    });
+    Array.prototype.forEach.call(document.querySelectorAll("#grimoire .pp-gap"), function (el) {
+      el.hidden = (season !== null);
+    });
+    document.getElementById("pp-none").hidden = (shown > 0);
+    syncAll();
+  }
 
-    if (!showing.length) {
-      root.appendChild(el("p", "nothing", "Nothing sits in that corner yet."));
-      return;
+  /* ── wiring ───────────────────────────────────────────────────────────── */
+  function start(data) {
+    POEMS = (data.poems || []).filter(function (p) { return p.date; });
+    if (!POEMS.length) { return; }          /* the waiting line stays */
+    CHAPTERS = data.chapters || [];
+    PAIRS = data.pairs || [];
+    MOODS = {};
+    POEMS.forEach(function (p) {
+      (p.moods || []).forEach(function (m) {
+        MOODS[m] = MOODS[m] || [];
+        MOODS[m].push(p.slug);
+      });
+    });
+    var i, g;
+    for (i = 1; i < POEMS.length; i++) {
+      g = months(POEMS[i - 1].date, POEMS[i].date);
+      if (g > QUIET_MONTHS) {
+        SILENCES.push({ a: T(POEMS[i - 1].date), b: T(POEMS[i].date), g: g });
+      }
     }
-    showing.forEach(function (poem) { root.appendChild(bay(poem)); });
+    var waiting = document.getElementById("poem-waiting");
+    if (waiting) { waiting.hidden = true; }
+    document.getElementById("poem-stage").hidden = false;
+
+    var quiet = SILENCES.reduce(function (n, v) { return n + v.g; }, 0);
+    var run = months(POEMS[0].date, POEMS[POEMS.length - 1].date);
+    var lens = POEMS.map(function (p) { return +p.lines || 0; });
+    var ages = POEMS.map(function (p) { return +p.age; }).filter(function (a) { return a; });
+    document.getElementById("pp-nerd").innerHTML = [
+      [POEMS.length, "pieces kept, of 89"],
+      [lens.reduce(function (a, b) { return a + b; }, 0).toLocaleString(), "lines of verse"],
+      [CHAPTERS.length, "journal notes"],
+      [ages.length ? Math.min.apply(null, ages) + "–" + Math.max.apply(null, ages) : "—",
+       "his age across it"],
+      [quiet + " / " + run, "months he wrote nothing"],
+      [18, "failed romances, one per woman"],
+      [1, "powerlifting mentor lost"],
+      [PAIRS.length, "poems answering another poem"],
+      [Math.max.apply(null, lens) + " / " + Math.min.apply(null, lens),
+       "longest and shortest, in lines"]
+    ].map(function (r) {
+      return "<div><b>" + r[0] + "</b><span>" + r[1] + "</span></div>";
+    }).join("");
+
+    document.getElementById("poem-chips").innerHTML = SEASONS.map(function (s) {
+      return '<button class="pp-chip" type="button" data-season="' + s[0] +
+             '" style="--sw:' + cvar(s[0]) + '"><i></i>' + s[1] +
+             " <u>" + count(s[0]) + "</u></button>";
+    }).join("");
+    document.getElementById("poem-picks").innerHTML =
+      Object.keys(MOOD_FACE).filter(function (m) { return (MOODS[m] || []).length; })
+      .map(function (m) {
+        return '<button type="button" data-mood="' + m + '"><span class="lbl">' +
+          '<svg class="sat" aria-hidden="true"><use href="assets/planet-sprite.svg#' +
+          MOOD_FACE[m] + '"/></svg>' + m.charAt(0).toUpperCase() + m.slice(1) +
+          "</span><u>" + MOODS[m].length + "</u></button>";
+      }).join("");
+    var years = POEMS.map(function (p) { return p.date.slice(0, 4); })
+      .filter(function (v, i2, a) { return a.indexOf(v) === i2; });
+    document.getElementById("poem-jump").innerHTML =
+      years.map(function (y) {
+        return '<button type="button" data-y="' + y + '">' + y + "</button>";
+      }).join("") + '<button type="button" data-y="top">top</button>';
+
+    buildBook();
+
+    var dial = document.getElementById("poem-dial");
+    dial.addEventListener("click", function (e) {
+      var t = e.target.closest("[data-season]");
+      if (t) { pickSeason(t.getAttribute("data-season")); return; }
+      var d = e.target.closest("[data-s]");
+      if (d) { choose(d.getAttribute("data-s")); }
+    });
+    dial.addEventListener("keydown", function (e) {
+      if (e.key !== "Enter" && e.key !== " ") { return; }
+      var t = e.target.closest("[data-season]");
+      if (t) { e.preventDefault(); pickSeason(t.getAttribute("data-season")); return; }
+      var d = e.target.closest("[data-s]");
+      if (d) { e.preventDefault(); choose(d.getAttribute("data-s")); }
+    });
+    dial.addEventListener("pointerover", function (e) {
+      var d = e.target.closest("[data-s]");
+      if (d) {
+        readout(POEMS.filter(function (p) {
+          return p.slug === d.getAttribute("data-s");
+        })[0]);
+      }
+    });
+    document.getElementById("poem-chips").addEventListener("click", function (e) {
+      var b = e.target.closest(".pp-chip");
+      if (b) { pickSeason(b.getAttribute("data-season")); }
+    });
+    document.getElementById("poem-picks").addEventListener("click", function (e) {
+      var b = e.target.closest("button[data-mood]");
+      if (!b) { return; }
+      var m = b.getAttribute("data-mood");
+      var pool = MOODS[m].filter(function (s) { return s !== lastPick[m]; });
+      if (!pool.length) { return; }
+      var slug = pool[Math.floor(Math.random() * pool.length)];
+      lastPick[m] = slug;
+      season = null; sel = null; render(); choose(slug);
+    });
+    document.getElementById("poem-jump").addEventListener("click", function (e) {
+      var b = e.target.closest("button");
+      if (!b) { return; }
+      if (b.getAttribute("data-y") === "top") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
+      var p = POEMS.filter(function (q) {
+        return q.date.slice(0, 4) === b.getAttribute("data-y");
+      })[0];
+      if (!p) { return; }
+      var ch = document.getElementById("pp-ch-" + p.ci);
+      if (ch) { ch.open = true; ch.scrollIntoView({ behavior: "smooth", block: "start" }); }
+    });
+    document.getElementById("grimoire").addEventListener("toggle", function (e) {
+      var d = e.target;
+      if (!d.classList || !d.classList.contains("pp-p")) { return; }
+      if (d.open) {
+        sel = d.getAttribute("data-s");
+        readout(POEMS.filter(function (p) { return p.slug === sel; })[0]);
+        Array.prototype.forEach.call(
+          document.querySelectorAll("#grimoire .pp-p[open]"),
+          function (o) { if (o !== d) { o.open = false; } });
+        Array.prototype.forEach.call(document.querySelectorAll("#grimoire .pp-p"),
+          function (o) { o.classList.toggle("sel", o === d); });
+        drawDial();
+      } else if (sel === d.getAttribute("data-s")) {
+        sel = null; d.classList.remove("sel"); drawDial(); readout(null);
+      }
+      syncAll();
+    }, true);
+    document.getElementById("pp-allbtn").addEventListener("click", function () {
+      var open = document.getElementById("pp-allbtn").textContent.trim() === "Open all";
+      Array.prototype.forEach.call(
+        document.querySelectorAll("#grimoire .pp-ch:not(.hide)"),
+        function (d) { d.open = open; });
+      syncAll();
+    });
+
+    readout(null);
+    render();
   }
 
   document.addEventListener("DOMContentLoaded", function () {
-    var root = document.querySelector(".poems");
-    if (!root) { return; }
+    if (!document.getElementById("poem-dial")) { return; }
     var req = new XMLHttpRequest();
     req.open("GET", "data/poetry.json", true);
     req.onload = function () {
+      var data;
       try { data = JSON.parse(req.responseText); } catch (e) { return; }
-      if (!Array.isArray(data.poems)) { data.poems = []; }
-      draw();
+      if (!Array.isArray(data.poems)) { return; }
+      start(data);
     };
     req.send();
   });

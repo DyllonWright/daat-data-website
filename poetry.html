@@ -3,21 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Poetry — Da'at Data</title>
-<meta name="description" content="A page held open for verse that has not crossed over yet.">
+<title>(Not So) Great Works — Da'at Data</title>
+<meta name="description" content="Seventy-two poems written between twenty and twenty-five, before any of this was called Da’at.">
 <meta name="robots" content="noindex, follow">
 
 <link rel="icon" type="image/png" href="assets/favicon-64.png">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/poetry.css">
 <link rel="canonical" href="https://daatdata.net/poetry">
-<meta property="og:title" content="Poetry — Da'at Data">
-<meta property="og:description" content="A page held open for verse that has not crossed over yet.">
+<meta property="og:title" content="(Not So) Great Works — Da'at Data">
+<meta property="og:description" content="Seventy-two poems written between twenty and twenty-five, before any of this was called Da’at.">
 <meta property="og:image" content="https://daatdata.net/assets/social-card.jpg">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://daatdata.net/poetry">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Poetry — Da'at Data">
-<meta name="twitter:description" content="A page held open for verse that has not crossed over yet.">
+<meta name="twitter:title" content="(Not So) Great Works — Da'at Data">
+<meta name="twitter:description" content="Seventy-two poems written between twenty and twenty-five, before any of this was called Da’at.">
 <meta name="twitter:image" content="https://daatdata.net/assets/social-card.jpg">
 
 <!-- THE POETRY TAB. The page renders data/poetry.json and nothing else. It
@@ -185,23 +186,65 @@
 
 <header class="page-hero">
   <div class="wrap">
-    <p class="kicker">Held open</p>
-    <h1>Poetry. <svg class="sat sat-lg" role="img" aria-label="A small ringed planet, asleep"><use href="assets/planet-sprite.svg#sat-sleepy"/></svg></h1>
-    <p class="standfirst">
-      Eighty-nine pieces sit where only their author reads them. None of them here yet.
-    </p>
+    <p class="kicker">Pre-Da&rsquo;at &middot; 2021&ndash;2026</p>
+    <h1>(Not So) Great Works. <svg class="sat sat-lg sat-wobble" role="img" aria-label="A small ringed planet in the dark"><use href="assets/planet-sprite.svg#sat-dark"/></svg></h1>
+    <div class="standfirst pp-invocation">
+      <p class="q">Read from the dead. These are the voices of the previous tenants of this
+      flesh, ages twenty through twenty-five.</p>
+      <p>One of them had not yet heard of the Demiurge. One of them had, and took it badly. One
+      of them came to an arrangement with Saturn. Not one of them had completed Knowledge and
+      Conversation, and not one of them is the man typing this.</p>
+      <p class="last">The (Not So) Great Works are finished, sealed in this pre-Da&rsquo;at relic.
+      Let the Great Work begin in their place.</p>
+    </div>
+    <details class="pp-nerd"><summary>Stats for nerds</summary>
+      <div class="pp-nerdgrid" id="pp-nerd"></div>
+    </details>
   </div>
 </header>
 
 <div class="wrap">
 
   <section class="first">
-    <div class="poems"></div>
+
+    <div id="poem-waiting" class="note">
+      <h3>Nothing to read here yet</h3>
+      <p>The verse waits on its author.</p>
+    </div>
+
+    <div id="poem-stage" hidden>
+      <div class="pp-map">
+        <div class="pp-dial" id="poem-dial"></div>
+        <div class="pp-side">
+          <h3>Season</h3>
+          <div class="pp-chips" id="poem-chips"></div>
+          <div class="pp-readout" id="poem-readout"></div>
+          <details class="pp-pick"><summary>Pick one for me</summary>
+            <div class="pp-picks" id="poem-picks"></div>
+          </details>
+          <h3>Jump to</h3>
+          <div class="pp-jump" id="poem-jump"></div>
+          <p class="pp-howto">One loop is one year, winding inward to the hole. Dots are sized by
+          line count. <b>Dotted stretches are silence</b>, three months or longer.</p>
+        </div>
+      </div>
+
+      <div class="pp-bookhead">
+        <h2>The grimoire</h2>
+        <button class="pp-allbtn" id="pp-allbtn" type="button">Open all</button>
+      </div>
+      <p class="pp-partnote">His own titles, in order.
+        <span class="pp-q" aria-hidden="true">?</span> opens what was going on at the time.</p>
+      <div id="grimoire"></div>
+
+      <p class="pp-partnote" style="margin-top:1.4rem">Dates mark the journal note, not the hour
+      of writing. Fifteen fragments were left out, and two still sit at maybe.</p>
+    </div>
 
     <noscript>
       <div class="note">
-        <h3>Nothing to read here yet</h3>
-        <p>The verse waits on its author.</p>
+        <h3>This page needs JavaScript</h3>
+        <p>The verse and its chronology render from <code>data/poetry.json</code>.</p>
       </div>
     </noscript>
   </section>
