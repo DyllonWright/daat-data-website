@@ -9,7 +9,11 @@
 
 <link rel="icon" type="image/png" href="assets/favicon-64.png">
 <link rel="stylesheet" href="assets/site.css">
-<link rel="stylesheet" href="assets/poetry.css">
+<!-- The ?v= token is the asset's own content hash. Assets serve with
+     max-age=14400 and no site-wide versioning, so without it a returning
+     reader runs yesterday's script against today's page for four hours.
+     Rerun tools/stamp-poetry-assets.py after touching either file. -->
+<link rel="stylesheet" href="assets/poetry.css?v=ada24372">
 <link rel="canonical" href="https://daatdata.net/poetry">
 <meta property="og:title" content="(Not So) Great Works — Da'at Data">
 <meta property="og:description" content="Seventy-two poems written between twenty and twenty-five, before any of this was called Da’at.">
@@ -262,7 +266,7 @@
 
 </div>
 
-<script src="assets/poetry.js"></script>
+<script src="assets/poetry.js?v=8bf755dd"></script>
 <script src="assets/chime.js"></script>
 </body>
 </html>
