@@ -1482,6 +1482,205 @@ ul.gloss li::before {
   margin-top: 1.2rem;
 }
 
+/* ─── THE POETRY TAB: the wheel, the sorting, the preface ──────────────────
+   Three bits of furniture above and around the bays, all of them drawn by
+   assets/poetry.js off data/poetry.json. They draw nothing when the file
+   carries no verse, so the page's waiting state stays exactly as it was.
+
+   The wheel owes the Eleven Days plugin its manners: chevrons at each end, a
+   stop per year, scroll-snap, and arrow keys once the rail holds focus. It
+   scrubs a chronology rather than a calendar, because these dates come off
+   journal files and mean "around then". */
+.date-wheel {
+  display: flex;
+  align-items: stretch;
+  gap: 0.5rem;
+  margin: 0 0 1.6rem;
+}
+
+.wheel-step {
+  flex: 0 0 auto;
+  font: inherit;
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--ink-faint);
+  background: transparent;
+  border: 1px solid var(--border-soft);
+  border-radius: 3px;
+  padding: 0 0.7rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.wheel-step:hover {
+  color: var(--gold-bright);
+  border-color: var(--gold);
+}
+
+.wheel-rail {
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  padding-bottom: 0.3rem;
+}
+
+.wheel-rail::-webkit-scrollbar { height: 3px; }
+.wheel-rail::-webkit-scrollbar-thumb { background: var(--border-soft); }
+
+.wheel-stop {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  font: inherit;
+  text-align: center;
+  color: var(--ink-dim);
+  background: var(--bg-panel);
+  border: 1px solid var(--border-soft);
+  border-radius: 3px;
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.wheel-stop:hover { color: var(--ink); border-color: var(--gold); }
+
+/* A year the current sorting empties keeps its place on the rail and sits
+   back, so the chronology never changes shape underfoot. */
+.wheel-stop.is-empty { opacity: 0.38; }
+
+.wheel-stop[aria-current="true"] {
+  color: var(--bg-deep);
+  background: var(--gold-bright);
+  border-color: var(--gold-bright);
+}
+
+.wheel-stop .stop-year {
+  display: block;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+}
+
+.wheel-stop .stop-count {
+  display: block;
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+/* The sorting bar: one row per bucket, and a bucket with fewer than two live
+   values never gets drawn at all. */
+.sorting {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1rem 0 1.2rem;
+  border-top: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+  margin-bottom: 1.4rem;
+}
+
+.sort-group { display: flex; align-items: baseline; gap: 0.8rem; flex-wrap: wrap; }
+
+.sort-label {
+  flex: 0 0 4.5rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.sort-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+.sort-chip {
+  font: inherit;
+  font-size: 0.82rem;
+  color: var(--ink-dim);
+  background: transparent;
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  padding: 0.18rem 0.8rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.sort-chip:hover { color: var(--ink); border-color: var(--gold); }
+
+.sort-chip[aria-pressed="true"] {
+  color: var(--bg-deep);
+  background: var(--gold-bright);
+  border-color: var(--gold-bright);
+}
+
+.tally {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0 0 2.4rem;
+}
+
+.tally .clear {
+  font: inherit;
+  color: var(--gold);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.nothing { color: var(--ink-faint); font-style: italic; }
+
+/* The preface: the header tags above a piece. Small, quiet, and never the
+   loudest thing in the bay — the verse holds that job. */
+.verse-bay .preface {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: -0.7rem 0 1.5rem;
+}
+
+.verse-bay .preface .sep { opacity: 0.4; }
+
+.verse-bay .era-mark {
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  padding: 0.12rem 0.6rem;
+  color: var(--ink-dim);
+}
+
+/* Before and after the machines: the one axis the page states outright. */
+.verse-bay .era-mark.pre-ai { border-color: rgba(201, 162, 75, 0.5); color: var(--gold-bright); }
+.verse-bay .era-mark.post-ai { border-color: rgba(120, 190, 255, 0.45); color: #a9cdf0; }
+
+.verse-bay .theme-mark {
+  font: inherit;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px dotted var(--border-soft);
+  padding: 0 0 1px;
+  cursor: pointer;
+}
+
+.verse-bay .theme-mark:hover { color: var(--gold-bright); border-bottom-color: var(--gold); }
+
+@media (max-width: 40rem) {
+  .sort-label { flex-basis: 100%; }
+  .wheel-step { padding: 0 0.5rem; }
+}
+
 /* The dogear: this page waits on the owner, and says so rather than faking
    depth with invented verse. */
 .dogear {

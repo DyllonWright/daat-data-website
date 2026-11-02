@@ -1,29 +1,205 @@
 {
   "_README": [
-    "POETRY — A STUB, DOGEARED. The owner set this page aside on 2026-10-31 and",
-    "returns to it later. The array below stays empty on purpose, and the page",
-    "renders the waiting line instead of a layout built against invented verse.",
+    "POETRY. The page at website/poetry.html renders this file and nothing else:",
+    "the waiting line below while `poems` sits empty, and a chronology rail, a",
+    "filter bar and one bay per piece once verse arrives.",
     "",
-    "NOTHING REACHES THIS FILE AUTOMATICALLY. 89 pieces sit split and gitignored",
-    "under poetry-source/, each awaiting a metadata block the owner fills in.",
-    "Only a piece marked would_publish: yes crosses over, and the owner moves it",
-    "himself. Read projects/poetry/README.md before touching any of it, and read",
-    "CLAUDE.md on why poetry-source/ never enters git: those files hold dated",
-    "journal entries, named people and private reflection in the same pages as",
-    "the verse.",
+    "NOTHING REACHES THIS FILE BY HAND. 89 pieces sit split and gitignored under",
+    "poetry-source/, each awaiting a metadata block the owner fills in through the",
+    "local tool. Only would_publish: yes crosses over, and only the fields in",
+    "scripts/poetry-curate.py -> PUBLIC travel with it. Write it with:",
+    "    python scripts/poetry-curate.py --publish",
+    "Read projects/poetry/README.md before touching any of it, and CLAUDE.md on",
+    "why poetry-source/ never enters git: those files hold dated journal entries,",
+    "named people and private reflection in the same pages as the verse.",
     "",
-    "Fields, once pieces arrive:",
-    "  title   the piece's own title, as the owner titles it.",
-    "  text    the verse itself. Line breaks survive verbatim — the page sets",
-    "          white-space: pre-line and left-aligns inside a centered block.",
-    "  credit  optional. A date, a place, a note.",
+    "A piece carries: slug, title, text (line breaks survive verbatim — the page",
+    "sets white-space: pre-line), written, written_precision, year, era, lines,",
+    "length_band, season, time_of_day, age, mood, disposition, what_i_was_reading,",
+    "theme (a list), form. Never written_for, occasion, redactions_needed, notes",
+    "or kind — those stay in poetry-source/ whatever anybody types anywhere.",
     "",
-    "Every piece gets its own full bay with generous margin, and a four-line",
-    "piece carries the same typographic authority as a sixty-line one. Report C",
-    "section 4 works that out in full; the rules already sit in assets/site.css."
+    "`facets` below holds a copy of projects/poetry/taxonomy.json, so the page",
+    "labels its filters off the same list the curation tool draws its chips from.",
+    "Edit the taxonomy, not this copy; --publish refreshes it."
   ],
-
   "waiting": "The verse waits on its author. He knows where it lives.",
-
-  "poems": []
+  "poems": [],
+  "facets": {
+    "_README": [
+      "THE FACETS. One source of truth for every bucket a reader sorts by, read by",
+      "scripts/poetry-index.py (which writes the vocabulary into each poem's",
+      "metadata block as a comment), by scripts/poetry-curate.py (which draws the",
+      "chips in the local curation tool), and copied into website/data/poetry.json",
+      "so the page labels its own filters without a second list to keep in step.",
+      "",
+      "PUBLIC BY DESIGN. Every field here reaches the web. The private fields —",
+      "written_for, occasion, redactions_needed, mood, disposition, notes — live in",
+      "the poem files only and never enter this taxonomy. projects/poetry/README.md",
+      "carries the pipeline and the reason the gate stands where it does.",
+      "",
+      "Add a bucket by adding it here. Both scripts and the page pick it up on the",
+      "next run; a poem already tagged keeps whatever it holds."
+    ],
+    "era": {
+      "label": "Era",
+      "blurb": "Eleven Days, in one axis: the same hand before and after the machines arrived.",
+      "derived": "off the writing date, at the boundary below",
+      "boundary": "2023-11-01",
+      "boundary_note": "Late 2023 — when the owner started working beside AI daily. Move the date and rerun; nothing hand-typed gets lost.",
+      "values": [
+        {
+          "slug": "pre-ai",
+          "label": "Before",
+          "blurb": "Written before the machines. No model read a line of it."
+        },
+        {
+          "slug": "post-ai",
+          "label": "After",
+          "blurb": "Written after. The same hand, a different room."
+        }
+      ]
+    },
+    "theme": {
+      "label": "Theme",
+      "blurb": "What the piece circles. Up to three, and a piece may sit in none of them.",
+      "multiple": true,
+      "max": 3,
+      "values": [
+        {
+          "slug": "longing",
+          "label": "Longing",
+          "blurb": "Love, wanting, the person across the room"
+        },
+        {
+          "slug": "grief",
+          "label": "Grief",
+          "blurb": "Loss, and the dead"
+        },
+        {
+          "slug": "god",
+          "label": "God",
+          "blurb": "Doubt, prayer, the sacred"
+        },
+        {
+          "slug": "self",
+          "label": "Self",
+          "blurb": "Mind, identity, the inside of a skull"
+        },
+        {
+          "slug": "time",
+          "label": "Time",
+          "blurb": "Memory, aging, the end of it"
+        },
+        {
+          "slug": "season",
+          "label": "Season",
+          "blurb": "Weather, land, the sky overhead"
+        },
+        {
+          "slug": "craft",
+          "label": "Craft",
+          "blurb": "Language, writing, the poem watching itself"
+        },
+        {
+          "slug": "fury",
+          "label": "Fury",
+          "blurb": "Anger, contempt, the argument"
+        },
+        {
+          "slug": "absurd",
+          "label": "Absurd",
+          "blurb": "Jokes, nonsense, the Discordian register"
+        },
+        {
+          "slug": "occult",
+          "label": "Occult",
+          "blurb": "Ritual, symbol, the hidden order"
+        }
+      ]
+    },
+    "form": {
+      "label": "Form",
+      "blurb": "How it sits on the page.",
+      "values": [
+        {
+          "slug": "free-verse",
+          "label": "Free verse",
+          "blurb": "Broken where the breath broke"
+        },
+        {
+          "slug": "rhymed",
+          "label": "Rhymed",
+          "blurb": "End-rhyme, metered or not"
+        },
+        {
+          "slug": "formal",
+          "label": "Formal",
+          "blurb": "A received shape — sonnet, villanelle, something counted"
+        },
+        {
+          "slug": "fragment",
+          "label": "Fragment",
+          "blurb": "A line or two, left as found"
+        },
+        {
+          "slug": "litany",
+          "label": "Litany",
+          "blurb": "A list, a repetition, an incantation"
+        },
+        {
+          "slug": "prose-poem",
+          "label": "Prose poem",
+          "blurb": "No line breaks, still a poem"
+        }
+      ]
+    },
+    "length_band": {
+      "label": "Length",
+      "blurb": "Derived off the line count, so a four-line piece and a sixty-line one both announce themselves.",
+      "derived": "off the line count, at the bands below",
+      "bands": [
+        {
+          "slug": "epigram",
+          "label": "Epigram",
+          "max": 8,
+          "blurb": "Eight lines or fewer"
+        },
+        {
+          "slug": "short",
+          "label": "Short",
+          "max": 20,
+          "blurb": "Nine to twenty"
+        },
+        {
+          "slug": "long",
+          "label": "Long",
+          "max": null,
+          "blurb": "Twenty-one and up"
+        }
+      ]
+    },
+    "season": {
+      "label": "Season",
+      "blurb": "Northern hemisphere, guessed off the month and correctable by hand.",
+      "values": [
+        {
+          "slug": "winter",
+          "label": "Winter"
+        },
+        {
+          "slug": "spring",
+          "label": "Spring"
+        },
+        {
+          "slug": "summer",
+          "label": "Summer"
+        },
+        {
+          "slug": "autumn",
+          "label": "Autumn"
+        }
+      ]
+    }
+  }
 }

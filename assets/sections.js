@@ -2,7 +2,9 @@
  *
  *   .thought-draw + .thought-stream   →  data/thoughts.json
  *   .gags                             →  data/jokes.json
- *   .poems                            →  data/poetry.json
+ *
+ * The poetry tab moved out to assets/poetry.js on 2026-11-01: it grew a
+ * chronology rail and a filter bar, which outgrew a shared renderer.
  *
  * One file rather than three, because all three do the same small job and no
  * build step bundles anything here. Adding an entry stays one edit in one data
@@ -153,35 +155,6 @@
     root.appendChild(ul);
   }
 
-  /* ── Poetry ──────────────────────────────────────────────────────────────
-     A stub until the owner moves the first pieces across. The page renders
-     whatever data/poetry.json holds and says so plainly when it holds nothing;
-     it never invents a line. projects/poetry/README.md carries the pipeline. */
-  function poems(data) {
-    var root = document.querySelector('.poems');
-    if (!root) { return; }
-    var list = (data && Array.isArray(data.poems)) ? data.poems : [];
-    root.textContent = '';
-
-    if (!list.length) {
-      var box = el('div', 'dogear');
-      box.appendChild(el('p', null, data && data.waiting
-        ? data.waiting
-        : 'The verse waits on its author.'));
-      box.appendChild(el('span', 'fold'));
-      root.appendChild(box);
-      return;
-    }
-
-    list.forEach(function (poem) {
-      var bay = el('div', 'verse-bay');
-      bay.appendChild(el('h2', null, poem.title));
-      bay.appendChild(el('p', 'verse', poem.text));
-      if (poem.credit) { bay.appendChild(el('p', 'credit', poem.credit)); }
-      root.appendChild(bay);
-    });
-  }
-
   document.addEventListener('DOMContentLoaded', function () {
     var drawRoot = document.querySelector('.thought-draw');
     var streamRoot = document.querySelector('.thought-stream');
@@ -190,7 +163,5 @@
     }
     var gagRoot = document.querySelector('.gags');
     if (gagRoot) { load('data/jokes.json', gags, [gagRoot]); }
-    var poemRoot = document.querySelector('.poems');
-    if (poemRoot) { load('data/poetry.json', poems, [poemRoot]); }
   });
 })();
