@@ -116,3 +116,35 @@
   outline: 2px solid var(--gold-bright);
   outline-offset: 3px;
 }
+
+/* ─── THE REEL'S REGISTER TAG ───────────────────────────────────────────────
+   Four of the channel's most watched cuts rib somebody by name. The owner
+   asked for them in the reel (2026-11-01) and asked that the framing name
+   them as satire.
+
+   The framing sits HERE, on the entry, rather than only in the section's
+   intro: a visitor who lands mid-page, or who reads the reel and nothing
+   else, still meets the word before the line. The intro keeps its own copy of
+   the framing for anyone reading from the top.
+
+   The tag names the register, never the subject, and the hook beside it
+   points at the argument rather than at anyone's conduct — see the rules in
+   website/data/hooks.json, which travel with the lines they govern. */
+.reel-source {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.reel-tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  padding: 0.15rem 0.55rem;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  color: var(--gold-bright, var(--gold));
+  /* Not a warning. The channel plays these for comedy, and a red badge would
+     read as a content warning the owner never asked for. */
+  background: rgba(201, 162, 75, 0.08);
+}

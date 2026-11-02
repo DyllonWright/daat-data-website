@@ -138,7 +138,20 @@
     item.appendChild(shot);
 
     var body = el('div', 'reel-body');
-    body.appendChild(el('p', 'reel-source', 'Why watch it'));
+
+    /* The label line carries the standing 'Why watch it', and, where the entry
+       names one, a tag beside it. A tag marks how to read the video — 'Satire'
+       above all — and it travels with the hook rather than sitting in a
+       disclaimer at the top of the page that a skimming visitor scrolls past.
+       The tag describes the register, never the subject. */
+    var src = el('p', 'reel-source');
+    src.appendChild(el('span', null, 'Why watch it'));
+    if (hook.tag) {
+      var tag = el('span', 'reel-tag', hook.tag);
+      src.appendChild(tag);
+      item.classList.add('is-tagged');
+    }
+    body.appendChild(src);
     body.appendChild(el('p', 'reel-summary', hook.hook));
 
     var cap = el('figcaption', 'reel-cap');

@@ -3,27 +3,40 @@
     "THE HOOK REEL. website/videos.html reads this file and pairs each entry",
     "with its video in data/channel.json by id, so the thumbnail, title, link",
     "and view count always come from the published record. This file carries",
-    "only what channel.json cannot: a one-line hook.",
+    "only what channel.json cannot: a one-line hook, and sometimes a tag.",
     "",
-    "VOICE (the owner's call, 2026-11-01). Each line works as a hook, not as a",
-    "summary. It should make a stranger want the video. The first pass read",
-    "like a machine restating the title back at itself; that got cut.",
+    "LONG FORM ONLY, and no filter enforces it because none has to:",
+    "channel.json holds 69 videos and not one runs under ten minutes. The",
+    "shorts never entered that file. They live in data/thoughts.json, which",
+    "feeds the Thought of the Day page, and the owner confirmed on 2026-11-01",
+    "that each one clips and speeds up a long-form cut it came from. So the",
+    "reel, the wall and the carousel all show originals already.",
     "",
-    "THREE RULES THAT DO NOT BEND:",
+    "VOICE. Each line works as a hook, not as a summary. It should make a",
+    "stranger want the video. The first pass read like a machine restating",
+    "each title back at itself; that got cut.",
+    "",
+    "THE FOUR RULES THAT DO NOT BEND:",
     "  1. E-Prime, as everywhere in this repo. No is/are/was/were/be/been/",
-    "     being/am. The owner also reads this as defamation cover: it is NOT.",
-    "     E-Prime softens how a claim reads, and carries no legal weight at",
-    "     all. The protection comes from rules 2 and 3.",
-    "  2. No checkable factual claim about a named living person. Not their",
-    "     health, their money, their substance use, their state of mind, or",
-    "     what they did. The channel's titles may rib somebody; a hook written",
-    "     here for the site makes a NEW assertion in the site's own voice, and",
-    "     the site carries it. Videos about named individuals therefore stay",
-    "     out of this reel until the owner decides otherwise.",
-    "  3. Where a line ribs anything at all, the section framing above it says",
-    "     plainly that the channel plays it as satire and good-natured fun.",
-    "     See the #hooks section heading in videos.html; the two travel",
-    "     together, so do not ship a hook without that framing on the page.",
+    "     being/am. Note for whoever edits next: E-Prime carries NO legal",
+    "     weight. It changes how a claim reads and nothing about whether it",
+    "     defames. The protection comes from rules 2, 3 and 4.",
+    "  2. The hook points at the argument, the pattern or the bit. Never at a",
+    "     named person's conduct, health, money or state of mind. A title the",
+    "     owner published ships under his channel; a line written HERE makes a",
+    "     fresh assertion in the site's voice, which the site then carries.",
+    "     Restate nothing a title alleges — let the title speak for itself.",
+    "  3. Anything that ribs somebody carries tag: \"Satire\". The tag renders",
+    "     beside the hook, on the entry itself, so a visitor who lands mid-page",
+    "     meets the framing before the line. assets/videos.css explains why it",
+    "     does not sit in the section intro alone.",
+    "  4. The tag names the REGISTER, never the subject. \"Satire\" describes",
+    "     how to read the video. It never describes the person in it.",
+    "",
+    "Four of the ten rib somebody by name. The owner asked for them in on",
+    "2026-11-01 — they include the channel's most watched cut by a factor of",
+    "three — and asked that the framing name them as satire. Rules 2 to 4 are",
+    "how that got done.",
     "",
     "Every line here got written for the site, from the video's published",
     "title in channel.json and nothing else. None quotes the owner, none draws",
@@ -33,10 +46,16 @@
     "  id    the eleven-character YouTube id. It must appear in channel.json,",
     "        or the page skips the entry.",
     "  hook  one line, in the site's voice, that makes a stranger curious.",
+    "  tag   optional. The register to read it in. \"Satire\" where it ribs.",
     "",
-    "Keep the reel to six to ten entries, chosen from the most viewed videos."
+    "Order follows view count, most watched first. Keep the reel to ten."
   ],
   "entries": [
+    {
+      "id": "rpO0VhOaPt4",
+      "tag": "Satire",
+      "hook": "The most watched thing on the channel: a satirical post-mortem on a brand that ate itself."
+    },
     {
       "id": "IDyo2CSlsGk",
       "hook": "The cartoon villain nobody took seriously keeps making more sense every year. Uncomfortable, that."
@@ -50,24 +69,32 @@
       "hook": "Sixteen years on autopilot, then the lights came on. An account of waking up late."
     },
     {
+      "id": "O4of_HWnoH4",
+      "tag": "Satire",
+      "hook": "A roast in the old internet tradition, aimed at an argument rather than at a soul. Take it in that spirit."
+    },
+    {
+      "id": "TDA8rgsGwXU",
+      "tag": "Esoterica",
+      "hook": "Forty minutes on Da'at, the sephirah the Tree counts but never numbers. A lurid title over a close reading."
+    },
+    {
       "id": "8t8QTcscsyQ",
       "hook": "The signs arrive early, loud, and almost comically on the nose. Most people file them under coincidence."
     },
     {
+      "id": "wfcSJOVMKiQ",
+      "tag": "Satire",
+      "hook": "Less about one spectacle than about the mechanics underneath it: how a fall gathers speed."
+    },
+    {
+      "id": "ZtpyzMCyvHM",
+      "tag": "Satire",
+      "hook": "A sequel, and a send-up of doom-posting as a way of life. The commentary voice at full tilt."
+    },
+    {
       "id": "PZ70qahQnB8",
       "hook": "If the script already exists, what exactly do you think you decide? Free will takes a beating."
-    },
-    {
-      "id": "nh_lo3xz6rQ",
-      "hook": "Admiration without ambition rots into worship. One honest way to honour a hero: beat them."
-    },
-    {
-      "id": "MSgkAUlshks",
-      "hook": "Three years of binaural meditation, logged daily. Here come the numbers, the unflattering ones included."
-    },
-    {
-      "id": "kvIqOMRhIKA",
-      "hook": "Forget the shadow government. Follow the org chart, and the pyramid turns out to mean what it looks like."
     }
   ]
 }
