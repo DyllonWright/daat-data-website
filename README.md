@@ -1,3 +1,63 @@
+# daatdata.net
+
+The public site. Static HTML, no build step, no framework, no bundler: a
+browser reads exactly the files in this repo. Cloudflare Pages serves them at
+[daatdata.net](https://daatdata.net), and a push to `main` reaches the public
+web in about a minute. **No staging exists.**
+
+```
+python serve.py            # http://127.0.0.1:8000
+```
+
+Use that rather than `python -m http.server`. Pages drops the `.html`
+extension, so the site's links read `href="videos"`, and the stock server
+answers 404 for every one of them. `serve.py` mirrors what Pages does,
+redirects included.
+
+## The shape of it
+
+| | |
+|---|---|
+| `index.html` | the hub page; one card per body of work |
+| `videos.html` `exodus.html` `non-nominalism.html` `exit-interview.html` `poetry.html` `horrible-ideas.html` `thoughts.html` `techne.html` `academia.html` `consulting.html` | a page per project |
+| `assets/` | one stylesheet (`site.css`), a small script per section, images, SVG sprites |
+| `data/` | the JSON each page renders — add an entry here rather than editing markup |
+| `_redirects` | Cloudflare's redirect table |
+
+The masthead is generated. Pages carry a `MASTHEAD:BEGIN/END` block written by
+a script in the private hub repo, so **edit one page's masthead and the next
+run overwrites it** — say what you want changed instead.
+
+## Contributing
+
+Open a pull request. `main` takes no direct pushes; every change lands through
+a PR the owner reviews. Branch from `main`, keep one subject per PR, and say in
+the description what a visitor sees differently.
+
+Three things worth knowing before the first one:
+
+1. **Everything here is already public.** Not only the pages — every file in
+   this repo sits at a URL, `data/*.json` and this README included, and so does
+   every commit message. Write them for a reader.
+2. **No build step, on purpose.** No npm, no bundler, no framework. If a change
+   seems to need one, raise it as an issue first.
+3. **Nothing arrives from another repo by machine.** No submodules, no
+   symlinks, no fetching from a private source at page load. An image or a
+   quote reaches this repo as a deliberate hand-copy, and the owner logs where
+   it came from. The rest of the body of work lives in private repos and stays
+   there.
+
+The design reasoning, the roadmap and the infrastructure record live in the
+private hub repo and do not travel.
+
+---
+
+# The original deploy notes
+
+Written while this folder sat inside the hub repo as `website/`, before the
+split on 2026-11-01. Paths below that read `website/...` now mean the repo
+root, and paths that read `docs/...` point into the private hub repo.
+
 # Deploying this page
 
 This folder holds the v0 static landing page for Daat Data Consulting (brand
