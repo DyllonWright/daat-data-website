@@ -1,0 +1,118 @@
+/* Rules that belong to the Videos page alone: the hook reel, and the carousel's
+   interaction states. Loaded after site.css.
+
+   Why the arc carousel sits between the reel and the wall: Report D warns that
+   anything filling the first screen on a dark canvas destroys the starfield, so
+   the hero and the reel take the first screen and the carousel starts below it.
+   The wall comes last because it runs long and ends in a button; a visitor who
+   wants the whole list reaches it, and a visitor who wants a taste meets the
+   reel and the arc before it. */
+
+/* ─── THE HOOK REEL ─────────────────────────────────────────────────────────
+   Thumbnail on one side, a one-line summary on the other. Items alternate
+   sides on wide screens and stack to one column below 720px, with the picture
+   first. The aspect ratio holds the picture's box open before the image lands. */
+.reel { display: grid; gap: 3rem; }
+
+.reel-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: center;
+  margin: 0;
+}
+
+.reel-item:nth-child(even) .reel-shot { order: 2; }
+
+.reel-shot {
+  display: block;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--bg-panel);
+}
+
+.reel-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+.reel-shot:hover { border-color: var(--gold); }
+.reel-shot:hover img { transform: scale(1.03); }
+
+.reel-source {
+  margin: 0 0 0.6rem;
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.reel-summary {
+  margin: 0;
+  padding: 0 0 0 1.1rem;
+  border-left: 2px solid var(--gold);
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 3.4vw, 1.75rem);
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.reel-cap {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: var(--ink-dim);
+}
+
+.reel-cap a {
+  color: var(--gold-bright);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.reel-cap a:hover { color: var(--ink); }
+
+.reel-meta {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+@media (max-width: 720px) {
+  .reel-item { grid-template-columns: minmax(0, 1fr); gap: 1.1rem; }
+  .reel-item:nth-child(even) .reel-shot { order: 0; }
+}
+
+/* ─── CAROUSEL INTERACTION STATES ───────────────────────────────────────────
+   Animation stays on transform and opacity, set in site.css. This file adds
+   the cues for the input assets/carousel.js now takes. */
+.arc-stage { cursor: grab; }
+.arc-stage.is-dragging { cursor: grabbing; user-select: none; }
+
+/* While a drag runs, the stage owns the pointer, so no card's link fires from
+   the release. */
+.arc-stage.is-dragging .arc-card { pointer-events: none; }
+
+/* The stage clips overflow, so a ring offset by 4px would lose its outer edge
+   on a card that sits near the stage boundary. A tighter offset keeps the whole
+   ring visible. */
+.arc-card:focus-visible {
+  outline: 3px solid var(--gold-bright);
+  outline-offset: 2px;
+}
+
+.arc-card[data-pos="0"] { cursor: pointer; }
+.arc-card:not([data-pos="0"]) { cursor: grab; }
+
+.carousel .arc-btn:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 3px;
+}

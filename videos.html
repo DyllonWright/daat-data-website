@@ -8,6 +8,7 @@
 
 <link rel="icon" type="image/png" href="assets/favicon-64.png">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/videos.css">
 <link rel="canonical" href="https://daatdata.net/videos">
 <meta property="og:title" content="Videos — Da'at Data">
 <meta property="og:description" content="Sixty-nine cuts that take a word, a story or a borrowed frame apart out loud, down to the parts.">
@@ -18,19 +19,6 @@
 <meta name="twitter:title" content="Videos — Da'at Data">
 <meta name="twitter:description" content="Sixty-nine cuts that take a word, a story or a borrowed frame apart out loud, down to the parts.">
 <meta name="twitter:image" content="https://daatdata.net/assets/social-card.jpg">
-
-<!-- PUBLISHED WORK ONLY (2026-10-31, the owner's call). The page shows the
-     catalogue and nothing else: no status lines, no unreleased titles,
-     nothing a visitor cannot go and watch.
-
-     website/data/videos.json stays in the repo as his own record of the
-     series. No page reads it now, and restoring a section here means
-     restoring its renderer with it; the history before this commit carries
-     both, with the full reasoning. Deliberately not repeated here — this
-     comment ships to the public web inside every copy of the page.
-
-     THE CATALOGUE LIVES IN website/data/channel.json, which
-     scripts/build-website-data.py derives from the hub's verified record. -->
 </head>
 <body>
 
@@ -154,14 +142,14 @@
   </a>
   <nav class="sitenav" aria-label="Sections">
     <a href="videos" aria-current="page">Videos</a>
-    <a href="shelf">The Shelf</a>
     <a href="exodus">Project Exodus</a>
-    <a href="treatise">Treatise</a>
+    <a href="non-nominalism">Non-Nominalism</a>
     <a href="exit-interview">Exit Interview</a>
     <a href="poetry">Poetry</a>
     <a href="horrible-ideas">Horrible Ideas</a>
     <a href="thoughts"><span class="flip">Thought of the Day</span></a>
     <a href="techne">Techne</a>
+    <a href="academia">Academia</a>
     <a href="consulting">Consulting</a>
   </nav>
   <svg class="craft" viewBox="0 0 70 40" aria-hidden="true" style="--at:0s;--lane:-118px;--exit:-66px;--spin:-14deg"><ellipse cx="35" cy="22" rx="26" ry="7" fill="#17140f" stroke="#f2ead9" stroke-width="1.4"/><path d="M22 18 A 14 11 0 0 1 48 18" fill="#17140f" stroke="#f2ead9" stroke-width="1.4"/><path d="M13 25 A 24 12 0 0 0 57 25" fill="none" stroke="#c9a24b" stroke-width="1.4"/><circle cx="24" cy="22" r="1.5" fill="#e8c887"/><circle cx="30" cy="23" r="1.5" fill="#e8c887"/><circle cx="36" cy="23.4" r="1.5" fill="#e8c887"/><circle cx="42" cy="23" r="1.5" fill="#e8c887"/><circle cx="48" cy="22" r="1.5" fill="#e8c887"/></svg>
@@ -188,14 +176,46 @@
 
 <div class="wrap">
 
-  <!-- THE CATALOGUE. The wall renders data/channel.json, which
-       scripts/build-website-data.py derives from the hub's verified record,
-       most viewed first. That record decides what reaches this page; see
-       projects/videos/README.md for what it leaves out and why. -->
-  <section class="first" id="catalogue">
+  <section class="first" id="reel">
+    <div class="section-heading left">
+      <h2>Start here</h2>
+      <p>Eight of the most watched. The lines below come from this page rather than from
+        the videos, and where the channel ribs something, it plays the ribbing as satire
+        and good-natured fun — a skit, not a finding.</p>
+    </div>
+    <div class="reel" data-source="data/hooks.json" data-videos="data/channel.json"></div>
+  </section>
+
+</div>
+
+<div class="wrap wide">
+
+  <section id="arc">
+    <div class="section-heading">
+      <h2>Browse the arc</h2>
+      <p>Most watched first. Drag it, swipe it, click a side card, or use the arrow keys.</p>
+    </div>
+    <div class="carousel"
+         data-source="data/channel.json"
+         data-label="Everything the channel has published"></div>
+
+    <noscript>
+      <div class="note">
+        <h3>The arc needs JavaScript</h3>
+        <p>Everything on it also sits on
+          <a href="https://www.youtube.com/@DaatData" target="_blank" rel="noopener">the YouTube channel</a>.</p>
+      </div>
+    </noscript>
+  </section>
+
+</div>
+
+<div class="wrap">
+
+  <section id="catalogue">
     <div class="section-heading left">
       <h2>Everything published</h2>
-      <p>Ordered by the counter. The arc version lives on <a href="shelf">The Shelf</a>.</p>
+      <p>The whole list, ordered by the counter.</p>
     </div>
     <div class="wall" data-source="data/channel.json" data-step="24"></div>
 
@@ -208,9 +228,6 @@
     </noscript>
   </section>
 
-    <!-- Quiet punctuation between two long sections: the ring motif,
-         drifting. Report C ranks thematic spot art fifth among the patterns
-         worth taking, for exactly this job. -->
     <div class="ring-divider" aria-hidden="true">
       <svg class="sat" aria-hidden="true"><use href="assets/planet-sprite.svg#sat-ring"/></svg>
     </div>
@@ -227,7 +244,6 @@
       </div>
       <div class="panel">
         <h3>By email</h3>
-        <!-- No form here, on purpose. See the comment in index.html → #follow. -->
         <p>No list exists yet. Write to the address below and I add you to the first one.</p>
         <p><a class="address" href="mailto:contact@daatdata.net">contact@daatdata.net</a></p>
       </div>
@@ -236,17 +252,18 @@
 
   <footer>
     <div class="social-row">
-      <a class="social-link" href="https://www.youtube.com/@DaatData" target="_blank" rel="noopener">YouTube</a>
-      <a class="social-link" href="https://www.tiktok.com/@DaatData" target="_blank" rel="noopener">TikTok</a>
-      <a class="social-link" href="https://www.instagram.com/DaatData" target="_blank" rel="noopener">Instagram</a>
-      <a class="social-link" href="https://x.com/DaatData" target="_blank" rel="noopener">X</a>
-      <a class="social-link" href="https://www.threads.com/@DaatData" target="_blank" rel="noopener">Threads</a>
+      <a class="social-link" href="https://www.youtube.com/@DaatData" target="_blank" rel="noopener"><svg class="social-ico" aria-hidden="true"><use href="assets/social-sprite.svg#soc-youtube"/></svg><span>YouTube</span></a>
+      <a class="social-link" href="https://www.tiktok.com/@DaatData" target="_blank" rel="noopener"><svg class="social-ico" aria-hidden="true"><use href="assets/social-sprite.svg#soc-tiktok"/></svg><span>TikTok</span></a>
+      <a class="social-link" href="https://www.instagram.com/DaatData" target="_blank" rel="noopener"><svg class="social-ico" aria-hidden="true"><use href="assets/social-sprite.svg#soc-instagram"/></svg><span>Instagram</span></a>
+      <a class="social-link" href="https://x.com/DaatData" target="_blank" rel="noopener"><svg class="social-ico" aria-hidden="true"><use href="assets/social-sprite.svg#soc-x"/></svg><span>X</span></a>
+      <a class="social-link" href="https://www.threads.com/@DaatData" target="_blank" rel="noopener"><svg class="social-ico" aria-hidden="true"><use href="assets/social-sprite.svg#soc-threads"/></svg><span>Threads</span></a>
     </div>
     <p class="copyline">&copy; 2026 Daat Data Consulting.</p>
   </footer>
 
 </div>
 
+<script src="assets/carousel.js"></script>
 <script src="assets/wall.js"></script>
 <script src="assets/chime.js"></script>
 </body>

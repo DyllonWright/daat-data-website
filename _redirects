@@ -1,0 +1,11 @@
+# Cloudflare Pages reads this file from the build output directory.
+# /treatise served the work under its old label until 2026-11-01, when the
+# owner renamed it Non-Nominalism and the page moved with the name. 301, so
+# anything already linking to the old path follows permanently.
+/treatise /non-nominalism 301
+/treatise.html /non-nominalism 301
+
+# The Shelf tab went the same day: its carousel moved into Videos, which
+# already carried all sixty-nine published videos.
+/shelf /videos 301
+/shelf.html /videos 301

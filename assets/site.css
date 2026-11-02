@@ -2072,3 +2072,56 @@ ul.gloss li::before {
   .sat-wobble { transition: none; }
   .sat-wobble:hover { transform: none; }
 }
+
+/* ─── TECHNE: CHIP SCREENSHOTS ──────────────────────────────────────────────
+   Three of the seven chips carry a screenshot, hand-copied from each public
+   repo's own README (logged in docs/fleet/PROJECTS.md → Asset provenance).
+   The other four hold no usable image — one repo ships none, two hold only
+   third-party or personal copyrighted pictures, one ships a flowchart that
+   turns to mud at thumbnail width — so they stay type-only. A type-only chip
+   already reads complete, so no placeholder fills the gap.
+   Every shot takes the same 2:1 frame and object-fit: cover, so mixed source
+   shapes still line up. Flex items stretch to the row height, which leaves a
+   shorter chip with spare room below its text, never a hole. max-width: 100%
+   keeps the image inside the chip at 400px. The gold focus ring stays on
+   .chip itself; nothing here touches outline. */
+.chip .chip-shot {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  object-position: top left;
+  margin: 0 0 0.65rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  background: var(--bg-panel);
+}
+
+/* ─── SOCIAL GLYPHS ─────────────────────────────────────────────────────────
+   The logos sit beside the names, black and white, matching the theme (the
+   owner's call, 2026-11-01). The glyphs come from assets/social-sprite.svg
+   through <use>, and they take their colour from the link, so the gold hover
+   carries the glyph along with the word rather than leaving it grey behind.
+
+   Sized in em, not px, so the footer's smaller type shrinks the glyph with
+   it and the two keep their proportion. The row gets its gap from
+   .social-row already; this only has to space the glyph from its own word.
+
+   scripts/apply-social-icons.py writes the markup these rules style. */
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.social-ico {
+  width: 1.15em;
+  height: 1.15em;
+  flex: 0 0 auto;
+  color: currentColor;
+  /* A glyph drawn at 24px and shown near 14 reads soft on the stroke-built
+     marks, so nudge it off the text baseline rather than scaling it up. */
+  transform: translateY(-0.02em);
+}

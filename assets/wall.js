@@ -109,7 +109,88 @@
       });
   }
 
+  /* The hook reel — a thumbnail beside a one-line hook.
+   *
+   * Markup: <div class="reel" data-source="data/hooks.json"
+   *              data-videos="data/channel.json"></div>
+   *
+   * hooks.json carries the hook, written for the site. The thumbnail, title, link and
+   * view count come from channel.json, joined by video id, so an entry whose id
+   * the channel does not list simply does not render. The thumbnail links out;
+   * no player loads on this page. */
+  function reelEntry(v, hook) {
+    var item = el('figure', 'reel-item');
+
+    var shot = el('a', 'reel-shot');
+    shot.href = v.url;
+    shot.target = '_blank';
+    shot.rel = 'noopener';
+    shot.tabIndex = -1;
+    shot.setAttribute('aria-hidden', 'true');
+    var img = el('img');
+    img.src = v.thumb;
+    img.alt = 'Thumbnail for the video “' + v.title + '”';
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    img.width = 480;
+    img.height = 270;
+    shot.appendChild(img);
+    item.appendChild(shot);
+
+    var body = el('div', 'reel-body');
+    body.appendChild(el('p', 'reel-source', 'Why watch it'));
+    body.appendChild(el('p', 'reel-summary', hook.hook));
+
+    var cap = el('figcaption', 'reel-cap');
+    var a = el('a', null, v.title);
+    a.href = v.url;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    cap.appendChild(a);
+    var meta = [views(v.views), minutes(v.durationSeconds)].filter(Boolean).join(' · ');
+    if (meta) { cap.appendChild(el('span', 'reel-meta', meta)); }
+    body.appendChild(cap);
+
+    item.appendChild(body);
+    return item;
+  }
+
+  function startReel(root) {
+    var hookSource = root.getAttribute('data-source') || 'data/hooks.json';
+    var videoSource = root.getAttribute('data-videos') || 'data/channel.json';
+
+    function load(url) {
+      return fetch(url, { cache: 'no-cache' }).then(function (r) {
+        if (!r.ok) { throw new Error('HTTP ' + r.status); }
+        return r.json();
+      });
+    }
+
+    Promise.all([load(hookSource), load(videoSource)])
+      .then(function (both) {
+        var hooks = (both[0] && Array.isArray(both[0].entries)) ? both[0].entries : [];
+        var list = (both[1] && Array.isArray(both[1].videos)) ? both[1].videos : [];
+        var byId = {};
+        list.forEach(function (v) { byId[v.id] = v; });
+
+        var shown = hooks.filter(function (h) {
+          return h && h.hook && byId[h.id];
+        });
+        if (!shown.length) { throw new Error('empty'); }
+
+        root.textContent = '';
+        shown.forEach(function (h) { root.appendChild(reelEntry(byId[h.id], h)); });
+      })
+      .catch(function () {
+        /* The reel is a bonus. If it fails, its whole section steps aside and
+           the catalogue below carries the page. */
+        var section = root.closest('section');
+        if (section) { section.hidden = true; } else { root.hidden = true; }
+      });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     Array.prototype.forEach.call(document.querySelectorAll('.wall'), start);
+    Array.prototype.forEach.call(document.querySelectorAll('.reel'), startReel);
   });
 })();
