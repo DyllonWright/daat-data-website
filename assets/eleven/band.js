@@ -1,8 +1,9 @@
 /* THE CALENDAR RAIL — today in eleven calendars, along the bottom of every page.
  * ----------------------------------------------------------------------------
  * Fills every element carrying [data-eleven-band]. One form only: a single
- * line of type per system, in the site's ivory and gold, with a chain link
- * between entries.
+ * line of type per system, in the site's ivory and gold, with one of the
+ * site's eight Saturn expressions between entries, picked at random per
+ * page load.
  *
  * WHAT CAME OUT, 2026-11-09, and should not go back without the owner asking.
  * An earlier pass ran two rails — this one plus a four-line copy below the
@@ -12,9 +13,10 @@
  * two colours and one line.
  *
  * WHY TWO RUNS. The loop animates translateX(0) -> translateX(-50%), which
- * closes seamlessly only when the two runs measure identically. Every cell is
- * followed by a joint, the LAST ONE INCLUDED. Drop that trailing joint from
- * one run and the seam shows a half-empty chain link.
+ * closes seamlessly only when the two runs are identical, in width AND in
+ * content. Every cell is followed by a mascot, the LAST ONE INCLUDED — drop
+ * that trailing one from a run and the seam shows a gap — and both runs read
+ * the same randomly drawn faces, or the seam shows one changing expression.
  *
  * FAILING SAFE. site.css reserves the rail's height on <body> whether or not
  * this script runs, because an unreserved fixed strip covers the last line of
@@ -29,31 +31,42 @@
 
   var NS = "http://www.w3.org/2000/svg";
 
-  /* ONE LINK OF CHAIN: two half rings and a free ellipse, interlocked.
-     The half rings bulge INWARD, toward the ellipse. A ring emerging from the
-     entry on the left shows its RIGHT half, so its open side faces the words
-     it comes out of and its curve hooks through the ellipse. Bulge them
-     outward and each one reads as a bracket cupping away from the link, which
-     is what the first version drew and the owner caught.
-     Each chord sits on the viewBox edge and the rx carries the bulge inward
-     to x=11 and x=57, so nothing draws outside the box. */
-  function joint() {
+  /* THE PUNCTUATION BETWEEN ENTRIES: the site's own mascot, one of its eight
+     expressions, picked at random per page load rather than written in. The
+     chain link that used to sit here drew two half rings and a free ellipse;
+     the owner replaced it with the Saturn kit on 2026-11-09.
+
+     THE SEQUENCE IS DRAWN ONCE AND REUSED BY BOTH RUNS. The loop animates
+     translateX(0) -> translateX(-50%), which only closes seamlessly when the
+     two runs are identical — in width AND in content. Pick a fresh face per
+     joint in each run and the two halves disagree, so the seam shows a
+     mascot changing expression mid-scroll. Hence faceRun() below, built once
+     and read twice.
+
+     The faces, not the parts: sat-base, sat-ring, sat-eyes and the rest are
+     pieces the expressions are assembled from, and a lone pair of eyes is
+     not a mascot. */
+  var FACES = ["sat-cool", "sat-devil", "sat-done-for", "sat-shock",
+               "sat-sleepy", "sat-smile", "sat-smug", "sat-wink"];
+
+  function faceRun(n) {
+    var out = [];
+    for (var i = 0; i < n; i++) out.push(FACES[Math.floor(Math.random() * FACES.length)]);
+    return out;
+  }
+
+  function joint(face) {
     var d = document.createElement("span");
     d.className = "eleven-joint";
     var s = document.createElementNS(NS, "svg");
-    s.setAttribute("viewBox", "0 0 68 24");
+    s.setAttribute("class", "sat");
     s.setAttribute("aria-hidden", "true");
-    s.setAttribute("fill", "none");
-    s.setAttribute("stroke", "currentColor");
-    s.setAttribute("stroke-width", "2");
-    s.setAttribute("stroke-linecap", "round");
-    s.innerHTML =
-      /* the left ring's right half: chord on x=0, bulging in to x=11 */
-      '<path d="M 0 5 A 11 7 0 0 1 0 19"/>' +
-      /* the right ring's left half: chord on x=68, bulging in to x=57 */
-      '<path d="M 68 5 A 11 7 0 0 0 68 19"/>' +
-      /* the free link threaded through both */
-      '<ellipse cx="34" cy="12" rx="24" ry="7"/>';
+    var u = document.createElementNS(NS, "use");
+    /* setAttributeNS(null, ...) rather than href=: an SVG <use> takes a plain
+       href attribute, and setting it through the XLink namespace instead
+       silently resolves to nothing in a current browser. */
+    u.setAttributeNS(null, "href", "assets/planet-sprite.svg#" + face);
+    s.appendChild(u);
     d.appendChild(s);
     return d;
   }
@@ -114,6 +127,7 @@
 
     var track = document.createElement("div");
     track.className = "eleven-track";
+    var faces = faceRun(KEYS.length);
     var built = 0;
     for (var pass = 0; pass < 2; pass++) {
       var run = document.createElement("div");
@@ -122,8 +136,9 @@
         var c = cell(data, KEYS[i], href);
         if (!c) continue;
         run.appendChild(c);
-        /* the trailing joint belongs here too — see the header note */
-        run.appendChild(joint());
+        /* the trailing mascot belongs here too, and both runs read the same
+           face at the same index — see the header note */
+        run.appendChild(joint(faces[i]));
         built++;
       }
       track.appendChild(run);
