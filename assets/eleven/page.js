@@ -153,6 +153,24 @@
         var g = G.notes[k];
         gl.appendChild(el("p", null, g ? g.y[1] : ""));
         gl.appendChild(el("div", "ep", "Counts from " + (G.epoch[k] || "\u2014")));
+
+        /* Read more, off-site. Every one of these URLs was checked for a 200
+           rather than guessed from the system name - see notes.js. */
+        var refs = (G.wiki && G.wiki[k]) || [];
+        if (refs.length) {
+          var more = el("div", "more");
+          refs.forEach(function (r) {
+            var a = document.createElement("a");
+            a.className = "wiki";
+            a.href = r[1];
+            a.target = "_blank";
+            a.rel = "noopener";
+            a.appendChild(el("span", "ico", "🔗"));
+            a.appendChild(document.createTextNode(" " + r[0]));
+            more.appendChild(a);
+          });
+          gl.appendChild(more);
+        }
         row.insertAdjacentElement("afterend", gl);
         mark.textContent = "close";
         row.setAttribute("aria-expanded", "true");

@@ -192,6 +192,27 @@
     name.textContent = p.name;
     c.appendChild(name);
 
+    if (chain) {
+      /* THREE LINES, nesting the way the engine does: the system's name, a
+         hairline under it, then the era and year, then the month and the
+         day. A block then reads like a calendar page at a glance rather
+         than like one long run of punctuation. */
+      var bar = document.createElement("span");
+      bar.className = "eleven-bar";
+      c.appendChild(bar);
+
+      var l2 = document.createElement("span");
+      l2.className = "eleven-l2";
+      l2.textContent = p.year;
+      c.appendChild(l2);
+
+      var l3 = document.createElement("span");
+      l3.className = "eleven-l3";
+      l3.textContent = p.month + " · " + p.date;
+      c.appendChild(l3);
+      return c;
+    }
+
     var line = document.createElement("span");
     line.className = "eleven-oneline";
     line.textContent = p.year + " · " + p.month + " · " + p.date;

@@ -22,6 +22,28 @@
  */
 window.ELEVEN_GLOSS = {
 
+  /* WHERE TO READ MORE. One Wikipedia page per system, opened from the row a
+     visitor expands. Each URL was checked for a 200 on 2026-11-09 rather than
+     guessed from the system's name — three of the obvious guesses do not
+     exist as articles, which is why Poundian points at Ezra Pound and
+     'Pataphysical at the discipline rather than at a calendar page that was
+     never written. The Mayan row carries two, because the Long Count and the
+     round calendars are separate articles. */
+  wiki: {
+    gregorian: [["Gregorian calendar", "https://en.wikipedia.org/wiki/Gregorian_calendar"]],
+    illuminati: [["Anno Lucis", "https://en.wikipedia.org/wiki/Anno_Lucis"]],
+    erisian: [["Discordian calendar", "https://en.wikipedia.org/wiki/Discordian_calendar"]],
+    pataphysical: [["'Pataphysics", "https://en.wikipedia.org/wiki/%27Pataphysics"]],
+    poundian: [["Ezra Pound", "https://en.wikipedia.org/wiki/Ezra_Pound"]],
+    thelemic: [["Thelema", "https://en.wikipedia.org/wiki/Thelema"]],
+    frenchRev: [["French Republican calendar", "https://en.wikipedia.org/wiki/French_Republican_calendar"]],
+    islamic: [["Islamic calendar", "https://en.wikipedia.org/wiki/Islamic_calendar"]],
+    chinese: [["Chinese calendar", "https://en.wikipedia.org/wiki/Chinese_calendar"]],
+    mayan: [["Maya calendar", "https://en.wikipedia.org/wiki/Maya_calendar"],
+            ["Long Count", "https://en.wikipedia.org/wiki/Mesoamerican_Long_Count_calendar"]],
+    hebrew: [["Hebrew calendar", "https://en.wikipedia.org/wiki/Hebrew_calendar"]]
+  },
+
   epoch: {
     gregorian: "1 C.E., the estimated birth of Jesus Christ",
     illuminati: "4000 BCE, the first dawn of civilization",

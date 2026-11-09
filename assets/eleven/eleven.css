@@ -884,3 +884,97 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* READ MORE, off-site. One link per row, opened from the pop-out. */
+.eleven-ledger .more {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.1rem;
+  margin-top: 0.6rem;
+}
+
+.eleven-ledger .wiki {
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.eleven-ledger .wiki:hover {
+  color: var(--gold-bright);
+  border-bottom-color: var(--gold-bright);
+}
+
+/* The emoji paints in its own colours whatever the link does, so it stays
+   its own element rather than inheriting a gold it cannot take. */
+.eleven-ledger .wiki .ico {
+  font-size: 0.8em;
+}
+
+/* ─── THE ESSAY, AND THE CARD BESIDE IT ──────────────────────────────────
+   The prose keeps its reading measure and the card gives it an edge to sit
+   against. The card links out rather than reproducing anything: the cover
+   and every photograph of Wilson belong to other people. */
+.eleven-essay {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 16rem);
+  gap: clamp(1.5rem, 4vw, 2.75rem);
+  align-items: start;
+  margin-top: 1rem;
+}
+
+.eleven-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.55rem;
+  padding: 1.4rem 1.2rem;
+  border: 1px solid var(--border-soft);
+  border-top: 2px solid var(--gold);
+  background: var(--bg-panel);
+}
+
+/* our own line art, the same apple the rail draws for the Discordian row */
+.eleven-card .apple {
+  width: 5.5rem;
+  height: 5.5rem;
+  color: var(--gold);
+  opacity: 0.85;
+}
+
+.eleven-card .kallisti {
+  margin: 0.2rem 0 0;
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-style: italic;
+  letter-spacing: 0.08em;
+  color: var(--gold-bright);
+}
+
+.eleven-card .cardnote {
+  margin: 0 0 0.4rem;
+  font-size: 0.82rem;
+  color: var(--ink-dim);
+}
+
+.eleven-card .wiki {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.eleven-card .wiki:hover {
+  color: var(--gold-bright);
+  border-bottom-color: var(--gold-bright);
+}
+
+@media (max-width: 52rem) {
+  .eleven-essay { grid-template-columns: minmax(0, 1fr); }
+  .eleven-card { max-width: 22rem; }
+}

@@ -72,12 +72,16 @@ NAV = [
 # page, because this is the one block every page already carries and
 # position:fixed takes it out of flow anyway.
 #
-# TWO RAILS, deliberately unlike each other. The coloured one sits below the
-# masthead carrying the plugin's own palette and a chain between its entries,
-# and runs slow. The quiet one sits at the foot of the page in ivory and gold
-# with the site's mascot between entries, and runs quicker. Matching their
-# speeds would make the page read as one scrolling surface with the content in
-# a hole in the middle.
+# TWO RAILS, deliberately unlike each other, and only one of them is
+# site-wide.
+#
+#   the quiet rail, at the foot of EVERY page: ivory and gold, the site's own
+#   mascot between entries, quick.
+#
+#   the coloured rail, below the masthead on /eleven-days ONLY: the plugin's
+#   palette, a drawn motif behind each entry, a chain between them, taller so
+#   the motif reads, and slower. Matching their speeds would make that page
+#   read as one scrolling surface with the content in a hole in the middle.
 #
 # A four-line version of the upper rail, with a gloss drawer, came and went on
 # 2026-11-09: at that height it pushed every page's own opening below the fold.
@@ -88,13 +92,23 @@ NAV = [
 # the strip covers the last line of all thirteen pages.
 
 
-def rail():
-    out = [
-        # the coloured rail, below the masthead: the plugin's own palette, a
-        # motif behind each entry, a chain between them, running slow
-        '<div class="eleven-band eleven-band--inflow" data-eleven-band',
-        '     data-variant="chain" aria-label="Today in eleven calendars"></div>',
-        # and the quiet one, fixed to the foot of the page, running quicker
+RAIL_PAGE = "eleven-days.html"
+
+
+def rail(page):
+    out = []
+    # THE COLOURED RAIL BELONGS TO ITS OWN PAGE AND NOWHERE ELSE. The
+    # plugin's palette, a drawn motif behind each entry and a chain between
+    # them say what /eleven-days is about; on the hub or on Poetry they say
+    # nothing and shove the page's own opening down the screen. It went out
+    # site-wide once, on 2026-11-09, and came straight back off.
+    if page == RAIL_PAGE:
+        out += [
+            '<div class="eleven-band eleven-band--inflow" data-eleven-band',
+            '     data-variant="chain" aria-label="Today in eleven calendars"></div>',
+        ]
+    out += [
+        # the quiet one, fixed to the foot of EVERY page, running quicker
         '<div class="eleven-band eleven-band--rail" data-eleven-band',
         '     aria-label="Today in eleven calendars"></div>',
         # engine first, then the script that reads it. Neither is deferred:
@@ -502,7 +516,7 @@ def masthead(page):
         # The globe's turn needs trigonometry per frame, so the lockup carries
         # one script. defer, and in the body, so it never blocks the paint.
         '<script src="assets/globe.js" defer></script>',
-        rail(),
+        rail(page),
         END,
     ])
 

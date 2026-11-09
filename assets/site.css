@@ -2510,18 +2510,27 @@ body {
    lit top edge and nothing underneath it.
    ─────────────────────────────────────────────────────────────────────────── */
 .eleven-band--inflow {
-  height: 2.6rem;
+  /* Tall enough for three lines AND for the drawn motif behind them to read
+     as a drawing rather than as a smudge. At 2.6rem it was neither. */
+  height: 6.5rem;
+  align-items: stretch;
   background: #0a0806;
   border-top: 1px solid var(--border-soft);
   border-bottom: 1px solid var(--border-soft);
 }
 
+/* At this height the entry stacks: the system's name over its date, centred,
+   with the motif drawn behind both. */
 .eleven-band--inflow .eleven-cell {
   --accent: var(--gold);
   position: relative;
+  flex-direction: column;
   align-items: center;
-  gap: 0.55rem;
-  padding: 0 0.9rem;
+  justify-content: center;
+  text-align: center;
+  gap: 0.3rem;
+  min-width: 9rem;
+  padding: 0 1.1rem;
   height: 100%;
   overflow: hidden;
   border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent);
@@ -2543,7 +2552,7 @@ body {
 .eleven-band--inflow .eleven-art svg {
   display: block;
   width: auto;
-  height: 74%;
+  height: 82%;
 }
 
 .eleven-band--inflow .eleven-cell > :not(.eleven-art) {
@@ -2552,14 +2561,47 @@ body {
 }
 
 .eleven-band--inflow .eleven-l1 {
-  font-size: 8px;
-  letter-spacing: 0.2em;
+  font-size: 9px;
+  letter-spacing: 0.22em;
   color: color-mix(in srgb, var(--accent) 70%, var(--ink));
 }
 
 .eleven-band--inflow .eleven-oneline {
-  font-size: 16px;
+  font-size: 17px;
   color: color-mix(in srgb, var(--accent) 30%, var(--ink));
+}
+
+/* The track and its runs stretch, so a cell's height: 100% has a full-height
+   line box to resolve against. Left at the inherited align-items: center they
+   size to their own text, the motif sizes to the cell, and the drawing comes
+   out a third of the height it should. */
+.eleven-band--inflow .eleven-track,
+.eleven-band--inflow .eleven-run {
+  align-items: stretch;
+}
+
+.eleven-band--inflow .eleven-bar {
+  width: 100%;
+  height: 1px;
+  flex: none;
+  margin: 1px 0 3px;
+  background: color-mix(in srgb, var(--accent) 50%, transparent);
+}
+
+.eleven-band--inflow .eleven-l2 {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.eleven-band--inflow .eleven-l3 {
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.15;
+  color: color-mix(in srgb, var(--accent) 35%, var(--ink));
+  font-variant-numeric: tabular-nums;
 }
 
 .eleven-joint--chain {
@@ -2576,7 +2618,9 @@ body {
 }
 
 @media (max-width: 560px) {
-  .eleven-band--inflow { height: 2.3rem; }
+  .eleven-band--inflow { height: 5.6rem; }
+  .eleven-band--inflow .eleven-l3 { font-size: 16px; }
   .eleven-band--inflow .eleven-oneline { font-size: 14px; }
+  .eleven-band--inflow .eleven-cell { min-width: 7.5rem; padding: 0 0.8rem; }
   .eleven-joint--chain { width: 20px; }
 }
