@@ -236,8 +236,8 @@ img, svg { max-width: 100%; height: auto; }
   max-width: 880px;
 }
 
-/* A 44px tall hit area, which the audit measured at 25px. A
-   thumb at phone width was catching the row above or below.
+/* A 44px tall hit area, which the audit measured at 25px. A thumb at phone
+   width was catching the row above or below.
 
    The height comes from min-height on an inline-flex box rather than from
    padding, and the row gap drops to zero to pay for it: 44px of target with
@@ -275,7 +275,7 @@ img, svg { max-width: 100%; height: auto; }
   background: var(--gold);
 }
 
-/* ─── THE UPSIDE-DOWN TAB ───────────────────────────────────
+/* ─── THE UPSIDE-DOWN TAB ───────────────────────────────────────────────────
    The label turns over; the link does not. The transform paints the glyphs
    differently and rewrites nothing, so a screen reader still announces
    "Thought of the Day" and the markup still reads in order. Never reverse the
@@ -298,7 +298,7 @@ img, svg { max-width: 100%; height: auto; }
   .sitenav a { font-size: 0.78rem; }
 }
 
-/* ─── HERO BACKGROUND SYSTEM ───────────────────────────────────────────────
+/* ─── HERO BACKGROUND SYSTEM ────────────────────────────────────────────────
    Hero art carries no embedded text or logos, so it sits at full atmospheric
    strength without competing with the copy above it. Three slots handle
    desktop, tablet and mobile. The asset spec and the sourcing notes live in
@@ -989,7 +989,7 @@ footer .copyline {
   .note { padding: 1.15rem 1.25rem; }
 }
 
-/* ─── THE ARC CAROUSEL ───────────────────────────────────────
+/* ─── THE ARC CAROUSEL ──────────────────────────────────────────────────────
    Geometry from the audit's position-by-position table for a 7-card window.
    Every position lives in CSS rather than in JavaScript, so the narrow-screen
    flattening happens in a media query and the script only ever sets a card's
@@ -1173,7 +1173,8 @@ footer .copyline {
     height: calc(var(--card-w) * 0.5625 + 5rem);
   }
   /* A single focal card with a flanking edge either side, the fallback the
-     audit names for narrow screens: offset by about 75% of the card's own width, so
+     audit names for narrow screens: offset by about 75% of the card's own
+     width, so
      the neighbour peeks past the focused card's edge and the stage clips the
      rest. Nothing reaches past the stage, so the document never spills. */
   .arc-card[data-pos="-1"] { transform: translate3d(calc(var(--card-w) * -0.76), 4px, 0) scale(0.85); opacity: 0.42; }
@@ -1202,8 +1203,8 @@ footer .copyline {
    The channel holds 69 of them, so the catalogue renders as thumbnails rather
    than as the text cards the four scripted series use. Thumbnails arrive as
    plain lazy images from i.ytimg.com; no YouTube iframe loads anywhere on this
-   site without a click. Each tile locks its aspect
-   ratio, so nothing jumps as the images land. */
+   site without a click. Each tile locks its aspect ratio, so nothing jumps
+   as the images land. */
 .video-wall {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
@@ -1260,7 +1261,7 @@ footer .copyline {
   .wall-card:hover .shot img { transform: none; }
 }
 
-/* ─── THE APHORISTIC STREAM ──────────────────────────────────
+/* ─── THE APHORISTIC STREAM ─────────────────────────────────────────────────
    The audit ranks this pattern first among the ones worth taking: an unbroken,
    unadorned vertical stream of discrete thoughts. No card chrome, no padding
    games, no borders around each entry. The only furniture is a hairline rule
@@ -1295,7 +1296,7 @@ footer .copyline {
 }
 
 /* A bulleted gloss centres its mass and keeps its lines left-aligned, the
-   the same move the audit documents for verse. Centred list items read ragged. */
+   same move the audit documents for verse. Centred list items read ragged. */
 ul.gloss {
   display: inline-block;
   text-align: left;
@@ -1667,7 +1668,7 @@ ul.gloss li::before {
   margin: 2rem auto;
 }
 
-/* ─── THE CHIBI SATURNS, AND THE REST OF THE NET ART ─────────
+/* ─── THE CHIBI SATURNS, AND THE REST OF THE NET ART ────────────────────────
    The owner's call, 2026-10-31: the site gets its own emoji — a cute ringed
    planet with eight expressions — and they scatter around the pages the way an
    old personal homepage scattered little glyphs. Every one of them comes out
