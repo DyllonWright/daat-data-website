@@ -25,12 +25,16 @@ the same day, so the URL now matches the name. Anything still pointing at
 /treatise needs a redirect, which Cloudflare Pages handles through a _redirects
 file this site does not yet carry.
 
-Ten links now, wrapping to four centred rows at 400px — measured 2026-11-01,
-up from three because "Non-Nominalism" runs longer than "Treatise" did. The
-row wraps rather
-than scrolling sideways or collapsing to a hamburger — both ruled out in
-the hub repo's docs/website/OVERHAUL-BRIEF.md, workstream 1. Check 375px after adding an
-eleventh.
+Eleven links as of 2026-11-09, when Eleven Days arrived beside Techne as the
+second tool. Ten of them wrapped to four centred rows at 400px — measured
+2026-11-01, up from three because "Non-Nominalism" runs longer than "Treatise"
+did. The row wraps rather than scrolling sideways or collapsing to a hamburger
+— both ruled out deliberately: a hamburger hides the whole site behind
+JavaScript, and a sideways scroll hides tabs with nothing to say it did.
+Re-measure 375px after adding a twelfth.
+
+This script also writes the calendar band, below the masthead and fixed to the
+bottom edge — see THE CALENDAR BAND further down.
 """
 
 import math
@@ -54,9 +58,50 @@ NAV = [
     ("horrible-ideas.html", "Horrible Ideas", False),
     ("thoughts.html", "Thought of the Day", True),
     ("techne.html", "Techne", False),
+    ("eleven-days.html", "Eleven Days", False),
     ("academia.html", "Academia", False),
     ("consulting.html", "Consulting", False),
 ]
+
+# ─── THE CALENDAR BAND ─────────────────────────────────────────────────────
+# Site-wide chrome, so it gets written from here rather than pasted into
+# thirteen pages. Two copies per page, both filled by assets/eleven/band.js:
+# one in flow below the masthead, one fixed to the bottom edge.
+#
+# It rides inside the MASTHEAD block although it sits below the masthead,
+# because this is the one block every page already carries. The fixed copy's
+# place in the DOM does not matter — position:fixed takes it out of flow — and
+# the in-flow copy belongs directly after the header anyway.
+#
+# THE IN-FLOW COPY RUNS FOUR LINES ON ITS OWN PAGE and one line everywhere
+# else. The fixed copy stays one line on every page, /eleven-days included:
+# permanent chrome stays thin.
+#
+# site.css reserves the fixed copy's height on <body>, including
+# env(safe-area-inset-bottom). Change the band's height there, not here, or
+# the strip covers the last line of all thirteen pages.
+BAND_PAGE = "eleven-days.html"
+
+
+def band(page):
+    lines = "4" if page == BAND_PAGE else "1"
+    out = [
+        f'<div class="eleven-band" data-eleven-band data-lines="{lines}"',
+        '     aria-label="Today in eleven calendars"></div>',
+    ]
+    if page == BAND_PAGE:
+        # the drawer every one of the four lines reads itself into
+        out.append('<div class="eleven-gloss" data-eleven-gloss aria-live="polite"></div>')
+    out += [
+        '<div class="eleven-band eleven-band--fixed" data-eleven-band data-lines="1"',
+        '     aria-label="Today in eleven calendars"></div>',
+        # engine first, then the script that reads it. Neither is deferred:
+        # band.js waits for DOMContentLoaded itself, and /eleven-days needs
+        # window.buildCalendars in place before its own page.js runs.
+        '<script src="assets/eleven/engine.js"></script>',
+        '<script src="assets/eleven/band.js"></script>',
+    ]
+    return "\n".join(out)
 
 # ─── THE LOCKUP GLOBE ──────────────────────────────────────────────────────
 # The ringed planet, drawn from our own vocabulary: a gold ring that wraps the
@@ -455,6 +500,7 @@ def masthead(page):
         # The globe's turn needs trigonometry per frame, so the lockup carries
         # one script. defer, and in the body, so it never blocks the paint.
         '<script src="assets/globe.js" defer></script>',
+        band(page),
         END,
     ])
 

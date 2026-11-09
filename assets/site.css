@@ -72,6 +72,10 @@
   --ink-faint: #8a8171;
   --max-width: 960px;
   --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  /* The label voice. No mono face ships with this repo and nothing here may
+     call fonts.googleapis.com at runtime, so this names the platform's own.
+     Self-host a face later and only this line changes. */
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 }
 
 * { box-sizing: border-box; }
@@ -2323,4 +2327,329 @@ ul.gloss li::before {
   /* A glyph drawn at 24px and shown near 14 reads soft on the stroke-built
      marks, so nudge it off the text baseline rather than scaling it up. */
   transform: translateY(-0.02em);
+}
+
+/* ─── THE CALENDAR BAND ─────────────────────────────────────────────────────
+   Site-wide chrome, in two copies per page, both filled by
+   assets/eleven/band.js:
+
+     the in-flow copy, directly below the masthead. One line everywhere; four
+     lines on /eleven-days, where the band stops being decoration.
+
+     the fixed copy, parked on the bottom edge as permanent chrome. One line
+     on every page, /eleven-days included — permanent chrome stays thin.
+
+   THE PADDING BELOW IS THE WHOLE RISK. A fixed strip covers the last line of
+   every page unless <body> reserves its height, and on a phone with a home
+   indicator it has to clear the inset underneath as well. So the reservation
+   runs unconditionally, written here rather than by the script: if band.js
+   never runs the strip shows one plain line instead and the reservation still
+   matches it. Change --band-h and the padding follows; change the band's own
+   height in a media query without changing --band-h and the foot of every
+   page goes under the strip.
+   ─────────────────────────────────────────────────────────────────────────── */
+:root {
+  --band-h: 2.9rem;
+}
+
+body {
+  /* the fixed band's own height, plus whatever the device keeps below it */
+  padding-bottom: calc(var(--band-h) + env(safe-area-inset-bottom, 0px));
+}
+
+.eleven-band {
+  position: relative;
+  overflow: hidden;
+  background: #0a0806;
+  border-top: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+  height: var(--band-h);
+  display: flex;
+  align-items: center;
+}
+
+.eleven-band--fixed {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  border-bottom: 0;
+  /* The strip sits above the inset and pads itself by it, so its one line
+     never rides under a home indicator. */
+  height: calc(var(--band-h) + env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: rgba(10, 8, 6, 0.96);
+  backdrop-filter: blur(6px);
+}
+
+/* The four-line form. Only /eleven-days asks for it, and only in flow. */
+.eleven-band[data-lines="4"] {
+  height: 122px;
+}
+
+/* Two runs of identical width, so translateX(-50%) closes the loop exactly.
+   The duration scales with the form: four-line cells run much wider, so one
+   pass takes longer at the same apparent speed. */
+.eleven-track {
+  display: flex;
+  flex: none;
+  align-items: stretch;
+  animation: eleven-slide 96s linear infinite;
+}
+
+.eleven-band[data-lines="4"] .eleven-track {
+  animation-duration: 165s;
+}
+
+.eleven-band:hover .eleven-track,
+.eleven-band.is-paused .eleven-track {
+  animation-play-state: paused;
+}
+
+@keyframes eleven-slide {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.eleven-run {
+  display: flex;
+  flex: none;
+  align-items: stretch;
+}
+
+.eleven-cell {
+  --accent: var(--gold);
+  position: relative;
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 1.3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  background-color: var(--bg-panel);
+  background-image: linear-gradient(180deg, color-mix(in srgb, var(--accent) 13%, var(--bg-panel)), var(--bg-panel) 72%);
+  border-left: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  border-right: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  border-top: 2px solid color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+.eleven-band[data-lines="4"] .eleven-cell {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  text-align: center;
+  min-width: 9.5rem;
+  padding: 0.5rem 1.3rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  border-top-width: 2px;
+}
+
+/* The watermark: one motif per system, drawn behind its own block. Shape does
+   the differentiating that hue alone would have to overspend on. */
+.eleven-art {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  opacity: 0.24;
+  color: var(--accent);
+}
+
+.eleven-art svg {
+  display: block;
+  width: auto;
+  height: 76%;
+}
+
+.eleven-cell > :not(.eleven-art) {
+  position: relative;
+  z-index: 1;
+}
+
+.eleven-l1 {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--accent) 72%, var(--ink));
+}
+
+/* The one-line form: Cormorant Garamond at 26px, as the owner set it. */
+.eleven-oneline {
+  font-family: var(--serif);
+  font-size: 26px;
+  line-height: 1;
+  color: var(--gold-bright);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The hairline under the calendar name, so a block reads like a calendar page
+   rather than like four stacked labels. */
+.eleven-bar {
+  width: 100%;
+  height: 1px;
+  flex: none;
+  margin: 5px 0 6px;
+  background: color-mix(in srgb, var(--accent) 50%, transparent);
+}
+
+.eleven-l2 {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.eleven-l3 {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-top: 2px;
+}
+
+/* 30px, not the 9px an earlier draft put here: a line under about 16px sits
+   below what anyone can read while it moves. */
+.eleven-l4 {
+  font-family: var(--serif);
+  font-size: 30px;
+  line-height: 1.1;
+  color: color-mix(in srgb, var(--accent) 42%, var(--gold-bright));
+  font-variant-numeric: tabular-nums;
+  margin-top: 1px;
+}
+
+/* THE JOINT. One SVG per gap, never two pseudo-elements: the cell needs
+   overflow:hidden for its watermark, which clips anything parked at
+   left:100%, and one drawing lets the gradient hand the colour over
+   mid-link. assets/eleven/band.js carries the geometry note. */
+.eleven-joint {
+  flex: none;
+  width: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eleven-band[data-lines="1"] .eleven-joint {
+  width: 34px;
+}
+
+.eleven-joint svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 0.9;
+  overflow: visible;
+}
+
+/* A line that glosses. Hover reads it into the drawer, click pins it. */
+.eleven-hit {
+  cursor: pointer;
+  border-bottom: 1px dotted transparent;
+  transition: color 0.12s ease, border-color 0.12s ease;
+}
+
+.eleven-hit:hover,
+.eleven-hit:focus-visible {
+  border-bottom-color: currentColor;
+  color: var(--gold-bright);
+}
+
+.eleven-hit.is-pinned {
+  color: var(--gold-bright);
+  border-bottom-color: var(--gold-bright);
+}
+
+/* THE FALLBACK, when the engine does not load. The reservation on <body>
+   stands whatever happens, so the strip holds a line rather than showing a
+   lit empty bar. */
+.eleven-band--plain {
+  justify-content: center;
+}
+
+.eleven-plain {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.eleven-plain:hover {
+  color: var(--gold-bright);
+}
+
+/* THE GLOSS DRAWER, below the four-line band on /eleven-days. */
+.eleven-gloss {
+  border: 1px solid var(--border-soft);
+  border-top: 0;
+  background: var(--bg-panel);
+  padding: 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-height: 7.8rem;
+}
+
+.eleven-gk {
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.eleven-gt {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-style: italic;
+  line-height: 1.2;
+  color: var(--gold-bright);
+}
+
+.eleven-gb {
+  margin: 0;
+  max-width: 70ch;
+  font-size: 0.95rem;
+  color: var(--ink-dim);
+}
+
+.eleven-ge {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  line-height: 1.75;
+  max-width: 72ch;
+  color: var(--ink-faint);
+}
+
+.eleven-gidle {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--ink-faint);
+}
+
+@media (max-width: 560px) {
+  .eleven-oneline { font-size: 20px; }
+  .eleven-band[data-lines="4"] .eleven-cell { min-width: 8.4rem; padding: 0.45rem 1rem; }
+}
+
+/* Reduced motion: the loop stops and the band becomes something a visitor
+   scrolls by hand. It still reads; it simply stops moving on its own. */
+@media (prefers-reduced-motion: reduce) {
+  .eleven-track {
+    animation: none;
+    width: max-content;
+  }
+  .eleven-band {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
 }

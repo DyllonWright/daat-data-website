@@ -1,0 +1,746 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   /eleven-days — the calendar page, and nothing else
+   ───────────────────────────────────────────────────────────────────────────
+   Loaded by eleven-days.html alone, after site.css. Everything here sits
+   under .eleven-page, so the other twelve pages keep their own typography
+   whatever this file says. Two reasons that scoping matters:
+
+     PAIRING B APPLIES TO THIS PAGE ONLY. The owner settled it on 2026-11-09:
+     Cormorant stops being the house voice here and becomes the thing
+     reserved for verse — the month line, the day, and pull quotes. Headings
+     and body move to the sans stack. Do not lift this into site.css, where
+     it would retype all thirteen pages.
+
+     THE FACES COME FROM THE PLATFORM. The mockups drew pairing B in IBM Plex
+     Sans and the DOS pane in VT323, both loaded from fonts.googleapis.com.
+     This repo self-hosts Cormorant and calls no font host at runtime, and
+     the owner chose to keep the page contained rather than carry four more
+     woff2 files and a second licence record for one page. So --head and
+     --crt below name the platform's own faces. Self-host a face later and
+     only those two declarations change.
+
+   The tool breaks the dark theme on purpose: it arrives as a program window,
+   Windows 98 primary and DOS secondary, one button flipping between them.
+   Both skins read the same engine, so the answer stays identical across them.
+   ═══════════════════════════════════════════════════════════════════════════ */
+.eleven-page {
+  /* pairing B, scoped: the sans carries headings and body */
+  --head: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  /* the terminal voice. A CRT face would go here and nowhere else. */
+  --crt: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+.eleven-page h1,
+.eleven-page h2,
+.eleven-page h3 {
+  font-family: var(--head);
+  letter-spacing: -0.01em;
+}
+
+/* Cormorant, kept for what it earns: the month line, the day, the quote. */
+.eleven-page .verse,
+.eleven-page .pullquote {
+  font-family: var(--serif);
+}
+
+.eleven-page .pullquote {
+  font-size: clamp(1.25rem, 3.4vw, 1.6rem);
+  font-style: italic;
+  line-height: 1.45;
+  max-width: 48ch;
+  margin: 0 auto;
+  color: var(--ink);
+  text-align: center;
+}
+
+/* ─── BLOCK FURNITURE ────────────────────────────────────────────────────── */
+.eleven-page .eyebrow {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 0.6rem;
+}
+
+/* ─── THE FIELD, AND THE ANSWER ──────────────────────────────────────────── */
+/* The field carries today already, so the page answers before anyone types.
+   An empty field shows nothing and asks for work first. */
+.eleven-field {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+  margin-top: 0.9rem;
+}
+
+.eleven-field input {
+  font-family: var(--mono);
+  font-size: 1rem;
+  background: var(--bg-deep);
+  color: var(--gold-bright);
+  border: 1px solid var(--border-soft);
+  padding: 0.6rem 0.7rem;
+  min-width: 0;
+  flex: 1 1 11rem;
+}
+
+.eleven-answer {
+  border: 1px solid var(--border-soft);
+  border-top: 2px solid var(--gold);
+  background: var(--bg-panel);
+  padding: 1.1rem;
+  margin-top: 0.9rem;
+}
+
+.eleven-answer .ak {
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.eleven-answer .av {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+  line-height: 1.15;
+  color: var(--gold-bright);
+  font-variant-numeric: tabular-nums;
+  margin-top: 0.3rem;
+}
+
+.eleven-answer .as {
+  font-size: 0.86rem;
+  color: var(--ink-dim);
+  margin: 0.4rem 0 0;
+}
+
+/* ─── THE ELEVEN, AS A LEDGER ────────────────────────────────────────────── */
+/* A ledger, not a card grid. Rows share a baseline, so the eye reads down one
+   column of dates instead of hunting eleven boxes. */
+.eleven-ledger {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.9rem;
+  border-top: 1px solid rgba(201, 162, 75, 0.14);
+}
+
+.eleven-ledger .row {
+  display: flex;
+  gap: 0.9rem;
+  align-items: baseline;
+  width: 100%;
+  padding: 0.55rem 0.2rem;
+  border: 0;
+  border-bottom: 1px solid rgba(201, 162, 75, 0.08);
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.eleven-ledger .row:hover {
+  background: rgba(201, 162, 75, 0.045);
+}
+
+.eleven-ledger .rk {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  flex: 0 0 7.5rem;
+}
+
+.eleven-ledger .rv {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--ink);
+  flex: 1 1 auto;
+  min-width: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.eleven-ledger .rd {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  flex: 0 0 auto;
+}
+
+.eleven-ledger .gl {
+  padding: 0.6rem 0.2rem 0.9rem;
+  border-bottom: 1px solid rgba(201, 162, 75, 0.08);
+  background: rgba(201, 162, 75, 0.035);
+}
+
+.eleven-ledger .gl p {
+  margin: 0;
+  font-size: 0.86rem;
+  max-width: 62ch;
+  color: var(--ink-dim);
+}
+
+.eleven-ledger .gl .ep {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--ink-faint);
+  margin-top: 0.4rem;
+}
+
+/* ─── THE TWO-DATE SPAN ──────────────────────────────────────────────────── */
+/* Not one duration restated eleven times: what each system CROSSED. */
+.eleven-span {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 0.9rem;
+}
+
+.eleven-span input {
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  background: var(--bg-deep);
+  color: var(--gold-bright);
+  border: 1px solid var(--border-soft);
+  padding: 0.5rem 0.6rem;
+  flex: 1 1 8rem;
+  min-width: 0;
+}
+
+.eleven-span .to {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--gold-deep);
+}
+
+/* The rules come from each cell, never from a 1px gap over a tinted
+   container: an auto-fit row that does not fill leaves empty track, and a
+   tinted container paints that leftover as a slab the width of the row. */
+.eleven-spanout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 1px;
+  margin-top: 0.9rem;
+}
+
+.eleven-spanout > div {
+  background: var(--bg-panel);
+  box-shadow: 0 0 0 1px var(--border-soft);
+  padding: 0.6rem 0.7rem;
+  min-width: 0;
+}
+
+.eleven-spanout .sk {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.eleven-spanout .sv {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--ink);
+  margin-top: 0.15rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── THE PROOF ──────────────────────────────────────────────────────────── */
+/* same reason as .eleven-spanout: the rule belongs to the cell */
+.eleven-proof {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1px;
+  margin-top: 0.9rem;
+}
+
+.eleven-proof > div {
+  background: var(--bg-panel);
+  box-shadow: 0 0 0 1px var(--border-soft);
+  padding: 0.8rem 0.9rem;
+}
+
+.eleven-proof .pk {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.eleven-proof .pv {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--ink);
+  margin-top: 0.2rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.eleven-proof .pn {
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  margin: 0.35rem 0 0;
+}
+
+/* ─── THE FLIP ───────────────────────────────────────────────────────────── */
+.eleven-flipbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  align-items: center;
+  margin-bottom: 0.9rem;
+}
+
+.eleven-flip {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold-bright);
+  padding: 0.55rem 1.1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.eleven-flip:hover { border-color: var(--gold-bright); }
+
+.eleven-which {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+}
+
+/* ═══ WINDOWS 98 ═══════════════════════════════════════════════════════════
+   The whole point: the tool breaks the page's theme rather than wearing it.
+   Every colour below is literal 98 chrome, not a site token, because the
+   skin stops reading as a program window the moment it goes gold.
+   ═══════════════════════════════════════════════════════════════════════ */
+.win98 {
+  font-family: Tahoma, "MS Sans Serif", "Microsoft Sans Serif", Verdana, Geneva, sans-serif;
+  font-size: 11px;
+  line-height: 1.35;
+  color: #000;
+  background: #c0c0c0;
+  box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px #808080, inset 2px 2px #dfdfdf;
+  padding: 3px;
+  min-width: 0;
+  max-width: 100%;
+  position: relative;
+}
+
+.win98 .tbar {
+  background: linear-gradient(90deg, #000080, #1084d0);
+  color: #fff;
+  font-weight: 700;
+  padding: 3px 3px 3px 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.win98 .tbar .tt {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.win98 .tbar b {
+  display: inline-grid;
+  place-items: center;
+  width: 16px;
+  height: 14px;
+  background: #c0c0c0;
+  color: #000;
+  font-weight: 700;
+  font-size: 10px;
+  box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px #808080, inset 2px 2px #dfdfdf;
+}
+
+.win98 .menu {
+  display: flex;
+  gap: 10px;
+  padding: 3px 4px;
+  border-bottom: 1px solid #808080;
+}
+
+.win98 .menu u { text-decoration: underline; }
+
+.win98 .inner { padding: 8px; }
+
+.win98 fieldset {
+  border: 1px solid #808080;
+  border-right-color: #fff;
+  border-bottom-color: #fff;
+  margin: 0 0 8px;
+  padding: 8px;
+}
+
+.win98 legend { padding: 0 3px; }
+
+.win98 .frow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.win98 label { white-space: nowrap; }
+
+.win98 input[type="text"] {
+  font-family: inherit;
+  font-size: 11px;
+  background: #fff;
+  color: #000;
+  border: 0;
+  padding: 2px 3px;
+  min-width: 0;
+  flex: 1 1 7rem;
+  box-shadow: inset 1px 1px #808080, inset -1px -1px #fff, inset 2px 2px #0a0a0a, inset -2px -2px #dfdfdf;
+}
+
+.win98 button {
+  font-family: inherit;
+  font-size: 11px;
+  background: #c0c0c0;
+  color: #000;
+  border: 0;
+  padding: 3px 10px;
+  cursor: pointer;
+  box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px #808080, inset 2px 2px #dfdfdf;
+}
+
+.win98 button:active {
+  box-shadow: inset 1px 1px #0a0a0a, inset -1px -1px #fff, inset 2px 2px #808080, inset -2px -2px #dfdfdf;
+}
+
+/* The focus ring site.css draws in gold reads as a bug on 98 chrome, so the
+   skin keeps the platform's own dotted marching rectangle instead. */
+.win98 button:focus-visible,
+.win98 input:focus-visible,
+.win98 td:focus-visible {
+  outline: 1px dotted #000;
+  outline-offset: -4px;
+}
+
+.win98 button.icon {
+  padding: 2px 6px;
+  min-width: 24px;
+  display: inline-grid;
+  place-items: center;
+}
+
+.win98 button.icon svg { display: block; }
+
+.win98 .combo {
+  display: flex;
+  flex: 1 1 9rem;
+  min-width: 0;
+}
+
+.win98 .combo input { flex: 1 1 auto; }
+
+.win98 .combo .drop {
+  flex: 0 0 17px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+}
+
+.win98 .modeline { margin-top: 6px; }
+
+.win98 .modeline b { font-weight: 700; }
+
+/* the 98 month grid */
+.win98 .cal {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% - 4px);
+  left: 8px;
+  background: #c0c0c0;
+  padding: 2px;
+  width: 168px;
+  box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px #808080, inset 2px 2px #dfdfdf,
+              2px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.win98 .cal .chd {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px;
+}
+
+.win98 .cal .chd .mt {
+  flex: 1 1 auto;
+  text-align: center;
+  font-weight: 700;
+}
+
+.win98 .cal .chd button {
+  padding: 0 4px;
+  font-size: 10px;
+  line-height: 14px;
+}
+
+.win98 .cal table {
+  border-collapse: collapse;
+  width: 100%;
+  background: #fff;
+  box-shadow: inset 1px 1px #808080, inset -1px -1px #fff;
+}
+
+.win98 .cal th {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 0;
+  text-align: center;
+  background: #c0c0c0;
+}
+
+.win98 .cal td {
+  font-size: 11px;
+  text-align: center;
+  padding: 1px 0;
+  cursor: pointer;
+  width: 14.28%;
+}
+
+.win98 .cal td.other { color: #808080; }
+.win98 .cal td.today { box-shadow: inset 0 0 0 1px #a00; }
+.win98 .cal td.pick { background: #000080; color: #fff; }
+.win98 .cal td:hover { background: #dfdfdf; }
+.win98 .cal td.pick:hover { background: #000080; }
+
+.win98 .cal .cft {
+  text-align: center;
+  padding: 3px 0 1px;
+  border-top: 1px solid #808080;
+  margin-top: 2px;
+}
+
+.win98 .cal .cft button { font-size: 10px; padding: 1px 8px; }
+
+.win98 .grid {
+  background: #fff;
+  overflow-x: auto;
+  box-shadow: inset 1px 1px #808080, inset -1px -1px #fff, inset 2px 2px #0a0a0a, inset -2px -2px #dfdfdf;
+}
+
+/* The colour sits on the table itself on purpose. In quirks mode a <table>
+   does not inherit `color`, so this grid paints the page's ivory text on its
+   own white ground and the whole list disappears. The live site has a
+   doctype, so this only bites a raw-fragment preview — and it costs one
+   declaration to be immune either way. */
+.win98 table.list {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 11px;
+  min-width: 32rem;
+  color: #000;
+}
+
+.win98 table.list th {
+  background: #c0c0c0;
+  text-align: left;
+  font-weight: 700;
+  padding: 2px 6px;
+  white-space: nowrap;
+  box-shadow: inset -1px -1px #808080, inset 1px 1px #fff;
+}
+
+.win98 table.list td {
+  padding: 2px 6px;
+  border-bottom: 1px solid #dfdfdf;
+  white-space: nowrap;
+}
+
+.win98 table.list tbody tr { cursor: pointer; }
+.win98 table.list tbody tr:nth-child(even) td { background: #f4f4f4; }
+.win98 table.list tbody tr.sel td { background: #000080; color: #fff; }
+
+.win98 .num { font-variant-numeric: tabular-nums; }
+
+.win98 .status {
+  display: flex;
+  gap: 4px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+
+.win98 .status span {
+  flex: 1 1 auto;
+  padding: 2px 5px;
+  box-shadow: inset 1px 1px #808080, inset -1px -1px #fff;
+}
+
+.win98 .status span.pin { flex: 0 0 auto; }
+
+/* THE ERROR MODAL. A bad date arrives the way a 98 program delivers one —
+   title bar, red circle-and-X, OK button — never as bold red text under the
+   field. */
+.win98 .modalwrap {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.win98 .dlg {
+  background: #c0c0c0;
+  padding: 3px;
+  width: min(20rem, 92%);
+  box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px #808080, inset 2px 2px #dfdfdf,
+              3px 3px 0 rgba(0, 0, 0, 0.35);
+}
+
+.win98 .dlg .dtb {
+  background: linear-gradient(90deg, #000080, #1084d0);
+  color: #fff;
+  font-weight: 700;
+  padding: 3px 4px;
+  display: flex;
+  align-items: center;
+}
+
+.win98 .dlg .dtb .tt { flex: 1 1 auto; }
+
+.win98 .dlg .dbody {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 14px 12px 10px;
+}
+
+.win98 .dlg .dbody p {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.45;
+  white-space: pre-line;
+}
+
+.win98 .dlg .dfoot {
+  display: flex;
+  justify-content: center;
+  padding: 0 0 10px;
+}
+
+.win98 .dlg .dfoot button { min-width: 68px; }
+
+/* ═══ DOS ══════════════════════════════════════════════════════════════════
+   THE TABLE IS A REAL <table> WITH CSS BORDERS. Never box-drawing glyphs: a
+   CRT face such as VT323 carries no U+2500 block, so the browser substitutes
+   another face at a different advance width and the columns tear apart
+   mid-row. Borders cannot tear.
+   ═══════════════════════════════════════════════════════════════════════ */
+.dos {
+  font-family: var(--crt);
+  font-size: 17px;
+  line-height: 1.25;
+  background: #0a0a0a;
+  color: #cfcfcf;
+  padding: 14px 16px;
+  min-width: 0;
+  overflow-x: auto;
+  border: 1px solid #2a2a2a;
+}
+
+.dos:focus-visible { outline: 2px solid #ffb000; outline-offset: 2px; }
+
+.dos pre {
+  margin: 0;
+  white-space: pre-wrap;
+  font: inherit;
+}
+
+.dos .amber { color: #ffb000; }
+.dos .dim { color: #6a6a6a; }
+.dos .red { color: #ff5555; }
+
+.dos table {
+  border-collapse: collapse;
+  margin: 0.45em 0;
+  font: inherit;
+  min-width: 30rem;
+  color: #cfcfcf;
+}
+
+.dos th,
+.dos td {
+  border: 1px solid #3a3a3a;
+  padding: 0 0.55em;
+  text-align: left;
+  white-space: nowrap;
+  font-weight: 400;
+}
+
+.dos th { color: #ffb000; }
+.dos td.n { font-variant-numeric: tabular-nums; }
+.dos tr.sel td { background: #cfcfcf; color: #0a0a0a; }
+
+/* THE REVOLVER. Six commands turn on a drum, faded above and below. */
+.dos .drum {
+  position: relative;
+  height: 8.4em;
+  overflow: hidden;
+  margin: 0.4em 0 0.2em;
+  border-top: 1px solid #1e1e1e;
+  border-bottom: 1px solid #1e1e1e;
+}
+
+.dos .drum .cmd {
+  height: 1.2em;
+  line-height: 1.2em;
+  white-space: pre;
+  padding-left: 0.2em;
+}
+
+.dos .drum .cmd.here { color: #ffb000; }
+
+.dos .slot {
+  background: #1d1a12;
+  color: #ffb000;
+}
+
+.dos .slot.filled { background: #33290f; }
+
+.dos .cur {
+  background: #ffb000;
+  color: #0a0a0a;
+  animation: dos-blink 1.06s step-end infinite;
+}
+
+@keyframes dos-blink {
+  50% { background: transparent; color: #ffb000; }
+}
+
+.dos .hint { color: #6a6a6a; font-size: 0.85em; }
+.dos .keys { color: #6a6a6a; font-size: 0.8em; margin-top: 0.35em; }
+
+.dos .focusnote {
+  color: #0a0a0a;
+  background: #ffb000;
+  display: inline-block;
+  padding: 0 0.35em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dos .cur { animation: none; }
+}
