@@ -1,8 +1,10 @@
-/* THE GLOSS COPY — what each line of a band block means.
+/* THE NOTES — what each system counts, and what its month name means.
  * ----------------------------------------------------------------------------
- * Loaded only where a four-line band stands, so the other pages carry none of
- * this weight. band.js reads window.ELEVEN_GLOSS and simply does not gloss if
- * the object never arrives.
+ * Loaded by /eleven-days alone, so the other twelve pages carry none of this
+ * weight. page.js reads window.ELEVEN_GLOSS for three things: the epoch in
+ * the 98 window's "Counts from" column, the note each ledger row opens onto,
+ * and the line under the featured answer. Without it those read as dashes,
+ * which is how its removal got caught.
  *
  * ACCURACY. Every month note follows the engine's own name tables rather than
  * general knowledge — src/engine.js lines 340-365 in DyllonWright/Eleven-Days.

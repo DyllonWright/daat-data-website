@@ -12,22 +12,25 @@
      it would retype all thirteen pages.
 
      THE FACES COME FROM THE PLATFORM. The mockups drew pairing B in IBM Plex
-     Sans and the DOS pane in VT323, both loaded from fonts.googleapis.com.
-     This repo self-hosts Cormorant and calls no font host at runtime, and
-     the owner chose to keep the page contained rather than carry four more
-     woff2 files and a second licence record for one page. So --head and
-     --crt below name the platform's own faces. Self-host a face later and
-     only those two declarations change.
+     Sans, loaded from fonts.googleapis.com. This repo self-hosts Cormorant
+     and calls no font host at runtime, and the owner chose to keep the page
+     contained rather than carry more woff2 files and a second licence record
+     for one page. So --head below names the platform's own stack. Self-host
+     a face later and only that declaration changes.
 
-   The tool breaks the dark theme on purpose: it arrives as a program window,
-   Windows 98 primary and DOS secondary, one button flipping between them.
-   Both skins read the same engine, so the answer stays identical across them.
+   The tool breaks the dark theme on purpose: it arrives as a Windows 98
+   program window, and it loads beside the page's own description rather than
+   below it, so a visitor lands on something they can use. A DOS terminal
+   used to sit behind a flip button next to it; the owner cut it on
+   2026-11-09, because two chromes for one answer asked a visitor to choose a
+   costume before getting a date.
+
+   Under the tool sit the moon and the wheel, both reading
+   assets/eleven/sky.js and both following the tool's own date.
    ═══════════════════════════════════════════════════════════════════════════ */
 .eleven-page {
   /* pairing B, scoped: the sans carries headings and body */
   --head: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  /* the terminal voice. A CRT face would go here and nowhere else. */
-  --crt: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 }
 
 .eleven-page h1,
@@ -644,103 +647,155 @@
 
 .win98 .dlg .dfoot button { min-width: 68px; }
 
-/* ═══ DOS ══════════════════════════════════════════════════════════════════
-   THE TABLE IS A REAL <table> WITH CSS BORDERS. Never box-drawing glyphs: a
-   CRT face such as VT323 carries no U+2500 block, so the browser substitutes
-   another face at a different advance width and the columns tear apart
-   mid-row. Borders cannot tear.
-   ═══════════════════════════════════════════════════════════════════════ */
-.dos {
-  font-family: var(--crt);
-  font-size: 17px;
-  line-height: 1.25;
-  background: #0a0a0a;
-  color: #cfcfcf;
-  padding: 14px 16px;
-  min-width: 0;
-  overflow-x: auto;
-  border: 1px solid #2a2a2a;
+/* ─── THE LANDING PANES ──────────────────────────────────────────────────
+   Description on the left, tool on the right, both inside the first screen,
+   so a visitor lands on something that already answers. The tool used to sit
+   under a full-width hero and a four-line marquee, which put it below the
+   fold on a laptop.
+
+   The columns collapse under 60rem and the tool goes FIRST on a phone: a
+   narrow screen should still open on the thing that works, not on two
+   paragraphs about it. */
+.eleven-landing {
+  display: grid;
+  grid-template-columns: minmax(0, 23rem) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 2.75rem);
+  align-items: start;
+  padding: clamp(1.75rem, 5vw, 3rem) 0 clamp(1.25rem, 3vw, 2rem);
 }
 
-.dos:focus-visible { outline: 2px solid #ffb000; outline-offset: 2px; }
+.eleven-landing .said h1 {
+  font-size: clamp(1.9rem, 5vw, 2.6rem);
+  margin: 0 0 0.6rem;
+}
 
-.dos pre {
+.eleven-landing .said .standfirst {
+  font-size: 1rem;
+  color: var(--ink-dim);
+  max-width: 34ch;
   margin: 0;
-  white-space: pre-wrap;
-  font: inherit;
 }
 
-.dos .amber { color: #ffb000; }
-.dos .dim { color: #6a6a6a; }
-.dos .red { color: #ff5555; }
-
-.dos table {
-  border-collapse: collapse;
-  margin: 0.45em 0;
-  font: inherit;
-  min-width: 30rem;
-  color: #cfcfcf;
+.eleven-landing .tool {
+  min-width: 0;
 }
 
-.dos th,
-.dos td {
-  border: 1px solid #3a3a3a;
-  padding: 0 0.55em;
-  text-align: left;
-  white-space: nowrap;
-  font-weight: 400;
+@media (max-width: 60rem) {
+  .eleven-landing {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .eleven-landing .tool { order: -1; }
 }
 
-.dos th { color: #ffb000; }
-.dos td.n { font-variant-numeric: tabular-nums; }
-.dos tr.sel td { background: #cfcfcf; color: #0a0a0a; }
-
-/* THE REVOLVER. Six commands turn on a drum, faded above and below. */
-.dos .drum {
-  position: relative;
-  height: 8.4em;
-  overflow: hidden;
-  margin: 0.4em 0 0.2em;
-  border-top: 1px solid #1e1e1e;
-  border-bottom: 1px solid #1e1e1e;
+/* ─── THE MOON, AND THE WHEEL ────────────────────────────────────────────
+   Two panels under the tool, following its date. Both read
+   assets/eleven/sky.js — the plugin's own astronomy, transpiled once and
+   committed, never compiled here. */
+.eleven-sky {
+  display: grid;
+  grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+  gap: 1px;
+  margin: 0 0 clamp(1.5rem, 4vw, 2.5rem);
 }
 
-.dos .drum .cmd {
-  height: 1.2em;
-  line-height: 1.2em;
-  white-space: pre;
-  padding-left: 0.2em;
+.eleven-sky > div {
+  background: var(--bg-panel);
+  box-shadow: 0 0 0 1px var(--border-soft);
+  padding: 1.1rem 1.2rem;
+  min-width: 0;
 }
 
-.dos .drum .cmd.here { color: #ffb000; }
-
-.dos .slot {
-  background: #1d1a12;
-  color: #ffb000;
+@media (max-width: 54rem) {
+  .eleven-sky { grid-template-columns: minmax(0, 1fr); }
 }
 
-.dos .slot.filled { background: #33290f; }
-
-.dos .cur {
-  background: #ffb000;
-  color: #0a0a0a;
-  animation: dos-blink 1.06s step-end infinite;
+.eleven-moon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-@keyframes dos-blink {
-  50% { background: transparent; color: #ffb000; }
+/* The lit limb is one path over a dark disc, so a crescent reads as a
+   crescent at any size rather than as a clipped circle. */
+.eleven-moondisc {
+  width: min(11rem, 60vw);
+  height: auto;
+  margin: 0.6rem 0 0.4rem;
 }
 
-.dos .hint { color: #6a6a6a; font-size: 0.85em; }
-.dos .keys { color: #6a6a6a; font-size: 0.8em; margin-top: 0.35em; }
+.eleven-moondisc .dark { fill: #14110c; }
+.eleven-moondisc .lit  { fill: var(--ink); }
+.eleven-moondisc .rim  { fill: none; stroke: var(--gold-deep); stroke-width: 1.5; }
 
-.dos .focusnote {
-  color: #0a0a0a;
-  background: #ffb000;
-  display: inline-block;
-  padding: 0 0.35em;
+.eleven-moonnext {
+  list-style: none;
+  margin: 0.9rem 0 0;
+  padding: 0.8rem 0 0;
+  width: 100%;
+  border-top: 1px solid var(--border-soft);
+  font-size: 0.8rem;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .dos .cur { animation: none; }
+.eleven-moonnext li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.22rem 0;
 }
+
+.eleven-moonnext .mn { color: var(--ink-dim); }
+.eleven-moonnext .md { color: var(--gold-deep); font-family: var(--mono); font-size: 0.68rem; }
+
+.eleven-wheel {
+  display: block;
+  width: 100%;
+  max-width: 24rem;
+  height: auto;
+  margin: 0.6rem auto 0.2rem;
+}
+
+.eleven-wheel .ring  { fill: none; stroke: var(--border-soft); stroke-width: 1; }
+.eleven-wheel .faint { stroke: rgba(201, 162, 75, 0.12); }
+.eleven-wheel .spoke { stroke: rgba(201, 162, 75, 0.28); stroke-width: 1; }
+.eleven-wheel .tick  { stroke: rgba(201, 162, 75, 0.16); stroke-width: 0.7; }
+.eleven-wheel .point { stroke: var(--gold); stroke-width: 1.4; }
+
+.eleven-wheel .sign {
+  fill: var(--gold-deep);
+  font-size: 13px;
+}
+
+.eleven-wheel .body {
+  fill: var(--ink);
+  font-size: 15px;
+}
+
+/* Retrograde reads as a colour change, not as a second glyph crowding the
+   wheel; the list below spells it out with an ℞. */
+.eleven-wheel .body.rx { fill: var(--gold-bright); }
+
+.eleven-bodies {
+  list-style: none;
+  margin: 0.9rem 0 0;
+  padding: 0.8rem 0 0;
+  border-top: 1px solid var(--border-soft);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 0.1rem 1.2rem;
+  font-size: 0.82rem;
+}
+
+.eleven-bodies li {
+  display: grid;
+  grid-template-columns: 1.3rem 1fr auto 1.2rem;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding: 0.18rem 0;
+}
+
+.eleven-bodies .bg { color: var(--gold); }
+.eleven-bodies .bn { color: var(--ink-dim); }
+.eleven-bodies .bz { color: var(--ink); font-variant-numeric: tabular-nums; }
+.eleven-bodies .br { color: var(--gold-bright); font-size: 0.72rem; }
+.eleven-bodies li.is-rx .bz { color: var(--gold-bright); }

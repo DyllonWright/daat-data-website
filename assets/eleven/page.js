@@ -87,6 +87,8 @@
     return n;
   }
 
+  var NS = "http://www.w3.org/2000/svg";
+
   function esc(s) {
     return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
@@ -393,7 +395,7 @@
         tr.appendChild(td);
       });
       tr.addEventListener("click", function () {
-        selKey = k; paintAnswer(); paint98(); paintDos();
+        selKey = k; paintAnswer(); paint98();
       });
       body.appendChild(tr);
     });
@@ -471,185 +473,6 @@
     }
   }
 
-  /* ═══ THE TOOL, SKIN TWO: DOS ══════════════════════════════════════════
-     Arrow keys and digits only. Six commands revolve through the prompt on a
-     drum, faded above and below; digits fill the slots; Enter runs. Every run
-     prints an errorlevel, because that is how the idiom reports.
-     ═════════════════════════════════════════════════════════════════════ */
-
-  var CMDS = [
-    { t: "AT ",       slots: [4, 2, 2], seps: ["-", "-", ""], tail: "",        unit: "at" },
-    { t: "BACK ",     slots: [3],       seps: [""],           tail: " DAYS",   unit: "-days" },
-    { t: "FORWARD ",  slots: [3],       seps: [""],           tail: " DAYS",   unit: "+days" },
-    { t: "SINCE ",    slots: [4, 2, 2], seps: ["-", "-", ""], tail: "",        unit: "since" },
-    { t: "TODAY",     slots: [],        seps: [],             tail: "",        unit: "today" }
-  ];
-
-  var ci = 0, typed = "", lastRun = null, sinceLine = null;
-  var errlevel = { code: 0, text: "SUCCESS" };
-  var dosFocused = false;
-  var dosHost = document.getElementById("eleven-dos");
-
-  function need(c) {
-    return c.slots.reduce(function (a, b) { return a + b; }, 0);
-  }
-
-  function cmdHTML(c, live) {
-    var out = esc(c.t), used = 0;
-    c.slots.forEach(function (n, si) {
-      for (var i = 0; i < n; i++) {
-        var has = live && typed[used] !== undefined;
-        out += '<span class="slot' + (has ? " filled" : "") + '">' + esc(has ? typed[used] : "_") + "</span>";
-        used++;
-      }
-      out += esc(c.seps[si] || "");
-    });
-    return out + esc(c.tail);
-  }
-
-  function dosTable() {
-    var data = calc(sel);
-    if (!data) return "";
-    var h = "<table><thead><tr><th>CALENDAR</th><th>ERA / YEAR</th><th>MONTH</th><th>DAY</th></tr></thead><tbody>";
-    KEYS.forEach(function (k) {
-      var p = parts(data, k);
-      if (!p) return;
-      h += "<tr" + (k === selKey ? ' class="sel"' : "") + "><td>" + esc(p.name) +
-           '</td><td class="n">' + esc(p.year) + "</td><td>" + esc(p.month) +
-           '</td><td class="n">' + esc(p.date) + "</td></tr>";
-    });
-    return h + "</tbody></table>";
-  }
-
-  function paintDos() {
-    if (!dosHost) return;
-    var rows = [];
-    for (var off = -2; off <= 2; off++) {
-      var i = ((ci + off) % CMDS.length + CMDS.length) % CMDS.length;
-      var here = off === 0;
-      var op = [0.26, 0.55, 1, 0.55, 0.26][off + 2];
-      rows.push('<div class="cmd' + (here ? " here" : "") + '" style="opacity:' + op + '">' +
-        (here ? '<span class="amber">C:\\ELEVEN&gt; </span>' : '<span class="dim">          </span>') +
-        cmdHTML(CMDS[i], here) + (here ? '<span class="cur">\u2588</span>' : "") + "</div>");
-    }
-    var c = CMDS[ci], n = need(c);
-    var hint = n === 0 ? "ENTER to run"
-      : typed.length + " of " + n + " digits \u00b7 type to fill \u00b7 BACKSPACE undo \u00b7 ENTER to run";
-
-    dosHost.innerHTML =
-      '<pre class="dim">Eleven Days   eleven calendars, one day count</pre>' +
-      (dosFocused ? "" : '<pre><span class="focusnote">Click here to take the keyboard</span></pre>') +
-      '<div class="drum">' + rows.join("") + "</div>" +
-      '<pre class="hint">\u2191\u2193 turn the drum \u00b7 ' + hint + "</pre>" +
-      '<pre class="keys">F3 recall last \u00b7 digits only \u00b7 no mouse</pre>' +
-      '<pre class="amber">C:\\ELEVEN&gt; ' + esc(lastRun || "TODAY") + "</pre>" +
-      dosTable() +
-      "<pre>" + KEYS.length + " systems \u00b7 rata die " + group(rd(sel)) + " \u00b7 95 checks OK</pre>" +
-      (sinceLine ? "<pre>" + esc(sinceLine) + "</pre>" : "") +
-      '<pre class="' + (errlevel.code ? "red" : "dim") + '">Errorlevel ' +
-        errlevel.code + " (" + errlevel.text + ")</pre>";
-  }
-
-  function runCmd() {
-    var c = CMDS[ci], n = need(c);
-    if (typed.length < n) {
-      errlevel = { code: 2, text: "INCOMPLETE COMMAND" };
-      paintDos();
-      return;
-    }
-    sinceLine = null;
-    var pretty = c.t + typed + c.tail;
-
-    if (c.unit === "today") {
-      sel = todayIso();
-      pretty = "TODAY";
-    } else if (c.unit === "at" || c.unit === "since") {
-      var cand = typed.slice(0, 4) + "-" + typed.slice(4, 6) + "-" + typed.slice(6, 8);
-      if (!valid(cand)) {
-        errlevel = { code: 1, text: "INVALID DATE" };
-        typed = "";
-        paintDos();
-        return;
-      }
-      pretty = c.t + cand;
-      if (c.unit === "at") {
-        sel = cand;
-      } else {
-        var days = rd(sel) - rd(cand);
-        sinceLine = "elapsed " + group(days) + " days \u00b7 " +
-          (days / 29.530588853).toFixed(2) + " synodic months \u00b7 " +
-          (days / 260).toFixed(2) + " tzolk'in rounds";
-      }
-    } else {
-      var k = parseInt(typed, 10) || 0;
-      sel = shiftDays(sel, c.unit.charAt(0) === "-" ? -k : k);
-    }
-
-    lastRun = pretty;
-    errlevel = { code: 0, text: "SUCCESS" };
-    typed = "";
-    repaintAll();
-  }
-
-  if (dosHost) {
-    dosHost.addEventListener("focus", function () { dosFocused = true; paintDos(); });
-    dosHost.addEventListener("blur", function () { dosFocused = false; paintDos(); });
-    dosHost.addEventListener("click", function () { dosHost.focus(); });
-    dosHost.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowUp") {
-        e.preventDefault();
-        ci = (ci - 1 + CMDS.length) % CMDS.length; typed = ""; paintDos();
-      } else if (e.key === "ArrowDown") {
-        e.preventDefault();
-        ci = (ci + 1) % CMDS.length; typed = ""; paintDos();
-      } else if (/^[0-9]$/.test(e.key)) {
-        e.preventDefault();
-        if (typed.length < need(CMDS[ci])) { typed += e.key; paintDos(); }
-      } else if (e.key === "Backspace") {
-        e.preventDefault();
-        typed = typed.slice(0, -1); paintDos();
-      } else if (e.key === "F3") {
-        /* DOSKEY recalled the last command's text; this recalls its digits */
-        e.preventDefault();
-        if (lastRun) {
-          typed = lastRun.replace(/\D/g, "").slice(0, need(CMDS[ci]));
-          paintDos();
-        }
-      } else if (e.key === "Enter") {
-        e.preventDefault();
-        runCmd();
-      }
-    });
-  }
-
-  /* ─── the flip ──────────────────────────────────────────────────────── */
-
-  function wireFlip() {
-    var btn = document.getElementById("eleven-flip");
-    var dosPane = document.getElementById("eleven-dospane");
-    var head = document.getElementById("eleven-toolhead");
-    var which = document.getElementById("eleven-which");
-    var label = document.getElementById("eleven-fliplabel");
-    if (!btn || !winHost || !dosPane) return;
-
-    var showing = "98";
-    btn.addEventListener("click", function () {
-      showing = showing === "98" ? "dos" : "98";
-      var isWin = showing === "98";
-      winHost.hidden = !isWin;
-      dosPane.hidden = isWin;
-      if (head) head.textContent = isWin ? "Windows 98" : "DOS";
-      if (label) label.textContent = isWin ? "Switch to DOS" : "Switch to 98";
-      if (which) {
-        which.textContent = isWin
-          ? "a program window: date combo, month grid, list view, status bar"
-          : "a terminal: arrow keys turn the drum, digits fill the command";
-      }
-      btn.setAttribute("aria-pressed", String(!isWin));
-      if (isWin) { paint98(); } else { paintDos(); dosHost.focus(); }
-    });
-  }
-
   /* ─── the field ─────────────────────────────────────────────────────── */
 
   function wireField() {
@@ -678,6 +501,176 @@
     paintSpan();
   }
 
+  /* ═══ THE SKY: THE MOON, AND WHERE EVERYTHING STANDS ═══════════════════
+     Both read assets/eleven/sky.js, the plugin's own astro.ts and moon.ts
+     transpiled once offline. They sit under the tool and follow its date.
+
+     RANGE. skyInfo returns null outside roughly 1000–3000, and its
+     planetsInRange goes false outside 1800–2050, where the JPL element table
+     stops being trustworthy. The Sun and Moon keep working across the whole
+     window, so out of range the wheel draws the two lights and says so
+     rather than plotting numbers nobody should trust.
+     ═════════════════════════════════════════════════════════════════════ */
+
+  var SKY = window.ElevenSky || null;
+
+  function ymd(s) { return s.split("-").map(Number); }
+
+  /* The lit limb, as two arcs. The outer edge is always a half circle; the
+     terminator is an ellipse whose half-width runs from r at new, through 0
+     at half, back to r at full — so it reads as a crescent filling rather
+     than a circle being wiped. Waxing lights the right limb, waning the
+     left, which is how it looks from the northern hemisphere. */
+  function moonDisc(illum, waxing, r) {
+    var rx = r * Math.abs(1 - 2 * illum);
+    var outer = waxing ? 1 : 0;              /* which half the light sits on */
+    var inner = (illum > 0.5) === waxing ? 1 : 0;
+    return "M 0 " + (-r) +
+           " A " + r + " " + r + " 0 0 " + outer + " 0 " + r +
+           " A " + rx + " " + r + " 0 0 " + inner + " 0 " + (-r) + " Z";
+  }
+
+  function paintSky() {
+    var host = document.getElementById("eleven-sky");
+    if (!host || !SKY) return;
+    var p = ymd(sel);
+    var sky = SKY.skyInfo(p[0], p[1], p[2]);
+    var moon = SKY.moonInfo(p[0], p[1], p[2]);
+    host.textContent = "";
+
+    if (!sky || !moon) {
+      var out = el("p", "note", "The sky runs from about 1000 to 3000. " +
+        "This date sits outside it, so the calendars above stand on their own.");
+      host.appendChild(out);
+      return;
+    }
+
+    /* ── the moon panel ── */
+    var mp = el("div", "eleven-moon");
+    mp.appendChild(el("span", "pk", "The moon"));
+
+    var ph = moon.phase;
+    var waxing = ph.fraction < 0.5;
+    var disc = document.createElementNS(NS, "svg");
+    disc.setAttribute("viewBox", "-60 -60 120 120");
+    disc.setAttribute("class", "eleven-moondisc");
+    disc.setAttribute("role", "img");
+    disc.setAttribute("aria-label", ph.name + ", " + Math.round(ph.illumination * 100) + "% lit");
+    disc.innerHTML =
+      '<circle cx="0" cy="0" r="50" class="dark"/>' +
+      '<path d="' + moonDisc(ph.illumination, waxing, 50) + '" class="lit"/>' +
+      '<circle cx="0" cy="0" r="50" class="rim"/>';
+    mp.appendChild(disc);
+
+    mp.appendChild(el("div", "pv", ph.name));
+    mp.appendChild(el("p", "pn",
+      Math.round(ph.illumination * 1000) / 10 + "% lit · " +
+      ph.ageDays.toFixed(1) + " days old · " +
+      (waxing ? "waxing" : "waning")));
+
+    var next = (moon.events || []).filter(function (e) { return e.daysFromRef >= 0; }).slice(0, 4);
+    if (next.length) {
+      var list = el("ul", "eleven-moonnext");
+      next.forEach(function (e) {
+        var li = el("li");
+        li.appendChild(el("span", "mn", e.name));
+        li.appendChild(el("span", "md",
+          e.daysFromRef === 0 ? "today" : "in " + e.daysFromRef + (e.daysFromRef === 1 ? " day" : " days")));
+        list.appendChild(li);
+      });
+      mp.appendChild(list);
+    }
+    host.appendChild(mp);
+
+    /* ── the wheel ── */
+    var wp = el("div", "eleven-zodiac");
+    wp.appendChild(el("span", "pk", "Where everything stands"));
+
+    var bodies = [sky.sun, sky.moon].concat(sky.planets, sky.points);
+    wp.appendChild(wheel(bodies, SKY.SIGNS));
+
+    if (!sky.planetsInRange) {
+      wp.appendChild(el("p", "pn",
+        "Only the Sun and Moon here. The planet table runs " +
+        SKY.PLANET_MIN_YEAR + " to " + SKY.PLANET_MAX_YEAR + ", and this date falls outside it."));
+    }
+
+    var tbl = el("ul", "eleven-bodies");
+    bodies.forEach(function (b) {
+      var li = el("li");
+      li.appendChild(el("span", "bg", b.glyph));
+      li.appendChild(el("span", "bn", b.name));
+      li.appendChild(el("span", "bz", b.zodiac.glyph + " " + b.zodiac.degree + "°" +
+        String(b.zodiac.minute).padStart(2, "0") + "′"));
+      var flag = b.stationary ? "stationary" : (b.retrograde ? "℞" : "");
+      li.appendChild(el("span", "br", flag));
+      if (b.retrograde) li.className = "is-rx";
+      list_push(li, tbl);
+    });
+    wp.appendChild(tbl);
+    host.appendChild(wp);
+  }
+
+  function list_push(li, ul) { ul.appendChild(li); }
+
+  /* The chart wheel. 0° Aries sits on the left and degrees run counter-
+     clockwise, which is how a chart is drawn — not how SVG measures angles,
+     hence the conversion in one place here. */
+  function polar(lon, r) {
+    var a = (180 - lon) * Math.PI / 180;
+    return [r * Math.cos(a), -r * Math.sin(a)];
+  }
+
+  function wheel(bodies, signs) {
+    var s = document.createElementNS(NS, "svg");
+    s.setAttribute("viewBox", "-130 -130 260 260");
+    s.setAttribute("class", "eleven-wheel");
+    s.setAttribute("role", "img");
+    s.setAttribute("aria-label", "A zodiac wheel showing where each body stands today");
+    var g = [];
+
+    g.push('<circle cx="0" cy="0" r="122" class="ring"/>');
+    g.push('<circle cx="0" cy="0" r="96" class="ring"/>');
+    g.push('<circle cx="0" cy="0" r="62" class="ring faint"/>');
+
+    /* every degree a tick, every fifth longer, every thirtieth a sign line */
+    for (var d = 0; d < 360; d++) {
+      var long = d % 30 === 0, five = d % 5 === 0;
+      if (!five) continue;
+      var r1 = long ? 62 : (d % 10 === 0 ? 89 : 92);
+      var a = polar(d, r1), b = polar(d, 96);
+      g.push('<line x1="' + a[0].toFixed(2) + '" y1="' + a[1].toFixed(2) +
+             '" x2="' + b[0].toFixed(2) + '" y2="' + b[1].toFixed(2) +
+             '" class="' + (long ? "spoke" : "tick") + '"/>');
+    }
+
+    /* the sign glyphs, each centred in its own 30° sector */
+    signs.forEach(function (sg, i) {
+      var pt = polar(i * 30 + 15, 109);
+      g.push('<text x="' + pt[0].toFixed(2) + '" y="' + pt[1].toFixed(2) +
+             '" class="sign" text-anchor="middle" dominant-baseline="central">' +
+             sg.glyph + "</text>");
+    });
+
+    /* the bodies, nudged apart so two in the same degree still read */
+    var used = [];
+    bodies.forEach(function (bd) {
+      var lon = bd.longitude, shift = 0;
+      while (used.some(function (u) { return Math.abs(u - (lon + shift)) < 7; }) && shift < 28) shift += 7;
+      used.push(lon + shift);
+      var pt = polar(lon + shift, 78);
+      var tk = polar(lon, 96), tk2 = polar(lon, 88);
+      g.push('<line x1="' + tk[0].toFixed(2) + '" y1="' + tk[1].toFixed(2) +
+             '" x2="' + tk2[0].toFixed(2) + '" y2="' + tk2[1].toFixed(2) + '" class="point"/>');
+      g.push('<text x="' + pt[0].toFixed(2) + '" y="' + pt[1].toFixed(2) +
+             '" class="body' + (bd.retrograde ? " rx" : "") +
+             '" text-anchor="middle" dominant-baseline="central">' + bd.glyph + "</text>");
+    });
+
+    s.innerHTML = g.join("");
+    return s;
+  }
+
   function repaintAll() {
     var input = document.getElementById("eleven-date");
     if (input && input.value !== sel) input.value = sel;
@@ -685,12 +678,11 @@
     paintLedger();
     paintProof();
     paint98();
-    paintDos();
+    paintSky();
   }
 
   function start() {
     wireField();
-    wireFlip();
     wireSpan();
     repaintAll();
   }

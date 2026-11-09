@@ -4,20 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Eleven Days — Da'at Data</title>
-<meta name="description" content="One date, eleven calendars at once: Gregorian, Hebrew, Islamic, Mayan, Chinese, Thelemic, French Revolutionary, Discordian and more. A browser port of the Obsidian plugin.">
+<meta name="description" content="One date, eleven calendars at once: Gregorian, Hebrew, Islamic, Mayan, Chinese, Thelemic, French Revolutionary, Discordian and more, with the moon phase and the zodiac wheel. A browser port of the Obsidian plugin.">
 
 <link rel="icon" type="image/png" href="assets/favicon-64.png">
 <link rel="stylesheet" href="assets/site.css">
 <link rel="stylesheet" href="assets/eleven/eleven.css">
 <link rel="canonical" href="https://daatdata.net/eleven-days">
 <meta property="og:title" content="Eleven Days — Da'at Data">
-<meta property="og:description" content="One date, eleven calendars at once. A browser port of the Obsidian plugin.">
+<meta property="og:description" content="One date, eleven calendars at once, with the moon phase and every body’s sign. A browser port of the Obsidian plugin.">
 <meta property="og:image" content="https://daatdata.net/assets/social-card.jpg">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://daatdata.net/eleven-days">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Eleven Days — Da'at Data">
-<meta name="twitter:description" content="One date, eleven calendars at once. A browser port of the Obsidian plugin.">
+<meta name="twitter:description" content="One date, eleven calendars at once, with the moon phase and every body’s sign. A browser port of the Obsidian plugin.">
 <meta name="twitter:image" content="https://daatdata.net/assets/social-card.jpg">
 
 <!-- ELEVEN DAYS. The eleventh nav tab, settled 2026-11-09 along with the whole
@@ -189,66 +189,55 @@
   <svg class="craft" viewBox="0 0 70 40" aria-hidden="true" style="--at:-165s;--lane:-43px;--exit:-150px;--spin:11deg"><path d="M14 14 L58 11 L56 31 L12 34 Z" fill="#e8dcc0" stroke="#c9a24b" stroke-width="1"/><path d="M13 20 L57 17 M13 25 L57 22 M12.5 29 L56.5 26" stroke="#b8402e" stroke-width="2.6"/><path d="M50 5 L57 10 M64 5 L57 10" stroke="#f2ead9" stroke-width="1.2"/></svg>
 </header>
 <script src="assets/globe.js" defer></script>
-<div class="eleven-band" data-eleven-band data-lines="4"
-     aria-label="Today in eleven calendars"></div>
-<div class="eleven-gloss" data-eleven-gloss aria-live="polite"></div>
-<div class="eleven-band eleven-band--fixed" data-eleven-band data-lines="1"
+<div class="eleven-band" data-eleven-band
      aria-label="Today in eleven calendars"></div>
 <script src="assets/eleven/engine.js"></script>
 <script src="assets/eleven/band.js"></script>
 <!-- MASTHEAD:END -->
 
-<header class="page-hero">
-  <div class="wrap">
-    <p class="kicker">One day, many maps</p>
-    <h1>Eleven Days. <svg class="sat sat-lg sat-wobble" role="img" aria-label="A small ringed planet"><use href="assets/planet-sprite.svg#sat-cool"/></svg></h1>
-    <p class="standfirst">
-      One date, read by eleven calendars at once. The same engine that runs the Obsidian
-      plugin runs here, so the answer matches whichever one you keep.
-    </p>
-  </div>
-</header>
-
 <div class="wrap">
 
-  <!-- 1 · THE TOOL. It breaks the page's theme on purpose and arrives as a
-       program window: Windows 98 primary, DOS secondary, one button flipping
-       between them. Both skins read the same engine, so the answer stays
-       identical whichever one shows. -->
-  <section>
-    <div class="section-heading">
-      <p class="eyebrow">The tool</p>
-      <h2 id="eleven-toolhead">Windows 98</h2>
-      <p>Today sits in the field already. Change it, or put in a birthday.</p>
-    </div>
+  <!-- 1 · THE LANDING. Description on the left, the tool on the right, both
+       inside the first screen. A visitor who searched for their Mayan
+       birthday lands on something that already answers rather than on an
+       essay about why it might.
 
-    <div class="eleven-flipbar">
-      <button class="eleven-flip" id="eleven-flip" type="button" aria-pressed="false">
-        <span aria-hidden="true">&#8646;</span><span id="eleven-fliplabel">Switch to DOS</span>
-      </button>
-      <span class="eleven-which" id="eleven-which">a program window: date combo, month grid, list view, status bar</span>
-    </div>
-
-    <div id="eleven-win98"></div>
-
-    <div id="eleven-dospane" hidden>
-      <div class="dos" id="eleven-dos" tabindex="0" role="application"
-           aria-label="DOS command revolver. Up and down arrows turn the drum, digits fill the slots, Enter runs."></div>
-      <p class="note">
-        Arrow keys and digits only. Up and down turn the drum; digits fill the slots;
-        Backspace takes one back; Enter runs. F3 refills the last command&rsquo;s digits, the
-        way DOSKEY did. Every run prints an errorlevel.
+       The tool breaks the page's theme on purpose and arrives as a Windows 98
+       program window. A DOS terminal used to flip in beside it; the owner cut
+       it on 2026-11-09 — two chromes for one answer asked a visitor to pick a
+       costume before getting a date. -->
+  <div class="eleven-landing">
+    <div class="said">
+      <p class="kicker">One day, many maps</p>
+      <h1>Eleven Days. <svg class="sat sat-lg sat-wobble" role="img" aria-label="A small ringed planet"><use href="assets/planet-sprite.svg#sat-cool"/></svg></h1>
+      <p class="standfirst">
+        One date, read by eleven calendars at once, with the moon and the sky beneath it.
+        The same engine that runs the Obsidian plugin runs here, so the answer matches
+        whichever one you keep.
       </p>
+      <div class="eleven-field">
+        <label class="eleven-which" for="eleven-date">Or type a date</label>
+        <input id="eleven-date" type="date" aria-label="Date">
+        <button class="btn btn-primary" id="eleven-go" type="button">Count it</button>
+      </div>
     </div>
 
-    <!-- A plain field, for anyone who would rather not drive a 1998 window.
-         It sets the same date the window does. -->
-    <div class="eleven-field">
-      <label class="eleven-which" for="eleven-date">Or type a date</label>
-      <input id="eleven-date" type="date" aria-label="Date">
-      <button class="btn btn-primary" id="eleven-go" type="button">Count it</button>
+    <div class="tool">
+      <div id="eleven-win98"></div>
     </div>
-  </section>
+  </div>
+
+  <!-- THE MOON AND THE WHEEL, directly under the tool and following its date.
+       They run the full column rather than riding in the tool's own pane: a
+       360° chart squeezed into half a column crowds its glyphs into each
+       other, and the moon wants to be looked at.
+
+       Both read assets/eleven/sky.js — the plugin's own astro.ts and moon.ts,
+       transpiled once offline and committed as plain JS, because this site
+       runs no build step. The panels say so themselves when a date falls
+       outside the range those modules vouch for, rather than drawing numbers
+       nobody should trust. -->
+  <div class="eleven-sky" id="eleven-sky"></div>
 
   <!-- 2 · THE ANSWER. One system pulled out large. It follows whichever row a
        visitor opens below, so the page answers the question they came with. -->
@@ -380,9 +369,10 @@
 </div>
 
 <!-- engine.js and band.js arrive with the generated masthead block above, on
-     every page. gloss.js loads only here, because only a four-line band
-     glosses; it runs before band.js wires the drawer at DOMContentLoaded. -->
-<script src="assets/eleven/gloss.js"></script>
+     every page. notes.js carries this page's copy; sky.js reads the engine's
+     global, so it must load after it; page.js reads all three. -->
+<script src="assets/eleven/notes.js"></script>
+<script src="assets/eleven/sky.js"></script>
 <script src="assets/eleven/page.js"></script>
 <script src="assets/sections.js"></script>
 <script src="assets/chime.js"></script>

@@ -33,8 +33,8 @@ did. The row wraps rather than scrolling sideways or collapsing to a hamburger
 JavaScript, and a sideways scroll hides tabs with nothing to say it did.
 Re-measure 375px after adding a twelfth.
 
-This script also writes the calendar band, below the masthead and fixed to the
-bottom edge — see THE CALENDAR BAND further down.
+This script also writes the calendar rail that sits at the foot of every
+page — see THE CALENDAR RAIL further down.
 """
 
 import math
@@ -63,37 +63,28 @@ NAV = [
     ("consulting.html", "Consulting", False),
 ]
 
-# ─── THE CALENDAR BAND ─────────────────────────────────────────────────────
+# ─── THE CALENDAR RAIL ─────────────────────────────────────────────────────
 # Site-wide chrome, so it gets written from here rather than pasted into
-# thirteen pages. Two copies per page, both filled by assets/eleven/band.js:
-# one in flow below the masthead, one fixed to the bottom edge.
+# thirteen pages: one strip fixed to the bottom edge of every page, filled by
+# assets/eleven/band.js.
 #
-# It rides inside the MASTHEAD block although it sits below the masthead,
-# because this is the one block every page already carries. The fixed copy's
-# place in the DOM does not matter — position:fixed takes it out of flow — and
-# the in-flow copy belongs directly after the header anyway.
+# It rides inside the MASTHEAD block although it paints at the foot of the
+# page, because this is the one block every page already carries and
+# position:fixed takes it out of flow anyway.
 #
-# THE IN-FLOW COPY RUNS FOUR LINES ON ITS OWN PAGE and one line everywhere
-# else. The fixed copy stays one line on every page, /eleven-days included:
-# permanent chrome stays thin.
+# ONE RAIL, NOT TWO. An earlier pass also wrote an in-flow copy below the
+# masthead, four lines tall on its own page and carrying a gloss drawer. It
+# pushed every page's own opening below the fold and fought the design the
+# rest of the site keeps; the owner cut it on 2026-11-09. Do not re-add it.
 #
-# site.css reserves the fixed copy's height on <body>, including
-# env(safe-area-inset-bottom). Change the band's height there, not here, or
+# site.css reserves the rail's height on <body>, including
+# env(safe-area-inset-bottom). Change the rail's height there, not here, or
 # the strip covers the last line of all thirteen pages.
-BAND_PAGE = "eleven-days.html"
 
 
-def band(page):
-    lines = "4" if page == BAND_PAGE else "1"
+def rail():
     out = [
-        f'<div class="eleven-band" data-eleven-band data-lines="{lines}"',
-        '     aria-label="Today in eleven calendars"></div>',
-    ]
-    if page == BAND_PAGE:
-        # the drawer every one of the four lines reads itself into
-        out.append('<div class="eleven-gloss" data-eleven-gloss aria-live="polite"></div>')
-    out += [
-        '<div class="eleven-band eleven-band--fixed" data-eleven-band data-lines="1"',
+        '<div class="eleven-band" data-eleven-band',
         '     aria-label="Today in eleven calendars"></div>',
         # engine first, then the script that reads it. Neither is deferred:
         # band.js waits for DOMContentLoaded itself, and /eleven-days needs
@@ -500,7 +491,7 @@ def masthead(page):
         # The globe's turn needs trigonometry per frame, so the lockup carries
         # one script. defer, and in the body, so it never blocks the paint.
         '<script src="assets/globe.js" defer></script>',
-        band(page),
+        rail(),
         END,
     ])
 
