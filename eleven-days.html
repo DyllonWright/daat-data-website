@@ -189,7 +189,9 @@
   <svg class="craft" viewBox="0 0 70 40" aria-hidden="true" style="--at:-165s;--lane:-43px;--exit:-150px;--spin:11deg"><path d="M14 14 L58 11 L56 31 L12 34 Z" fill="#e8dcc0" stroke="#c9a24b" stroke-width="1"/><path d="M13 20 L57 17 M13 25 L57 22 M12.5 29 L56.5 26" stroke="#b8402e" stroke-width="2.6"/><path d="M50 5 L57 10 M64 5 L57 10" stroke="#f2ead9" stroke-width="1.2"/></svg>
 </header>
 <script src="assets/globe.js" defer></script>
-<div class="eleven-band" data-eleven-band
+<div class="eleven-band eleven-band--inflow" data-eleven-band
+     data-variant="chain" aria-label="Today in eleven calendars"></div>
+<div class="eleven-band eleven-band--rail" data-eleven-band
      aria-label="Today in eleven calendars"></div>
 <script src="assets/eleven/engine.js"></script>
 <script src="assets/eleven/band.js"></script>
@@ -211,9 +213,8 @@
       <p class="kicker">One day, many maps</p>
       <h1>Eleven Days. <svg class="sat sat-lg sat-wobble" role="img" aria-label="A small ringed planet"><use href="assets/planet-sprite.svg#sat-cool"/></svg></h1>
       <p class="standfirst">
-        One date, read by eleven calendars at once, with the moon and the sky beneath it.
-        The same engine that runs the Obsidian plugin runs here, so the answer matches
-        whichever one you keep.
+        One date, read by eleven calendars at once &mdash; each with its own year zero and its
+        own idea of what time counts for. The moon and the sky come with it.
       </p>
       <div class="eleven-field">
         <label class="eleven-which" for="eleven-date">Or type a date</label>
@@ -239,23 +240,13 @@
        nobody should trust. -->
   <div class="eleven-sky" id="eleven-sky"></div>
 
-  <!-- 2 · THE ANSWER. One system pulled out large. It follows whichever row a
-       visitor opens below, so the page answers the question they came with. -->
-  <section>
-    <div class="section-heading">
-      <p class="eyebrow">The answer</p>
-      <h2>Pulled out large</h2>
-    </div>
-    <div class="eleven-answer" id="eleven-answer"></div>
-  </section>
-
   <!-- 3 · THE ELEVEN, as a ledger rather than a card grid: rows share a
        baseline, so the eye reads down one column of dates. Click any row for
        the morning that system counts from. -->
   <section>
     <div class="section-heading">
       <h2>The same day, eleven times</h2>
-      <p>Click any line to see where that count starts.</p>
+      <p>Click a line for the morning that system counts from.</p>
     </div>
     <div class="eleven-ledger" id="eleven-ledger"></div>
   </section>
@@ -267,7 +258,7 @@
   <section>
     <div class="section-heading">
       <h2>What changed between two dates</h2>
-      <p>Two dates in, and what each system crossed between them.</p>
+      <p>Not one duration restated eleven times &mdash; what each system crossed.</p>
     </div>
     <div class="eleven-span">
       <input id="eleven-from" type="date" value="1932-01-18" aria-label="From">
@@ -291,42 +282,74 @@
     </div>
     <div class="eleven-proof" id="eleven-proof"></div>
     <p class="note">
-      The arithmetic calendars follow Dershowitz and Reingold&rsquo;s <em>Calendrical
-      Calculations</em>; the four that track the sky use compact Meeus astronomy. The engine
-      carries no dependencies at all, which is why it ported to a browser in one line.
+      The arithmetic follows Dershowitz and Reingold&rsquo;s <em>Calendrical Calculations</em>;
+      the four systems that track the sky use compact Meeus astronomy. No date library, no
+      floating-point drift in the day arithmetic, and each calendar fails on its own &mdash; if
+      one ever broke it would show a dash while the other ten carried on.
       <a href="https://github.com/DyllonWright/Eleven-Days" target="_blank" rel="noopener">The
       plugin and its test suite read public on GitHub.</a>
     </p>
   </section>
 
-  <!-- 6 · THE ESSAY. Last, and long. A visitor who wanted a converter never
-       has to walk past it. -->
+  <!-- THE ESSAY. Last, and short. A visitor who wanted a converter never has
+       to walk past it, and one who stayed gets the reason the thing exists
+       rather than a history of eleven calendars. Trimmed 2026-11-09: the
+       earlier draft ran four paragraphs and restated the ledger above it. -->
   <section>
     <div class="section-heading">
       <h2>Eleven days in twenty-four hours</h2>
     </div>
     <div class="prose">
-      <p>
-        Robert Anton Wilson dated his writing in half a dozen calendars at once, and not as
-        a party trick. He wanted the reader to notice that the date at the top of a page
-        arrives as a choice somebody made, and that other people made it differently.
-      </p>
-      <p>
-        Each of the eleven counts from a morning somebody decided mattered: a creation
-        reckoned out of Biblical genealogies, an emigration out of Mecca, the day Eris threw
-        the golden apple into a wedding, the day Joyce finished <em>Ulysses</em>. None of
-        them counts the days wrongly. They disagree about where to start.
-      </p>
       <p class="pullquote">
-        Watch the same Monday register as a day in Confusion 3192, as the Sun in Scorpio in
-        the Aeon of Horus, and as 5 Monkey on a 260-day round, and the frame quietly
-        loosens.
+        &ldquo;How to Live Eleven Days in 24 Hours&rdquo;
+        <span class="attrib">&mdash; Robert Anton Wilson, <em>Cosmic Trigger</em></span>
       </p>
       <p>
-        That loosening does the work. A map you can hold beside ten other maps stops
-        passing for the territory. The arithmetic stays exact in every one of them, which
-        makes the point harder to wave away than any argument about it would.
+        Wilson dated his writing in half a dozen calendars at once, and not as a party trick.
+        He called it model agnosticism: every calendar draws a map of time, and no map counts
+        as the territory.
       </p>
+      <p>
+        The Gregorian date feels like plain reality until it sits beside ten alternatives, each
+        internally consistent, each once the obvious reckoning for millions of people. Watch the
+        same Monday register as a day in Confusion 3192, as the Sun in Scorpio in the Aeon of
+        Horus, and as 5 Monkey on a 260-day round, and the frame quietly loosens.
+      </p>
+    </div>
+  </section>
+
+  <!-- THE CTA. The page's one ask, and it asks for nothing but a download:
+       the plugin reads public and costs nothing, which is the whole offer.
+       Nothing on this site sells anything.
+
+       THE SCREENSHOT CROSSES NO NEW BOUNDARY. assets/techne-eleven-days.png
+       already sits in this repo and already appears on techne.html — the
+       plugin README's own lead image, downscaled, logged under asset
+       provenance in the private hub repo on 2026-11-01. Reusing the file
+       here adds nothing to that record; copying a second one would. -->
+  <section>
+    <div class="section-heading">
+      <h2>Add it to your Obsidian today, for free</h2>
+      <p>
+        The page above runs the plugin&rsquo;s own engine. The plugin itself puts all eleven
+        in your vault, beside your notes, with the moon and the sky where you write.
+      </p>
+    </div>
+    <div class="eleven-cta">
+      <a class="shot" href="https://github.com/DyllonWright/Eleven-Days" target="_blank" rel="noopener">
+        <img src="assets/techne-eleven-days.png"
+             alt="The plugin inside Obsidian: ten calendar cards in a grid, each showing today in one system, from Illuminati and Chinese to Hebrew and Mayan, with the Gregorian date above."
+             width="640" height="292" loading="lazy" decoding="async">
+      </a>
+      <div class="say">
+        <p>
+          Drop one code fence into a note and today fans out into eleven todays. Click a card
+          for that calendar&rsquo;s story, the moon glyph for the lunar cycle, the zodiac chip for
+          where every body stands.
+        </p>
+        <a class="btn btn-primary" href="https://github.com/DyllonWright/Eleven-Days" target="_blank" rel="noopener">Get Eleven Days on GitHub</a>
+        <p class="eleven-free">Free, open source, and no account anywhere.</p>
+      </div>
     </div>
   </section>
 

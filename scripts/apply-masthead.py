@@ -72,10 +72,16 @@ NAV = [
 # page, because this is the one block every page already carries and
 # position:fixed takes it out of flow anyway.
 #
-# ONE RAIL, NOT TWO. An earlier pass also wrote an in-flow copy below the
-# masthead, four lines tall on its own page and carrying a gloss drawer. It
-# pushed every page's own opening below the fold and fought the design the
-# rest of the site keeps; the owner cut it on 2026-11-09. Do not re-add it.
+# TWO RAILS, deliberately unlike each other. The coloured one sits below the
+# masthead carrying the plugin's own palette and a chain between its entries,
+# and runs slow. The quiet one sits at the foot of the page in ivory and gold
+# with the site's mascot between entries, and runs quicker. Matching their
+# speeds would make the page read as one scrolling surface with the content in
+# a hole in the middle.
+#
+# A four-line version of the upper rail, with a gloss drawer, came and went on
+# 2026-11-09: at that height it pushed every page's own opening below the fold.
+# Keep this one to a single line.
 #
 # site.css reserves the rail's height on <body>, including
 # env(safe-area-inset-bottom). Change the rail's height there, not here, or
@@ -84,7 +90,12 @@ NAV = [
 
 def rail():
     out = [
-        '<div class="eleven-band" data-eleven-band',
+        # the coloured rail, below the masthead: the plugin's own palette, a
+        # motif behind each entry, a chain between them, running slow
+        '<div class="eleven-band eleven-band--inflow" data-eleven-band',
+        '     data-variant="chain" aria-label="Today in eleven calendars"></div>',
+        # and the quiet one, fixed to the foot of the page, running quicker
+        '<div class="eleven-band eleven-band--rail" data-eleven-band',
         '     aria-label="Today in eleven calendars"></div>',
         # engine first, then the script that reads it. Neither is deferred:
         # band.js waits for DOMContentLoaded itself, and /eleven-days needs

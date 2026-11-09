@@ -554,7 +554,10 @@
   border-collapse: collapse;
   width: 100%;
   font-size: 11px;
-  min-width: 32rem;
+  /* Wide enough for six real columns, narrow enough to sit in the tool pane
+     without a horizontal scrollbar at a normal desktop width. Raise it and
+     the 98 window grows its scrollbar back. */
+  min-width: 24rem;
   color: #000;
 }
 
@@ -658,7 +661,7 @@
    paragraphs about it. */
 .eleven-landing {
   display: grid;
-  grid-template-columns: minmax(0, 23rem) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 17rem) minmax(0, 1fr);
   gap: clamp(1.5rem, 4vw, 2.75rem);
   align-items: start;
   padding: clamp(1.75rem, 5vw, 3rem) 0 clamp(1.25rem, 3vw, 2rem);
@@ -672,7 +675,7 @@
 .eleven-landing .said .standfirst {
   font-size: 1rem;
   color: var(--ink-dim);
-  max-width: 34ch;
+  max-width: 30ch;
   margin: 0;
 }
 
@@ -739,8 +742,7 @@
 
 .eleven-moonnext li {
   display: flex;
-  justify-content: space-between;
-  gap: 0.75rem;
+  gap: 0.5rem;
   padding: 0.22rem 0;
 }
 
@@ -799,3 +801,86 @@
 .eleven-bodies .bz { color: var(--ink); font-variant-numeric: tabular-nums; }
 .eleven-bodies .br { color: var(--gold-bright); font-size: 0.72rem; }
 .eleven-bodies li.is-rx .bz { color: var(--gold-bright); }
+
+/* The phase emoji, from the engine's own table beside the drawn disc. A
+   system emoji font paints its own colours, so it never takes the gold. */
+.eleven-moon .mphase {
+  font-size: 1em;
+  line-height: 1;
+}
+
+.eleven-moonnext li { align-items: baseline; }
+.eleven-moonnext .mn { flex: 1 1 auto; }
+
+
+/* The attribution under a pull quote, which is not part of the quotation. */
+.eleven-page .pullquote .attrib {
+  display: block;
+  margin-top: 0.6rem;
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+}
+
+/* ─── THE CTA ────────────────────────────────────────────────────────────
+   The screenshot beside the ask. The image reuses the file techne.html
+   already carries, so nothing new crosses the publish boundary for it. */
+.eleven-cta {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: clamp(1.25rem, 3vw, 2rem);
+  align-items: center;
+  margin-top: 1.25rem;
+}
+
+.eleven-cta .shot {
+  display: block;
+  border: 1px solid var(--border-soft);
+  background: var(--bg-panel);
+  line-height: 0;
+  transition: border-color 0.2s ease;
+}
+
+.eleven-cta .shot:hover { border-color: var(--gold); }
+
+.eleven-cta .shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.eleven-cta .say {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.eleven-cta .say p { margin: 0; color: var(--ink-dim); }
+
+.eleven-free {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: var(--gold-deep);
+}
+
+@media (max-width: 48rem) {
+  .eleven-cta { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* THE LONG COLUMN TRUNCATES RATHER THAN FORCING A SCROLLBAR.
+   "Counts from" carries a full sentence, and holding it on one unbroken line
+   pushed the grid past the tool pane at every width below a wide desktop. It
+   now clips with an ellipsis: the whole sentence still reads in the ledger
+   further down the page, and in the row's title attribute, so nothing is
+   lost — the 98 window just stops growing a horizontal scrollbar. */
+.win98 table.list th:last-child,
+.win98 table.list td:last-child {
+  max-width: 11rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

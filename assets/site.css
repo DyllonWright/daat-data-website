@@ -2361,13 +2361,20 @@ body {
 }
 
 .eleven-band {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* THE QUIET RAIL, fixed to the foot of every page. */
+.eleven-band--rail {
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: 40;
-  display: flex;
-  align-items: center;
   overflow: hidden;
   height: calc(var(--rail-h) + env(safe-area-inset-bottom, 0px));
   /* the strip pads itself by the inset, so its line never rides under a
@@ -2490,4 +2497,86 @@ body {
     overflow-x: auto;
     overscroll-behavior-x: contain;
   }
+}
+
+/* ─── THE COLOURED RAIL, below the masthead ─────────────────────────────────
+   The plugin's own COLOR_MAP, a motif drawn behind each entry, and a chain
+   between them. Smaller than the version that first shipped and slower than
+   the rail at the foot of the page, so the colour reads as punctuation on the
+   way into a page rather than as the page itself.
+
+   EVERY EDGE OF A BOX GETS DRAWN. The first version set a top border and left
+   the other three to a 1px gap over a tinted ground, so each entry showed a
+   lit top edge and nothing underneath it.
+   ─────────────────────────────────────────────────────────────────────────── */
+.eleven-band--inflow {
+  height: 2.6rem;
+  background: #0a0806;
+  border-top: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.eleven-band--inflow .eleven-cell {
+  --accent: var(--gold);
+  position: relative;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0 0.9rem;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent);
+  border-top-width: 2px;
+  background-image: linear-gradient(180deg, color-mix(in srgb, var(--accent) 14%, #0a0806), #0a0806 75%);
+}
+
+/* the watermark: one motif per system, behind its own entry */
+.eleven-band--inflow .eleven-art {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  opacity: 0.22;
+  color: var(--accent);
+}
+
+.eleven-band--inflow .eleven-art svg {
+  display: block;
+  width: auto;
+  height: 74%;
+}
+
+.eleven-band--inflow .eleven-cell > :not(.eleven-art) {
+  position: relative;
+  z-index: 1;
+}
+
+.eleven-band--inflow .eleven-l1 {
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  color: color-mix(in srgb, var(--accent) 70%, var(--ink));
+}
+
+.eleven-band--inflow .eleven-oneline {
+  font-size: 16px;
+  color: color-mix(in srgb, var(--accent) 30%, var(--ink));
+}
+
+.eleven-joint--chain {
+  width: 26px;
+  padding: 0;
+  opacity: 0.9;
+}
+
+.eleven-joint--chain svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+@media (max-width: 560px) {
+  .eleven-band--inflow { height: 2.3rem; }
+  .eleven-band--inflow .eleven-oneline { font-size: 14px; }
+  .eleven-joint--chain { width: 20px; }
 }

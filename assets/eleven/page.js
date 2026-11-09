@@ -392,6 +392,9 @@
       if (k === selKey) tr.className = "sel";
       [p.name, ERA[k], p.year, p.month, p.date, G.epoch[k] || "\u2014"].forEach(function (v, i) {
         var td = el("td", (i === 2 || i === 4) ? "num" : null, v);
+        /* the last column clips with an ellipsis, so the full sentence stays
+           on the cell itself for a pointer and for a screen reader */
+        if (i === 5) td.title = v;
         tr.appendChild(td);
       });
       tr.addEventListener("click", function () {
@@ -562,7 +565,12 @@
       '<circle cx="0" cy="0" r="50" class="rim"/>';
     mp.appendChild(disc);
 
-    mp.appendChild(el("div", "pv", ph.name));
+    /* The emoji comes off the engine's own phase table, so the glyph and the
+       drawn disc can never disagree about which phase this is. */
+    var title = el("div", "pv");
+    title.appendChild(el("span", "mphase", ph.emoji));
+    title.appendChild(document.createTextNode(" " + ph.name));
+    mp.appendChild(title);
     mp.appendChild(el("p", "pn",
       Math.round(ph.illumination * 1000) / 10 + "% lit · " +
       ph.ageDays.toFixed(1) + " days old · " +
@@ -573,6 +581,7 @@
       var list = el("ul", "eleven-moonnext");
       next.forEach(function (e) {
         var li = el("li");
+        li.appendChild(el("span", "mphase", e.emoji));
         li.appendChild(el("span", "mn", e.name));
         li.appendChild(el("span", "md",
           e.daysFromRef === 0 ? "today" : "in " + e.daysFromRef + (e.daysFromRef === 1 ? " day" : " days")));
