@@ -378,7 +378,15 @@
       d.appendChild(el("span", "pk", row[0]));
       d.appendChild(el("div", "pv", row[1]));
       d.appendChild(el("p", "pn", row[2]));
-      var more = el("span", "pl", row[4] + " ");
+      var more = el("span", "pl");
+      var gh = document.createElementNS(NS, "svg");
+      gh.setAttribute("class", "eleven-ico");
+      gh.setAttribute("aria-hidden", "true");
+      var use = document.createElementNS(NS, "use");
+      use.setAttributeNS(null, "href", "assets/eleven/icons.svg#ico-github");
+      gh.appendChild(use);
+      more.appendChild(gh);
+      more.appendChild(document.createTextNode(" " + row[4] + " "));
       var arrow = el("span", null, "\u2197");
       arrow.setAttribute("aria-hidden", "true");
       more.appendChild(arrow);
@@ -447,13 +455,36 @@
       t + "</button></div></div>";
   }
 
-  function errDialog(msg) {
-    return '<div class="modalwrap"><div class="dlg" role="alertdialog" aria-label="Error">' +
-      '<div class="dtb"><span class="tt">Eleven Days</span></div>' +
-      '<div class="dbody">' +
-        '<svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">' +
+  /* THE MENU BAR ANSWERS. A 98 window whose menus do nothing reads as a
+     picture of a program. Each menu opens one notice in the program's own
+     dialog; none of them changes the date. The Help text quotes
+     Ecclesiastes 3:10-11 in the King James Version, which sits in the public
+     domain - keep that translation, since the modern ones carry copyright. */
+  var MENU = {
+    file: "Nothing to save.\n\nThe day keeps itself, in eleven places at once.",
+    edit: "The date cannot take an edit.\n\nPick another one instead: type it, or press the arrow beside the field.",
+    view: "Eleven views of one day, all open already.\n\nPress any row to read why that calendar exists.",
+    date: "Only God can make sense of Man\u2019s creations concerning time.",
+    help: "\u201cI have seen the travail, which God hath given to the sons of men to be exercised in it. " +
+          "He hath made every thing beautiful in his time: also he hath set the world in their heart, " +
+          "so that no man can find out the work that God maketh from the beginning to the end.\u201d" +
+          "\n\nEcclesiastes 3:10\u201311, King James Version",
+    close: "This program cannot close.\n\nTime keeps running whether or not anyone counts it."
+  };
+
+  function errDialog(msg, kind) {
+    var icon = kind === "info"
+      ? '<svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">' +
+          '<circle cx="16" cy="16" r="14" fill="#fff" stroke="#000080" stroke-width="1.5"/>' +
+          '<circle cx="16" cy="9.5" r="2.2" fill="#000080"/>' +
+          '<path d="M13 14h4.5v9H20v2h-8v-2h2.5v-7H13Z" fill="#000080"/></svg>'
+      : '<svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">' +
           '<circle cx="16" cy="16" r="14" fill="#c01818" stroke="#800"/>' +
-          '<path d="M9 9 L23 23 M23 9 L9 23" stroke="#fff" stroke-width="4" stroke-linecap="round"/></svg>' +
+          '<path d="M9 9 L23 23 M23 9 L9 23" stroke="#fff" stroke-width="4" stroke-linecap="round"/></svg>';
+    return '<div class="modalwrap"><div class="dlg" role="alertdialog" aria-label="' +
+        (kind === "info" ? "Notice" : "Error") + '">' +
+      '<div class="dtb"><span class="tt">Eleven Days</span></div>' +
+      '<div class="dbody">' + icon +
         "<p>" + esc(msg) + "</p>" +
       "</div>" +
       '<div class="dfoot"><button type="button" data-ok="1">OK</button></div></div></div>';
@@ -461,7 +492,7 @@
 
   var winHost = document.getElementById("eleven-win98");
 
-  function paint98(err) {
+  function paint98(err, kind) {
     if (!winHost) return;
     var data = calc(sel);
     var r = rd(sel);
@@ -469,8 +500,15 @@
 
     winHost.innerHTML =
       '<div class="win98">' +
-        '<div class="tbar"><span class="tt">Eleven Days - CALENDAR.EXE</span><b>_</b><b>\u25a1</b><b>\u00d7</b></div>' +
-        '<div class="menu"><span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>D</u>ate</span><span><u>H</u>elp</span></div>' +
+        '<div class="tbar"><span class="tt">Eleven Days - CALENDAR.EXE</span><b>_</b><b>\u25a1</b>' +
+          '<button type="button" class="tb" data-menu="close" aria-label="Close">\u00d7</button></div>' +
+        '<div class="menu">' +
+          [["file", "File"], ["edit", "Edit"], ["view", "View"], ["date", "Date"], ["help", "Help"]]
+            .map(function (m) {
+              return '<button type="button" data-menu="' + m[0] + '"><u>' + m[1].charAt(0) + "</u>" +
+                     m[1].slice(1) + "</button>";
+            }).join("") +
+        "</div>" +
         '<div class="inner">' +
           '<fieldset style="position:relative"><legend>Date</legend><div class="frow">' +
             '<label for="w98d">' + (mode === "abs" ? "Date:" : "Offset:") + "</label>" +
@@ -501,7 +539,7 @@
             '<span class="pin">95 checks green</span>' +
           "</div>" +
         "</div>" +
-        (err ? errDialog(err) : "") +
+        (err ? errDialog(err, kind) : "") +
       "</div>";
 
     var body = winHost.querySelector("[data-rows]");
@@ -517,8 +555,11 @@
         if (i === 5) td.title = v;
         tr.appendChild(td);
       });
+      /* A row leads somewhere: it takes the highlight and carries the
+         visitor to that calendar's story in the ledger below, opened. */
+      tr.title = "Read why the " + p.name + " calendar exists";
       tr.addEventListener("click", function () {
-        selKey = k; paintAnswer(); paint98();
+        selKey = k; paintAnswer(); paint98(); jumpTo(k);
       });
       body.appendChild(tr);
     });
@@ -530,6 +571,13 @@
       ok.focus();
       return;
     }
+
+    winHost.querySelectorAll("[data-menu]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        calOpen = false;
+        paint98(MENU[b.getAttribute("data-menu")], "info");
+      });
+    });
 
     var input = winHost.querySelector("#w98d");
 

@@ -1475,3 +1475,60 @@
 @media (max-width: 52rem) {
   .eleven-essay { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* ─── ICONS ──────────────────────────────────────────────────────────────
+   From assets/eleven/icons.svg. Sized in em so each rides its own line of
+   type, and coloured by the text around it - except the Obsidian mark, whose
+   sprite symbol fixes its fill to white as that brand's guidelines ask. */
+.eleven-ico {
+  width: 1.1em;
+  height: 1.1em;
+  flex: none;
+  display: inline-block;
+  vertical-align: -0.18em;
+}
+
+.eleven-ico--mark {
+  width: 1.05em;
+  height: 1.05em;
+  margin-right: 0.15em;
+}
+
+/* ─── THE 98 MENU BAR, AS BUTTONS ────────────────────────────────────────
+   Flat until pointed at, then the platform's own navy highlight. The raised
+   chrome .win98 gives every other button would turn the bar into a toolbar. */
+.win98 .menu { gap: 0; padding: 1px 2px; }
+
+.win98 .menu button {
+  background: none;
+  box-shadow: none;
+  padding: 2px 6px;
+}
+
+.win98 .menu button:hover,
+.win98 .menu button:focus-visible {
+  background: #000080;
+  color: #fff;
+  outline: 0;
+}
+
+.win98 .menu button:active { box-shadow: none; }
+
+/* the close box, the one title-bar button that answers */
+.win98 .tbar .tb {
+  display: inline-grid;
+  place-items: center;
+  width: 16px;
+  height: 14px;
+  padding: 0;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* a notice may run to a paragraph, so the dialog widens for it */
+.win98 .dlg { width: min(24rem, 94%); }
+
+/* every row of the grid presses, so it says so */
+.win98 table.list tbody tr:hover td { background: #dfe6f5; }
+.win98 table.list tbody tr.sel:hover td { background: #000080; }
