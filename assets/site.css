@@ -58,6 +58,10 @@
   --ink-faint: #8a8171;
   --max-width: 960px;
   --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  /* The label voice. No mono face ships with this repo and nothing here may
+     call fonts.googleapis.com at runtime, so this names the platform's own.
+     Self-host a face later and only this line changes. */
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 }
 
 * { box-sizing: border-box; }
@@ -2293,4 +2297,301 @@ ul.gloss li::before {
   /* A glyph drawn at 24px and shown near 14 reads soft on the stroke-built
      marks, so nudge it off the text baseline rather than scaling it up. */
   transform: translateY(-0.02em);
+}
+
+
+/* ─── THE CALENDAR RAIL ─────────────────────────────────────────────────────
+   One strip, fixed to the bottom edge of every page, filled by
+   assets/eleven/band.js. Today in eleven calendars, scrolling, paused on
+   hover and on focus.
+
+   IVORY AND GOLD, AND NOTHING ELSE. An earlier pass gave each system the
+   calendar plugin's own hue and a drawn motif behind it, and ran a second
+   four-line copy below the masthead. Eleven saturated hues and a second band
+   fought the pages they sat on: the owner cut both on 2026-11-09. The rail
+   keeps the site's two colours, and a system reads apart by its name rather
+   than by a colour nobody can name back. Resist re-adding the spectrum.
+
+   THE PADDING BELOW IS THE WHOLE RISK. A fixed strip covers the last line of
+   every page unless <body> reserves its height, and on a phone with a home
+   indicator it has to clear the inset underneath as well. The reservation
+   runs unconditionally, written here rather than by the script: if band.js
+   never runs the rail shows one plain line instead and the reservation still
+   matches it. Change --rail-h and the padding follows; change the rail's own
+   height in a media query without changing --rail-h and the foot of every
+   page goes under the strip.
+   ─────────────────────────────────────────────────────────────────────────── */
+:root {
+  --rail-h: 2.25rem;
+}
+
+body {
+  /* the rail's own height, plus whatever the device keeps below it */
+  padding-bottom: calc(var(--rail-h) + env(safe-area-inset-bottom, 0px));
+}
+
+.eleven-band {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* THE QUIET RAIL, fixed to the foot of every page. */
+.eleven-band--rail {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  overflow: hidden;
+  height: calc(var(--rail-h) + env(safe-area-inset-bottom, 0px));
+  /* the strip pads itself by the inset, so its line never rides under a
+     home indicator */
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  border-top: 1px solid var(--border-soft);
+  background: rgba(6, 5, 4, 0.92);
+  backdrop-filter: blur(6px);
+}
+
+/* Two runs of identical width, so translateX(-50%) closes the loop exactly.
+   Every cell is followed by a mascot, the LAST ONE INCLUDED — drop that
+   trailing one from a run and the seam shows a gap. */
+.eleven-track {
+  display: flex;
+  flex: none;
+  align-items: center;
+  animation: eleven-slide 96s linear infinite;
+}
+
+.eleven-band:hover .eleven-track,
+.eleven-band.is-paused .eleven-track {
+  animation-play-state: paused;
+}
+
+@keyframes eleven-slide {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.eleven-run {
+  display: flex;
+  flex: none;
+  align-items: center;
+}
+
+/* No box, no fill, no border: the rail reads as a line of type with links
+   between the entries, which is what keeps it quiet under a page. */
+.eleven-cell {
+  flex: none;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0 1.5rem;
+  white-space: nowrap;
+  text-decoration: none;
+  color: inherit;
+}
+
+.eleven-l1 {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+}
+
+.eleven-cell:hover .eleven-l1 { color: var(--gold); }
+
+.eleven-oneline {
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.eleven-cell:hover .eleven-oneline { color: var(--gold-bright); }
+
+/* WHAT SITS BETWEEN TWO ENTRIES: the site's own mascot, one of its eight
+   expressions, drawn at random per page load by band.js. A chain link of two
+   half rings and a free ellipse stood here first; the owner swapped it for
+   the Saturn kit on 2026-11-09, which puts the rail in the same vocabulary
+   as the rest of the pages rather than inventing a motif for it alone. */
+.eleven-joint {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.9;
+}
+
+/* The mascot takes most of the rail's height, so it reads as a face rather
+   than as a bullet, and the cells either side give it even air. */
+.eleven-joint .sat {
+  width: 1.6rem;
+  height: 1.6rem;
+  vertical-align: middle;
+}
+
+/* THE FALLBACK, when the engine does not load. The reservation on <body>
+   stands whatever happens, so the strip holds a line rather than showing an
+   empty lit bar. */
+.eleven-band--plain {
+  justify-content: center;
+}
+
+.eleven-plain {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.eleven-plain:hover { color: var(--gold-bright); }
+
+@media (max-width: 560px) {
+  .eleven-oneline { font-size: 16px; }
+  .eleven-cell { padding: 0 1rem; gap: 0.5rem; }
+  .eleven-joint .sat { width: 1.35rem; height: 1.35rem; }
+}
+
+/* Reduced motion: the loop stops and the rail becomes something a visitor
+   scrolls by hand. It still reads; it simply stops moving on its own. */
+@media (prefers-reduced-motion: reduce) {
+  .eleven-track {
+    animation: none;
+    width: max-content;
+  }
+  .eleven-band {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+}
+
+/* ─── THE COLOURED RAIL, below the masthead ─────────────────────────────────
+   The plugin's own COLOR_MAP, a motif drawn behind each entry, and a chain
+   between them. Smaller than the version that first shipped and slower than
+   the rail at the foot of the page, so the colour reads as punctuation on the
+   way into a page rather than as the page itself.
+
+   EVERY EDGE OF A BOX GETS DRAWN. The first version set a top border and left
+   the other three to a 1px gap over a tinted ground, so each entry showed a
+   lit top edge and nothing underneath it.
+   ─────────────────────────────────────────────────────────────────────────── */
+.eleven-band--inflow {
+  /* Tall enough for three lines AND for the drawn motif behind them to read
+     as a drawing rather than as a smudge. At 2.6rem it was neither. */
+  height: 6.5rem;
+  align-items: stretch;
+  background: #0a0806;
+  border-top: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+/* At this height the entry stacks: the system's name over its date, centred,
+   with the motif drawn behind both. */
+.eleven-band--inflow .eleven-cell {
+  --accent: var(--gold);
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.3rem;
+  min-width: 9rem;
+  padding: 0 1.1rem;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent);
+  border-top-width: 2px;
+  background-image: linear-gradient(180deg, color-mix(in srgb, var(--accent) 14%, #0a0806), #0a0806 75%);
+}
+
+/* the watermark: one motif per system, behind its own entry */
+.eleven-band--inflow .eleven-art {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  opacity: 0.22;
+  color: var(--accent);
+}
+
+.eleven-band--inflow .eleven-art svg {
+  display: block;
+  width: auto;
+  height: 82%;
+}
+
+.eleven-band--inflow .eleven-cell > :not(.eleven-art) {
+  position: relative;
+  z-index: 1;
+}
+
+.eleven-band--inflow .eleven-l1 {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: color-mix(in srgb, var(--accent) 70%, var(--ink));
+}
+
+.eleven-band--inflow .eleven-oneline {
+  font-size: 17px;
+  color: color-mix(in srgb, var(--accent) 30%, var(--ink));
+}
+
+/* The track and its runs stretch, so a cell's height: 100% has a full-height
+   line box to resolve against. Left at the inherited align-items: center they
+   size to their own text, the motif sizes to the cell, and the drawing comes
+   out a third of the height it should. */
+.eleven-band--inflow .eleven-track,
+.eleven-band--inflow .eleven-run {
+  align-items: stretch;
+}
+
+.eleven-band--inflow .eleven-bar {
+  width: 100%;
+  height: 1px;
+  flex: none;
+  margin: 1px 0 3px;
+  background: color-mix(in srgb, var(--accent) 50%, transparent);
+}
+
+.eleven-band--inflow .eleven-l2 {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.eleven-band--inflow .eleven-l3 {
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.15;
+  color: color-mix(in srgb, var(--accent) 35%, var(--ink));
+  font-variant-numeric: tabular-nums;
+}
+
+.eleven-joint--chain {
+  width: 26px;
+  padding: 0;
+  opacity: 0.9;
+}
+
+.eleven-joint--chain svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+@media (max-width: 560px) {
+  .eleven-band--inflow { height: 5.6rem; }
+  .eleven-band--inflow .eleven-l3 { font-size: 16px; }
+  .eleven-band--inflow .eleven-oneline { font-size: 14px; }
+  .eleven-band--inflow .eleven-cell { min-width: 7.5rem; padding: 0 0.8rem; }
+  .eleven-joint--chain { width: 20px; }
 }

@@ -25,12 +25,16 @@ the same day, so the URL now matches the name. Anything still pointing at
 /treatise needs a redirect, which Cloudflare Pages handles through a _redirects
 file this site does not yet carry.
 
-Ten links now, wrapping to four centred rows at 400px — measured 2026-11-01,
-up from three because "Non-Nominalism" runs longer than "Treatise" did. The
-row wraps rather
-than scrolling sideways or collapsing to a hamburger — both ruled out in
-the hub repo's docs/website/OVERHAUL-BRIEF.md, workstream 1. Check 375px after adding an
-eleventh.
+Eleven links as of 2026-11-09, when Eleven Days arrived beside Techne as the
+second tool. Ten of them wrapped to four centred rows at 400px — measured
+2026-11-01, up from three because "Non-Nominalism" runs longer than "Treatise"
+did. The row wraps rather than scrolling sideways or collapsing to a hamburger
+— both ruled out deliberately: a hamburger hides the whole site behind
+JavaScript, and a sideways scroll hides tabs with nothing to say it did.
+Re-measure 375px after adding a twelfth.
+
+This script also writes the calendar rail that sits at the foot of every
+page — see THE CALENDAR RAIL further down.
 """
 
 import math
@@ -54,9 +58,66 @@ NAV = [
     ("horrible-ideas.html", "Horrible Ideas", False),
     ("thoughts.html", "Thought of the Day", True),
     ("techne.html", "Techne", False),
+    ("eleven-days.html", "Eleven Days", False),
     ("academia.html", "Academia", False),
     ("consulting.html", "Consulting", False),
 ]
+
+# ─── THE CALENDAR RAIL ─────────────────────────────────────────────────────
+# Site-wide chrome, so it gets written from here rather than pasted into
+# thirteen pages: one strip fixed to the bottom edge of every page, filled by
+# assets/eleven/band.js.
+#
+# It rides inside the MASTHEAD block although it paints at the foot of the
+# page, because this is the one block every page already carries and
+# position:fixed takes it out of flow anyway.
+#
+# TWO RAILS, deliberately unlike each other, and only one of them is
+# site-wide.
+#
+#   the quiet rail, at the foot of EVERY page: ivory and gold, the site's own
+#   mascot between entries, quick.
+#
+#   the coloured rail, below the masthead on /eleven-days ONLY: the plugin's
+#   palette, a drawn motif behind each entry, a chain between them, taller so
+#   the motif reads, and slower. Matching their speeds would make that page
+#   read as one scrolling surface with the content in a hole in the middle.
+#
+# A four-line version of the upper rail, with a gloss drawer, came and went on
+# 2026-11-09: at that height it pushed every page's own opening below the fold.
+# Keep this one to a single line.
+#
+# site.css reserves the rail's height on <body>, including
+# env(safe-area-inset-bottom). Change the rail's height there, not here, or
+# the strip covers the last line of all thirteen pages.
+
+
+RAIL_PAGE = "eleven-days.html"
+
+
+def rail(page):
+    out = []
+    # THE COLOURED RAIL BELONGS TO ITS OWN PAGE AND NOWHERE ELSE. The
+    # plugin's palette, a drawn motif behind each entry and a chain between
+    # them say what /eleven-days is about; on the hub or on Poetry they say
+    # nothing and shove the page's own opening down the screen. It went out
+    # site-wide once, on 2026-11-09, and came straight back off.
+    if page == RAIL_PAGE:
+        out += [
+            '<div class="eleven-band eleven-band--inflow" data-eleven-band',
+            '     data-variant="chain" aria-label="Today in eleven calendars"></div>',
+        ]
+    out += [
+        # the quiet one, fixed to the foot of EVERY page, running quicker
+        '<div class="eleven-band eleven-band--rail" data-eleven-band',
+        '     aria-label="Today in eleven calendars"></div>',
+        # engine first, then the script that reads it. Neither is deferred:
+        # band.js waits for DOMContentLoaded itself, and /eleven-days needs
+        # window.buildCalendars in place before its own page.js runs.
+        '<script src="assets/eleven/engine.js"></script>',
+        '<script src="assets/eleven/band.js"></script>',
+    ]
+    return "\n".join(out)
 
 # ─── THE LOCKUP GLOBE ──────────────────────────────────────────────────────
 # The ringed planet, drawn from our own vocabulary: a gold ring that wraps the
@@ -455,6 +516,7 @@ def masthead(page):
         # The globe's turn needs trigonometry per frame, so the lockup carries
         # one script. defer, and in the body, so it never blocks the paint.
         '<script src="assets/globe.js" defer></script>',
+        rail(page),
         END,
     ])
 

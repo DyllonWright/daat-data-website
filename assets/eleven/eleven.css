@@ -1,0 +1,1503 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   /eleven-days — the calendar page, and nothing else
+   ───────────────────────────────────────────────────────────────────────────
+   Loaded by eleven-days.html alone, after site.css. Everything here sits
+   under .eleven-page, so the other twelve pages keep their own typography
+   whatever this file says. Two reasons that scoping matters:
+
+     PAIRING B APPLIES TO THIS PAGE ONLY. The owner settled it on 2026-11-09:
+     Cormorant stops being the house voice here and becomes the thing
+     reserved for verse — the month line, the day, and pull quotes. Headings
+     and body move to the sans stack. Do not lift this into site.css, where
+     it would retype all thirteen pages.
+
+     THE FACES COME FROM THE PLATFORM. The mockups drew pairing B in IBM Plex
+     Sans, loaded from fonts.googleapis.com. This repo self-hosts Cormorant
+     and calls no font host at runtime, and the owner chose to keep the page
+     contained rather than carry more woff2 files and a second licence record
+     for one page. So --head below names the platform's own stack. Self-host
+     a face later and only that declaration changes.
+
+   The tool breaks the dark theme on purpose: it arrives as a Windows 98
+   program window, and it loads beside the page's own description rather than
+   below it, so a visitor lands on something they can use. A DOS terminal
+   used to sit behind a flip button next to it; the owner cut it on
+   2026-11-09, because two chromes for one answer asked a visitor to choose a
+   costume before getting a date.
+
+   Under the tool sit the moon and the wheel, both reading
+   assets/eleven/sky.js and both following the tool's own date.
+   ═══════════════════════════════════════════════════════════════════════════ */
+.eleven-page {
+  /* pairing B, scoped: the sans carries headings and body */
+  --head: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.eleven-page h1,
+.eleven-page h2,
+.eleven-page h3 {
+  font-family: var(--head);
+  letter-spacing: -0.01em;
+}
+
+/* Cormorant, kept for what it earns: the month line, the day, the quote. */
+.eleven-page .verse,
+.eleven-page .pullquote {
+  font-family: var(--serif);
+}
+
+.eleven-page .pullquote {
+  font-size: clamp(1.25rem, 3.4vw, 1.6rem);
+  font-style: italic;
+  line-height: 1.45;
+  max-width: 48ch;
+  margin: 0 auto;
+  color: var(--ink);
+  text-align: center;
+}
+
+/* ─── BLOCK FURNITURE ────────────────────────────────────────────────────── */
+.eleven-page .eyebrow {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 0.6rem;
+}
+
+/* ─── THE FIELD, AND THE ANSWER ──────────────────────────────────────────── */
+/* The field carries today already, so the page answers before anyone types.
+   An empty field shows nothing and asks for work first. */
+/* ONE CONTROL. The label sits above; the field and its button share one frame
+   and one height. The first version set a pill button from site.css beside a
+   square field, at two heights, under a label the size of a footnote. */
+.eleven-field {
+  margin-top: 1.5rem;
+}
+
+.eleven-field label,
+.eleven-span label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.eleven-field label { margin-bottom: 0.45rem; }
+
+.eleven-fieldrow {
+  display: flex;
+  border: 1px solid var(--border-soft);
+  background: var(--bg-deep);
+  transition: border-color 0.15s ease;
+}
+
+.eleven-fieldrow:focus-within { border-color: var(--gold); }
+
+/* color-scheme: dark turns the browser's own calendar glyph light. Left at
+   the default it draws black on this ground and the picker goes missing. */
+.eleven-fieldrow input,
+.eleven-span input {
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  color: var(--gold-bright);
+  color-scheme: dark;
+  min-width: 0;
+}
+
+.eleven-fieldrow input {
+  flex: 1 1 auto;
+  border: 0;
+  background: transparent;
+  padding: 0.7rem 0.75rem;
+}
+
+.eleven-fieldrow button {
+  flex: none;
+  border: 0;
+  border-left: 1px solid var(--border-soft);
+  background: var(--gold);
+  color: #171105;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0 1.05rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.eleven-fieldrow button:hover { background: var(--gold-bright); }
+
+/* ─── THE ELEVEN, AS A LEDGER ────────────────────────────────────────────── */
+/* A ledger, not a card grid. Rows share a baseline, so the eye reads down one
+   column of dates instead of hunting eleven boxes. */
+.eleven-ledger {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.9rem;
+  border-top: 1px solid rgba(201, 162, 75, 0.14);
+}
+
+.eleven-ledger .row {
+  display: flex;
+  gap: 0.9rem;
+  align-items: baseline;
+  width: 100%;
+  padding: 0.55rem 0.2rem;
+  border: 0;
+  border-bottom: 1px solid rgba(201, 162, 75, 0.08);
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.eleven-ledger .row:hover {
+  background: rgba(201, 162, 75, 0.045);
+}
+
+.eleven-ledger .rk {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  flex: 0 0 7.5rem;
+}
+
+.eleven-ledger .rv {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--ink);
+  flex: 1 1 auto;
+  min-width: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.eleven-ledger .rd {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  flex: 0 0 auto;
+}
+
+/* THE OPENED ROW. Two columns: the story on the left, starting under the date
+   it explains rather than under the system's name, and on the right what the
+   system counts from and where to read on. The left padding below equals the
+   name column plus the row's gap, so the story hangs off the date. */
+.eleven-ledger .gl {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 17rem);
+  gap: 1rem 2.25rem;
+  padding: 1rem 0.2rem 1.3rem 8.6rem;
+  border-bottom: 1px solid rgba(201, 162, 75, 0.08);
+  background: rgba(201, 162, 75, 0.035);
+}
+
+.eleven-ledger .gl .why {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 54ch;
+  color: var(--ink-dim);
+}
+
+.eleven-ledger .gl .side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding-left: 1.4rem;
+  border-left: 1px solid rgba(201, 162, 75, 0.16);
+}
+
+.eleven-ledger .gl .epk {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.25rem;
+}
+
+.eleven-ledger .gl .epv {
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+@media (max-width: 44rem) {
+  .eleven-ledger .gl {
+    grid-template-columns: minmax(0, 1fr);
+    padding-left: 0.2rem;
+  }
+  .eleven-ledger .gl .side {
+    padding: 0.9rem 0 0;
+    border-left: 0;
+    border-top: 1px solid rgba(201, 162, 75, 0.16);
+  }
+}
+
+/* ─── THE TWO-DATE SPAN ──────────────────────────────────────────────────── */
+/* Not one duration restated eleven times: what each system CROSSED. */
+/* It sits directly under the tool and borrows the landing's two columns, so
+   its question lines up under the page's description and its answer lines up
+   under the 98 window. No boxes: one large figure, then a ledger. The first
+   version drew six bordered cells in an auto-fit grid, which left a lone
+   sixth cell on a row of its own. */
+.eleven-between {
+  display: grid;
+  grid-template-columns: minmax(0, 17rem) minmax(0, 1fr);
+  gap: 1.5rem clamp(1.5rem, 4vw, 2.75rem);
+  align-items: start;
+  padding: clamp(1.5rem, 4vw, 2.25rem) 0 clamp(2rem, 5vw, 3rem);
+  border-top: 1px solid var(--border-soft);
+}
+
+.eleven-between h2 {
+  font-size: 1.3rem;
+  margin: 0 0 1rem;
+}
+
+.eleven-span {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.5rem 0.8rem;
+  align-items: center;
+  margin: 0;
+}
+
+.eleven-span input {
+  width: 100%;
+  background: var(--bg-deep);
+  border: 1px solid var(--border-soft);
+  padding: 0.6rem 0.7rem;
+}
+
+.eleven-span input:focus-visible { border-color: var(--gold); }
+
+.eleven-between .preset {
+  margin: 0.9rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--ink-faint);
+}
+
+.eleven-spanout {
+  display: grid;
+  grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
+  gap: 1.25rem 2rem;
+  align-items: start;
+}
+
+.eleven-spanout .wait {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--ink-faint);
+}
+
+.eleven-spanout .big {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 7vw, 3.9rem);
+  line-height: 0.95;
+  color: var(--gold-bright);
+  font-variant-numeric: tabular-nums;
+}
+
+.eleven-spanout .unit {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 0.55rem;
+}
+
+.eleven-spanout .gap {
+  margin: 0.7rem 0 0;
+  font-size: 0.86rem;
+  color: var(--ink-dim);
+}
+
+@media (max-width: 60rem) {
+  .eleven-between { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 34rem) {
+  .eleven-spanout { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ─── THE PROOF ──────────────────────────────────────────────────────────── */
+/* same reason as .eleven-spanout: the rule belongs to the cell */
+.eleven-proof {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1px;
+  margin-top: 0.9rem;
+}
+
+.eleven-proof > a {
+  background: var(--bg-panel);
+  box-shadow: 0 0 0 1px var(--border-soft);
+  padding: 0.8rem 0.9rem;
+}
+
+.eleven-proof .pk {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.eleven-proof .pv {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--ink);
+  margin-top: 0.2rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.eleven-proof .pn {
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  margin: 0.35rem 0 0;
+}
+
+/* ─── THE FLIP ───────────────────────────────────────────────────────────── */
+.eleven-flipbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  align-items: center;
+  margin-bottom: 0.9rem;
+}
+
+.eleven-flip {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold-bright);
+  padding: 0.55rem 1.1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.eleven-flip:hover { border-color: var(--gold-bright); }
+
+.eleven-which {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+}
+
+/* ═══ WINDOWS 98 ═══════════════════════════════════════════════════════════
+   The whole point: the tool breaks the page's theme rather than wearing it.
+   Every colour below is literal 98 chrome, not a site token, because the
+   skin stops reading as a program window the moment it goes gold.
+   ═══════════════════════════════════════════════════════════════════════ */
+.win98 {
+  font-family: Tahoma, "MS Sans Serif", "Microsoft Sans Serif", Verdana, Geneva, sans-serif;
+  font-size: 11px;
+  line-height: 1.35;
+  color: #000;
+  background: #c0c0c0;
+  box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px #808080, inset 2px 2px #dfdfdf;
+  padding: 3px;
+  min-width: 0;
+  max-width: 100%;
+  position: relative;
+}
+
+.win98 .tbar {
+  background: linear-gradient(90deg, #000080, #1084d0);
+  color: #fff;
+  font-weight: 700;
+  padding: 3px 3px 3px 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.win98 .tbar .tt {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.win98 .tbar b {
+  display: inline-grid;
+  place-items: center;
+  width: 16px;
+  height: 14px;
+  background: #c0c0c0;
+  color: #000;
+  font-weight: 700;
+  font-size: 10px;
+  box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px #808080, inset 2px 2px #dfdfdf;
+}
+
+.win98 .menu {
+  display: flex;
+  gap: 10px;
+  padding: 3px 4px;
+  border-bottom: 1px solid #808080;
+}
+
+.win98 .menu u { text-decoration: underline; }
+
+.win98 .inner { padding: 8px; }
+
+.win98 fieldset {
+  border: 1px solid #808080;
+  border-right-color: #fff;
+  border-bottom-color: #fff;
+  margin: 0 0 8px;
+  padding: 8px;
+}
+
+.win98 legend { padding: 0 3px; }
+
+.win98 .frow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.win98 label { white-space: nowrap; }
+
+.win98 input[type="text"] {
+  font-family: inherit;
+  font-size: 11px;
+  background: #fff;
+  color: #000;
+  border: 0;
+  padding: 2px 3px;
+  min-width: 0;
+  flex: 1 1 7rem;
+  box-shadow: inset 1px 1px #808080, inset -1px -1px #fff, inset 2px 2px #0a0a0a, inset -2px -2px #dfdfdf;
+}
+
+.win98 button {
+  font-family: inherit;
+  font-size: 11px;
+  background: #c0c0c0;
+  color: #000;
+  border: 0;
+  padding: 3px 10px;
+  cursor: pointer;
+  box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px #808080, inset 2px 2px #dfdfdf;
+}
+
+.win98 button:active {
+  box-shadow: inset 1px 1px #0a0a0a, inset -1px -1px #fff, inset 2px 2px #808080, inset -2px -2px #dfdfdf;
+}
+
+/* The focus ring site.css draws in gold reads as a bug on 98 chrome, so the
+   skin keeps the platform's own dotted marching rectangle instead. */
+.win98 button:focus-visible,
+.win98 input:focus-visible,
+.win98 td:focus-visible {
+  outline: 1px dotted #000;
+  outline-offset: -4px;
+}
+
+.win98 button.icon {
+  padding: 2px 6px;
+  min-width: 24px;
+  display: inline-grid;
+  place-items: center;
+}
+
+.win98 button.icon svg { display: block; }
+
+.win98 .combo {
+  display: flex;
+  flex: 1 1 9rem;
+  min-width: 0;
+}
+
+.win98 .combo input { flex: 1 1 auto; }
+
+.win98 .combo .drop {
+  flex: 0 0 17px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+}
+
+.win98 .modeline { margin-top: 6px; }
+
+.win98 .modeline b { font-weight: 700; }
+
+/* the 98 month grid */
+.win98 .cal {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% - 4px);
+  left: 8px;
+  background: #c0c0c0;
+  padding: 2px;
+  width: 168px;
+  box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px #808080, inset 2px 2px #dfdfdf,
+              2px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.win98 .cal .chd {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px;
+}
+
+.win98 .cal .chd .mt {
+  flex: 1 1 auto;
+  text-align: center;
+  font-weight: 700;
+}
+
+.win98 .cal .chd button {
+  padding: 0 4px;
+  font-size: 10px;
+  line-height: 14px;
+}
+
+.win98 .cal table {
+  border-collapse: collapse;
+  width: 100%;
+  background: #fff;
+  box-shadow: inset 1px 1px #808080, inset -1px -1px #fff;
+}
+
+.win98 .cal th {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 0;
+  text-align: center;
+  background: #c0c0c0;
+}
+
+.win98 .cal td {
+  font-size: 11px;
+  text-align: center;
+  padding: 1px 0;
+  cursor: pointer;
+  width: 14.28%;
+}
+
+.win98 .cal td.other { color: #808080; }
+.win98 .cal td.today { box-shadow: inset 0 0 0 1px #a00; }
+.win98 .cal td.pick { background: #000080; color: #fff; }
+.win98 .cal td:hover { background: #dfdfdf; }
+.win98 .cal td.pick:hover { background: #000080; }
+
+.win98 .cal .cft {
+  text-align: center;
+  padding: 3px 0 1px;
+  border-top: 1px solid #808080;
+  margin-top: 2px;
+}
+
+.win98 .cal .cft button { font-size: 10px; padding: 1px 8px; }
+
+.win98 .grid {
+  background: #fff;
+  overflow-x: auto;
+  box-shadow: inset 1px 1px #808080, inset -1px -1px #fff, inset 2px 2px #0a0a0a, inset -2px -2px #dfdfdf;
+}
+
+/* The colour sits on the table itself on purpose. In quirks mode a <table>
+   does not inherit `color`, so this grid paints the page's ivory text on its
+   own white ground and the whole list disappears. The live site has a
+   doctype, so this only bites a raw-fragment preview — and it costs one
+   declaration to be immune either way. */
+.win98 table.list {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 11px;
+  /* Wide enough for six real columns, narrow enough to sit in the tool pane
+     without a horizontal scrollbar at a normal desktop width. Raise it and
+     the 98 window grows its scrollbar back. */
+  min-width: 24rem;
+  color: #000;
+}
+
+.win98 table.list th {
+  background: #c0c0c0;
+  text-align: left;
+  font-weight: 700;
+  padding: 2px 6px;
+  white-space: nowrap;
+  box-shadow: inset -1px -1px #808080, inset 1px 1px #fff;
+}
+
+.win98 table.list td {
+  padding: 2px 6px;
+  border-bottom: 1px solid #dfdfdf;
+  white-space: nowrap;
+}
+
+.win98 table.list tbody tr { cursor: pointer; }
+.win98 table.list tbody tr:nth-child(even) td { background: #f4f4f4; }
+.win98 table.list tbody tr.sel td { background: #000080; color: #fff; }
+
+.win98 .num { font-variant-numeric: tabular-nums; }
+
+.win98 .status {
+  display: flex;
+  gap: 4px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+
+.win98 .status span {
+  flex: 1 1 auto;
+  padding: 2px 5px;
+  box-shadow: inset 1px 1px #808080, inset -1px -1px #fff;
+}
+
+.win98 .status span.pin { flex: 0 0 auto; }
+
+/* THE ERROR MODAL. A bad date arrives the way a 98 program delivers one —
+   title bar, red circle-and-X, OK button — never as bold red text under the
+   field. */
+.win98 .modalwrap {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.win98 .dlg {
+  background: #c0c0c0;
+  padding: 3px;
+  width: min(20rem, 92%);
+  box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px #808080, inset 2px 2px #dfdfdf,
+              3px 3px 0 rgba(0, 0, 0, 0.35);
+}
+
+.win98 .dlg .dtb {
+  background: linear-gradient(90deg, #000080, #1084d0);
+  color: #fff;
+  font-weight: 700;
+  padding: 3px 4px;
+  display: flex;
+  align-items: center;
+}
+
+.win98 .dlg .dtb .tt { flex: 1 1 auto; }
+
+.win98 .dlg .dbody {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 14px 12px 10px;
+}
+
+.win98 .dlg .dbody p {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.45;
+  white-space: pre-line;
+}
+
+.win98 .dlg .dfoot {
+  display: flex;
+  justify-content: center;
+  padding: 0 0 10px;
+}
+
+.win98 .dlg .dfoot button { min-width: 68px; }
+
+/* ─── THE LANDING PANES ──────────────────────────────────────────────────
+   Description on the left, tool on the right, both inside the first screen,
+   so a visitor lands on something that already answers. The tool used to sit
+   under a full-width hero and a four-line marquee, which put it below the
+   fold on a laptop.
+
+   The columns collapse under 60rem and the tool goes FIRST on a phone: a
+   narrow screen should still open on the thing that works, not on two
+   paragraphs about it. */
+.eleven-landing {
+  display: grid;
+  grid-template-columns: minmax(0, 17rem) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 2.75rem);
+  align-items: start;
+  padding: clamp(1.75rem, 5vw, 3rem) 0 clamp(1.25rem, 3vw, 2rem);
+}
+
+.eleven-landing .said h1 {
+  font-size: clamp(1.9rem, 5vw, 2.6rem);
+  margin: 0 0 0.6rem;
+}
+
+.eleven-landing .said .standfirst {
+  font-size: 1rem;
+  color: var(--ink-dim);
+  max-width: 30ch;
+  margin: 0;
+}
+
+.eleven-landing .tool {
+  min-width: 0;
+}
+
+@media (max-width: 60rem) {
+  .eleven-landing {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .eleven-landing .tool { order: -1; }
+}
+
+/* ─── THE MOON, AND THE WHEEL ────────────────────────────────────────────
+   Two panels under the tool, following its date. Both read
+   assets/eleven/sky.js — the plugin's own astronomy, transpiled once and
+   committed, never compiled here. */
+.eleven-sky {
+  display: grid;
+  grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+  gap: 1px;
+  margin: 0 0 clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.eleven-sky > div {
+  background: var(--bg-panel);
+  box-shadow: 0 0 0 1px var(--border-soft);
+  padding: 1.1rem 1.2rem;
+  min-width: 0;
+}
+
+@media (max-width: 54rem) {
+  .eleven-sky { grid-template-columns: minmax(0, 1fr); }
+}
+
+.eleven-moon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* The lit limb is one path over a dark disc, so a crescent reads as a
+   crescent at any size rather than as a clipped circle. */
+.eleven-moondisc {
+  width: min(11rem, 60vw);
+  height: auto;
+  margin: 0.6rem 0 0.4rem;
+}
+
+.eleven-moondisc .dark { fill: #14110c; }
+.eleven-moondisc .lit  { fill: var(--ink); }
+.eleven-moondisc .rim  { fill: none; stroke: var(--gold-deep); stroke-width: 1.5; }
+
+.eleven-moonnext {
+  list-style: none;
+  margin: 0.9rem 0 0;
+  padding: 0.8rem 0 0;
+  width: 100%;
+  border-top: 1px solid var(--border-soft);
+  font-size: 0.8rem;
+}
+
+.eleven-moonnext li {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.22rem 0;
+}
+
+.eleven-moonnext .mn { color: var(--ink-dim); }
+.eleven-moonnext .md { color: var(--gold-deep); font-family: var(--mono); font-size: 0.68rem; }
+
+.eleven-wheel {
+  display: block;
+  width: 100%;
+  max-width: 24rem;
+  height: auto;
+  margin: 0.6rem auto 0.2rem;
+}
+
+.eleven-wheel .ring  { fill: none; stroke: var(--border-soft); stroke-width: 1; }
+.eleven-wheel .faint { stroke: rgba(201, 162, 75, 0.12); }
+.eleven-wheel .spoke { stroke: rgba(201, 162, 75, 0.28); stroke-width: 1; }
+.eleven-wheel .tick  { stroke: rgba(201, 162, 75, 0.16); stroke-width: 0.7; }
+.eleven-wheel .point { stroke: var(--gold); stroke-width: 1.4; }
+
+.eleven-wheel .sign {
+  fill: var(--el, var(--gold-deep));
+  font-size: 13px;
+}
+
+/* THE FOUR ELEMENTS. Each sign's band of the outer ring takes its element's
+   colour at low strength and its glyph takes it at full, so the wheel reads
+   fire, earth, air, water three times round. Four hues only, each tuned to
+   sit on the panel's near-black beside the gold; the key under the wheel
+   names them, so the colour never carries the meaning alone. */
+.eleven-page .el-fire  { --el: #e8754f; }
+.eleven-page .el-earth { --el: #8dbb72; }
+.eleven-page .el-air   { --el: #ecd27c; }
+.eleven-page .el-water { --el: #6db3e0; }
+
+.eleven-wheel .sector {
+  fill: var(--el);
+  fill-opacity: 0.13;
+  stroke: none;
+}
+
+.eleven-elements {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.3rem 1.2rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.eleven-elements li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.eleven-elements i {
+  width: 0.6rem;
+  height: 0.6rem;
+  background: var(--el);
+}
+
+.eleven-bodies .zg { color: var(--el, inherit); }
+
+.eleven-wheel .body {
+  fill: var(--ink);
+  font-size: 15px;
+}
+
+/* Retrograde reads as a colour change, not as a second glyph crowding the
+   wheel; the list below spells it out with an ℞. */
+.eleven-wheel .body.rx { fill: var(--gold-bright); }
+
+.eleven-bodies {
+  list-style: none;
+  margin: 0.9rem 0 0;
+  padding: 0.8rem 0 0;
+  border-top: 1px solid var(--border-soft);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 0.1rem 1.2rem;
+  font-size: 0.82rem;
+}
+
+.eleven-bodies li {
+  display: grid;
+  grid-template-columns: 1.3rem 1fr auto 1.2rem;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding: 0.18rem 0;
+}
+
+.eleven-bodies .bg { color: var(--gold); }
+.eleven-bodies .bn { color: var(--ink-dim); }
+.eleven-bodies .bz { color: var(--ink); font-variant-numeric: tabular-nums; }
+.eleven-bodies .br { color: var(--gold-bright); font-size: 0.72rem; }
+.eleven-bodies li.is-rx .bz { color: var(--gold-bright); }
+
+/* The phase emoji, from the engine's own table beside the drawn disc. A
+   system emoji font paints its own colours, so it never takes the gold. */
+.eleven-moon .mphase {
+  font-size: 1em;
+  line-height: 1;
+}
+
+.eleven-moonnext li { align-items: baseline; }
+.eleven-moonnext .mn { flex: 1 1 auto; }
+
+
+/* The attribution under a pull quote, which is not part of the quotation. */
+.eleven-page .pullquote .attrib {
+  display: block;
+  margin: 0.6rem 0 1.6rem;
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+}
+
+/* ─── THE CTA ────────────────────────────────────────────────────────────
+   The screenshot beside the ask. The image reuses the file techne.html
+   already carries, so nothing new crosses the publish boundary for it. */
+.eleven-cta {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: clamp(1.25rem, 3vw, 2rem);
+  align-items: center;
+  margin-top: 1.25rem;
+}
+
+.eleven-cta .shot {
+  display: block;
+  border: 1px solid var(--border-soft);
+  background: var(--bg-panel);
+  line-height: 0;
+  transition: border-color 0.2s ease;
+}
+
+.eleven-cta .shot:hover { border-color: var(--gold); }
+
+.eleven-cta .shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.eleven-cta .say {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.eleven-cta .say p { margin: 0; color: var(--ink-dim); }
+
+.eleven-free {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: var(--gold-deep);
+}
+
+@media (max-width: 48rem) {
+  .eleven-cta { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* THE LONG COLUMN TRUNCATES RATHER THAN FORCING A SCROLLBAR.
+   "Counts from" carries a full sentence, and holding it on one unbroken line
+   pushed the grid past the tool pane at every width below a wide desktop. It
+   now clips with an ellipsis: the whole sentence still reads in the ledger
+   further down the page, and in the row's title attribute, so nothing is
+   lost — the 98 window just stops growing a horizontal scrollbar. */
+.win98 table.list th:last-child,
+.win98 table.list td:last-child {
+  max-width: 11rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* READ MORE, off-site. One link per row, opened from the pop-out. */
+.eleven-ledger .more {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* A link a visitor can see and hit: framed, at a readable size, with an
+   arrow that says it leaves the site. */
+.eleven-ledger .wiki {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid var(--border-soft);
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
+  color: var(--gold-bright);
+  text-decoration: none;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.eleven-ledger .wiki:hover {
+  border-color: var(--gold);
+  background: rgba(201, 162, 75, 0.09);
+}
+
+.eleven-ledger .wiki .ico { color: var(--gold); }
+
+/* ─── THE ESSAY, AND THE CARD BESIDE IT ──────────────────────────────────
+   The prose keeps its reading measure and the card gives it an edge to sit
+   against. The card links out rather than reproducing anything: the cover
+   and every photograph of Wilson belong to other people. */
+.eleven-essay {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 16rem);
+  gap: clamp(1.5rem, 4vw, 2.75rem);
+  align-items: start;
+  margin-top: 1rem;
+}
+
+.eleven-card {
+  border: 1px solid var(--border-soft);
+  background: var(--bg-panel);
+}
+
+.eleven-card figure { margin: 0; }
+
+/* The photograph ships untouched; the warm tone comes from this filter, so
+   a black-and-white snapshot sits in the page's gold rather than beside it. */
+.eleven-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: sepia(0.6) saturate(0.75) brightness(0.92) contrast(1.06);
+}
+
+.eleven-card figcaption {
+  padding: 0.85rem 1rem 0.9rem;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: var(--ink-dim);
+}
+
+/* the licence's own requirement: the credit and the licence stay legible */
+.eleven-card .credit {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: 0.7rem;
+  color: var(--ink-faint);
+}
+
+.eleven-card .credit a { color: inherit; }
+.eleven-card .credit a:hover { color: var(--gold-bright); }
+
+@media (max-width: 52rem) {
+  .eleven-essay { grid-template-columns: minmax(0, 1fr); }
+  .eleven-card { max-width: 22rem; }
+}
+
+/* The quote opens the essay, so it shares the essay's left edge rather than
+   centring over a column of left-aligned prose. */
+.eleven-essay .pullquote {
+  text-align: left;
+  margin-left: 0;
+}
+
+/* THE NOTE UNDER THE PROOF, as plain prose. site.css draws .note as a rounded
+   box with a gold left edge; under three square cells that reads as a fourth
+   component in another dialect. Here it stays a paragraph. */
+.eleven-page .eleven-proof + .note {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  max-width: 68ch;
+  margin: 1.4rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ink-dim);
+}
+
+/* On a phone the name column gives its spare width back to the date, which
+   otherwise wraps onto a second line in most rows. */
+@media (max-width: 34rem) {
+  .eleven-ledger .rk { flex-basis: 6.2rem; }
+  .eleven-ledger .row { gap: 0.6rem; }
+}
+
+/* ═══ THE SECOND PASS, 2026-11-09 ═══════════════════════════════════════════
+   Tighter sections, larger labels, and the places a visitor can now press.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* THE HEADLINE, on two lines with the mascot closing the second:
+   Eleven Days. / 24 Hours. */
+.eleven-landing .said h1 { line-height: 1.12; }
+
+.eleven-landing .said h1 .sat {
+  width: 1.15em;
+  height: 1.15em;
+  vertical-align: -0.28em;
+  margin-left: 0.08em;
+}
+
+/* site.css gives every section 4.5rem of air and its heading 2.5rem more.
+   On a page this long that reads as gaps rather than as rhythm. */
+.eleven-page section { padding: 3.5rem 0; }
+.eleven-page section .section-heading { margin-bottom: 1.75rem; }
+
+/* THE LEGIBILITY FLOOR. The first pass set its mono labels between 8.6px and
+   9.6px; none now drops under 10.2px, and the ones that carry meaning sit
+   higher. */
+.eleven-ledger .rk { font-size: 0.68rem; }
+.eleven-ledger .rd { font-size: 0.64rem; color: var(--gold); }
+.eleven-ledger .gl .epk { font-size: 0.64rem; }
+.eleven-spanout .unit { font-size: 0.7rem; }
+.eleven-elements { font-size: 0.68rem; }
+.eleven-page .pullquote .attrib { font-size: 0.68rem; color: var(--gold); }
+
+/* ─── THE SPAN ROWS ──────────────────────────────────────────────────────
+   Each row names its count in the page's own sans at reading size, says in
+   one line what that count measures, and sets the figure in gold beside it.
+   The whole row presses: it carries the visitor to that calendar, opened. */
+.eleven-spanout .crossed {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgba(201, 162, 75, 0.14);
+}
+
+.eleven-spanout .crossed li {
+  border-bottom: 1px solid rgba(201, 162, 75, 0.08);
+}
+
+.eleven-spanout .crossed button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 0.6rem 0.45rem;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.eleven-spanout .crossed button:hover { background: rgba(201, 162, 75, 0.07); }
+
+.eleven-spanout .lab {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.eleven-spanout .name {
+  font-family: var(--head);
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.eleven-spanout .go {
+  display: inline-block;
+  color: var(--gold);
+  opacity: 0.6;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.eleven-spanout .crossed button:hover .go {
+  opacity: 1;
+  transform: translateY(2px);
+}
+
+.eleven-spanout .what {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--ink-dim);
+}
+
+.eleven-spanout .val {
+  flex: none;
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  line-height: 1.1;
+  color: var(--gold-bright);
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.eleven-spanout .val .aside {
+  font-family: var(--head);
+  font-size: 0.82rem;
+  color: var(--ink-dim);
+  margin-left: 0.6rem;
+}
+
+@media (max-width: 34rem) {
+  .eleven-spanout .val { white-space: normal; }
+  .eleven-spanout .val .aside { display: block; margin-left: 0; }
+}
+
+/* where a jump lands: a short gold wash, so the eye finds the row */
+@keyframes eleven-landed {
+  from { background-color: rgba(201, 162, 75, 0.3); }
+  to   { background-color: transparent; }
+}
+
+.eleven-page .is-landed { animation: eleven-landed 1.8s ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  .eleven-page .is-landed { animation: none; }
+}
+
+/* ─── THE SKY'S DATE, AND ITS LABELS ─────────────────────────────────────── */
+.eleven-sky .pk {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.eleven-sky .eleven-skydate {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 1rem;
+  padding: 0.9rem 1.2rem;
+}
+
+.eleven-skydate .day {
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 3.6vw, 1.7rem);
+  line-height: 1.15;
+  color: var(--gold-bright);
+}
+
+.eleven-skydate .hint {
+  margin-left: auto;
+  font-size: 0.82rem;
+  color: var(--ink-dim);
+}
+
+@media (max-width: 40rem) {
+  .eleven-skydate .hint { margin-left: 0; flex-basis: 100%; }
+}
+
+/* where the two lights stand, under the phase */
+.eleven-lights {
+  width: 100%;
+  margin: 0.9rem 0 0;
+  padding: 0.8rem 0 0;
+  border-top: 1px solid var(--border-soft);
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.88rem;
+  text-align: left;
+}
+
+.eleven-lights > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.eleven-lights dt { color: var(--ink-dim); }
+.eleven-lights dd { margin: 0; color: var(--ink); font-variant-numeric: tabular-nums; }
+.eleven-lights .zg { color: var(--el, inherit); }
+
+/* THE COMING PHASES PRESS. Each row moves the whole page to that day. */
+.eleven-moonnext { font-size: 0.86rem; }
+.eleven-moonnext li { padding: 0; }
+
+.eleven-moonnext .mrow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  width: 100%;
+  padding: 0.34rem 0.35rem;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+.eleven-moonnext button.mrow {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.eleven-moonnext button.mrow:hover { background: rgba(201, 162, 75, 0.08); }
+.eleven-moonnext button.mrow:hover .mn { color: var(--ink); }
+.eleven-moonnext .mn { text-align: left; }
+.eleven-moonnext .md { font-size: 0.72rem; color: var(--gold); white-space: nowrap; }
+
+/* THE LIST AND THE WHEEL POINT AT EACH OTHER: one lights, the rest dim. */
+.eleven-wheel .b { transition: opacity 0.15s ease; }
+.eleven-zodiac.has-hot .eleven-wheel .b:not(.is-hot) { opacity: 0.28; }
+.eleven-wheel .b.is-hot .body { fill: var(--gold-bright); }
+.eleven-wheel .b.is-hot .point { stroke: var(--gold-bright); stroke-width: 2.6; }
+
+.eleven-bodies li {
+  padding: 0.22rem 0.3rem;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+.eleven-bodies li.is-hot { background: rgba(201, 162, 75, 0.12); }
+.eleven-zodiac.has-hot .eleven-bodies li:not(.is-hot) { opacity: 0.5; }
+
+/* ─── THE PROOF CELLS, AS LINKS ──────────────────────────────────────────
+   Each claim opens the file that backs it. The link line sits at the foot
+   of every cell, so three cells of unequal text still close on one line. */
+.eleven-proof > a {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.1rem;
+  color: inherit;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.eleven-proof > a:hover { background: #14110b; }
+
+.eleven-proof .pk { font-size: 0.66rem; }
+.eleven-proof .pv { font-size: 1.35rem; margin-top: 0.3rem; }
+.eleven-proof .pn { font-size: 0.86rem; line-height: 1.5; color: var(--ink-dim); }
+
+.eleven-proof .pl {
+  margin-top: auto;
+  padding-top: 0.9rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: var(--gold);
+}
+
+.eleven-proof > a:hover .pl { color: var(--gold-bright); }
+
+/* The note under the cells centres at a reading measure, under a centred
+   heading, rather than hugging the left with half the row standing empty. */
+.eleven-page .eleven-proof + .note {
+  max-width: 62ch;
+  margin: 1.6rem auto 0;
+  text-align: center;
+}
+
+/* ─── THE ESSAY, TIGHTENED ───────────────────────────────────────────────
+   The quote grows into a headline for the column, the links out move under
+   the prose as framed chips, and the photograph crops square - so the card
+   and the essay close at about the same height. */
+.eleven-essay {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 15rem);
+  margin-top: 0;
+}
+
+/* .prose p outranks a bare .pullquote, hence the longer selector */
+.eleven-essay .prose .pullquote {
+  font-size: clamp(1.5rem, 3.8vw, 2.05rem);
+  line-height: 1.22;
+  max-width: none;
+}
+
+.eleven-essay .prose p { font-size: 1.02rem; }
+
+.eleven-card img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: 30% 15%;
+}
+
+.eleven-essay .out {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+}
+
+.eleven-essay .out li { margin: 0; }
+
+.eleven-essay .out a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid var(--border-soft);
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
+  color: var(--gold-bright);
+  text-decoration: none;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.eleven-essay .out a:hover {
+  border-color: var(--gold);
+  background: rgba(201, 162, 75, 0.09);
+}
+
+@media (max-width: 52rem) {
+  .eleven-essay { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ─── ICONS ──────────────────────────────────────────────────────────────
+   From assets/eleven/icons.svg. Sized in em so each rides its own line of
+   type, and coloured by the text around it - except the Obsidian mark, whose
+   sprite symbol fixes its fill to white as that brand's guidelines ask. */
+.eleven-ico {
+  width: 1.1em;
+  height: 1.1em;
+  flex: none;
+  display: inline-block;
+  vertical-align: -0.18em;
+}
+
+.eleven-ico--mark {
+  width: 1.05em;
+  height: 1.05em;
+  margin-right: 0.15em;
+}
+
+/* ─── THE 98 MENU BAR, AS BUTTONS ────────────────────────────────────────
+   Flat until pointed at, then the platform's own navy highlight. The raised
+   chrome .win98 gives every other button would turn the bar into a toolbar. */
+.win98 .menu { gap: 0; padding: 1px 2px; }
+
+.win98 .menu button {
+  background: none;
+  box-shadow: none;
+  padding: 2px 6px;
+}
+
+.win98 .menu button:hover,
+.win98 .menu button:focus-visible {
+  background: #000080;
+  color: #fff;
+  outline: 0;
+}
+
+.win98 .menu button:active { box-shadow: none; }
+
+/* the close box, the one title-bar button that answers */
+.win98 .tbar .tb {
+  display: inline-grid;
+  place-items: center;
+  width: 16px;
+  height: 14px;
+  padding: 0;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* a notice may run to a paragraph, so the dialog widens for it */
+.win98 .dlg { width: min(24rem, 94%); }
+
+/* every row of the grid presses, so it says so */
+.win98 table.list tbody tr:hover td { background: #dfe6f5; }
+.win98 table.list tbody tr.sel:hover td { background: #000080; }
