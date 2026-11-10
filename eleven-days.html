@@ -210,22 +210,48 @@
        costume before getting a date. -->
   <div class="eleven-landing">
     <div class="said">
-      <p class="kicker">One day, many maps</p>
       <h1>Eleven Days. <svg class="sat sat-lg sat-wobble" role="img" aria-label="A small ringed planet"><use href="assets/planet-sprite.svg#sat-cool"/></svg></h1>
       <p class="standfirst">
-        One date, read by eleven calendars at once &mdash; each with its own year zero and its
-        own idea of what time counts for. The moon and the sky come with it.
+        One date, read by eleven calendars at once, each with its own year zero and its own
+        idea of what time counts for. The moon and the sky come with it.
       </p>
+      <!-- One control, not three loose pieces: the label sits above, and the
+           field and its button share a single frame and a single height. -->
       <div class="eleven-field">
-        <label class="eleven-which" for="eleven-date">Or type a date</label>
-        <input id="eleven-date" type="date" aria-label="Date">
-        <button class="btn btn-primary" id="eleven-go" type="button">Count it</button>
+        <label for="eleven-date">Pick any date</label>
+        <div class="eleven-fieldrow">
+          <input id="eleven-date" type="date">
+          <button id="eleven-go" type="button">Convert</button>
+        </div>
       </div>
     </div>
 
     <div class="tool">
       <div id="eleven-win98"></div>
     </div>
+  </div>
+
+  <!-- THE TWO-DATE SPAN, directly under the tool: the page's second
+       instrument, so it sits with the first rather than below the reading.
+       It reports what each system crossed between the endpoints, never one
+       duration restated eleven times. It opens on Wilson's own two dates.
+       The fields recount on change, so no button stands between a visitor
+       and the answer. -->
+  <div class="eleven-between">
+    <div class="ask">
+      <h2>Between two dates</h2>
+      <p class="eleven-span">
+        <label for="eleven-from">From</label>
+        <input id="eleven-from" type="date" value="1932-01-18">
+        <label for="eleven-to">to</label>
+        <input id="eleven-to" type="date" value="2007-01-11">
+      </p>
+      <p class="preset">
+        It opens on Robert Anton Wilson&rsquo;s birth and death. Change either date and every
+        count follows.
+      </p>
+    </div>
+    <div class="eleven-spanout" id="eleven-spanout" aria-live="polite"></div>
   </div>
 
   <!-- THE MOON AND THE WHEEL, directly under the tool and following its date.
@@ -251,24 +277,6 @@
     <div class="eleven-ledger" id="eleven-ledger"></div>
   </section>
 
-  <!-- 4 · THE TWO-DATE SPAN. Not one duration restated eleven times: what
-       each system crossed. The eclipse row the design sketched needs the
-       plugin's astronomy module, which stays unported, so it is absent rather
-       than estimated. -->
-  <section>
-    <div class="section-heading">
-      <h2>What changed between two dates</h2>
-      <p>Not one duration restated eleven times &mdash; what each system crossed.</p>
-    </div>
-    <div class="eleven-span">
-      <input id="eleven-from" type="date" value="1932-01-18" aria-label="From">
-      <span class="to">TO</span>
-      <input id="eleven-to" type="date" value="2007-01-11" aria-label="To">
-      <button class="btn btn-secondary" id="eleven-spango" type="button">Count the span</button>
-    </div>
-    <div class="eleven-spanout" id="eleven-spanout"></div>
-  </section>
-
   <div class="ring-divider" aria-hidden="true">
     <svg class="sat" aria-hidden="true"><use href="assets/planet-sprite.svg#sat-ring"/></svg>
   </div>
@@ -284,8 +292,8 @@
     <p class="note">
       The arithmetic follows Dershowitz and Reingold&rsquo;s <em>Calendrical Calculations</em>;
       the four systems that track the sky use compact Meeus astronomy. No date library, no
-      floating-point drift in the day arithmetic, and each calendar fails on its own &mdash; if
-      one ever broke it would show a dash while the other ten carried on.
+      floating-point drift in the day arithmetic, and each calendar fails on its own: if one
+      ever broke it would show a dash while the other ten carried on.
       <a href="https://github.com/DyllonWright/Eleven-Days" target="_blank" rel="noopener">The
       plugin and its test suite read public on GitHub.</a>
     </p>
@@ -303,18 +311,21 @@
     <!-- The essay gets a column beside it, so the type has an edge to sit
          against rather than running loose across the page.
 
-         THAT COLUMN LINKS OUT; IT DOES NOT COPY ANYTHING IN. A Cosmic Trigger
-         cover and any photograph of Wilson both belong to somebody else, and
-         the rule for this repo says an image crosses only when publishing it
-         carries no risk. So the card carries OUR OWN line art - the golden
-         apple Eris threw, the same drawing the rail uses for the Discordian
-         row - and sends a reader to his estate's site and to Wikipedia for
-         the rest. Every one of those three URLs answered 200 on 2026-11-09. -->
+         THE PHOTOGRAPH CARRIES A LICENCE, AND THE CREDIT STAYS WITH IT.
+         assets/eleven/wilson-1977.jpg comes from Wikimedia Commons, "Robert
+         Anton Wilson, 1977.jpg": Richard Adams's snapshot at the National
+         Theatre, London, during the stage Illuminatus!, under CC BY-SA 3.0.
+         The file sits here byte for byte as Commons serves it; the gold tone
+         comes from CSS. That licence requires the credit line and the licence
+         link under the picture, so neither comes off while the picture stays.
+         A Cosmic Trigger cover and the estate's own artwork belong to other
+         people and did not cross. Every outbound URL answered 200 on
+         2026-11-09. -->
     <div class="eleven-essay">
       <div class="prose">
         <p class="pullquote">
           &ldquo;How to Live Eleven Days in 24 Hours&rdquo;
-          <span class="attrib">&mdash; Robert Anton Wilson, <em>Cosmic Trigger</em></span>
+          <span class="attrib">Robert Anton Wilson, <em>Cosmic Trigger</em>, 1977</span>
         </p>
         <p>
           Wilson dated his writing in half a dozen calendars at once, and not as a party
@@ -331,20 +342,22 @@
       </div>
 
       <aside class="eleven-card">
-        <svg class="apple" viewBox="0 0 100 100" fill="none" stroke="currentColor"
-             stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img"
-             aria-label="A line drawing of the golden apple of discord">
-          <path d="M50 32c-14-14-34-6-34 16 0 20 16 40 34 40s34-20 34-40c0-22-20-30-34-16Z"/>
-          <path d="M50 32V14"/>
-          <path d="M50 22q14-12 24-6-4 12-24 6Z"/>
-        </svg>
-        <p class="kallisti">&kappa;&alpha;&lambda;&lambda;&iota;&sigma;&tau;&iota;</p>
-        <p class="cardnote">
-          The chapter this plugin takes its name from sits in <em>Cosmic Trigger</em>, 1977.
-        </p>
-        <a class="wiki" href="https://rawilson.com/" target="_blank" rel="noopener">His estate&rsquo;s site</a>
-        <a class="wiki" href="https://en.wikipedia.org/wiki/Cosmic_Trigger" target="_blank" rel="noopener">Cosmic Trigger</a>
-        <a class="wiki" href="https://en.wikipedia.org/wiki/Robert_Anton_Wilson" target="_blank" rel="noopener">Robert Anton Wilson</a>
+        <figure>
+          <img src="assets/eleven/wilson-1977.jpg" width="400" height="517" loading="lazy" decoding="async"
+               alt="Robert Anton Wilson in profile, a cigarette in his mouth, beside a poster for the stage Illuminatus! in 1977.">
+          <figcaption>
+            Wilson at the National Theatre, London, 1977, the year <em>Cosmic Trigger</em>
+            came out.
+            <span class="credit">Photo: Richard Adams, via
+              <a href="https://commons.wikimedia.org/wiki/File:Robert_Anton_Wilson,_1977.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>,
+              <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a></span>
+          </figcaption>
+        </figure>
+        <ul class="out">
+          <li><a href="https://rawilson.com/" target="_blank" rel="noopener">His estate&rsquo;s site <span aria-hidden="true">&nearr;</span></a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Cosmic_Trigger" target="_blank" rel="noopener"><em>Cosmic Trigger</em> <span aria-hidden="true">&nearr;</span></a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Robert_Anton_Wilson" target="_blank" rel="noopener">Robert Anton Wilson <span aria-hidden="true">&nearr;</span></a></li>
+        </ul>
       </aside>
     </div>
   </section>
@@ -392,8 +405,8 @@
        provider before showing a form again. -->
   <section>
     <div class="section-heading">
-      <h2>Catch the next one</h2>
-      <p>I build these one at a time. Nothing here sells anything.</p>
+      <h2>Get the next tool the day it ships</h2>
+      <p>I build these one at a time and give them away. Nothing here sells anything.</p>
     </div>
     <div class="panel-grid">
       <div class="panel">

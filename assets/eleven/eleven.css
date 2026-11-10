@@ -69,24 +69,69 @@
 /* ─── THE FIELD, AND THE ANSWER ──────────────────────────────────────────── */
 /* The field carries today already, so the page answers before anyone types.
    An empty field shows nothing and asks for work first. */
+/* ONE CONTROL. The label sits above; the field and its button share one frame
+   and one height. The first version set a pill button from site.css beside a
+   square field, at two heights, under a label the size of a footnote. */
 .eleven-field {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  align-items: center;
-  margin-top: 0.9rem;
+  margin-top: 1.5rem;
 }
 
-.eleven-field input {
+.eleven-field label,
+.eleven-span label {
+  display: block;
   font-family: var(--mono);
-  font-size: 1rem;
-  background: var(--bg-deep);
-  color: var(--gold-bright);
-  border: 1px solid var(--border-soft);
-  padding: 0.6rem 0.7rem;
-  min-width: 0;
-  flex: 1 1 11rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
 }
+
+.eleven-field label { margin-bottom: 0.45rem; }
+
+.eleven-fieldrow {
+  display: flex;
+  border: 1px solid var(--border-soft);
+  background: var(--bg-deep);
+  transition: border-color 0.15s ease;
+}
+
+.eleven-fieldrow:focus-within { border-color: var(--gold); }
+
+/* color-scheme: dark turns the browser's own calendar glyph light. Left at
+   the default it draws black on this ground and the picker goes missing. */
+.eleven-fieldrow input,
+.eleven-span input {
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  color: var(--gold-bright);
+  color-scheme: dark;
+  min-width: 0;
+}
+
+.eleven-fieldrow input {
+  flex: 1 1 auto;
+  border: 0;
+  background: transparent;
+  padding: 0.7rem 0.75rem;
+}
+
+.eleven-fieldrow button {
+  flex: none;
+  border: 0;
+  border-left: 1px solid var(--border-soft);
+  background: var(--gold);
+  color: #171105;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0 1.05rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.eleven-fieldrow button:hover { background: var(--gold-bright); }
 
 .eleven-answer {
   border: 1px solid var(--border-soft);
@@ -176,85 +221,190 @@
   flex: 0 0 auto;
 }
 
+/* THE OPENED ROW. Two columns: the story on the left, starting under the date
+   it explains rather than under the system's name, and on the right what the
+   system counts from and where to read on. The left padding below equals the
+   name column plus the row's gap, so the story hangs off the date. */
 .eleven-ledger .gl {
-  padding: 0.6rem 0.2rem 0.9rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 17rem);
+  gap: 1rem 2.25rem;
+  padding: 1rem 0.2rem 1.3rem 8.6rem;
   border-bottom: 1px solid rgba(201, 162, 75, 0.08);
   background: rgba(201, 162, 75, 0.035);
 }
 
-.eleven-ledger .gl p {
+.eleven-ledger .gl .why {
   margin: 0;
-  font-size: 0.86rem;
-  max-width: 62ch;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 54ch;
   color: var(--ink-dim);
 }
 
-.eleven-ledger .gl .ep {
+.eleven-ledger .gl .side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding-left: 1.4rem;
+  border-left: 1px solid rgba(201, 162, 75, 0.16);
+}
+
+.eleven-ledger .gl .epk {
+  display: block;
   font-family: var(--mono);
-  font-size: 0.62rem;
-  color: var(--ink-faint);
-  margin-top: 0.4rem;
+  font-size: 0.56rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.25rem;
+}
+
+.eleven-ledger .gl .epv {
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+@media (max-width: 44rem) {
+  .eleven-ledger .gl {
+    grid-template-columns: minmax(0, 1fr);
+    padding-left: 0.2rem;
+  }
+  .eleven-ledger .gl .side {
+    padding: 0.9rem 0 0;
+    border-left: 0;
+    border-top: 1px solid rgba(201, 162, 75, 0.16);
+  }
 }
 
 /* ─── THE TWO-DATE SPAN ──────────────────────────────────────────────────── */
 /* Not one duration restated eleven times: what each system CROSSED. */
+/* It sits directly under the tool and borrows the landing's two columns, so
+   its question lines up under the page's description and its answer lines up
+   under the 98 window. No boxes: one large figure, then a ledger. The first
+   version drew six bordered cells in an auto-fit grid, which left a lone
+   sixth cell on a row of its own. */
+.eleven-between {
+  display: grid;
+  grid-template-columns: minmax(0, 17rem) minmax(0, 1fr);
+  gap: 1.5rem clamp(1.5rem, 4vw, 2.75rem);
+  align-items: start;
+  padding: clamp(1.5rem, 4vw, 2.25rem) 0 clamp(2rem, 5vw, 3rem);
+  border-top: 1px solid var(--border-soft);
+}
+
+.eleven-between h2 {
+  font-size: 1.3rem;
+  margin: 0 0 1rem;
+}
+
 .eleven-span {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.5rem 0.8rem;
   align-items: center;
-  margin-top: 0.9rem;
+  margin: 0;
 }
 
 .eleven-span input {
-  font-family: var(--mono);
-  font-size: 0.9rem;
+  width: 100%;
   background: var(--bg-deep);
-  color: var(--gold-bright);
   border: 1px solid var(--border-soft);
-  padding: 0.5rem 0.6rem;
-  flex: 1 1 8rem;
-  min-width: 0;
+  padding: 0.6rem 0.7rem;
 }
 
-.eleven-span .to {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  color: var(--gold-deep);
+.eleven-span input:focus-visible { border-color: var(--gold); }
+
+.eleven-between .preset {
+  margin: 0.9rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--ink-faint);
 }
 
-/* The rules come from each cell, never from a 1px gap over a tinted
-   container: an auto-fit row that does not fill leaves empty track, and a
-   tinted container paints that leftover as a slab the width of the row. */
 .eleven-spanout {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
-  gap: 1px;
-  margin-top: 0.9rem;
+  grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
+  gap: 1.25rem 2rem;
+  align-items: start;
 }
 
-.eleven-spanout > div {
-  background: var(--bg-panel);
-  box-shadow: 0 0 0 1px var(--border-soft);
-  padding: 0.6rem 0.7rem;
-  min-width: 0;
+.eleven-spanout .wait {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--ink-faint);
 }
 
-.eleven-spanout .sk {
+.eleven-spanout .big {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 7vw, 3.9rem);
+  line-height: 0.95;
+  color: var(--gold-bright);
+  font-variant-numeric: tabular-nums;
+}
+
+.eleven-spanout .unit {
   font-family: var(--mono);
-  font-size: 0.54rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 0.55rem;
+}
+
+.eleven-spanout .gap {
+  margin: 0.7rem 0 0;
+  font-size: 0.86rem;
+  color: var(--ink-dim);
+}
+
+.eleven-spanout .crossed {
+  margin: 0;
+  border-top: 1px solid rgba(201, 162, 75, 0.14);
+}
+
+.eleven-spanout .crossed > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0.2rem;
+  border-bottom: 1px solid rgba(201, 162, 75, 0.08);
+}
+
+.eleven-spanout dt {
+  font-family: var(--mono);
+  font-size: 0.6rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--gold);
 }
 
-.eleven-spanout .sv {
+.eleven-spanout dd {
+  margin: 0;
   font-family: var(--serif);
-  font-size: 1.1rem;
+  font-size: 1.15rem;
+  line-height: 1.2;
   color: var(--ink);
-  margin-top: 0.15rem;
+  text-align: right;
   font-variant-numeric: tabular-nums;
+}
+
+.eleven-spanout dd .aside {
+  font-family: var(--head);
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  margin-left: 0.6rem;
+}
+
+@media (max-width: 60rem) {
+  .eleven-between { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 34rem) {
+  .eleven-spanout { grid-template-columns: minmax(0, 1fr); }
 }
 
 /* ─── THE PROOF ──────────────────────────────────────────────────────────── */
@@ -764,9 +914,54 @@
 .eleven-wheel .point { stroke: var(--gold); stroke-width: 1.4; }
 
 .eleven-wheel .sign {
-  fill: var(--gold-deep);
+  fill: var(--el, var(--gold-deep));
   font-size: 13px;
 }
+
+/* THE FOUR ELEMENTS. Each sign's band of the outer ring takes its element's
+   colour at low strength and its glyph takes it at full, so the wheel reads
+   fire, earth, air, water three times round. Four hues only, each tuned to
+   sit on the panel's near-black beside the gold; the key under the wheel
+   names them, so the colour never carries the meaning alone. */
+.eleven-page .el-fire  { --el: #e8754f; }
+.eleven-page .el-earth { --el: #8dbb72; }
+.eleven-page .el-air   { --el: #ecd27c; }
+.eleven-page .el-water { --el: #6db3e0; }
+
+.eleven-wheel .sector {
+  fill: var(--el);
+  fill-opacity: 0.13;
+  stroke: none;
+}
+
+.eleven-elements {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.3rem 1.2rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.eleven-elements li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.eleven-elements i {
+  width: 0.6rem;
+  height: 0.6rem;
+  background: var(--el);
+}
+
+.eleven-bodies .zg { color: var(--el, inherit); }
 
 .eleven-wheel .body {
   fill: var(--ink);
@@ -816,7 +1011,7 @@
 /* The attribution under a pull quote, which is not part of the quotation. */
 .eleven-page .pullquote .attrib {
   display: block;
-  margin-top: 0.6rem;
+  margin: 0.6rem 0 1.6rem;
   font-family: var(--mono);
   font-style: normal;
   font-size: 0.6rem;
@@ -889,29 +1084,31 @@
 .eleven-ledger .more {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem 1.1rem;
-  margin-top: 0.6rem;
+  gap: 0.5rem;
 }
 
+/* A link a visitor can see and hit: framed, at a readable size, with an
+   arrow that says it leaves the site. */
 .eleven-ledger .wiki {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid var(--border-soft);
   font-family: var(--mono);
-  font-size: 0.64rem;
-  letter-spacing: 0.08em;
-  color: var(--gold);
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
+  color: var(--gold-bright);
   text-decoration: none;
-  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
 .eleven-ledger .wiki:hover {
-  color: var(--gold-bright);
-  border-bottom-color: var(--gold-bright);
+  border-color: var(--gold);
+  background: rgba(201, 162, 75, 0.09);
 }
 
-/* The emoji paints in its own colours whatever the link does, so it stays
-   its own element rather than inheriting a gold it cannot take. */
-.eleven-ledger .wiki .ico {
-  font-size: 0.8em;
-}
+.eleven-ledger .wiki .ico { color: var(--gold); }
 
 /* ─── THE ESSAY, AND THE CARD BESIDE IT ──────────────────────────────────
    The prose keeps its reading measure and the card gives it an edge to sit
@@ -926,55 +1123,92 @@
 }
 
 .eleven-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 0.55rem;
-  padding: 1.4rem 1.2rem;
   border: 1px solid var(--border-soft);
-  border-top: 2px solid var(--gold);
   background: var(--bg-panel);
 }
 
-/* our own line art, the same apple the rail draws for the Discordian row */
-.eleven-card .apple {
-  width: 5.5rem;
-  height: 5.5rem;
-  color: var(--gold);
-  opacity: 0.85;
+.eleven-card figure { margin: 0; }
+
+/* The photograph ships untouched; the warm tone comes from this filter, so
+   a black-and-white snapshot sits in the page's gold rather than beside it. */
+.eleven-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: sepia(0.6) saturate(0.75) brightness(0.92) contrast(1.06);
 }
 
-.eleven-card .kallisti {
-  margin: 0.2rem 0 0;
-  font-family: var(--serif);
-  font-size: 1.3rem;
-  font-style: italic;
-  letter-spacing: 0.08em;
-  color: var(--gold-bright);
-}
-
-.eleven-card .cardnote {
-  margin: 0 0 0.4rem;
-  font-size: 0.82rem;
+.eleven-card figcaption {
+  padding: 0.85rem 1rem 0.9rem;
+  font-size: 0.84rem;
+  line-height: 1.5;
   color: var(--ink-dim);
 }
 
-.eleven-card .wiki {
-  font-family: var(--mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.08em;
-  color: var(--gold);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
+/* the licence's own requirement: the credit and the licence stay legible */
+.eleven-card .credit {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: 0.7rem;
+  color: var(--ink-faint);
 }
 
-.eleven-card .wiki:hover {
-  color: var(--gold-bright);
-  border-bottom-color: var(--gold-bright);
+.eleven-card .credit a { color: inherit; }
+.eleven-card .credit a:hover { color: var(--gold-bright); }
+
+.eleven-card .out {
+  list-style: none;
+  margin: 0;
+  padding: 0 1rem 0.4rem;
 }
+
+.eleven-card .out a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.6rem 0;
+  border-top: 1px solid rgba(201, 162, 75, 0.14);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.eleven-card .out a em { font-style: italic; }
+.eleven-card .out a:hover { color: var(--gold-bright); }
 
 @media (max-width: 52rem) {
   .eleven-essay { grid-template-columns: minmax(0, 1fr); }
   .eleven-card { max-width: 22rem; }
+}
+
+/* The quote opens the essay, so it shares the essay's left edge rather than
+   centring over a column of left-aligned prose. */
+.eleven-essay .pullquote {
+  text-align: left;
+  margin-left: 0;
+}
+
+/* THE NOTE UNDER THE PROOF, as plain prose. site.css draws .note as a rounded
+   box with a gold left edge; under three square cells that reads as a fourth
+   component in another dialect. Here it stays a paragraph. */
+.eleven-page .eleven-proof + .note {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  max-width: 68ch;
+  margin: 1.4rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ink-dim);
+}
+
+/* On a phone the name column gives its spare width back to the date, which
+   otherwise wraps onto a second line in most rows. */
+@media (max-width: 34rem) {
+  .eleven-ledger .rk { flex-basis: 6.2rem; }
+  .eleven-ledger .row { gap: 0.6rem; }
 }

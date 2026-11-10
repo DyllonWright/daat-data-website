@@ -151,8 +151,17 @@
         if (openRow) openRow();
         gl = el("div", "gl");
         var g = G.notes[k];
-        gl.appendChild(el("p", null, g ? g.y[1] : ""));
-        gl.appendChild(el("div", "ep", "Counts from " + (G.epoch[k] || "\u2014")));
+        /* Two columns: the story on the left at a reading measure, and on
+           the right what the system counts from and where to read on. The
+           link used to sit under the story at 10px while the right half of
+           the row stood empty. */
+        gl.appendChild(el("p", "why", g ? g.y[1] : ""));
+        var side = el("div", "side");
+        var ep = el("div", "ep");
+        ep.appendChild(el("span", "epk", "Counts from"));
+        ep.appendChild(el("span", "epv", G.epoch[k] || "\u2014"));
+        side.appendChild(ep);
+        gl.appendChild(side);
 
         /* Read more, off-site. Every one of these URLs was checked for a 200
            rather than guessed from the system name - see notes.js. */
@@ -165,11 +174,13 @@
             a.href = r[1];
             a.target = "_blank";
             a.rel = "noopener";
-            a.appendChild(el("span", "ico", "🔗"));
-            a.appendChild(document.createTextNode(" " + r[0]));
+            a.appendChild(document.createTextNode(r[0] + " "));
+            var arrow = el("span", "ico", "↗");
+            arrow.setAttribute("aria-hidden", "true");
+            a.appendChild(arrow);
             more.appendChild(a);
           });
-          gl.appendChild(more);
+          side.appendChild(more);
         }
         row.insertAdjacentElement("afterend", gl);
         mark.textContent = "close";
@@ -214,15 +225,28 @@
 
     var a = fromI.value, b = toI.value;
     out.textContent = "";
-    function say(msg) { out.appendChild(el("div", null, msg)); }
-    if (!valid(a) || !valid(b)) { say("Two dates as YYYY-MM-DD."); return; }
+    if (!valid(a) || !valid(b)) {
+      out.appendChild(el("p", "wait", "Fill in both dates and the counts appear here."));
+      return;
+    }
 
     var ra = rd(a), rb = rd(b);
     if (rb < ra) { var t = ra; ra = rb; rb = t; t = a; a = b; b = t; }
     var days = rb - ra;
 
+    /* THE HEADLINE: the day count, large, with the Gregorian reading of the
+       same gap under it. Both come off arithmetic on the two endpoints. */
+    var total = el("div", "total");
+    total.appendChild(el("div", "big", group(days)));
+    total.appendChild(el("div", "unit", days === 1 ? "day" : "days"));
+    var gap = ymdGap(a, b);
+    var spelled = [[gap[0], "year"], [gap[1], "month"], [gap[2], "day"]]
+      .filter(function (x) { return x[0] > 0; })
+      .map(function (x) { return group(x[0]) + " " + x[1] + (x[0] === 1 ? "" : "s"); });
+    if (spelled.length && gap[0] + gap[1] > 0) total.appendChild(el("p", "gap", spelled.join(", ")));
+    out.appendChild(total);
+
     var rows = [];
-    rows.push(["Elapsed days", group(days)]);
 
     /* the mean synodic month, 29.530588853 days — the figure the engine's own
        lunation maths uses, so the two never disagree */
@@ -234,30 +258,54 @@
       var iy = core.islamicFromRD(r)[0];
       try { return core.rdFromIslamic(iy, 1, 1); } catch (e) { return null; }
     });
-    rows.push(["Hijri new years crossed", group(hijri)]);
+    rows.push(["Hijri new years", group(hijri)]);
 
     var cny = newYearsCrossed(ra, rb, function (y) {
       try { return core.chineseNewYearOnOrBefore(core.rdFromGreg(y, 12, 31)); }
       catch (e) { return null; }
     });
     var an1 = animalOf(a), an2 = animalOf(b);
-    rows.push(["Chinese New Years crossed",
-               group(cny) + (an1 && an2 ? " \u00b7 " + an1 + " \u2192 " + an2 : "")]);
+    rows.push(["Chinese new years", group(cny),
+               an1 && an2 ? an1 + " \u2192 " + an2 : ""]);
 
     /* A Calendar Round realigns the 260-day Tzolk'in with the 365-day Haab
        every 18,980 days, so a span reports whole rounds plus the remainder. */
     var round = Math.floor(days / 18980);
-    rows.push(["Calendar Rounds (Maya)",
-               group(round) + (days % 18980 ? ", plus " + group(days % 18980) + " days" : "")]);
+    rows.push(["Maya Calendar Rounds", group(round),
+               days % 18980 ? "plus " + group(days % 18980) + " days" : ""]);
 
-    rows.push(["Tzolk'in rounds", (days / 260).toFixed(1)]);
+    rows.push(["Tzolk\u2019in rounds", (days / 260).toFixed(1)]);
 
+    /* The rest as a ledger: label left, figure right on one baseline, the
+       same reading order as the eleven further down the page. */
+    var list = el("dl", "crossed");
     rows.forEach(function (r) {
       var d = el("div");
-      d.appendChild(el("span", "sk", r[0]));
-      d.appendChild(el("div", "sv", r[1]));
-      out.appendChild(d);
+      d.appendChild(el("dt", null, r[0]));
+      var dd = el("dd", null, r[1]);
+      if (r[2]) dd.appendChild(el("span", "aside", r[2]));
+      d.appendChild(dd);
+      list.appendChild(d);
     });
+    out.appendChild(list);
+  }
+
+  /* Whole years, months and days between two ISO dates, a on or before b:
+     the way a person would say the gap, beside the raw day count. */
+  function monthLen(y, m) {
+    var leap = y % 4 === 0 && (y % 100 !== 0 || y % 400 === 0);
+    return [31, leap ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][m - 1];
+  }
+
+  function ymdGap(a, b) {
+    var p = a.split("-").map(Number), q = b.split("-").map(Number);
+    var y = q[0] - p[0], m = q[1] - p[1], d = q[2] - p[2];
+    if (d < 0) {
+      m--;
+      d += q[1] === 1 ? monthLen(q[0] - 1, 12) : monthLen(q[0], q[1] - 1);
+    }
+    if (m < 0) { y--; m += 12; }
+    return [y, m, d];
   }
 
   /* ─── the proof ─────────────────────────────────────────────────────── */
@@ -367,7 +415,7 @@
 
     winHost.innerHTML =
       '<div class="win98">' +
-        '<div class="tbar"><span class="tt">Eleven Days \u2014 CALENDAR.EXE</span><b>_</b><b>\u25a1</b><b>\u00d7</b></div>' +
+        '<div class="tbar"><span class="tt">Eleven Days - CALENDAR.EXE</span><b>_</b><b>\u25a1</b><b>\u00d7</b></div>' +
         '<div class="menu"><span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>D</u>ate</span><span><u>H</u>elp</span></div>' +
         '<div class="inner">' +
           '<fieldset style="position:relative"><legend>Date</legend><div class="frow">' +
@@ -622,13 +670,27 @@
         SKY.PLANET_MIN_YEAR + " to " + SKY.PLANET_MAX_YEAR + ", and this date falls outside it."));
     }
 
+    /* the key to the wheel's four colours, spelled out so the colour never
+       carries the meaning alone */
+    var key = el("ul", "eleven-elements");
+    ELEMENTS.forEach(function (name) {
+      var k = el("li", "el-" + name);
+      k.appendChild(el("i"));
+      k.appendChild(document.createTextNode(name.charAt(0).toUpperCase() + name.slice(1)));
+      key.appendChild(k);
+    });
+    wp.appendChild(key);
+
     var tbl = el("ul", "eleven-bodies");
     bodies.forEach(function (b) {
       var li = el("li");
       li.appendChild(el("span", "bg", b.glyph));
       li.appendChild(el("span", "bn", b.name));
-      li.appendChild(el("span", "bz", b.zodiac.glyph + " " + b.zodiac.degree + "°" +
+      var bz = el("span", "bz");
+      bz.appendChild(el("span", "zg el-" + elementOf(b.longitude), b.zodiac.glyph + TEXT_FORM));
+      bz.appendChild(document.createTextNode(" " + b.zodiac.degree + "°" +
         String(b.zodiac.minute).padStart(2, "0") + "′"));
+      li.appendChild(bz);
       var flag = b.stationary ? "stationary" : (b.retrograde ? "℞" : "");
       li.appendChild(el("span", "br", flag));
       if (b.retrograde) li.className = "is-rx";
@@ -648,6 +710,30 @@
     return [r * Math.cos(a), -r * Math.sin(a)];
   }
 
+  /* THE FOUR ELEMENTS, in zodiac order from Aries: fire, earth, air, water,
+     three times round. The wheel tints each sign's sector by its element and
+     the list below tints each sign glyph the same way. */
+  var ELEMENTS = ["fire", "earth", "air", "water"];
+
+  function elementOf(lon) {
+    return ELEMENTS[Math.floor((((lon % 360) + 360) % 360) / 30) % 4];
+  }
+
+  /* U+FE0E asks for the text form of a glyph. Without it Windows draws the
+     twelve signs as purple emoji tiles that ignore every colour set here. */
+  var TEXT_FORM = "︎";
+
+  /* one sign's band of the outer ring, as a closed path */
+  function sector(i, rIn, rOut) {
+    var a0 = polar(i * 30, rOut), a1 = polar(i * 30 + 30, rOut);
+    var b1 = polar(i * 30 + 30, rIn), b0 = polar(i * 30, rIn);
+    function xy(p) { return p[0].toFixed(2) + " " + p[1].toFixed(2); }
+    return "M " + xy(a0) +
+           " A " + rOut + " " + rOut + " 0 0 1 " + xy(a1) +
+           " L " + xy(b1) +
+           " A " + rIn + " " + rIn + " 0 0 0 " + xy(b0) + " Z";
+  }
+
   function wheel(bodies, signs) {
     var s = document.createElementNS(NS, "svg");
     s.setAttribute("viewBox", "-130 -130 260 260");
@@ -655,6 +741,10 @@
     s.setAttribute("role", "img");
     s.setAttribute("aria-label", "A zodiac wheel showing where each body stands today");
     var g = [];
+
+    for (var si = 0; si < 12; si++) {
+      g.push('<path d="' + sector(si, 96, 122) + '" class="sector el-' + ELEMENTS[si % 4] + '"/>');
+    }
 
     g.push('<circle cx="0" cy="0" r="122" class="ring"/>');
     g.push('<circle cx="0" cy="0" r="96" class="ring"/>');
@@ -675,8 +765,9 @@
     signs.forEach(function (sg, i) {
       var pt = polar(i * 30 + 15, 109);
       g.push('<text x="' + pt[0].toFixed(2) + '" y="' + pt[1].toFixed(2) +
-             '" class="sign" text-anchor="middle" dominant-baseline="central">' +
-             sg.glyph + "</text>");
+             '" class="sign el-' + ELEMENTS[i % 4] +
+             '" text-anchor="middle" dominant-baseline="central">' +
+             sg.glyph + TEXT_FORM + "</text>");
     });
 
     /* the bodies, nudged apart so two in the same degree still read */
