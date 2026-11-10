@@ -15,29 +15,15 @@
 /* Palette: ivory monogram, gold Saturn ring, sun-flare chiaroscuro on
    near-black — drawn from the brand art in website/assets/. */
 /* ─── THE SERIF, SELF-HOSTED ────────────────────────────────────────────────
-   Cormorant Garamond carries the new-age half of the whole look: it reads as
-   mystery school, and the generic fallback reads as a blog. The stack named
-   it with no @font-face and no webfont link anywhere, so the face rendered
-   only for a visitor who already had it installed. Android ships none of the
-   three named faces, so every heading, the lockup, the hero thesis, the three
-   premises and the Thought of the Day changed face on a phone — which is what
-   the owner saw on Android Edge (audit finding 1).
+   Two variable files cover four faces: one upright, one italic, each carrying
+   the whole weight axis, 77 KB together. Keep them self-hosted on relative
+   paths — nothing here may call fonts.googleapis.com at runtime.
 
-   TWO FILES COVER FOUR FACES. Google serves this family as a variable font,
-   one upright and one italic, each carrying the whole weight axis. So the
-   site gets 400 and 600 in both styles for 77 KB rather than four static
-   cuts, and the browser synthesises nothing.
+   Licence: SIL Open Font License 1.1. The licence text must ship beside the
+   files at assets/fonts/OFL.txt, as the OFL requires.
 
-   Licence: SIL Open Font License 1.1, which permits redistribution. The
-   licence text ships beside the files at assets/fonts/OFL.txt, as the OFL
-   requires. Provenance in docs/fleet/PROJECTS.md under Asset provenance.
-
-   font-display: swap, so the text paints immediately in the fallback and
-   reflows when the face lands. A visitor on a slow connection reads sooner
-   and never stares at invisible text.
-
-   No build step, no npm, no external request: relative paths to two files in
-   this repository. Nothing here calls fonts.googleapis.com at runtime. */
+   Keep font-display: swap, so text paints in the fallback and reflows when
+   the face lands rather than holding a visitor on invisible text. */
 @font-face {
   font-family: "Cormorant Garamond";
   src: url("fonts/cormorant-garamond-latin.woff2") format("woff2");
@@ -107,7 +93,7 @@ a { color: var(--gold); }
 
 /* THE FOCUS RING, ONCE, FOR EVERYTHING.
 
-   Report D's accessibility finding, and the one the overhaul left half-done.
+   An accessibility finding, and the one the overhaul left half-done.
    Five component rules carried this ring and nothing else did, so every nav
    link, the lockup, both hero buttons and every footer link fell back to the
    browser's own outline: 1px of rgb(16, 16, 16), drawn on a near-black page
@@ -154,16 +140,16 @@ img, svg { max-width: 100%; height: auto; }
 }
 
 /* ─── MASTHEAD: CENTERED LOCKUP + CENTERED NAV ──────────────────────────────
-   Replaced the logo-left / nav-right bar on 2026-10-31 (overhaul workstream 1).
-   Report A measured the inspiration's masthead: a centered wordmark with a
+   Replaced the logo-left / nav-right bar on 2026-10-31.
+   The audit measured the inspiration's masthead: a centered wordmark with a
    centered, unboxed nav row beneath it, 13px, Title Case, weight 600, no
-   letter-spacing, no separators, 26px per-link gap. Report D names the thing
+   letter-spacing, no separators, 26px per-link gap. The audit names the thing
    to avoid: a sticky header eating 160px of a phone screen, and a hamburger
    that hides the whole site behind JavaScript. So this masthead scrolls away,
    needs no script, and wraps to centered rows rather than scrolling sideways.
 
    The mark reads as a composite lockup, not a raster: ivory serif words in
-   HTML either side of an inline-SVG ringed planet. Report A prescribes inline
+   HTML either side of an inline-SVG ringed planet. The audit prescribes inline
    SVG over PNG because ivory letterforms and a gold ring fringe badly as a
    raster on near-black; keeping the words as live text also holds the lockup
    together across platforms, where SVG <text> metrics drift. The planet
@@ -205,7 +191,7 @@ img, svg { max-width: 100%; height: auto; }
 .lockup:hover .word { color: var(--gold-bright); }
 
 /* The planet sits on the words' optical centre and overshoots their cap height,
-   the way an illuminated initial does — Report A measured 73% overshoot on the
+   the way an illuminated initial does — the audit measured 73% overshoot on the
    inspiration's emblem; this one runs gentler. */
 .lockup {
   z-index: 1;
@@ -245,13 +231,13 @@ img, svg { max-width: 100%; height: auto; }
   gap: 0 1.6rem;
   margin: 1.15rem auto 0;
   /* Wide enough that nine items hold one row on a desktop, and narrow enough
-     that they break into tidy centered rows below it. Report A measured the
+     that they break into tidy centered rows below it. The audit measured the
      inspiration at 766px for eleven items; ours run longer per word. */
   max-width: 880px;
 }
 
-/* A 44px tall hit area, which the audit measured at 25px (finding 7). A
-   thumb at phone width was catching the row above or below.
+/* A 44px tall hit area, which the audit measured at 25px. A thumb at phone
+   width was catching the row above or below.
 
    The height comes from min-height on an inline-flex box rather than from
    padding, and the row gap drops to zero to pay for it: 44px of target with
@@ -289,7 +275,7 @@ img, svg { max-width: 100%; height: auto; }
   background: var(--gold);
 }
 
-/* ─── THE UPSIDE-DOWN TAB (workstream 3b) ───────────────────────────────────
+/* ─── THE UPSIDE-DOWN TAB ───────────────────────────────────────────────────
    The label turns over; the link does not. The transform paints the glyphs
    differently and rewrites nothing, so a screen reader still announces
    "Thought of the Day" and the markup still reads in order. Never reverse the
@@ -312,25 +298,11 @@ img, svg { max-width: 100%; height: auto; }
   .sitenav a { font-size: 0.78rem; }
 }
 
-/* ─── HERO BACKGROUND SYSTEM ───────────────────────────────────────────────
-   Background images are designed WITHOUT embedded text or logos so they can
-   sit at full atmospheric strength (0.45 opacity) without competing with the
-   HTML copy above. Three art-directed slots handle desktop / tablet / mobile.
-
-   ASSET SPEC (replace placeholder banner.png with purpose-built images):
-     hero-bg-desktop.jpg  — 1920×900px  · 16:9  · safe zone: center 50% horiz
-     hero-bg-tablet.jpg   — 1024×800px  · 4:3   · safe zone: center 60% horiz
-     hero-bg-mobile.jpg   —  768×900px  · 5:6   · safe zone: full width, keep
-                                                    top + bottom edges dark
-
-   AI PROMPT CORE (add to any generator):
-     "deep space, Saturn-like planet, warm gold and ivory on near-black,
-      cinematic chiaroscuro, NO TEXT, NO LOGOS, center area dark and empty
-      for text overlay" + desired pixel dimensions.
-
-   TODO: replace assets/banner.png references below once purpose-built images
-   are ready. Raise opacity toward 0.5–0.6 when the background has no
-   competing embedded typography.
+/* ─── HERO BACKGROUND SYSTEM ────────────────────────────────────────────────
+   Hero art carries no embedded text or logos, so it sits at full atmospheric
+   strength without competing with the copy above it. Three slots handle
+   desktop, tablet and mobile. The asset spec and the sourcing notes live in
+   the private hub repo under docs/website/.
    ─────────────────────────────────────────────────────────────────────── */
 header.hero {
   position: relative;
@@ -560,11 +532,16 @@ header.page-hero .standfirst {
 
 .btn:hover { transform: translateY(-1px); }
 
+/* Outlined, not filled. A three-stop gold gradient under a 24px glow reads as
+   a SaaS pricing button, and this site sells nothing — so the primary action
+   carries the gold as a line and as its text, never as a lit slab. */
 .btn-primary {
-  background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold) 45%, var(--gold-deep) 100%);
-  color: #171105;
-  box-shadow: 0 6px 24px rgba(201, 162, 75, 0.3);
+  background: transparent;
+  border-color: var(--gold);
+  color: var(--gold-bright);
 }
+
+.btn-primary:hover { border-color: var(--gold-bright); }
 
 .btn-secondary {
   background: rgba(6, 5, 4, 0.6);
@@ -638,7 +615,7 @@ section .section-heading.left p { margin-left: 0; }
   background: var(--bg-panel);
   border: 1px solid var(--border-soft);
   border-top: 2px solid var(--gold);
-  border-radius: 14px;
+  border-radius: 0;
   padding: 1.75rem;
   text-decoration: none;
   color: inherit;
@@ -669,25 +646,17 @@ section .section-heading.left p { margin-left: 0; }
   color: var(--gold);
 }
 
-.work-sun {
-  border-top-color: var(--gold-bright);
-  background: linear-gradient(180deg, rgba(232, 200, 135, 0.09), var(--bg-panel) 55%);
-}
+/* Four cards, four gold fades at 0.09, 0.05, 0.05 and 0.03 — close enough that
+   nobody read them as four states, and a fourth gradient on a page that already
+   carries dozens stops registering as a gradient at all. The rule that does the
+   work survives: the top edge alone, stepping from lit to shadowed. */
+.work-sun { border-top-color: var(--gold-bright); }
 
-.work-eclipse {
-  border-top-color: var(--gold);
-  background: linear-gradient(180deg, rgba(201, 162, 75, 0.05), var(--bg-panel) 55%);
-}
+.work-eclipse { border-top-color: var(--gold); }
 
-.work-saturn {
-  border-top-color: var(--gold-deep);
-  background: linear-gradient(180deg, rgba(138, 106, 42, 0.05), var(--bg-panel) 55%);
-}
+.work-saturn { border-top-color: var(--gold-deep); }
 
-.work-shadow {
-  border-top-color: rgba(138, 106, 42, 0.55);
-  background: linear-gradient(180deg, rgba(138, 106, 42, 0.03), var(--bg-panel) 55%);
-}
+.work-shadow { border-top-color: rgba(138, 106, 42, 0.55); }
 
 /* The eyebrow tag on a work card and on a video series */
 .tag {
@@ -712,7 +681,7 @@ section .section-heading.left p { margin-left: 0; }
   background: var(--bg-panel);
   border: 1px solid var(--border-soft);
   border-top: 2px solid var(--gold);
-  border-radius: 14px;
+  border-radius: 0;
   padding: 2rem;
   text-align: center;
 }
@@ -790,7 +759,7 @@ section .section-heading.left p { margin-left: 0; }
   flex-direction: column;
   background: var(--bg-panel);
   border: 1px solid var(--border-soft);
-  border-radius: 12px;
+  border-radius: 0;
   padding: 1.35rem 1.4rem;
   text-decoration: none;
   color: inherit;
@@ -854,7 +823,7 @@ a.video-card .state { color: var(--gold); }
    wrapper contains it correctly and the document never spills, so nothing
    breaks — but nothing signalled that a column sat off the right edge
    either, so a phone reader saw a truncated table and never learned
-   otherwise (finding 12).
+   otherwise.
 
    Two gold edge glows, in the retro idiom. The trick: the covering layers
    scroll with the content (background-attachment: local) while the glows
@@ -865,7 +834,7 @@ a.video-card .state { color: var(--gold); }
   overflow-x: auto;
   margin: 0 0 1.25rem;
   border: 1px solid var(--border-soft);
-  border-radius: 12px;
+  border-radius: 0;
   background-color: var(--bg-panel);
   background-image:
     linear-gradient(to right, var(--bg-panel) 40%, rgba(13, 11, 8, 0)),
@@ -914,7 +883,7 @@ table.measure td:last-child { color: var(--ink-dim); }
   background: var(--bg-panel);
   border: 1px solid var(--border-soft);
   border-left: 2px solid var(--gold);
-  border-radius: 12px;
+  border-radius: 0;
   padding: 1.4rem 1.6rem;
   max-width: 660px;
   color: var(--ink-dim);
@@ -946,7 +915,7 @@ table.measure td:last-child { color: var(--ink-dim); }
 
 .safety {
   border: 1px solid var(--border-soft);
-  border-radius: 12px;
+  border-radius: 0;
   padding: 1.25rem 1.5rem;
   max-width: 660px;
   font-size: 0.87rem;
@@ -1020,11 +989,11 @@ footer .copyline {
   .note { padding: 1.15rem 1.25rem; }
 }
 
-/* ─── THE ARC CAROUSEL (workstream 2) ───────────────────────────────────────
-   Geometry from Report B's position-by-position table for a 7-card window.
+/* ─── THE ARC CAROUSEL ──────────────────────────────────────────────────────
+   Geometry from the audit's position-by-position table for a 7-card window.
    Every position lives in CSS rather than in JavaScript, so the narrow-screen
    flattening happens in a media query and the script only ever sets a card's
-   data-pos. Three of Report B's twelve ranked decisions bind here:
+   data-pos. Three of the audit's twelve ranked decisions bind here:
 
    1. z-index computes as 100 − |i| × 10, written per position below. Naive DOM
       order makes a receding card clip in front of the focused one mid-motion.
@@ -1041,7 +1010,7 @@ footer .copyline {
 }
 
 /* The arc needs more room than the 960px reading column, so its own section
-   opts into a wider wrap. Prose never does: Report A calls a 95-character
+   opts into a wider wrap. Prose never does: the audit calls a 95-character
    measure a readability defect, and the reading column stays at 660px. */
 .wrap.wide { max-width: 1180px; }
 
@@ -1074,7 +1043,7 @@ footer .copyline {
   margin-left: calc(var(--card-w) / -2);
   aspect-ratio: 16 / 9;
   border: 1px solid var(--border-soft);
-  border-radius: 10px;
+  border-radius: 0;
   overflow: hidden;
   background: var(--bg-panel);
   text-decoration: none;
@@ -1124,7 +1093,7 @@ footer .copyline {
   z-index: 0;
 }
 
-/* The label never slides with the cards — Report B ranks a sliding title
+/* The label never slides with the cards — the audit ranks a sliding title
    sixth among the twelve, for motion fatigue. It cross-fades in place. */
 .arc-label {
   text-align: center;
@@ -1197,14 +1166,15 @@ footer .copyline {
 }
 
 /* Narrow screens: the arc flattens, the Y-rotation goes to zero, and nothing
-   reaches past the stage's own edge. Report B, decision 2. */
+   reaches past the stage's own edge. */
 @media (max-width: 640px) {
   .arc-stage {
     --card-w: min(280px, 72vw);
     height: calc(var(--card-w) * 0.5625 + 5rem);
   }
-  /* A single focal card with a flanking edge either side, the fallback Report B
-     names for narrow screens: offset by about 75% of the card's own width, so
+  /* A single focal card with a flanking edge either side, the fallback the
+     audit names for narrow screens: offset by about 75% of the card's own
+     width, so
      the neighbour peeks past the focused card's edge and the stage clips the
      rest. Nothing reaches past the stage, so the document never spills. */
   .arc-card[data-pos="-1"] { transform: translate3d(calc(var(--card-w) * -0.76), 4px, 0) scale(0.85); opacity: 0.42; }
@@ -1215,7 +1185,7 @@ footer .copyline {
   .arc-card[data-pos="3"]  { transform: translate3d(calc(var(--card-w) * 1.35), 22px, 0) scale(0.6); opacity: 0.06; }
 }
 
-/* Vestibular safety, Report B decision 7: no 3D, no travel, just the swap. */
+/* Vestibular safety: no 3D, no travel, just the swap. */
 @media (prefers-reduced-motion: reduce) {
   .arc-stage { perspective: none; }
   .arc-card {
@@ -1233,8 +1203,8 @@ footer .copyline {
    The channel holds 69 of them, so the catalogue renders as thumbnails rather
    than as the text cards the four scripted series use. Thumbnails arrive as
    plain lazy images from i.ytimg.com; no YouTube iframe loads anywhere on this
-   site without a click (Report D, do-not-copy 5). Each tile locks its aspect
-   ratio, so nothing jumps as the images land. */
+   site without a click. Each tile locks its aspect ratio, so nothing jumps
+   as the images land. */
 .video-wall {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
@@ -1252,7 +1222,7 @@ footer .copyline {
   position: relative;
   aspect-ratio: 16 / 9;
   border: 1px solid var(--border-soft);
-  border-radius: 10px;
+  border-radius: 6px;
   overflow: hidden;
   background: var(--bg-panel);
 }
@@ -1291,8 +1261,8 @@ footer .copyline {
   .wall-card:hover .shot img { transform: none; }
 }
 
-/* ─── THE APHORISTIC STREAM (workstream 3) ──────────────────────────────────
-   Report C ranks this pattern first among the ones worth taking: an unbroken,
+/* ─── THE APHORISTIC STREAM ─────────────────────────────────────────────────
+   The audit ranks this pattern first among the ones worth taking: an unbroken,
    unadorned vertical stream of discrete thoughts. No card chrome, no padding
    games, no borders around each entry. The only furniture is a hairline rule
    between entries and air around them. */
@@ -1326,7 +1296,7 @@ footer .copyline {
 }
 
 /* A bulleted gloss centres its mass and keeps its lines left-aligned, the
-   same move Report C documents for verse. Centred list items read ragged. */
+   same move the audit documents for verse. Centred list items read ragged. */
 ul.gloss {
   display: inline-block;
   text-align: left;
@@ -1443,7 +1413,7 @@ ul.gloss li::before {
 }
 
 /* ─── VERSE BAYS (poetry) ───────────────────────────────────────────────────
-   Report C section 4 solves the long-versus-short problem four ways: its own
+   The audit solves the long-versus-short problem four ways: its own
    full section bay per piece, text left-aligned inside a centered block so
    deliberate line breaks survive while the mass centres, identical
    typographic authority on every title however short the piece, and a spot
@@ -1698,7 +1668,7 @@ ul.gloss li::before {
   margin: 2rem auto;
 }
 
-/* ─── THE CHIBI SATURNS, AND THE REST OF THE NET ART (workstream 4) ─────────
+/* ─── THE CHIBI SATURNS, AND THE REST OF THE NET ART ────────────────────────
    The owner's call, 2026-10-31: the site gets its own emoji — a cute ringed
    planet with eight expressions — and they scatter around the pages the way an
    old personal homepage scattered little glyphs. Every one of them comes out
@@ -1714,7 +1684,7 @@ ul.gloss li::before {
 
    Animated SVG rather than GIF throughout: a GIF's 256-colour palette bands
    these gold gradients badly on near-black and its matte fringes against the
-   starfield. Report D's weight ceiling (<250 KB per page) holds easily — the
+   starfield. The audit's weight ceiling (<250 KB per page) holds easily — the
    whole sheet costs a few KB. */
 .sat {
   width: 1.5em;
@@ -2166,7 +2136,7 @@ ul.gloss li::before {
   max-width: 20rem;
   padding: 0.75rem 1.05rem;
   border: 1px solid var(--border-soft);
-  border-radius: 14px;
+  border-radius: 0;
   background: linear-gradient(135deg, #140f06, var(--bg-panel) 70%);
   text-decoration: none;
   transition: border-color 0.2s ease, transform 0.2s ease;
@@ -2294,7 +2264,7 @@ ul.gloss li::before {
   object-position: top left;
   margin: 0 0 0.65rem;
   border: 1px solid var(--border-soft);
-  border-radius: 8px;
+  border-radius: 6px;
   background: var(--bg-panel);
 }
 
