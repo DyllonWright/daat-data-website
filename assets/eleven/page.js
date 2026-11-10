@@ -134,6 +134,7 @@
       var row = el("button", "row");
       row.type = "button";
       row.setAttribute("aria-expanded", "false");
+      row.setAttribute("data-key", k);
       row.appendChild(el("span", "rk", p.name));
       row.appendChild(el("span", "rv", p.year + " \u00b7 " + p.month + " \u00b7 " + p.date));
       var mark = el("span", "rd", "open");
@@ -250,7 +251,8 @@
 
     /* the mean synodic month, 29.530588853 days — the figure the engine's own
        lunation maths uses, so the two never disagree */
-    rows.push(["Synodic months", (days / 29.530588853).toFixed(1)]);
+    rows.push(["Synodic months", (days / 29.530588853).toFixed(1), "",
+               "New moon to new moon, about 29.53 days each", "moon", "the moon"]);
 
     var hijri = newYearsCrossed(ra, rb, function (y) {
       /* the Hijri year running at the end of that Gregorian year */
@@ -258,7 +260,8 @@
       var iy = core.islamicFromRD(r)[0];
       try { return core.rdFromIslamic(iy, 1, 1); } catch (e) { return null; }
     });
-    rows.push(["Hijri new years", group(hijri)]);
+    rows.push(["Hijri new years", group(hijri), "",
+               "Each one opens a lunar year of 354 or 355 days", "islamic", "the Islamic calendar"]);
 
     var cny = newYearsCrossed(ra, rb, function (y) {
       try { return core.chineseNewYearOnOrBefore(core.rdFromGreg(y, 12, 31)); }
@@ -266,28 +269,64 @@
     });
     var an1 = animalOf(a), an2 = animalOf(b);
     rows.push(["Chinese new years", group(cny),
-               an1 && an2 ? an1 + " \u2192 " + an2 : ""]);
+               an1 && an2 ? an1 + " \u2192 " + an2 : "",
+               "The lunisolar year turns in late January or February", "chinese", "the Chinese calendar"]);
 
     /* A Calendar Round realigns the 260-day Tzolk'in with the 365-day Haab
        every 18,980 days, so a span reports whole rounds plus the remainder. */
     var round = Math.floor(days / 18980);
     rows.push(["Maya Calendar Rounds", group(round),
-               days % 18980 ? "plus " + group(days % 18980) + " days" : ""]);
+               days % 18980 ? "plus " + group(days % 18980) + " days" : "",
+               "18,980 days, when the 260-day and 365-day counts realign", "mayan", "the Mayan calendar"]);
 
-    rows.push(["Tzolk\u2019in rounds", (days / 260).toFixed(1)]);
+    rows.push(["Tzolk\u2019in rounds", (days / 260).toFixed(1), "",
+               "The 260-day count, run end to end", "mayan", "the Mayan calendar"]);
 
     /* The rest as a ledger: label left, figure right on one baseline, the
-       same reading order as the eleven further down the page. */
-    var list = el("dl", "crossed");
+       same reading order as the eleven further down the page. Each row says
+       in plain words what it counts, and a click carries the visitor to the
+       calendar it belongs to, opened. */
+    var list = el("ul", "crossed");
     rows.forEach(function (r) {
-      var d = el("div");
-      d.appendChild(el("dt", null, r[0]));
-      var dd = el("dd", null, r[1]);
-      if (r[2]) dd.appendChild(el("span", "aside", r[2]));
-      d.appendChild(dd);
-      list.appendChild(d);
+      var li = el("li");
+      var b = el("button");
+      b.type = "button";
+      b.title = "Jump to " + r[5];
+      var lab = el("span", "lab");
+      var name = el("span", "name", r[0] + " ");
+      var arrow = el("span", "go", "\u2193");
+      arrow.setAttribute("aria-hidden", "true");
+      name.appendChild(arrow);
+      lab.appendChild(name);
+      lab.appendChild(el("span", "what", r[3]));
+      b.appendChild(lab);
+      var val = el("span", "val", r[1]);
+      if (r[2]) val.appendChild(el("span", "aside", r[2]));
+      b.appendChild(val);
+      b.addEventListener("click", function () { jumpTo(r[4]); });
+      li.appendChild(b);
+      list.appendChild(li);
     });
     out.appendChild(list);
+  }
+
+  /* Carry the visitor to a block further down and mark where they landed.
+     "moon" means the sky panels; anything else names a row of the ledger,
+     which opens if it stands closed. */
+  function jumpTo(target) {
+    var node;
+    if (target === "moon") {
+      node = document.querySelector("#eleven-sky .eleven-moon");
+    } else {
+      node = document.querySelector('#eleven-ledger .row[data-key="' + target + '"]');
+      if (node && node.getAttribute("aria-expanded") !== "true") node.click();
+    }
+    if (!node) return;
+    var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    node.scrollIntoView({ behavior: calm ? "auto" : "smooth", block: "center" });
+    node.classList.remove("is-landed");
+    void node.offsetWidth;                 /* restart the mark if it ran before */
+    node.classList.add("is-landed");
   }
 
   /* Whole years, months and days between two ISO dates, a on or before b:
@@ -310,6 +349,8 @@
 
   /* ─── the proof ─────────────────────────────────────────────────────── */
 
+  var REPO = "https://github.com/DyllonWright/Eleven-Days";
+
   function paintProof() {
     var host = document.getElementById("eleven-proof");
     if (!host) return;
@@ -318,17 +359,30 @@
     [
       ["The hub", "Rata die " + group(r),
        "One integer day count feeds all eleven. JDN = RD + 1721424.5, which puts this date at " +
-       (r + 1721424.5).toLocaleString("en-US") + "."],
+       (r + 1721424.5).toLocaleString("en-US") + ".",
+       REPO + "/blob/main/src/engine.js", "Read the engine"],
       ["The anchors", "95 checks",
        "2012-12-21 = 13.0.0.0.0, 4 Ahau 3 Kankin. Chinese New Year for every year 1990\u20132040. " +
-       "Equinoxes within 30 minutes of published UT."],
+       "Equinoxes within 30 minutes of published UT.",
+       REPO + "/blob/main/test/engine.test.mjs#L29", "Read the checks"],
       ["The sweep", "43,830 \u00d7 11",
-       "Every date across 120 years rendered in all eleven systems, with no holes and no throws."]
+       "Every date across 120 years rendered in all eleven systems, with no holes and no throws.",
+       REPO + "/blob/main/test/engine.test.mjs#L105", "Read the sweep"]
     ].forEach(function (row) {
-      var d = el("div");
+      /* Each claim links to the file that backs it, in the plugin's public
+         repo. A proof a visitor cannot open reads as an assertion. */
+      var d = document.createElement("a");
+      d.href = row[3];
+      d.target = "_blank";
+      d.rel = "noopener";
       d.appendChild(el("span", "pk", row[0]));
       d.appendChild(el("div", "pv", row[1]));
       d.appendChild(el("p", "pn", row[2]));
+      var more = el("span", "pl", row[4] + " ");
+      var arrow = el("span", null, "\u2197");
+      arrow.setAttribute("aria-hidden", "true");
+      more.appendChild(arrow);
+      d.appendChild(more);
       host.appendChild(d);
     });
   }
@@ -614,6 +668,18 @@
       return;
     }
 
+    /* THE DATE, RESTATED. The panels follow the converter above, and by the
+       time a visitor scrolls here that field has left the screen. */
+    var when = new Date(p[0], p[1] - 1, p[2]);
+    var head = el("div", "eleven-skydate");
+    head.appendChild(el("span", "pk", "The sky on"));
+    head.appendChild(el("span", "day", when.toLocaleDateString("en-GB",
+      { weekday: "long", day: "numeric", month: "long", year: "numeric" })));
+    head.appendChild(el("span", "hint",
+      sel === todayIso() ? "Today. Change the date above and both panels follow."
+                         : "Both panels follow the date set above."));
+    host.appendChild(head);
+
     /* ── the moon panel ── */
     var mp = el("div", "eleven-moon");
     mp.appendChild(el("span", "pk", "The moon"));
@@ -642,15 +708,42 @@
       ph.ageDays.toFixed(1) + " days old · " +
       (waxing ? "waxing" : "waning")));
 
-    var next = (moon.events || []).filter(function (e) { return e.daysFromRef >= 0; }).slice(0, 4);
+    /* where the two lights stand, read off the same chart as the wheel */
+    var lights = el("dl", "eleven-lights");
+    [["Moon in", sky.moon], ["Sun in", sky.sun]].forEach(function (pair) {
+      var z = pair[1].zodiac;
+      var d = el("div");
+      d.appendChild(el("dt", null, pair[0]));
+      var dd = el("dd");
+      dd.appendChild(el("span", "zg el-" + elementOf(pair[1].longitude), z.glyph + TEXT_FORM));
+      dd.appendChild(document.createTextNode(" " + (z.name ? z.name + " " : "") + z.degree + "\u00b0" +
+        String(z.minute).padStart(2, "0") + "\u2032"));
+      d.appendChild(dd);
+      lights.appendChild(d);
+    });
+    mp.appendChild(lights);
+
+    var next = (moon.events || []).filter(function (e) { return e.daysFromRef >= 0; }).slice(0, 8);
     if (next.length) {
       var list = el("ul", "eleven-moonnext");
       next.forEach(function (e) {
+        /* A coming phase works as a button: press it and the whole page
+           moves to that day, so the disc above shows the phase it names. */
         var li = el("li");
-        li.appendChild(el("span", "mphase", e.emoji));
-        li.appendChild(el("span", "mn", e.name));
-        li.appendChild(el("span", "md",
+        var row = el(e.daysFromRef === 0 ? "div" : "button", "mrow");
+        if (e.daysFromRef !== 0) {
+          row.type = "button";
+          row.title = "Move the page to " + shiftDays(sel, e.daysFromRef);
+          row.addEventListener("click", function () {
+            sel = shiftDays(sel, e.daysFromRef);
+            repaintAll();
+          });
+        }
+        row.appendChild(el("span", "mphase", e.emoji));
+        row.appendChild(el("span", "mn", e.name));
+        row.appendChild(el("span", "md",
           e.daysFromRef === 0 ? "today" : "in " + e.daysFromRef + (e.daysFromRef === 1 ? " day" : " days")));
+        li.appendChild(row);
         list.appendChild(li);
       });
       mp.appendChild(list);
@@ -659,7 +752,7 @@
 
     /* ── the wheel ── */
     var wp = el("div", "eleven-zodiac");
-    wp.appendChild(el("span", "pk", "Where everything stands"));
+    wp.appendChild(el("span", "pk", "Astrological chart"));
 
     var bodies = [sky.sun, sky.moon].concat(sky.planets, sky.points);
     wp.appendChild(wheel(bodies, SKY.SIGNS));
@@ -682,8 +775,9 @@
     wp.appendChild(key);
 
     var tbl = el("ul", "eleven-bodies");
-    bodies.forEach(function (b) {
+    bodies.forEach(function (b, bi) {
       var li = el("li");
+      li.setAttribute("data-b", bi);
       li.appendChild(el("span", "bg", b.glyph));
       li.appendChild(el("span", "bn", b.name));
       var bz = el("span", "bz");
@@ -698,6 +792,21 @@
     });
     wp.appendChild(tbl);
     host.appendChild(wp);
+
+    /* THE LIST AND THE WHEEL POINT AT EACH OTHER. Rest on a row and its glyph
+       lights on the wheel while the rest dim; rest on a glyph and its row
+       lights. Twelve glyphs crowd a small ring, and this finds one. */
+    wp.querySelectorAll("[data-b]").forEach(function (n) {
+      var same = wp.querySelectorAll('[data-b="' + n.getAttribute("data-b") + '"]');
+      n.addEventListener("mouseenter", function () {
+        wp.classList.add("has-hot");
+        same.forEach(function (m) { m.classList.add("is-hot"); });
+      });
+      n.addEventListener("mouseleave", function () {
+        wp.classList.remove("has-hot");
+        same.forEach(function (m) { m.classList.remove("is-hot"); });
+      });
+    });
   }
 
   function list_push(li, ul) { ul.appendChild(li); }
@@ -767,22 +876,27 @@
       g.push('<text x="' + pt[0].toFixed(2) + '" y="' + pt[1].toFixed(2) +
              '" class="sign el-' + ELEMENTS[i % 4] +
              '" text-anchor="middle" dominant-baseline="central">' +
+             "<title>" + esc(sg.name + ", " + ELEMENTS[i % 4]) + "</title>" +
              sg.glyph + TEXT_FORM + "</text>");
     });
 
     /* the bodies, nudged apart so two in the same degree still read */
     var used = [];
-    bodies.forEach(function (bd) {
+    bodies.forEach(function (bd, bi) {
       var lon = bd.longitude, shift = 0;
       while (used.some(function (u) { return Math.abs(u - (lon + shift)) < 7; }) && shift < 28) shift += 7;
       used.push(lon + shift);
       var pt = polar(lon + shift, 78);
       var tk = polar(lon, 96), tk2 = polar(lon, 88);
+      var where = bd.zodiac.degree + "\u00b0" + String(bd.zodiac.minute).padStart(2, "0") +
+                  "\u2032 " + (bd.zodiac.name || "");
+      g.push('<g class="b" data-b="' + bi + '"><title>' +
+             esc(bd.name + ", " + where + (bd.retrograde ? ", retrograde" : "")) + "</title>");
       g.push('<line x1="' + tk[0].toFixed(2) + '" y1="' + tk[1].toFixed(2) +
              '" x2="' + tk2[0].toFixed(2) + '" y2="' + tk2[1].toFixed(2) + '" class="point"/>');
       g.push('<text x="' + pt[0].toFixed(2) + '" y="' + pt[1].toFixed(2) +
              '" class="body' + (bd.retrograde ? " rx" : "") +
-             '" text-anchor="middle" dominant-baseline="central">' + bd.glyph + "</text>");
+             '" text-anchor="middle" dominant-baseline="central">' + bd.glyph + "</text></g>");
     });
 
     s.innerHTML = g.join("");

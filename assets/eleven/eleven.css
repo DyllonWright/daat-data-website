@@ -360,45 +360,6 @@
   color: var(--ink-dim);
 }
 
-.eleven-spanout .crossed {
-  margin: 0;
-  border-top: 1px solid rgba(201, 162, 75, 0.14);
-}
-
-.eleven-spanout .crossed > div {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.5rem 0.2rem;
-  border-bottom: 1px solid rgba(201, 162, 75, 0.08);
-}
-
-.eleven-spanout dt {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-
-.eleven-spanout dd {
-  margin: 0;
-  font-family: var(--serif);
-  font-size: 1.15rem;
-  line-height: 1.2;
-  color: var(--ink);
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-.eleven-spanout dd .aside {
-  font-family: var(--head);
-  font-size: 0.78rem;
-  color: var(--ink-faint);
-  margin-left: 0.6rem;
-}
-
 @media (max-width: 60rem) {
   .eleven-between { grid-template-columns: minmax(0, 1fr); }
 }
@@ -416,7 +377,7 @@
   margin-top: 0.9rem;
 }
 
-.eleven-proof > div {
+.eleven-proof > a {
   background: var(--bg-panel);
   box-shadow: 0 0 0 1px var(--border-soft);
   padding: 0.8rem 0.9rem;
@@ -1156,29 +1117,6 @@
 .eleven-card .credit a { color: inherit; }
 .eleven-card .credit a:hover { color: var(--gold-bright); }
 
-.eleven-card .out {
-  list-style: none;
-  margin: 0;
-  padding: 0 1rem 0.4rem;
-}
-
-.eleven-card .out a {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.75rem;
-  padding: 0.6rem 0;
-  border-top: 1px solid rgba(201, 162, 75, 0.14);
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.05em;
-  color: var(--gold);
-  text-decoration: none;
-}
-
-.eleven-card .out a em { font-style: italic; }
-.eleven-card .out a:hover { color: var(--gold-bright); }
-
 @media (max-width: 52rem) {
   .eleven-essay { grid-template-columns: minmax(0, 1fr); }
   .eleven-card { max-width: 22rem; }
@@ -1211,4 +1149,329 @@
 @media (max-width: 34rem) {
   .eleven-ledger .rk { flex-basis: 6.2rem; }
   .eleven-ledger .row { gap: 0.6rem; }
+}
+
+/* ═══ THE SECOND PASS, 2026-11-09 ═══════════════════════════════════════════
+   Tighter sections, larger labels, and the places a visitor can now press.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* THE HEADLINE, on two lines with the mascot closing the second:
+   Eleven Days. / 24 Hours. */
+.eleven-landing .said h1 { line-height: 1.12; }
+
+.eleven-landing .said h1 .sat {
+  width: 1.15em;
+  height: 1.15em;
+  vertical-align: -0.28em;
+  margin-left: 0.08em;
+}
+
+/* site.css gives every section 4.5rem of air and its heading 2.5rem more.
+   On a page this long that reads as gaps rather than as rhythm. */
+.eleven-page section { padding: 3.5rem 0; }
+.eleven-page section .section-heading { margin-bottom: 1.75rem; }
+
+/* THE LEGIBILITY FLOOR. The first pass set its mono labels between 8.6px and
+   9.6px; none now drops under 10.2px, and the ones that carry meaning sit
+   higher. */
+.eleven-ledger .rk { font-size: 0.68rem; }
+.eleven-ledger .rd { font-size: 0.64rem; color: var(--gold); }
+.eleven-ledger .gl .epk { font-size: 0.64rem; }
+.eleven-spanout .unit { font-size: 0.7rem; }
+.eleven-elements { font-size: 0.68rem; }
+.eleven-page .pullquote .attrib { font-size: 0.68rem; color: var(--gold); }
+
+/* ─── THE SPAN ROWS ──────────────────────────────────────────────────────
+   Each row names its count in the page's own sans at reading size, says in
+   one line what that count measures, and sets the figure in gold beside it.
+   The whole row presses: it carries the visitor to that calendar, opened. */
+.eleven-spanout .crossed {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgba(201, 162, 75, 0.14);
+}
+
+.eleven-spanout .crossed li {
+  border-bottom: 1px solid rgba(201, 162, 75, 0.08);
+}
+
+.eleven-spanout .crossed button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 0.6rem 0.45rem;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.eleven-spanout .crossed button:hover { background: rgba(201, 162, 75, 0.07); }
+
+.eleven-spanout .lab {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.eleven-spanout .name {
+  font-family: var(--head);
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.eleven-spanout .go {
+  display: inline-block;
+  color: var(--gold);
+  opacity: 0.6;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.eleven-spanout .crossed button:hover .go {
+  opacity: 1;
+  transform: translateY(2px);
+}
+
+.eleven-spanout .what {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--ink-dim);
+}
+
+.eleven-spanout .val {
+  flex: none;
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  line-height: 1.1;
+  color: var(--gold-bright);
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.eleven-spanout .val .aside {
+  font-family: var(--head);
+  font-size: 0.82rem;
+  color: var(--ink-dim);
+  margin-left: 0.6rem;
+}
+
+@media (max-width: 34rem) {
+  .eleven-spanout .val { white-space: normal; }
+  .eleven-spanout .val .aside { display: block; margin-left: 0; }
+}
+
+/* where a jump lands: a short gold wash, so the eye finds the row */
+@keyframes eleven-landed {
+  from { background-color: rgba(201, 162, 75, 0.3); }
+  to   { background-color: transparent; }
+}
+
+.eleven-page .is-landed { animation: eleven-landed 1.8s ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  .eleven-page .is-landed { animation: none; }
+}
+
+/* ─── THE SKY'S DATE, AND ITS LABELS ─────────────────────────────────────── */
+.eleven-sky .pk {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.eleven-sky .eleven-skydate {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 1rem;
+  padding: 0.9rem 1.2rem;
+}
+
+.eleven-skydate .day {
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 3.6vw, 1.7rem);
+  line-height: 1.15;
+  color: var(--gold-bright);
+}
+
+.eleven-skydate .hint {
+  margin-left: auto;
+  font-size: 0.82rem;
+  color: var(--ink-dim);
+}
+
+@media (max-width: 40rem) {
+  .eleven-skydate .hint { margin-left: 0; flex-basis: 100%; }
+}
+
+/* where the two lights stand, under the phase */
+.eleven-lights {
+  width: 100%;
+  margin: 0.9rem 0 0;
+  padding: 0.8rem 0 0;
+  border-top: 1px solid var(--border-soft);
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.88rem;
+  text-align: left;
+}
+
+.eleven-lights > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.eleven-lights dt { color: var(--ink-dim); }
+.eleven-lights dd { margin: 0; color: var(--ink); font-variant-numeric: tabular-nums; }
+.eleven-lights .zg { color: var(--el, inherit); }
+
+/* THE COMING PHASES PRESS. Each row moves the whole page to that day. */
+.eleven-moonnext { font-size: 0.86rem; }
+.eleven-moonnext li { padding: 0; }
+
+.eleven-moonnext .mrow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  width: 100%;
+  padding: 0.34rem 0.35rem;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+.eleven-moonnext button.mrow {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.eleven-moonnext button.mrow:hover { background: rgba(201, 162, 75, 0.08); }
+.eleven-moonnext button.mrow:hover .mn { color: var(--ink); }
+.eleven-moonnext .mn { text-align: left; }
+.eleven-moonnext .md { font-size: 0.72rem; color: var(--gold); white-space: nowrap; }
+
+/* THE LIST AND THE WHEEL POINT AT EACH OTHER: one lights, the rest dim. */
+.eleven-wheel .b { transition: opacity 0.15s ease; }
+.eleven-zodiac.has-hot .eleven-wheel .b:not(.is-hot) { opacity: 0.28; }
+.eleven-wheel .b.is-hot .body { fill: var(--gold-bright); }
+.eleven-wheel .b.is-hot .point { stroke: var(--gold-bright); stroke-width: 2.6; }
+
+.eleven-bodies li {
+  padding: 0.22rem 0.3rem;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+.eleven-bodies li.is-hot { background: rgba(201, 162, 75, 0.12); }
+.eleven-zodiac.has-hot .eleven-bodies li:not(.is-hot) { opacity: 0.5; }
+
+/* ─── THE PROOF CELLS, AS LINKS ──────────────────────────────────────────
+   Each claim opens the file that backs it. The link line sits at the foot
+   of every cell, so three cells of unequal text still close on one line. */
+.eleven-proof > a {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.1rem;
+  color: inherit;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.eleven-proof > a:hover { background: #14110b; }
+
+.eleven-proof .pk { font-size: 0.66rem; }
+.eleven-proof .pv { font-size: 1.35rem; margin-top: 0.3rem; }
+.eleven-proof .pn { font-size: 0.86rem; line-height: 1.5; color: var(--ink-dim); }
+
+.eleven-proof .pl {
+  margin-top: auto;
+  padding-top: 0.9rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: var(--gold);
+}
+
+.eleven-proof > a:hover .pl { color: var(--gold-bright); }
+
+/* The note under the cells centres at a reading measure, under a centred
+   heading, rather than hugging the left with half the row standing empty. */
+.eleven-page .eleven-proof + .note {
+  max-width: 62ch;
+  margin: 1.6rem auto 0;
+  text-align: center;
+}
+
+/* ─── THE ESSAY, TIGHTENED ───────────────────────────────────────────────
+   The quote grows into a headline for the column, the links out move under
+   the prose as framed chips, and the photograph crops square - so the card
+   and the essay close at about the same height. */
+.eleven-essay {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 15rem);
+  margin-top: 0;
+}
+
+/* .prose p outranks a bare .pullquote, hence the longer selector */
+.eleven-essay .prose .pullquote {
+  font-size: clamp(1.5rem, 3.8vw, 2.05rem);
+  line-height: 1.22;
+  max-width: none;
+}
+
+.eleven-essay .prose p { font-size: 1.02rem; }
+
+.eleven-card img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: 30% 15%;
+}
+
+.eleven-essay .out {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+}
+
+.eleven-essay .out li { margin: 0; }
+
+.eleven-essay .out a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid var(--border-soft);
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
+  color: var(--gold-bright);
+  text-decoration: none;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.eleven-essay .out a:hover {
+  border-color: var(--gold);
+  background: rgba(201, 162, 75, 0.09);
+}
+
+@media (max-width: 52rem) {
+  .eleven-essay { grid-template-columns: minmax(0, 1fr); }
 }
