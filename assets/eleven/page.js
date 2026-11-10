@@ -340,8 +340,13 @@
     var p = a.split("-").map(Number), q = b.split("-").map(Number);
     var y = q[0] - p[0], m = q[1] - p[1], d = q[2] - p[2];
     if (d < 0) {
+      /* Borrow the month before the end date. When that month runs shorter
+         than the start day (31 January into February), the start day clamps
+         to its last day, the way "one month after 31 January" reads on a
+         calendar - otherwise the day count comes out negative. */
       m--;
-      d += q[1] === 1 ? monthLen(q[0] - 1, 12) : monthLen(q[0], q[1] - 1);
+      var len = q[1] === 1 ? monthLen(q[0] - 1, 12) : monthLen(q[0], q[1] - 1);
+      d = q[2] + Math.max(len - p[2], 0);
     }
     if (m < 0) { y--; m += 12; }
     return [y, m, d];
@@ -498,6 +503,23 @@
     var r = rd(sel);
     var fieldVal = mode === "abs" ? sel : offset;
 
+    /* The window rebuilds its markup on every action, which drops keyboard
+       focus to the page. Note which control held it, and hand it back to
+       the same control in the new markup. */
+    var held = document.activeElement, keep = null;
+    if (held && winHost.contains(held)) {
+      if (held.id) {
+        keep = "#" + held.id;
+      } else {
+        ["data-go", "data-today", "data-mode", "data-drop", "data-nav", "data-step", "data-menu"]
+          .some(function (a) {
+            if (!held.hasAttribute(a)) return false;
+            keep = "[" + a + '="' + held.getAttribute(a) + '"]';
+            return true;
+          });
+      }
+    }
+
     winHost.innerHTML =
       '<div class="win98">' +
         '<div class="tbar"><span class="tt">Eleven Days - CALENDAR.EXE</span><b>_</b><b>\u25a1</b>' +
@@ -578,6 +600,9 @@
         paint98(MENU[b.getAttribute("data-menu")], "info");
       });
     });
+
+    var back = keep && winHost.querySelector(keep);
+    if (back) back.focus({ preventScroll: true });
 
     var input = winHost.querySelector("#w98d");
 

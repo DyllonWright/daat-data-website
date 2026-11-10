@@ -133,37 +133,6 @@
 
 .eleven-fieldrow button:hover { background: var(--gold-bright); }
 
-.eleven-answer {
-  border: 1px solid var(--border-soft);
-  border-top: 2px solid var(--gold);
-  background: var(--bg-panel);
-  padding: 1.1rem;
-  margin-top: 0.9rem;
-}
-
-.eleven-answer .ak {
-  font-family: var(--mono);
-  font-size: 0.56rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-
-.eleven-answer .av {
-  font-family: var(--serif);
-  font-size: clamp(1.5rem, 4vw, 2.1rem);
-  line-height: 1.15;
-  color: var(--gold-bright);
-  font-variant-numeric: tabular-nums;
-  margin-top: 0.3rem;
-}
-
-.eleven-answer .as {
-  font-size: 0.86rem;
-  color: var(--ink-dim);
-  margin: 0.4rem 0 0;
-}
-
 /* ─── THE ELEVEN, AS A LEDGER ────────────────────────────────────────────── */
 /* A ledger, not a card grid. Rows share a baseline, so the eye reads down one
    column of dates instead of hunting eleven boxes. */
