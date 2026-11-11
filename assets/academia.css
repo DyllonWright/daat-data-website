@@ -1,8 +1,17 @@
 /* ACADEMIA — page-scoped rules for academia.html.
    ──────────────────────────────────────────────────────────────────────────
-   The page reads as a short CV, so it sets its lists as a ledger rather than
-   as bullets: a date column in gold on the left, the entry on the right.
+   Three things live here and nowhere else on the site: a campus photograph
+   behind the hero, a compact row of degrees, and two clipboards that carry
+   the publications and the talks as typed sheets with pencil notes on them.
    Everything else comes from site.css. */
+
+@font-face {
+  font-family: "Caveat";
+  src: url("fonts/caveat-latin.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* ─── THE CAMPUS BANNER ─────────────────────────────────────────────────────
    One photograph behind the hero, faded into the page's near-black on the
@@ -94,123 +103,309 @@ header.page-hero.campus .standfirst { color: var(--ink); }
   }
 }
 
+/* The note and the quote open the page, so they sit closer to the hero
+   than a full section would. */
+section.opening { padding: 3rem 0 3.25rem; }
+section.opening .pull { margin-bottom: 0; }
+
 /* ─── DEGREES ───────────────────────────────────────────────────────────── */
+section.degrees-row { padding: 2.25rem 0; }
+
 .degrees {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1px;
-  margin: 2.75rem 0 0;
+  margin: 0;
   background: var(--border-soft);
   border: 1px solid var(--border-soft);
 }
 
 .degrees div {
   background: var(--bg-panel);
-  padding: 1.4rem 1.5rem 1.5rem;
+  padding: 0.85rem 1.1rem 0.95rem;
 }
 
 .degrees dt {
   font-family: var(--serif);
-  font-size: 1.7rem;
+  font-size: 1.2rem;
   line-height: 1.1;
   color: var(--gold-bright);
 }
 
 .degrees dd {
-  margin: 0.5rem 0 0;
-  font-size: 0.92rem;
+  margin: 0.3rem 0 0;
+  font-size: 0.84rem;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.degrees dd.sub {
+  margin-top: 0.1rem;
+  font-size: 0.78rem;
   color: var(--ink-dim);
 }
 
-.degrees dd + dd {
-  margin-top: 0.35rem;
-  font-size: 0.8rem;
+.degrees dd.when {
+  margin-top: 0.45rem;
+  font-size: 0.72rem;
   color: var(--ink-faint);
 }
 
-/* ─── THE LEDGER (publications, talks) ──────────────────────────────────── */
-.ledger {
+/* ─── THE CLIPBOARDS ────────────────────────────────────────────────────────
+   The page breaks the dark theme here on purpose, the way the calendar tool
+   does with its Windows 98 window: the papers arrive as paper. A grey board,
+   a steel clip, a typed sheet set the way an IEEE reference list sets, and
+   pencil in the margins. Every colour below reads as literal paper, board or
+   graphite rather than as a site token, and nothing here carries gold.
+
+   The sheet leans half a degree and a second sheet shows behind it. On a
+   phone both straighten, because a lean costs width a phone lacks. */
+.clipboard {
+  position: relative;
+  max-width: 820px;
+  margin: 1.5rem auto 0;
+  padding: 3.4rem 1.5rem 1.7rem;
+  border-radius: 10px;
+  background:
+    repeating-linear-gradient(93deg, rgba(255, 255, 255, 0.022) 0 2px, transparent 2px 7px),
+    linear-gradient(160deg, #3c3c3c 0%, #2a2a2a 55%, #1f1f1f 100%);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset, 0 18px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* the sheet underneath, showing at two edges */
+.clipboard::before {
+  content: "";
+  position: absolute;
+  inset: 3.1rem 1.2rem 1.5rem 1.7rem;
+  background: #d9d7d0;
+  transform: rotate(0.9deg);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+}
+
+.clipboard .clip {
+  position: absolute;
+  z-index: 2;
+  top: -0.9rem;
+  left: 50%;
+  width: 9.5rem;
+  height: 3.3rem;
+  margin-left: -4.75rem;
+  border-radius: 9px 9px 5px 5px;
+  background: linear-gradient(180deg, #f1f1f1 0%, #b4b4b4 38%, #8b8b8b 60%, #c9c9c9 100%);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.55), 0 1px 0 rgba(255, 255, 255, 0.7) inset;
+}
+
+.clipboard .clip::before {
+  content: "";
+  position: absolute;
+  top: 0.5rem;
+  left: 50%;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-left: -0.55rem;
+  border-radius: 50%;
+  background: #262626;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.clipboard .clip::after {
+  content: "";
+  position: absolute;
+  left: 0.6rem;
+  right: 0.6rem;
+  bottom: 0.45rem;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.28);
+}
+
+.sheet {
+  position: relative;
+  z-index: 1;
+  padding: 2.6rem 2.8rem 2.4rem;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0, transparent 2.2rem),
+    #f3f1ea;
+  color: #1c1c1c;
+  font-family: "Times New Roman", Times, "Liberation Serif", Georgia, serif;
+  font-size: 1.02rem;
+  line-height: 1.5;
+  transform: rotate(-0.5deg);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+.sheet .running {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 0 1.6rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid #8c8c8c;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5e5e5e;
+}
+
+.sheet h2 {
+  margin: 0;
+  font-family: inherit;
+  font-size: clamp(1.5rem, 4vw, 1.95rem);
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  color: #111;
+}
+
+.sheet .byline {
+  margin: 0.5rem 0 0;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.sheet .byline i { display: block; font-size: 0.86rem; color: #555; }
+
+.sheet h3 {
+  margin: 1.9rem 0 0.7rem;
+  font-family: inherit;
+  font-size: 0.86rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #222;
+}
+
+/* An IEEE reference list: bracketed numbers hanging in the margin. */
+.refs {
   list-style: none;
   margin: 0;
   padding: 0;
-  max-width: 820px;
+  counter-reset: ref;
 }
 
-.ledger > li {
-  display: grid;
-  grid-template-columns: 7.25rem 1fr;
-  gap: 0 1.75rem;
-  padding: 1.5rem 0;
-  border-top: 1px solid var(--border-soft);
+.refs > li {
+  position: relative;
+  counter-increment: ref;
+  margin: 0 0 0.95rem;
+  padding-left: 2.4rem;
+  text-align: left;
 }
 
-.ledger > li:first-child { border-top: 0; padding-top: 0; }
-
-.ledger .when {
-  font-size: 0.74rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--gold);
-  padding-top: 0.45rem;
+.refs > li::before {
+  content: "[" counter(ref) "]";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #333;
 }
 
-.ledger .title {
-  font-family: var(--serif);
-  font-size: clamp(1.2rem, 2.6vw, 1.42rem);
-  line-height: 1.3;
-  color: var(--ink);
-  margin: 0;
-}
-
-.ledger .title a {
-  color: inherit;
+.sheet a {
+  color: #111;
   text-decoration: underline;
-  text-decoration-color: rgba(201, 162, 75, 0.45);
-  text-underline-offset: 0.2em;
   text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
 }
 
-.ledger .title a:hover {
-  color: var(--gold-bright);
-  text-decoration-color: var(--gold-bright);
-}
+.sheet a:hover { background: #111; color: #f3f1ea; text-decoration: none; }
 
-.ledger .title a::after {
-  content: "\2197";
-  font-family: var(--mono);
-  font-size: 0.62em;
-  margin-left: 0.4em;
-  color: var(--gold);
+/* ── pencil ──────────────────────────────────────────────────────────────
+   Graphite, never ink: #4b4b4b at a slight tilt. Each note carries its own
+   lean so no two sit at the same angle. */
+.hand {
   display: inline-block;
-  text-decoration: none;
-}
-
-.ledger .who,
-.ledger .where {
-  margin: 0.45rem 0 0;
-  font-size: 0.92rem;
-  color: var(--ink-dim);
-}
-
-.ledger .where { color: var(--ink-faint); margin-top: 0.2rem; }
-
-.mark {
-  display: inline-block;
-  margin-left: 0.5rem;
-  padding: 0.1rem 0.5rem 0.14rem;
-  border: 1px solid var(--border-soft);
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold-bright);
+  font-family: "Caveat", "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
+  font-size: 1.32em;
+  font-weight: 500;
+  line-height: 1;
+  color: #4b4b4b;
+  transform: rotate(var(--lean, -3deg));
+  transform-origin: left center;
+  margin-left: 0.45rem;
   white-space: nowrap;
-  vertical-align: 0.08em;
 }
+
+/* a placing, circled the way a hand circles: not quite closed, not quite round */
+.hand.ring {
+  padding: 0.12em 0.55em 0.2em;
+  border: 1.6px solid #5a5a5a;
+  border-radius: 52% 46% 55% 44% / 58% 48% 54% 46%;
+  border-left-color: transparent;
+}
+
+.sheet .scrawl {
+  display: block;
+  margin: 1.5rem 0 0;
+  text-align: right;
+  font-size: 1.45em;
+  --lean: -2deg;
+  transform-origin: right center;
+  white-space: normal;
+}
+
+/* a pencil rule under the sheet's title, drawn by hand in one pass */
+.sheet h2::after {
+  content: "";
+  display: block;
+  width: 9.5rem;
+  height: 10px;
+  margin: 0.25rem auto 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 190 10'%3E%3Cpath d='M3 6 C 30 2, 52 8, 80 5 S 130 3, 158 6 S 180 4, 187 5' fill='none' stroke='%234b4b4b' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+}
+
+/* ── the taped photograph ───────────────────────────────────────────────
+   A colour print on a grey page, the one thing on the sheet that came out
+   of a camera. Two strips of tape hold it, and it leans the other way from
+   the sheet. */
+.snap {
+  position: relative;
+  float: right;
+  width: 13.5rem;
+  margin: 1.4rem -0.7rem 0.9rem 1.7rem;
+  padding: 0.5rem 0.5rem 0.55rem;
+  background: #fbfaf6;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.38);
+  transform: rotate(2.2deg);
+}
+
+.snap img { display: block; width: 100%; height: auto; }
+
+.snap figcaption {
+  margin-top: 0.35rem;
+  font-size: 0.68rem;
+  line-height: 1.3;
+  color: #555;
+  text-align: left;
+}
+
+.snap figcaption .hand {
+  display: block;
+  margin: 0 0 0.15rem;
+  font-size: 1.75em;
+  --lean: -1.5deg;
+}
+
+.snap::before,
+.snap::after {
+  content: "";
+  position: absolute;
+  top: -0.55rem;
+  width: 3.3rem;
+  height: 1.15rem;
+  background: rgba(214, 212, 204, 0.74);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+}
+
+.snap::before { left: -1rem; transform: rotate(-38deg); }
+.snap::after { right: -1rem; transform: rotate(36deg); }
+
+.sheet::after { content: ""; display: block; clear: both; }
 
 @media (max-width: 640px) {
-  .ledger > li {
-    grid-template-columns: 1fr;
-    padding: 1.25rem 0;
-  }
-  .ledger .when { padding: 0 0 0.4rem; }
+  .clipboard { padding: 2.9rem 0.6rem 0.9rem; border-radius: 8px; }
+  .clipboard::before { inset: 2.7rem 0.4rem 0.75rem 0.75rem; transform: rotate(0.5deg); }
+  .sheet { padding: 1.9rem 1.15rem 1.6rem; transform: none; font-size: 0.98rem; }
+  .refs > li { padding-left: 2.1rem; }
+  .hand { white-space: normal; }
+  .snap { float: none; width: 70%; margin: 1.5rem auto 0.4rem; }
 }
