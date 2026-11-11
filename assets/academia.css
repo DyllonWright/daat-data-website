@@ -120,9 +120,14 @@ section.degrees-row { padding: 2.25rem 0; }
   border: 1px solid var(--border-soft);
 }
 
+/* Title on top, date on the bottom edge, everything else between. Each cell
+   stacks as a column so the three dates share one baseline however many
+   lines sit above them. */
 .degrees div {
+  display: flex;
+  flex-direction: column;
   background: var(--bg-panel);
-  padding: 0.85rem 1.1rem 0.95rem;
+  padding: 0.85rem 1.1rem 0.9rem;
 }
 
 .degrees dt {
@@ -140,15 +145,18 @@ section.degrees-row { padding: 2.25rem 0; }
 }
 
 .degrees dd.sub {
-  margin-top: 0.1rem;
+  margin-top: 0.12rem;
   font-size: 0.78rem;
   color: var(--ink-dim);
 }
 
 .degrees dd.when {
-  margin-top: 0.45rem;
-  font-size: 0.72rem;
-  color: var(--ink-faint);
+  margin-top: auto;
+  padding-top: 0.6rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
 }
 
 /* ─── THE CLIPBOARDS ────────────────────────────────────────────────────────
