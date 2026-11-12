@@ -171,5 +171,33 @@
     box.insertBefore(bar, box.firstChild);
     box.classList.add("tabbed");
     pick(0, false);
+
+    /* A link elsewhere on the page that names a stack, such as the pencil
+       "see the conference" beside a paper, opens that tab and brings the
+       prints into view. A hidden panel cannot take an anchor jump by
+       itself, so the jump happens here. The same runs for a page opened
+       with such a fragment already in its address. */
+    function jump(hash, smooth) {
+      for (var k = 0; k < rolls.length; k++) {
+        if ("#" + rolls[k].id !== hash) { continue; }
+        pick(k, false);
+        var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        /* land on the section, so its heading arrives with the prints */
+        (box.closest("section") || box).scrollIntoView(
+          { behavior: smooth && !calm ? "smooth" : "auto", block: "start" });
+        return true;
+      }
+      return false;
+    }
+    document.addEventListener("click", function (ev) {
+      var link = ev.target.closest ? ev.target.closest('a[href^="#roll-"]') : null;
+      if (link && jump(link.getAttribute("href"), true)) {
+        ev.preventDefault();
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState(null, "", link.getAttribute("href"));
+        }
+      }
+    });
+    if (window.location.hash) { jump(window.location.hash, false); }
   }
 }());

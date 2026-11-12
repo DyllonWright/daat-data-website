@@ -706,3 +706,31 @@ section.degrees-row { padding: 2.25rem 0; }
   .rolls-tabs button { padding: 0.45rem 0.7rem 0.5rem; font-size: 0.66rem; letter-spacing: 0.12em; }
   .rolls.tabbed .prints-track { min-height: calc(min(52vh, 340px) + 6rem); }
 }
+
+/* ─── PENCIL THAT POINTS ────────────────────────────────────────────────────
+   A pencil note that also works as a link: "see the conference" beside a
+   paper, "see the lab" under the byline. Each jumps down the page to the
+   prints and opens the matching tab. Graphite like the other notes, with a
+   pencil underline so it reads as something to press. */
+.sheet a.hand.jump {
+  color: #3d3d3d;
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-thickness: 1px;
+  text-decoration-color: #8a8a8a;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+
+.sheet a.hand.jump:hover {
+  background: none;
+  color: #000;
+  text-decoration-color: #000;
+}
+
+.sheet .byline a.hand.jump {
+  display: block;
+  width: max-content;
+  margin: 0.45rem auto 0;
+  transform-origin: center;
+}
