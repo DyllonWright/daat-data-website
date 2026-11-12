@@ -333,12 +333,11 @@ section.degrees-row { padding: 2.25rem 0; }
   white-space: nowrap;
 }
 
-/* a placing, circled the way a hand circles: not quite closed, not quite round */
+/* a placing, circled the way a hand circles: closed, and not quite round */
 .hand.ring {
   padding: 0.12em 0.55em 0.2em;
   border: 1.6px solid #5a5a5a;
   border-radius: 52% 46% 55% 44% / 58% 48% 54% 46%;
-  border-left-color: transparent;
 }
 
 .sheet .scrawl {
@@ -465,4 +464,34 @@ section.degrees-row { padding: 2.25rem 0; }
 
 @media (prefers-reduced-motion: reduce) {
   .snap { transition: none; }
+}
+
+/* ─── A SHEET STANDS LETTER-SIZED ───────────────────────────────────────────
+   The publications sheet ran short beside the talks sheet and read as a
+   torn-off slip. Both now hold US Letter proportions, 8.5 by 11, as a floor:
+   a sheet with more to say than a page holds still grows. A folio sits at
+   the foot of each, the way a typed page carries its number. */
+.sheet {
+  aspect-ratio: 17 / 22;
+  padding-bottom: 4.2rem;
+}
+
+.sheet .folio {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1.5rem;
+  margin: 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* The wipe has to clear the ring's border as well as the words. */
+.ink .sheet .hand { clip-path: inset(-40% 100% -40% -10%); }
+.ink .sheet .hand.written { clip-path: inset(-40% -10% -40% -10%); }
+
+@media (max-width: 640px) {
+  .sheet { padding-bottom: 3.4rem; }
+  .sheet .folio { bottom: 1.1rem; }
 }
