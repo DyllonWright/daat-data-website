@@ -45,3 +45,62 @@
     anchor.inkNotes.push(note);
   }
 }());
+
+/* ACADEMIA — the prints: two arrows and a count.
+   ──────────────────────────────────────────────────────────────────────────
+   The row of photographs scrolls and snaps by CSS alone. This adds what CSS
+   cannot: a button either side that steps one print, a "3 / 12" under them,
+   and arrow keys while the row holds focus. The buttons and the count sit
+   hidden in the markup, so without this file a visitor still swipes the row
+   and simply sees no dead controls. */
+(function () {
+  "use strict";
+
+  var boxes = document.querySelectorAll("[data-prints]");
+  for (var b = 0; b < boxes.length; b++) { wire(boxes[b]); }
+
+  function wire(box) {
+    var track = box.querySelector(".prints-track");
+    var prev = box.querySelector(".prints-nav.prev");
+    var next = box.querySelector(".prints-nav.next");
+    var count = box.querySelector(".prints-count");
+    if (!track || !prev || !next || !count) { return; }
+    var total = track.children.length;
+
+    function at() {
+      return Math.max(0, Math.min(total - 1, Math.round(track.scrollLeft / track.clientWidth)));
+    }
+    /* A second click lands before the first scroll finishes, so the buttons
+       step from where the row is HEADED rather than from where it stands. */
+    var want = null;
+    function go(i) {
+      want = Math.max(0, Math.min(total - 1, i));
+      track.scrollTo({ left: want * track.clientWidth });
+    }
+    function step(dir) { go((want === null ? at() : want) + dir); }
+    function show() {
+      var i = at();
+      if (i === want) { want = null; }
+      count.textContent = (i + 1) + " / " + total;
+      prev.disabled = i === 0;
+      next.disabled = i === total - 1;
+    }
+
+    prev.addEventListener("click", function () { step(-1); });
+    next.addEventListener("click", function () { step(1); });
+    track.addEventListener("keydown", function (ev) {
+      if (ev.key === "ArrowLeft") { ev.preventDefault(); step(-1); }
+      if (ev.key === "ArrowRight") { ev.preventDefault(); step(1); }
+    });
+
+    var pending = null;
+    track.addEventListener("scroll", function () {
+      if (pending) { return; }
+      pending = window.requestAnimationFrame(function () { pending = null; show(); });
+    });
+    window.addEventListener("resize", show);
+
+    prev.hidden = false; next.hidden = false; count.hidden = false;
+    show();
+  }
+}());
