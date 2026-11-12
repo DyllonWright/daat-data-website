@@ -21,9 +21,16 @@
    there. 22 carries the alphabet, the paths and the Major Arcana.
 
    WHAT EACH QUIRK SAYS. One beat of motion per body, and each one encodes
-   something true: Venus turns backwards, the Moon librates instead of
-   spinning, Jupiter's bands shear at different rates, Uranus flips onto its
-   side and back, Mercury sends, Mars is visited.
+   something true: Venus turns backwards, the Moon runs through its phases,
+   Jupiter's bands shear at different rates, Uranus flips onto its side and
+   back, Mercury sends, Mars is visited, the Sun throws a prominence, Neptune
+   rains diamonds under supersonic cloud while Triton circles it backwards,
+   and Pluto shows its heart.
+
+   A QUIRK HAS TO LEAVE THE SILHOUETTE OR CROSS IT. The sphere draws at about
+   forty pixels, so a change of spin rate alone reads as nothing at all:
+   Neptune's first quirk tripled its wind and no visitor noticed. Each beat
+   now moves something a pixel-counter could find.
 
    THE PROJECTION. For a surface point at latitude L and longitude P:
 
@@ -73,7 +80,7 @@
      that says something true about that body and nothing else needs to. */
   var BODIES = [
     { name: "Sun", core: ["#fffbe8", "#ffc83d", "#8a4a06"], wire: [255, 246, 214],
-      spin: 26, corona: "#ffd36b", quirk: "flare" },
+      spin: 26, corona: "#ffd36b", prom: "#ff9a3c", quirk: "flare" },
     /* Mercury carries the messenger, so it sends: two pulses race off it and
        nothing else happens. The 3:2 stutter it used to do was true and
        completely invisible, which is the wrong trade for a one-beat quirk. */
@@ -92,8 +99,12 @@
               { lat: 40, lon: 285, span: 36, w: 4.5, col: "#46925a" },
               { lat: -46, lon: 330, span: 22, w: 3.5, col: "#5fae70" }],
       quirk: "launch" },
+    /* The Moon keeps one face to us and never spins in our sky, so its beat
+       belongs to the light instead: a shadow crosses and the disc runs full,
+       gibbous, crescent, new, and back out the other side. The libration
+       wobble stays underneath. */
     { name: "Moon", core: ["#e6e0d2", "#8e887c", "#2a2722"], wire: [206, 200, 188],
-      spin: 90, scale: .56, quirk: "librate" },
+      spin: 90, scale: .56, quirk: "phases" },
     /* Mars gets the visitor, and it answers Earth's rocket: one body sends
        something up, the next has something leave it that was never ours.
        The dark marks are its albedo features — Mars was bare before, which
@@ -113,17 +124,25 @@
               { lat: -17, lon: 250, span: 26, w: 7, col: "#f08a52", rate: 1.35 }],
       quirk: "shear" },
     { name: "Saturn", core: ["#f7ecd4", "#c9a24b", "#4a3310"], wire: [242, 234, 217],
-      spin: 11, unmasked: true, quirk: "ringopen" },
+      spin: 11, unmasked: true, quirk: "ringopen",
+      moon: { r: 64, period: 13, size: 2.1, col: "#f3dca6" } },
     { name: "Uranus", core: ["#e4fbfd", "#7fc6ce", "#17383d"], wire: [191, 232, 234],
       spin: 17, vertical: true, scale: .88,
       rings: [[44, .8, .5], [38, .5, .28]], ringCol: "#9fd8dd", spokes: 10,
       spokeIn: 38, spokeOut: 44, quirk: "seasons" },
     { name: "Neptune", core: ["#dfe6ff", "#4a5fb8", "#121a42"], wire: [195, 206, 245],
       spin: 16, roll: -28, scale: .86, rings: [[42, .6, .3]], ringCol: "#8f9ede",
-      marks: [{ lat: -18, lon: 120, span: 24, w: 4.5, col: "#1e2a5c" }],
-      quirk: "superwind" },
+      /* The fastest winds measured on any planet, a moon that orbits the
+         wrong way round, and a mantle where carbon falls as diamond. The
+         white streaks race only while the storm blows; Triton never stops. */
+      marks: [{ lat: -18, lon: 120, span: 24, w: 4.5, col: "#1e2a5c" },
+              { lat: 30, lon: 0, span: 38, w: 1.7, col: "#f2f6ff", rate: 2.3, gust: true },
+              { lat: 6, lon: 210, span: 46, w: 1.5, col: "#dfe9ff", rate: 2.9, gust: true },
+              { lat: -42, lon: 300, span: 32, w: 1.6, col: "#f2f6ff", rate: 3.4, gust: true }],
+      moon: { r: 51, period: 8, size: 2.2, col: "#e9eeff", dir: -1, inc: -.3 },
+      quirk: "storm" },
     { name: "Pluto", core: ["#e6e0d2", "#8e887c", "#2a2722"], wire: [200, 194, 180],
-      spin: 40, scale: .5, quirk: "tumble" },
+      spin: 40, scale: .5, heart: "#ffb7a6", quirk: "heart" },
     { name: "Quasar", core: ["#ffffff", "#8fc3ff", "#101c3a"], wire: [220, 234, 255],
       spin: 7, scale: .7, rings: [[50, 1.1, .6], [44, .6, .35], [38, .6, .3]],
       ringCol: "#9fd0ff", spokes: 16, spokeIn: 34, spokeOut: 50,
@@ -172,6 +191,7 @@
     /* Angles accumulate rather than being read off the clock, so a change of
        rate bends the motion instead of snapping the phase. */
     this.phase = 0; this.ringPhase = 0; this.subPhase = 0; this.hexPhase = 0;
+    this.moonPhase = 0;
     this.lastT = null; this.rollNow = NEUTRAL_ROLL; this.openNow = 1;
 
     var uid = "g" + Math.random().toString(36).slice(2, 8);
@@ -209,6 +229,19 @@
     this.surface = el("g", { "clip-path": "url(#" + uid + "-clip)" });
     this.spinG.appendChild(this.surface);
     this.root.appendChild(this.spinG);
+
+    /* Things that cross the disc without turning with it: Neptune's diamond
+       rain and the shadow that carries the Moon through its phases. Same
+       clip as the surface, no roll. */
+    this.inside = el("g", { "clip-path": "url(#" + uid + "-clip)" });
+    this.root.appendChild(this.inside);
+    this.rainNodes = [];
+    for (i = 0; i < 9; i++) {
+      var dn = el("polygon", { fill: "#f4fbff", opacity: "0" });
+      this.inside.appendChild(dn); this.rainNodes.push(dn);
+    }
+    this.phaseShade = el("circle", { fill: "#060504", opacity: "0" });
+    this.inside.appendChild(this.phaseShade);
 
     this.latNodes = []; this.merNodes = []; this.markNodes = [];
     for (i = 0; i < this.lats.length * 2; i++) {
@@ -248,6 +281,12 @@
     this.saucer.appendChild(el("circle", { cx: "0", cy: "1", r: "1.1", fill: "#fff6c0" }));
     this.saucer.appendChild(el("circle", { cx: "5", cy: "0", r: "1.1", fill: "#fff6c0" }));
     this.rocket.appendChild(this.saucer);
+    /* The Sun's prominence: a loop that swells off the limb, and the knot of
+       plasma that lets go of it. */
+    this.prom = el("path", { fill: "none", "stroke-linecap": "round", opacity: "0" });
+    this.cme = el("circle", { opacity: "0" });
+    this.rocket.appendChild(this.prom);
+    this.rocket.appendChild(this.cme);
     this.rocket.setAttribute("pointer-events", "none");
     this.hexNode = el("polygon", { "stroke-width": ".8", "stroke-linejoin": "round" });
     this.surface.appendChild(this.hexNode);
@@ -262,6 +301,15 @@
     this.root.appendChild(this.rim);
     this.ringNear = el("g", {}); this.root.appendChild(this.ringNear);
     this.veil = el("circle", { opacity: "0" }); this.root.appendChild(this.veil);
+    /* Pluto's heart hangs off the root, unrolled, so it rises straight. */
+    this.heart = el("path", { d: "M0 2.8 C-5.4 -1.2 -2.8 -5 0 -2 C2.8 -5 5.4 -1.2 0 2.8Z",
+      opacity: "0" });
+    this.root.appendChild(this.heart);
+    /* One moon, lent to whichever body carries one. It changes ring group as
+       it crosses the limb, the way the spokes do, so the body hides it. */
+    this.moonNode = el("circle", { opacity: "0" });
+    this.ringNear.appendChild(this.moonNode);
+    this.moonHalf = "near";
 
     this.subNodes = []; this.subSpokes = [];
     for (i = 0; i < SUB_RINGS.length; i++) {
@@ -337,7 +385,7 @@
     /* ── rates, integrated ───────────────────────────────────────────── */
     var rate = 2 * Math.PI / b.spin;
     if (kind === "retrograde" || kind === "veil") { rate *= 1 - 2.6 * q; }
-    if (kind === "superwind") { rate *= 1 + 2.6 * q; }
+    if (kind === "storm") { rate *= 1 + 2.6 * q; }
     if (kind === "stutter") { rate *= 1 + 1.6 * Math.sin(t * 7) * q; }
     if (kind === "seasons") { rate *= 1 + 1.9 * q; }
     this.phase += dt * rate;
@@ -356,9 +404,9 @@
     var wantRoll = b.vertical
       ? (tipped ? NEUTRAL_ROLL + (90 - NEUTRAL_ROLL) * solid : NEUTRAL_ROLL)
       : NEUTRAL_ROLL + ((b.roll || NEUTRAL_ROLL) - NEUTRAL_ROLL) * solid;
-    if (kind === "librate") { wantRoll += q * Math.sin(t * 2.4) * 16; }
+    if (kind === "phases") { wantRoll += q * Math.sin(t * 2.4) * 9; }
     if (kind === "seasons") { wantRoll += q * Math.sin(t * 1.1) * 9; }
-    if (kind === "tumble") { wantRoll += q * Math.sin(t * 1.7) * 40; }
+    if (kind === "heart") { wantRoll += q * Math.sin(t * 1.7) * 16; }
     /* A low-pass on roll, so nothing a quirk does arrives as a step. */
     this.rollNow += (wantRoll - this.rollNow) * Math.min(1, dt * 6);
     var roll = this.rollNow;
@@ -440,7 +488,7 @@
       node.setAttribute("d", d);
       node.setAttribute("stroke", mk.col);
       node.setAttribute("stroke-width", mk.w);
-      node.setAttribute("opacity", (solid * .8).toFixed(3));
+      node.setAttribute("opacity", (solid * (mk.gust ? .12 + .83 * q : .8)).toFixed(3));
     }
 
     if (b.cap) {
@@ -516,6 +564,85 @@
         "translate(" + vx.toFixed(1) + " " + vy.toFixed(1) + ") rotate(" + (-away * 22).toFixed(1) + ")");
       this.saucer.setAttribute("opacity", (vo * solid).toFixed(3));
     } else { this.saucer.setAttribute("opacity", "0"); }
+
+    /* ── Neptune rains diamonds ──────────────────────────────────────── */
+    for (i = 0; i < this.rainNodes.length; i++) {
+      var rn = this.rainNodes[i];
+      if (kind !== "storm" || quirk === 0) { rn.setAttribute("opacity", "0"); continue; }
+      /* Each stone keeps its own column and its own place in the fall, and
+         glints on its own clock, so nine of them never read as one sheet. */
+      var col = ((i * .618) % 1) * 2 - 1;
+      var fall = (quirk * 2.6 + i * .37) % 1;
+      var dx = col * rad * .82, dy = -rad + fall * 2 * rad;
+      rn.setAttribute("points", dx.toFixed(1) + "," + (dy - 3.2).toFixed(1) + " " +
+        (dx + 2).toFixed(1) + "," + dy.toFixed(1) + " " +
+        dx.toFixed(1) + "," + (dy + 3.2).toFixed(1) + " " +
+        (dx - 2).toFixed(1) + "," + dy.toFixed(1));
+      rn.setAttribute("opacity",
+        (q * solid * (.5 + .5 * Math.sin(t * 11 + i * 2.1))).toFixed(3));
+    }
+
+    /* ── the Moon runs through its phases ────────────────────────────── */
+    if (kind === "phases" && quirk > 0) {
+      /* A shadow the size of the disc crosses it right to left: gibbous,
+         crescent, new at the midpoint, and out the other side. */
+      this.phaseShade.setAttribute("r", (rad + .6).toFixed(1));
+      this.phaseShade.setAttribute("cx", (rad * 2.15 * (1 - 2 * quirk)).toFixed(1));
+      this.phaseShade.setAttribute("opacity", (.93 * solid).toFixed(3));
+    } else { this.phaseShade.setAttribute("opacity", "0"); }
+
+    /* ── the Sun throws a prominence ─────────────────────────────────── */
+    if (kind === "flare" && quirk > 0) {
+      var pa = -.95, pw = .42;                 /* where on the limb, how wide */
+      var reach = rad + 4 + 30 * bell;
+      this.prom.setAttribute("d",
+        "M " + (rad * Math.cos(pa - pw)).toFixed(1) + " " + (rad * Math.sin(pa - pw)).toFixed(1) +
+        " Q " + (reach * 1.25 * Math.cos(pa)).toFixed(1) + " " + (reach * 1.25 * Math.sin(pa)).toFixed(1) +
+        " " + (rad * Math.cos(pa + pw)).toFixed(1) + " " + (rad * Math.sin(pa + pw)).toFixed(1));
+      this.prom.setAttribute("stroke", b.prom);
+      this.prom.setAttribute("stroke-width", (1.2 + 1.4 * bell).toFixed(2));
+      this.prom.setAttribute("opacity", (solid * Math.min(1, bell * 1.6)).toFixed(3));
+      /* The knot lets go at the top of the swell and keeps going. */
+      var go = clamp01((quirk - .45) / .5), far2 = rad + 34 + 44 * go * go;
+      this.cme.setAttribute("cx", (far2 * Math.cos(pa)).toFixed(1));
+      this.cme.setAttribute("cy", (far2 * Math.sin(pa)).toFixed(1));
+      this.cme.setAttribute("r", (2.6 + 2.2 * go).toFixed(1));
+      this.cme.setAttribute("fill", "#ffe9b0");
+      this.cme.setAttribute("opacity", (quirk > .45 ? solid * (1 - go) * .9 : 0).toFixed(3));
+    } else {
+      this.prom.setAttribute("opacity", "0");
+      this.cme.setAttribute("opacity", "0");
+    }
+
+    /* ── Pluto shows its heart ───────────────────────────────────────── */
+    if (b.heart) {
+      /* At rest it sits on the disc, where Tombaugh Regio sits. On the beat
+         it lifts off, swells, throbs and lets go. */
+      var up = kind === "heart" ? ease(clamp01(quirk / .7)) : 0;
+      var hs = (rad / 15) * (1 + 2.1 * up) * (1 + (quirk > 0 ? .14 * Math.sin(t * 9) : 0));
+      var gone = quirk > .78 ? clamp01((quirk - .78) / .22) : 0;
+      this.heart.setAttribute("transform", "translate(" + (rad * .12).toFixed(1) + " " +
+        (rad * .18 - up * (rad + 30) - gone * 10).toFixed(1) + ") scale(" + hs.toFixed(2) + ")");
+      this.heart.setAttribute("fill", b.heart);
+      this.heart.setAttribute("opacity", (solid * (1 - gone) * (quirk > 0 ? .95 : .7)).toFixed(3));
+    } else { this.heart.setAttribute("opacity", "0"); }
+
+    /* ── a moon, for the bodies that carry one ───────────────────────── */
+    var mo = b.moon;
+    if (mo) {
+      this.moonPhase += dt * (mo.dir || 1) * 2 * Math.PI / mo.period * (1 + 1.6 * q);
+      var mc = Math.cos(this.moonPhase), mz = Math.sin(this.moonPhase);
+      var mNear = mz > 0, mWant = mNear ? "near" : "far";
+      if (this.moonHalf !== mWant) {
+        (mNear ? this.ringNear : this.ringFar).appendChild(this.moonNode);
+        this.moonHalf = mWant;
+      }
+      this.moonNode.setAttribute("cx", (mo.r * mc).toFixed(1));
+      this.moonNode.setAttribute("cy", (mo.r * mz * sNow + (mo.inc || 0) * mo.r * mc).toFixed(1));
+      this.moonNode.setAttribute("r", (mo.size * (.85 + .2 * mz)).toFixed(2));
+      this.moonNode.setAttribute("fill", mo.col);
+      this.moonNode.setAttribute("opacity", (solid * (mNear ? .95 : .5)).toFixed(3));
+    } else { this.moonNode.setAttribute("opacity", "0"); }
 
     /* ── the substrate: Saturn, under everything ─────────────────────── */
     var subOp = b.unmasked ? 1 : (1 - solid) + solid * GHOST;
@@ -641,38 +768,86 @@
   /* ── ONE CLOCK ACROSS THE WHOLE VISIT ─────────────────────────────────
      Every page load used to restart the band from zero, so the wheel began
      at the Sun and the first craft was always the disc, however many pages
-     a visitor opened. The sky now carries an epoch in localStorage and
-     every page picks the clock up where the last one left it: a reader
-     moving through the site sees the wheel keep turning and a different
-     craft each time, because the cycle never rewinds.
+     a visitor opened. The sky carries an epoch in localStorage and every
+     page picks the clock up where the last one left it.
 
-     A fresh browser starts the epoch at a random point in the 198s craft
-     cycle rather than at zero, so a first visit does not open on the same
-     craft for everybody.
+     THE WHOLE SKY READS THAT CLOCK, NOT ONLY THE GLOBE (2026-11-11). The
+     globe and the craft kept time across a navigation while every star, the
+     wind, the dust and the gas ran on CSS and started again from zero on
+     each page, so the sky visibly reset under a wheel that had not. Every
+     CSS animation in the masthead now gets its currentTime set from the same
+     epoch: a star that stood half-lit on the last page stands half-lit on
+     this one.
 
-     Private windows and blocked storage throw here, and the fallback is
-     the old behaviour rather than an error. */
-  var elapsed = 0;
-  try {
-    var KEY = "daat-sky-epoch";
-    var epoch = window.localStorage.getItem(KEY);
-    if (!epoch) {
-      epoch = String(Date.now() - Math.floor(Math.random() * 198000));
-      window.localStorage.setItem(KEY, epoch);
-    }
-    elapsed = Date.now() - Number(epoch);
-    if (!(elapsed >= 0)) { elapsed = 0; }
-  } catch (err) { elapsed = 0; }
+     A VISIT OPENS ON SATURN. The still frame in the markup shows Saturn, and
+     Saturn carries the premise, so a fresh visit lands a second and a half
+     into Saturn's beat, already solid, rather than on whichever body the
+     arithmetic happened to reach. "Fresh" means no page of this site in the
+     last half hour. Inside a visit the wheel keeps turning across pages.
+     The start also picks one of three turns of the wheel, so the craft queue
+     does not open on the same craft for everybody.
 
-  /* The craft run on CSS, so they take the offset as a negative delay: an
-     animation with delay -d opens at phase d. Each craft keeps its own
-     33-second place in the queue on top of the shared offset. */
-  var CRAFT_CYCLE = 198;
-  var crafts = document.querySelectorAll(".masthead .craft");
-  for (var c = 0; c < crafts.length; c++) {
-    var phase = ((elapsed / 1000) + c * 33) % CRAFT_CYCLE;
-    crafts[c].style.animationDelay = (-phase).toFixed(2) + "s";
+     Private windows and blocked storage throw here; the fallback opens on
+     Saturn every load, which costs continuity and nothing else. */
+  var SATURN = 7, VISIT_GAP = 30 * 60 * 1000;
+  function freshEpoch() {
+    var lead = SATURN * CYCLE + T_IN + CYCLE * BODIES.length * Math.floor(Math.random() * 3);
+    return Date.now() - Math.round(lead * 1000);
   }
+  var epoch = freshEpoch();
+  try {
+    var KEY = "daat-sky-epoch", SEEN = "daat-sky-seen";
+    var kept = Number(window.localStorage.getItem(KEY));
+    var seen = Number(window.localStorage.getItem(SEEN));
+    if (kept > 0 && seen > 0 && Date.now() - seen < VISIT_GAP && Date.now() >= kept) {
+      epoch = kept;
+    } else {
+      window.localStorage.setItem(KEY, String(epoch));
+    }
+    var stamp = function () {
+      try { window.localStorage.setItem(SEEN, String(Date.now())); } catch (e) { /* no store */ }
+    };
+    stamp();
+    window.addEventListener("pagehide", stamp);
+    document.addEventListener("visibilitychange", stamp);
+  } catch (err) { /* no store: this page keeps its own fresh epoch */ }
+
+  /* requestAnimationFrame hands over a timestamp on performance.now()'s
+     origin, which runs smoother than Date.now(); `base` carries it onto the
+     sky's clock. Recomputed when a page comes back out of the back-forward
+     cache, where both clocks stood still. */
+  var base = 0;
+  function setBase() { base = Date.now() - epoch - window.performance.now(); }
+  setBase();
+
+  /* Every CSS animation under the masthead, and the page's own star dust,
+     onto the same clock. currentTime counts from the start of an
+     animation's delay, so each one keeps the offset its own delay gives it. */
+  function syncSky() {
+    var at = Date.now() - epoch;
+    var roots = document.querySelectorAll(".masthead, .stars");
+    for (var r = 0; r < roots.length; r++) {
+      if (!roots[r].getAnimations) { return false; }
+      var anims = roots[r].getAnimations({ subtree: true });
+      for (var a = 0; a < anims.length; a++) {
+        if (anims[a].animationName) { anims[a].currentTime = at; }
+      }
+    }
+    return true;
+  }
+  if (!syncSky()) {
+    /* An engine without getAnimations still gets the craft on the clock, by
+       the older route: a negative delay opens an animation at that phase. */
+    var CRAFT_CYCLE = 198;
+    var crafts = document.querySelectorAll(".masthead .craft");
+    for (var c = 0; c < crafts.length; c++) {
+      var phase = (((Date.now() - epoch) / 1000) + c * 33) % CRAFT_CYCLE;
+      crafts[c].style.animationDelay = (-phase).toFixed(2) + "s";
+    }
+  }
+  window.addEventListener("pageshow", function (ev) {
+    if (ev.persisted) { setBase(); syncSky(); }
+  });
 
   var planets = document.querySelectorAll(".lockup .planet");
   if (!planets.length) { return; }
@@ -687,7 +862,7 @@
 
   function drawAll(now) {
     /* The wheel continues from wherever the last page left it. */
-    var t = (now + elapsed) / 1000;
+    var t = (now + base) / 1000;
     for (var j = 0; j < globes.length; j++) { globes[j].draw(t); }
   }
 
@@ -708,7 +883,8 @@
      no loop left running. */
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
   if (reduce && reduce.matches) {
-    drawAll(0);
+    /* Saturn, solid and holding still: the same picture the markup shows. */
+    drawAll((SATURN * CYCLE + T_IN + 1) * 1000 - base);
     return;
   }
 
@@ -717,7 +893,7 @@
   function start() { if (frame === null) { frame = window.requestAnimationFrame(tick); } }
   function stop() { if (frame !== null) { window.cancelAnimationFrame(frame); frame = null; } }
 
-  drawAll(0);
+  drawAll(window.performance.now());
 
   /* A masthead scrolled off the top costs nothing to stop drawing. */
   if (window.IntersectionObserver) {

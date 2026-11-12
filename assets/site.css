@@ -1846,10 +1846,10 @@ ul.gloss li::before {
    this size never needs to wrap — it only needs to be going somewhere. */
 .gust { position:absolute; inset:0; animation:gust 150s ease-in-out infinite alternate; }
 .gust-slow { animation-duration:230s; }
-@keyframes gust { from { transform:translate3d(60px,0,0); } to { transform:translate3d(-90px,0,0); } }
+@keyframes gust { from { transform:translate3d(90px,0,0); } to { transform:translate3d(-150px,0,0); } }
 
-.mote { position:absolute; border-radius:50%; filter:blur(26px); pointer-events:none;
-        mix-blend-mode:screen; opacity:.4; }
+.mote { position:absolute; border-radius:50%; filter:blur(22px); pointer-events:none;
+        mix-blend-mode:screen; opacity:.6; }
 
 /* ── COSMIC WIND ──────────────────────────────────────────────────────
    A slow right-to-left drift. Most of the sky holds still — a field where
@@ -1965,6 +1965,28 @@ ul.gloss li::before {
     50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 }
 
+/* The other cut shapes: a four-point sparkle, a six-point star and a
+   triangle. Each takes a resting turn from --rot, set by the generator. */
+.star.four {
+  border-radius: 0;
+  box-shadow: none;
+  clip-path: polygon(50% 0%, 59% 41%, 100% 50%, 59% 59%, 50% 100%,
+    41% 59%, 0% 50%, 41% 41%);
+}
+
+.star.six {
+  border-radius: 0;
+  box-shadow: none;
+  clip-path: polygon(50% 0%, 64% 25%, 93% 25%, 79% 50%, 93% 75%, 64% 75%,
+    50% 100%, 36% 75%, 7% 75%, 21% 50%, 7% 25%, 36% 25%);
+}
+
+.star.tri {
+  border-radius: 0;
+  box-shadow: none;
+  clip-path: polygon(50% 6%, 96% 88%, 4% 88%);
+}
+
 /* A crisp pixel: no glow, no rounding. The cheapest star in the sky. */
 .star.pixel {
   border-radius: 0;
@@ -1972,8 +1994,11 @@ ul.gloss li::before {
 }
 
 @keyframes twinkle {
-  0%, 100% { opacity: 0; transform: scale(0.3); background-color: var(--tint, #f2ead9); }
-  50% { opacity: var(--max-op, 0.9); transform: scale(1.2); background-color: #fff; }
+  0%, 100% { opacity: 0; transform: scale(0.3) rotate(var(--rot, 0deg));
+             background-color: var(--tint, #f2ead9); }
+  50% { opacity: var(--max-op, 0.9);
+        transform: scale(1.15) rotate(calc(var(--rot, 0deg) + 24deg));
+        background-color: var(--peak, #fff); }
 }
 
 /* ─── THE MARQUEE NEBULA ─────────────────────────────────────────────────
@@ -2001,8 +2026,8 @@ ul.gloss li::before {
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 34%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000 34%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
 }
 
 .neb {
@@ -2023,7 +2048,7 @@ ul.gloss li::before {
   left: 18%;
   background: radial-gradient(circle, rgba(232, 200, 135, 0.5) 0%,
     rgba(201, 162, 75, 0.18) 45%, rgba(0, 0, 0, 0) 72%);
-  opacity: 0.34;
+  opacity: 0.5;
   animation: neb-drift-gold 38s ease-in-out infinite alternate;
 }
 
@@ -2036,7 +2061,7 @@ ul.gloss li::before {
   right: -6rem;
   background: radial-gradient(circle, rgba(255, 122, 24, 0.42) 0%,
     rgba(138, 106, 42, 0.16) 48%, rgba(0, 0, 0, 0) 74%);
-  opacity: 0.28;
+  opacity: 0.44;
   animation: neb-drift-ember 44s ease-in-out infinite alternate;
 }
 
@@ -2049,7 +2074,7 @@ ul.gloss li::before {
   left: -9rem;
   background: radial-gradient(circle, rgba(92, 56, 140, 0.45) 0%,
     rgba(46, 28, 74, 0.2) 50%, rgba(0, 0, 0, 0) 75%);
-  opacity: 0.3;
+  opacity: 0.5;
   animation: neb-drift-violet 52s ease-in-out infinite alternate;
 }
 
@@ -2061,7 +2086,7 @@ ul.gloss li::before {
   right: 22%;
   background: radial-gradient(circle, rgba(74, 150, 160, 0.4) 0%,
     rgba(0, 0, 0, 0) 70%);
-  opacity: 0.16;
+  opacity: 0.3;
   animation: neb-pulse-teal 29s ease-in-out infinite alternate;
 }
 
@@ -2084,9 +2109,9 @@ ul.gloss li::before {
 }
 
 @keyframes neb-pulse-teal {
-  0% { opacity: 0.11; transform: scale(1); }
-  50% { opacity: 0.2; transform: scale(1.16); }
-  100% { opacity: 0.13; transform: scale(0.94); }
+  0% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.36; transform: scale(1.16); }
+  100% { opacity: 0.24; transform: scale(0.94); }
 }
 
 /* A phone paints a 120px blur across four big boxes for a decoration nobody
@@ -2109,9 +2134,6 @@ ul.gloss li::before {
     margin: -15px 0 0 -27px;
   }
 
-  /* Half the sky, and no glow to composite, on a phone. */
-  .star:nth-child(2n) { display: none; }
-  .star { box-shadow: none; }
   /* Half the sky, and no glow to composite, on a phone. */
   .star:nth-child(2n) { display: none; }
   .star { box-shadow: none; }
@@ -2210,6 +2232,22 @@ ul.gloss li::before {
   gap: 0.7rem;
   justify-content: center;
   margin-top: 1.5rem;
+}
+
+/* ─── ONE SKY ACROSS A NAVIGATION ───────────────────────────────────────────
+   assets/globe.js puts every animation in the masthead on one clock, so a
+   page arrives with its sky at the phase the last page left. This asks the
+   browser to cross-fade the two documents rather than cut between them, and
+   names the masthead so its old and new pictures line up on top of each
+   other: the same stars at the same brightness, and nothing to see change.
+   A browser without cross-document view transitions cuts as before, and
+   still lands on a sky in step. */
+@view-transition { navigation: auto; }
+
+.masthead { view-transition-name: masthead; }
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
 }
 
 /* The starfield drifts a few pixels and takes a minute doing it. */

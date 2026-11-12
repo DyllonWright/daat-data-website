@@ -356,8 +356,15 @@ PLANET = planet()
 # each on its own clock. Its @keyframes twinkle runs opacity 0 -> peak -> 0
 # with a scale change, and animation-fill-mode: backwards holds a star
 # invisible through its start delay so the page does not open on a flash of
-# every star at once. Three shapes carry it: a round one with a glow, a
-# five-point one cut with clip-path, and a crisp single pixel.
+# every star at once.
+#
+# SIX SHAPES AND A LITTLE COLOUR (2026-11-11, the owner's call). The field had
+# drifted down to round dots, pixels and a handful of five-point stars in three
+# pale tints, and read as dust. It carries the shapes he remembered now: a
+# four-point sparkle, a five-point star, a six-point one, a triangle, each cut
+# with clip-path and each given its own resting turn, beside the round ones
+# and the pixels. Ivory and gold still hold most of the sky; one star in seven
+# takes a red, a green or a blue, the way that GUI's chromatic stars do.
 #
 # WHY THE POSITIONS COME FROM A SEEDED GENERATOR. Fifty-four stars hand-placed
 # would be fifty-four values to re-tune every time the count changes, and a
@@ -368,14 +375,21 @@ PLANET = planet()
 # The site already carries a .stars layer of static radial gradients, which
 # stays: it dusts the whole viewport, and these pop on top of it.
 STAR_SEED = 1101
-STAR_COUNT = 54
+STAR_COUNT = 72
 
-# Ivory, bright gold, and one cool white, so the sky stays inside the palette.
+# Ivory and bright gold carry the sky, with one cool white. Then the few that
+# break the palette on purpose: a red, a green, a blue.
 STAR_TINTS = [
-    ("rgba(242, 234, 217, 0.9)", 24),
-    ("rgba(232, 200, 135, 0.9)", 14),
+    ("rgba(242, 234, 217, 0.9)", 26),
+    ("rgba(232, 200, 135, 0.95)", 26),
     ("rgba(214, 226, 240, 0.8)", 6),
+    ("rgba(255, 112, 96, 0.95)", 5),
+    ("rgba(110, 224, 150, 0.9)", 4),
+    ("rgba(112, 168, 255, 0.95)", 5),
 ]
+
+# The cut shapes, and how often each turns up among them.
+STAR_SHAPES = ["four", "four", "four", "point", "point", "six", "six", "tri", "tri"]
 
 
 # Visible dust, so the wind has something with body in it and not only
@@ -421,18 +435,32 @@ def starfield():
         (far if n % 2 else near).append(mote(tint, left, top, size))
 
     for i in range(STAR_COUNT):
-        shape = "point" if i % 9 == 0 else ("pixel" if i % 4 == 0 else "round")
-        size = rng.choice([1, 1, 1, 2, 2, 3]) if shape != "point" else rng.choice([3, 4, 5])
+        # One star in three takes a cut shape; the rest stay dots and pixels,
+        # because a sky of nothing but sparkles reads as wrapping paper.
+        cut = i % 3 == 0
+        if cut:
+            shape = rng.choice(STAR_SHAPES)
+            size = rng.choice([6, 7, 8, 9, 11])
+        else:
+            shape = "pixel" if i % 4 == 1 else "round"
+            size = rng.choice([1, 1, 2, 2, 3])
+        tint = tints[i % len(tints)]
+        # A coloured star keeps its colour at the peak; a pale one flares white.
+        pale = tint.startswith(("rgba(242", "rgba(232", "rgba(214"))
         style = (
             f"left:{rng.uniform(0, 100):.2f}%;"
             f"top:{rng.uniform(0, 100):.2f}%;"
             f"width:{size}px;height:{size}px;"
             f"--dur:{rng.uniform(3.2, 9.5):.1f}s;"
             f"--delay:{rng.uniform(0, 9):.1f}s;"
-            f"--tint:{tints[i % len(tints)]};"
-            f"--max-op:{rng.uniform(0.45, 0.95):.2f};"
+            f"--tint:{tint};"
+            f"--max-op:{rng.uniform(0.5, 0.98):.2f};"
             f"--glow:{size + 1}px"
         )
+        if not pale:
+            style += f";--peak:{tint}"
+        if cut:
+            style += f";--rot:{rng.choice([0, 0, 12, -15, 30, 45, 180])}deg"
         star = f'<span class="star {shape}" style="{style}"></span>'
         # Roughly 45% of the sky travels; the rest holds station.
         if i % 4 == 0:
@@ -455,11 +483,20 @@ def starfield():
     return LF.join(out)
 
 
+# THE GUST WRAPPERS CAME BACK (2026-11-11). site.css has carried .gust all
+# along: a wrapper that rides each pair of clouds on the wind, because a cloud
+# already animates its own transform for the float and one element cannot run
+# two. The wrappers fell out of this markup at some point, so the gas floated
+# in place and the wind moved only the stars. Two wrappers, two speeds.
 NEBULA = """<div class="nebula" aria-hidden="true">
-  <span class="neb neb-gold"></span>
-  <span class="neb neb-ember"></span>
-  <span class="neb neb-violet"></span>
-  <span class="neb neb-teal"></span>
+  <div class="gust">
+    <span class="neb neb-gold"></span>
+    <span class="neb neb-violet"></span>
+  </div>
+  <div class="gust gust-slow">
+    <span class="neb neb-ember"></span>
+    <span class="neb neb-teal"></span>
+  </div>
 </div>"""
 
 
