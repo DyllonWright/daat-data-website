@@ -68,6 +68,8 @@
     var total = track.children.length;
 
     function at() {
+      /* a stack on a hidden tab measures zero wide; it stands on its first print */
+      if (!track.clientWidth) { return 0; }
       return Math.max(0, Math.min(total - 1, Math.round(track.scrollLeft / track.clientWidth)));
     }
     /* A second click lands before the first scroll finishes, so the buttons
@@ -100,7 +102,74 @@
     });
     window.addEventListener("resize", show);
 
-    prev.hidden = false; next.hidden = false; count.hidden = false;
+    /* one print needs no arrows and no count */
+    if (total > 1) { prev.hidden = false; next.hidden = false; count.hidden = false; }
     show();
+  }
+}());
+
+/* ACADEMIA — the tabs over the prints.
+   ──────────────────────────────────────────────────────────────────────────
+   The markup holds three stacks of prints, each a .roll with a data-tab
+   name, standing one under the other. This builds a tab row from those
+   names and shows one stack at a time. Left and right arrow keys move
+   between tabs while one holds focus, the way a tablist should.
+
+   A stack that just became visible has to re-measure, since it stood zero
+   pixels wide while hidden; a resize event tells the print rows to do so. */
+(function () {
+  "use strict";
+
+  var sets = document.querySelectorAll("[data-rolls]");
+  for (var s = 0; s < sets.length; s++) { wire(sets[s]); }
+
+  function wire(box) {
+    var rolls = box.querySelectorAll(".roll");
+    if (rolls.length < 2) { return; }
+
+    var bar = document.createElement("div");
+    bar.className = "rolls-tabs";
+    bar.setAttribute("role", "tablist");
+    bar.setAttribute("aria-label", "Photograph sets");
+    var tabs = [];
+
+    function pick(i, focus) {
+      for (var k = 0; k < rolls.length; k++) {
+        var on = k === i;
+        rolls[k].hidden = !on;
+        tabs[k].setAttribute("aria-selected", on ? "true" : "false");
+        tabs[k].tabIndex = on ? 0 : -1;
+      }
+      if (focus) { tabs[i].focus(); }
+      window.dispatchEvent(new Event("resize"));
+    }
+
+    for (var r = 0; r < rolls.length; r++) {
+      (function (i) {
+        var tab = document.createElement("button");
+        tab.type = "button";
+        tab.id = rolls[i].id + "-tab";
+        tab.setAttribute("role", "tab");
+        tab.setAttribute("aria-controls", rolls[i].id);
+        var num = document.createElement("span");
+        num.className = "n";
+        num.textContent = String(i + 1);
+        tab.appendChild(num);
+        tab.appendChild(document.createTextNode(rolls[i].getAttribute("data-tab") || ""));
+        tab.addEventListener("click", function () { pick(i, false); });
+        tab.addEventListener("keydown", function (ev) {
+          if (ev.key === "ArrowRight") { ev.preventDefault(); pick((i + 1) % rolls.length, true); }
+          if (ev.key === "ArrowLeft") { ev.preventDefault(); pick((i + rolls.length - 1) % rolls.length, true); }
+        });
+        rolls[i].setAttribute("role", "tabpanel");
+        rolls[i].setAttribute("aria-labelledby", tab.id);
+        bar.appendChild(tab);
+        tabs.push(tab);
+      }(r));
+    }
+
+    box.insertBefore(bar, box.firstChild);
+    box.classList.add("tabbed");
+    pick(0, false);
   }
 }());

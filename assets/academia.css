@@ -641,3 +641,68 @@ section.degrees-row { padding: 2.25rem 0; }
 @media (prefers-reduced-motion: no-preference) {
   .prints-track { scroll-behavior: smooth; }
 }
+
+/* ─── THE TABS OVER THE PRINTS ──────────────────────────────────────────────
+   Three stacks of prints, one per place: the lab and the two conferences.
+   Mixed into one row they made no sense, a hotel roof in Pittsburgh next to
+   a cactus in Tempe.
+
+   WITHOUT THE SCRIPT ALL THREE STAND IN ORDER, each under its own title.
+   assets/academia.js builds the tab row from the panels' data-tab names,
+   adds .tabbed to the wrapper, and from then on one panel shows at a time
+   and the titles hide, because the lit tab already says where. */
+.rolls { max-width: 820px; margin: 0 auto; }
+
+.roll + .roll { margin-top: 3rem; }
+
+.roll-title {
+  margin: 0 0 0.25rem;
+  font-family: var(--sans, inherit);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--gold);
+}
+
+.rolls-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 0 0.75rem;
+}
+
+.rolls-tabs button {
+  padding: 0.5rem 1.3rem 0.55rem;
+  border: 0;
+  border-left: 1px solid var(--border-soft);
+  border-bottom: 1px solid transparent;
+  background: none;
+  color: var(--ink-faint);
+  font: inherit;
+  font-size: 0.74rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.rolls-tabs button:first-child { border-left: 0; }
+.rolls-tabs button:hover { color: var(--ink); }
+.rolls-tabs button[aria-selected="true"] { color: var(--gold-bright); border-bottom-color: var(--gold); }
+.rolls-tabs button:focus-visible { outline: 1px solid var(--gold); outline-offset: 2px; }
+.rolls-tabs .n { margin-right: 0.55em; color: var(--gold); }
+
+.rolls.tabbed .roll + .roll { margin-top: 0; }
+.rolls.tabbed .roll-title { display: none; }
+.rolls.tabbed .roll[hidden] { display: none; }
+
+/* every stack takes the same height, so the page below holds still when a
+   tab changes; the tallest print sets it */
+.rolls.tabbed .prints-track { min-height: calc(min(58vh, 440px) + 6.5rem); }
+
+@media (max-width: 640px) {
+  .rolls-tabs button { padding: 0.45rem 0.7rem 0.5rem; font-size: 0.66rem; letter-spacing: 0.12em; }
+  .rolls.tabbed .prints-track { min-height: calc(min(52vh, 340px) + 6rem); }
+}
