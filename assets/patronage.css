@@ -160,3 +160,30 @@ header.page-hero.patron-hero .standfirst { font-size: 1rem; }
     font-size: min(0.78rem, 3.25vw);
   }
 }
+
+/* ─── WIDE SCREENS ──────────────────────────────────────────────────────────
+   On a full desktop window the phone-first sizes read as fine print. Type,
+   marks and the ledger's width step up together here; the row padding does
+   not, so the ledger keeps its tightness. */
+@media (min-width: 900px) {
+  header.page-hero.patron-hero .kicker { font-size: 0.8rem; }
+  header.page-hero.patron-hero h1 { font-size: 2.6rem; }
+  header.page-hero.patron-hero .standfirst { font-size: 1.2rem; }
+
+  .patron { max-width: 800px; }
+
+  .coin {
+    grid-template-columns: 6rem minmax(0, 1fr) auto;
+    gap: 1rem;
+  }
+  .coin-name { font-size: 0.9rem; gap: 0.65rem; }
+  .coin-ico { width: 21px; height: 21px; }
+  .coin-addr { font-size: 1.05rem; }
+  .coin-copy { font-size: 0.85rem; min-width: 4.2rem; }
+
+  .blessing {
+    max-width: 40rem;
+    font-size: 1.4rem;
+    margin-top: 1.6rem;
+  }
+}
