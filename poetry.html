@@ -13,7 +13,7 @@
      max-age=14400 and no site-wide versioning, so without it a returning
      reader runs yesterday's script against today's page for four hours.
      Rerun tools/stamp-poetry-assets.py after touching either file. -->
-<link rel="stylesheet" href="assets/poetry.css?v=ada24372">
+<link rel="stylesheet" href="assets/poetry.css?v=442491e3">
 <link rel="canonical" href="https://daatdata.net/poetry">
 <meta property="og:title" content="(Not So) Great Works — Da'at Data">
 <meta property="og:description" content="Seventy-two poems written between twenty and twenty-five, before any of this was called Da’at.">
@@ -187,6 +187,7 @@
     <a href="non-nominalism">Non-Nominalism</a>
     <a href="exit-interview">Exit Interview</a>
     <a href="poetry" aria-current="page">Poetry</a>
+    <a href="inspiration">Inspiration</a>
     <a href="horrible-ideas">Horrible Ideas</a>
     <a href="thoughts"><span class="flip">Thought of the Day</span></a>
     <a href="techne">Techne</a>
@@ -210,21 +211,52 @@
 <!-- MASTHEAD:END -->
 
 <header class="page-hero">
-  <div class="wrap">
+  <div class="wrap pp-hero">
+    <div class="pp-herotext">
     <p class="kicker">Pre-Da&rsquo;at &middot; 2021&ndash;2026</p>
     <h1>(Not So) Great Works. <svg class="sat sat-lg sat-wobble" role="img" aria-label="A small ringed planet in the dark"><use href="assets/planet-sprite.svg#sat-dark"/></svg></h1>
     <div class="standfirst pp-invocation">
-      <p class="q">Read from the dead. These are the voices of the previous tenants of this
-      flesh, ages twenty through twenty-five.</p>
-      <p>One of them had not yet heard of the Demiurge. One of them had, and took it badly. One
-      of them came to an arrangement with Saturn. Not one of them had completed Knowledge and
-      Conversation, and not one of them is the man typing this.</p>
-      <p class="last">The (Not So) Great Works are finished, sealed in this pre-Da&rsquo;at relic.
-      Let the Great Work begin in their place.</p>
+      <p class="q">I wrote these between twenty and twenty-five years of age in this
+      Earth-life system, before I called any of this Da&rsquo;at.</p>
+      <p>Most of them chase a girl, and I lost a mentor somewhere in the middle. I left
+      every one the way I wrote it. Together they make a time capsule of the steps that led me to
+      pseudo-enlightenment (whatever that means), or at least out of a constant low-grade
+      agitation of body, heart, mind, and spirit.</p>
+      <p class="last">The (Not So) Great Works end here. The Great Work starts after them.</p>
     </div>
     <details class="pp-nerd"><summary>Stats for nerds</summary>
       <div class="pp-nerdgrid" id="pp-nerd"></div>
     </details>
+    </div>
+
+    <!-- THE COVER. A miniature of the dial below: poetry.js drops one dot per
+         poem into #pp-cover-dots, so the plate stays true to the data. It
+         carries its own lettering and no UI text crosses it. -->
+    <svg class="pp-cover" viewBox="0 0 300 400" aria-hidden="true" focusable="false">
+      <defs>
+        <radialGradient id="pp-cover-glow">
+          <stop offset="0%" stop-color="#e8c887" stop-opacity=".34"/>
+          <stop offset="38%" stop-color="#c9703f" stop-opacity=".12"/>
+          <stop offset="100%" stop-color="#c9703f" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="pp-cover-hole">
+          <stop offset="62%" stop-color="#050403"/>
+          <stop offset="100%" stop-color="#050403" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect x="1" y="1" width="298" height="398" fill="#0b0a08" stroke="#c9a24b" stroke-opacity=".55"/>
+      <rect x="9" y="9" width="282" height="382" fill="none" stroke="#c9a24b" stroke-opacity=".22"/>
+      <text class="pp-cover-top" x="150" y="46" text-anchor="middle">PRE-DA&rsquo;AT</text>
+      <circle cx="150" cy="200" r="128" fill="url(#pp-cover-glow)"/>
+      <g class="pp-cover-spin">
+        <g id="pp-cover-dots" transform="translate(150 200) scale(.44) translate(-300 -300)"></g>
+      </g>
+      <circle cx="150" cy="200" r="34" fill="url(#pp-cover-hole)"/>
+      <circle cx="150" cy="200" r="19" fill="#050403" stroke="#e8c887" stroke-width="1.2" stroke-opacity=".8"/>
+      <circle cx="150" cy="200" r="22.5" fill="none" stroke="#c9a24b" stroke-width=".5" stroke-opacity=".45"/>
+      <text class="pp-cover-title" x="150" y="342" text-anchor="middle">(Not So) Great Works</text>
+      <text class="pp-cover-foot" x="150" y="366" text-anchor="middle">MMXXI &middot; MMXXVI</text>
+    </svg>
   </div>
 </header>
 
@@ -255,15 +287,13 @@
       </div>
 
       <div class="pp-bookhead">
-        <h2>The grimoire</h2>
+        <h2>My poems</h2>
         <button class="pp-allbtn" id="pp-allbtn" type="button">Open all</button>
       </div>
-      <p class="pp-partnote">His own titles, in order.
-        <span class="pp-q" aria-hidden="true">?</span> opens what was going on at the time.</p>
+      <p class="pp-partnote">My original chapter titles, in the order I wrote them. Click one to open it.
+        <span class="pp-pic" aria-hidden="true">ph</span> marks a photograph,
+        <span class="pp-q" aria-hidden="true">?</span> tells what went on at the time.</p>
       <div id="grimoire"></div>
-
-      <p class="pp-partnote" style="margin-top:1.4rem">Dates mark the journal note, not the hour
-      of writing. Fifteen fragments were left out, and two still sit at maybe.</p>
     </div>
 
     <noscript>
@@ -287,7 +317,7 @@
 
 </div>
 
-<script src="assets/poetry.js?v=8bf755dd"></script>
+<script src="assets/poetry.js?v=42a94516"></script>
 <script src="assets/chime.js"></script>
 </body>
 </html>
