@@ -1,7 +1,7 @@
 /* Copy an address, receive a blessing.
  *
  * The page shows one line of thanks on arrival and deals another each time a
- * visitor presses a copy control. The lines live in data/blessings.json — add
+ * visitor presses a copy control, or presses the line itself. The lines live in data/blessings.json — add
  * one there rather than here.
  *
  * NO REPEATS UNTIL THE POOL RUNS OUT. The script deals from a shuffled bag and
@@ -175,6 +175,10 @@
       if (pool.length) { shift(deal(), false); }
     });
   }
+
+  out.addEventListener('click', function () {
+    if (pool.length) { shift(deal(), false); }
+  });
 
   for (var i = 0; i < buttons.length; i++) { wire(buttons[i]); }
   if (buttons.length) { document.documentElement.classList.add('has-copy'); }

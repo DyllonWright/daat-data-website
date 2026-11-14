@@ -4,9 +4,12 @@
 
 /* The kicker sits grey here rather than gold, so nothing above the heading
    asks for attention. */
-header.page-hero.patron-hero { padding: 2.75rem 0 2.25rem; }
+header.page-hero.patron-hero { padding: 2rem 0 1.5rem; }
 
-header.page-hero.patron-hero .kicker { color: var(--ink-faint); }
+header.page-hero.patron-hero .kicker {
+  color: var(--ink-faint);
+  margin-bottom: 0.5rem;
+}
 
 header.page-hero.patron-hero h1 {
   font-size: clamp(1.45rem, 4vw, 2rem);
@@ -17,7 +20,7 @@ header.page-hero.patron-hero .standfirst { font-size: 1rem; }
 
 .patron {
   max-width: 600px;
-  padding: 2.25rem 0 3rem;
+  padding: 1.5rem 0 2rem;
 }
 
 /* ─── THE LEDGER ──────────────────────────────────────────────────────────── */
@@ -33,7 +36,7 @@ header.page-hero.patron-hero .standfirst { font-size: 1rem; }
   grid-template-columns: 4.4rem minmax(0, 1fr) auto;
   gap: 0.75rem;
   align-items: center;
-  padding: 0.8rem 0;
+  padding: 0.15rem 0;
   border-top: 1px solid var(--border-soft);
 }
 
@@ -71,7 +74,7 @@ header.page-hero.patron-hero .standfirst { font-size: 1rem; }
 .coin-copy {
   display: none;
   min-width: 3.6rem;
-  min-height: 44px;
+  min-height: 2.5rem;
   padding: 0 0.25rem;
   border: 0;
   background: none;
@@ -94,9 +97,16 @@ header.page-hero.patron-hero .standfirst { font-size: 1rem; }
 
 /* ─── THE BLESSING ──────────────────────────────────────────────────────────
    One line of thanks, drawn from data/blessings.json. The min-height holds
-   two lines so the footer does not jump when a longer one arrives. */
+   two lines so the footer does not jump when a longer one arrives. The line
+   is a button: pressing it deals another. */
 .blessing {
-  margin: 2rem auto 0;
+  display: block;
+  width: 100%;
+  margin: 1.25rem auto 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
   max-width: 30rem;
   min-height: 3.3em;
   font-family: var(--serif);
@@ -107,6 +117,13 @@ header.page-hero.patron-hero .standfirst { font-size: 1rem; }
   text-align: center;
   transform-origin: 50% 55%;
   will-change: filter, transform, opacity;
+}
+
+.blessing:hover { color: var(--ink); }
+
+.blessing:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: 4px;
 }
 
 .sand-defs {
@@ -123,5 +140,6 @@ header.page-hero.patron-hero .standfirst { font-size: 1rem; }
   }
   .coin-name { grid-column: 1; }
   .coin-addr { grid-column: 1; grid-row: 2; }
-  .coin-copy { grid-column: 2; grid-row: 1 / span 2; }
+  .coin-copy { grid-column: 2; grid-row: 1 / span 2; min-height: 44px; }
+  .coin { padding: 0.45rem 0; }
 }
