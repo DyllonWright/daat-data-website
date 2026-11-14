@@ -87,6 +87,17 @@ header.page-hero.patron-hero .standfirst { font-size: 1rem; }
 
 .has-copy .coin-copy { display: inline-block; }
 
+/* With script running the whole row copies, so it reads as one control and
+   the address gives up its select-all. */
+.has-copy .coin { cursor: pointer; }
+
+.has-copy .coin-addr {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.has-copy .coin:hover .coin-copy { color: var(--gold-bright); }
+
 .coin-copy:hover,
 .coin-copy.did { color: var(--gold-bright); }
 
@@ -138,8 +149,14 @@ header.page-hero.patron-hero .standfirst { font-size: 1rem; }
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 0.15rem 0.75rem;
   }
-  .coin-name { grid-column: 1; }
-  .coin-addr { grid-column: 1; grid-row: 2; }
-  .coin-copy { grid-column: 2; grid-row: 1 / span 2; min-height: 44px; }
-  .coin { padding: 0.45rem 0; }
+  /* The label and "copy" share the first line; the address takes the whole
+     second one, sized so its 44 characters hold a single line down to 320px. */
+  .coin { padding: 0.2rem 0 0.7rem; }
+  .coin-name { grid-column: 1; grid-row: 1; }
+  .coin-copy { grid-column: 2; grid-row: 1; min-height: 2.4rem; }
+  .coin-addr {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    font-size: min(0.78rem, 3.25vw);
+  }
 }

@@ -1,7 +1,7 @@
 /* Copy an address, receive a blessing.
  *
  * The page shows one line of thanks on arrival and deals another each time a
- * visitor presses a copy control, or presses the line itself. The lines live in data/blessings.json — add
+ * visitor presses anywhere on an address row, or presses the line itself. The lines live in data/blessings.json — add
  * one there rather than here.
  *
  * NO REPEATS UNTIL THE POOL RUNS OUT. The script deals from a shuffled bag and
@@ -19,7 +19,6 @@
  */
 (function () {
   var out = document.querySelector('[data-blessing]');
-  var buttons = document.querySelectorAll('[data-copy]');
   if (!out) { return; }
 
   var KEY = 'daat-blessings-seen';
@@ -154,20 +153,25 @@
     });
   }
 
-  function wire(button) {
-    var source = document.getElementById(button.getAttribute('data-copy'));
-    if (!source) { return; }
+  /* The whole row answers: the mark, the label, the address and the word
+     "copy" all do the same thing, so a thumb never has to find a small target.
+     A press that ends a drag-selection stays a selection and copies nothing. */
+  function wire(row) {
+    var source = row.querySelector('.coin-addr');
+    var button = row.querySelector('[data-copy]');
+    if (!source || !button) { return; }
     var timer = 0;
-    button.addEventListener('click', function () {
-      function say(word) {
-        button.textContent = word;
-        button.classList.add('did');
-        window.clearTimeout(timer);
-        timer = window.setTimeout(function () {
-          button.textContent = 'copy';
-          button.classList.remove('did');
-        }, 1600);
-      }
+    function say(word) {
+      button.textContent = word;
+      button.classList.add('did');
+      window.clearTimeout(timer);
+      timer = window.setTimeout(function () {
+        button.textContent = 'copy';
+        button.classList.remove('did');
+      }, 1600);
+    }
+    row.addEventListener('click', function () {
+      if (window.getSelection && String(window.getSelection())) { return; }
       copy(source.textContent.trim()).then(
         function () { say('copied'); },
         function () { say('select it'); }
@@ -180,8 +184,9 @@
     if (pool.length) { shift(deal(), false); }
   });
 
-  for (var i = 0; i < buttons.length; i++) { wire(buttons[i]); }
-  if (buttons.length) { document.documentElement.classList.add('has-copy'); }
+  var rows = document.querySelectorAll('.coin');
+  for (var i = 0; i < rows.length; i++) { wire(rows[i]); }
+  if (rows.length) { document.documentElement.classList.add('has-copy'); }
 
   fetch('data/blessings.json')
     .then(function (r) {
