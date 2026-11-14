@@ -210,17 +210,17 @@
   <section class="first patron">
     <ul class="coins">
       <li class="coin">
-        <span class="coin-name"><svg class="coin-ico" aria-hidden="true"><use href="assets/coin-sprite.svg#coin-btc"/></svg><abbr title="Bitcoin">BTC</abbr></span>
+        <span class="coin-name"><svg class="coin-ico coin-ico--btc" aria-hidden="true"><use href="assets/coin-sprite.svg#coin-btc"/></svg><abbr title="Bitcoin">BTC</abbr></span>
         <code class="coin-addr" id="addr-btc">bc1qk69hgdnqchv0kjcwv2t9pdlj8ngxllp2pevgxr</code>
         <button class="coin-copy" type="button" data-copy="addr-btc" aria-label="Copy the Bitcoin address">copy</button>
       </li>
       <li class="coin">
-        <span class="coin-name"><svg class="coin-ico" aria-hidden="true"><use href="assets/coin-sprite.svg#coin-eth"/></svg><abbr title="Ethereum">ETH</abbr></span>
+        <span class="coin-name"><svg class="coin-ico coin-ico--eth" aria-hidden="true"><use href="assets/coin-sprite.svg#coin-eth"/></svg><abbr title="Ethereum">ETH</abbr></span>
         <code class="coin-addr" id="addr-eth">0x0Bee36423cE9D7c8c8349d56a17a6e90eB691221</code>
         <button class="coin-copy" type="button" data-copy="addr-eth" aria-label="Copy the Ethereum address">copy</button>
       </li>
       <li class="coin">
-        <span class="coin-name"><svg class="coin-ico" aria-hidden="true"><use href="assets/coin-sprite.svg#coin-sol"/></svg><abbr title="Solana">SOL</abbr></span>
+        <span class="coin-name"><svg class="coin-ico coin-ico--sol" aria-hidden="true" style="fill:url(#sol-grad) #9945ff"><use href="assets/coin-sprite.svg#coin-sol"/></svg><abbr title="Solana">SOL</abbr></span>
         <code class="coin-addr" id="addr-sol">esDXQ53bVfKtq6iWknyABBu5KSApCsUGA4nCWNGNUQ8</code>
         <button class="coin-copy" type="button" data-copy="addr-sol" aria-label="Copy the Solana address">copy</button>
       </li>
@@ -231,8 +231,13 @@
          on every copy, and whenever a visitor presses the line itself. -->
     <button class="blessing" type="button" data-blessing aria-live="polite" title="Another blessing">This transaction counts as a sigil. Consider the intent charged. Now forget you ever sent it.</button>
 
-    <!-- The grain for the blessing's change. patronage.js drives the scale. -->
+    <!-- The grain for the blessing's change — patronage.js drives the scale —
+         and the gradient the Solana mark wears. -->
     <svg class="sand-defs" aria-hidden="true" focusable="false">
+      <linearGradient id="sol-grad" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stop-color="#9945ff"/>
+        <stop offset="1" stop-color="#14f195"/>
+      </linearGradient>
       <filter id="sand" x="-15%" y="-60%" width="130%" height="220%">
         <feTurbulence id="sand-noise" type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" result="grain"/>
         <feDisplacementMap id="sand-map" in="SourceGraphic" in2="grain" scale="0" xChannelSelector="R" yChannelSelector="G"/>

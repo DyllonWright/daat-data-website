@@ -56,7 +56,18 @@ header.page-hero.patron-hero .standfirst { font-size: 1rem; }
   width: 15px;
   height: 15px;
   flex: none;
+  fill: currentColor;
 }
+
+/* Each mark wears its network's own colour; the labels beside them stay gold.
+   Bitcoin's orange and Solana's purple come from the projects' brand kits.
+   Ethereum's own mark runs near-black, which vanishes on this page, so it
+   takes the blue-violet most wallets and explorers print it in. Solana's
+   gradient lives in patronage.html and arrives through an inline style; the
+   flat purple here covers a browser that fails to resolve it. */
+.coin-ico--btc { fill: #f7931a; }
+.coin-ico--eth { fill: #627eea; }
+.coin-ico--sol { fill: #9945ff; }
 
 .coin-addr {
   font-family: var(--mono);
