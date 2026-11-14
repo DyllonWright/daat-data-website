@@ -14,8 +14,8 @@ first run replaces whatever <nav class="sitenav"> block a page still carries
 and leaves the markers behind.
 
 The nav order reads: the work first, then the loose pages, then the tools,
-then the papers, then consulting last. aria-current marks the page the visitor
-stands on.
+then the papers, then consulting, then patronage last and least. aria-current
+marks the page the visitor stands on.
 
 Two changes on 2026-11-01, both the owner's call. The Shelf went: its carousel
 moved into the Videos page, which already carried all 69 published videos, so
@@ -32,6 +32,9 @@ did. The row wraps rather than scrolling sideways or collapsing to a hamburger
 — both ruled out deliberately: a hamburger hides the whole site behind
 JavaScript, and a sideways scroll hides tabs with nothing to say it did.
 Re-measure 375px after adding a twelfth.
+
+Twelve as of 2026-11-14: Patronage, a small page of three addresses, sits at
+the very end so it never stands between a visitor and the work.
 
 This script also writes the calendar rail that sits at the foot of every
 page — see THE CALENDAR RAIL further down.
@@ -61,6 +64,7 @@ NAV = [
     ("eleven-days.html", "Eleven Days", False),
     ("academia.html", "Academia", False),
     ("consulting.html", "Consulting", False),
+    ("patronage.html", "Patronage", False),
 ]
 
 # ─── THE CALENDAR RAIL ─────────────────────────────────────────────────────

@@ -19,7 +19,7 @@ redirects included.
 | | |
 |---|---|
 | `index.html` | the hub page; one card per body of work |
-| `videos.html` `exodus.html` `non-nominalism.html` `exit-interview.html` `poetry.html` `horrible-ideas.html` `thoughts.html` `techne.html` `academia.html` `consulting.html` | a page per project |
+| `videos.html` `exodus.html` `non-nominalism.html` `exit-interview.html` `poetry.html` `horrible-ideas.html` `thoughts.html` `techne.html` `academia.html` `consulting.html` `patronage.html` | a page per project |
 | `assets/` | one stylesheet (`site.css`), a small script per section, images, SVG sprites |
 | `data/` | the JSON each page renders — add an entry here rather than editing markup |
 | `_redirects` | Cloudflare's redirect table |
