@@ -1,0 +1,514 @@
+{
+ "_README": [
+  "THE READING TIMELINE. inspiration.html renders this file and nothing else.",
+  "NOTHING REACHES IT BY HAND. Write it with, in the hub repo:",
+  "    python scripts/reading-timeline.py",
+  "Six fields a book: title, author, shelf, start, end, sittings. `sittings`",
+  "counts the distinct days the journal logged a reading session; zero marks",
+  "a book dated only by its first attachment. No excerpt or note ever crosses."
+ ],
+ "shelves": [
+  {
+   "slug": "sacred",
+   "label": "Sacred"
+  },
+  {
+   "slug": "philosophy",
+   "label": "Philosophy"
+  },
+  {
+   "slug": "fiction",
+   "label": "Fiction & verse"
+  },
+  {
+   "slug": "mind",
+   "label": "Mind & magick"
+  },
+  {
+   "slug": "world",
+   "label": "History & world"
+  }
+ ],
+ "books": [
+  {
+   "title": "Essentials of Negotiation",
+   "author": "Roy J. Lewicki et al.",
+   "shelf": "world",
+   "start": "2023-09-16",
+   "end": "2023-09-16",
+   "sittings": 0
+  },
+  {
+   "title": "Thus Spake Zarathustra",
+   "author": "Friedrich Nietzsche",
+   "shelf": "philosophy",
+   "start": "2023-11-18",
+   "end": "2023-11-18",
+   "sittings": 0
+  },
+  {
+   "title": "Qur’an",
+   "author": "",
+   "shelf": "sacred",
+   "start": "2023-11-26",
+   "end": "2023-11-26",
+   "sittings": 1
+  },
+  {
+   "title": "The Unopened Present",
+   "author": "Richard V. Battle",
+   "shelf": "world",
+   "start": "2024-01-01",
+   "end": "2024-01-01",
+   "sittings": 1
+  },
+  {
+   "title": "Bhagavad Gita",
+   "author": "",
+   "shelf": "sacred",
+   "start": "2024-01-08",
+   "end": "2024-01-08",
+   "sittings": 0
+  },
+  {
+   "title": "The Divine Comedy",
+   "author": "Dante Alighieri",
+   "shelf": "fiction",
+   "start": "2024-05-06",
+   "end": "2025-10-25",
+   "sittings": 35
+  },
+  {
+   "title": "Tears in Rain",
+   "author": "Blade Runner",
+   "shelf": "fiction",
+   "start": "2024-05-16",
+   "end": "2024-05-16",
+   "sittings": 0
+  },
+  {
+   "title": "Protagoras",
+   "author": "Plato",
+   "shelf": "philosophy",
+   "start": "2025-03-26",
+   "end": "2025-03-26",
+   "sittings": 0
+  },
+  {
+   "title": "Lotus Sutra",
+   "author": "",
+   "shelf": "sacred",
+   "start": "2025-03-29",
+   "end": "2025-04-07",
+   "sittings": 7
+  },
+  {
+   "title": "The Complete Works of Zhuangzi",
+   "author": "tr. Burton Watson",
+   "shelf": "sacred",
+   "start": "2025-04-04",
+   "end": "2025-04-11",
+   "sittings": 8
+  },
+  {
+   "title": "The Hymns of Orpheus",
+   "author": "",
+   "shelf": "sacred",
+   "start": "2025-04-09",
+   "end": "2025-04-15",
+   "sittings": 2
+  },
+  {
+   "title": "The Cloud of Unknowing",
+   "author": "Anonymous",
+   "shelf": "sacred",
+   "start": "2025-04-15",
+   "end": "2025-04-22",
+   "sittings": 6
+  },
+  {
+   "title": "Make Your Bed",
+   "author": "William H. McRaven",
+   "shelf": "world",
+   "start": "2025-04-16",
+   "end": "2025-04-16",
+   "sittings": 0
+  },
+  {
+   "title": "The Three Ordinary Voices of God",
+   "author": "Matthew Kelly",
+   "shelf": "sacred",
+   "start": "2025-04-21",
+   "end": "2025-04-21",
+   "sittings": 0
+  },
+  {
+   "title": "The Secret Teachings of All Ages",
+   "author": "Manly P. Hall",
+   "shelf": "mind",
+   "start": "2025-04-22",
+   "end": "2025-06-08",
+   "sittings": 22
+  },
+  {
+   "title": "A History of Egypt",
+   "author": "James Henry Breasted",
+   "shelf": "world",
+   "start": "2025-06-13",
+   "end": "2025-06-15",
+   "sittings": 3
+  },
+  {
+   "title": "Stalking the Wild Pendulum",
+   "author": "Itzhak Bentov",
+   "shelf": "mind",
+   "start": "2025-06-19",
+   "end": "2025-06-29",
+   "sittings": 7
+  },
+  {
+   "title": "Becoming Supernatural",
+   "author": "Joe Dispenza",
+   "shelf": "mind",
+   "start": "2025-06-30",
+   "end": "2025-07-09",
+   "sittings": 7
+  },
+  {
+   "title": "A History of Russia, Central Asia and Mongolia",
+   "author": "David Christian",
+   "shelf": "world",
+   "start": "2025-07-15",
+   "end": "2025-08-03",
+   "sittings": 4
+  },
+  {
+   "title": "The Thunder, Perfect Mind",
+   "author": "tr. Hal Taussig et al.",
+   "shelf": "sacred",
+   "start": "2025-08-15",
+   "end": "2025-08-16",
+   "sittings": 2
+  },
+  {
+   "title": "The Myth of Sisyphus",
+   "author": "Albert Camus",
+   "shelf": "philosophy",
+   "start": "2025-08-22",
+   "end": "2025-08-24",
+   "sittings": 3
+  },
+  {
+   "title": "The Stranger",
+   "author": "Albert Camus",
+   "shelf": "fiction",
+   "start": "2025-08-25",
+   "end": "2025-08-30",
+   "sittings": 3
+  },
+  {
+   "title": "The Plague",
+   "author": "Albert Camus",
+   "shelf": "fiction",
+   "start": "2025-08-30",
+   "end": "2025-09-01",
+   "sittings": 2
+  },
+  {
+   "title": "Zhuangzi: The Complete Writings",
+   "author": "tr. Brook Ziporyn",
+   "shelf": "sacred",
+   "start": "2025-09-06",
+   "end": "2025-09-06",
+   "sittings": 1
+  },
+  {
+   "title": "The Ramayana",
+   "author": "R. K. Narayan",
+   "shelf": "sacred",
+   "start": "2025-09-07",
+   "end": "2025-09-11",
+   "sittings": 5
+  },
+  {
+   "title": "Journeys Out of the Body: Practical Guidebook",
+   "author": "Robert A. Monroe",
+   "shelf": "mind",
+   "start": "2025-09-11",
+   "end": "2025-09-14",
+   "sittings": 3
+  },
+  {
+   "title": "The Holographic Universe",
+   "author": "Michael Talbot",
+   "shelf": "mind",
+   "start": "2025-09-14",
+   "end": "2025-09-22",
+   "sittings": 7
+  },
+  {
+   "title": "Explaining Postmodernism",
+   "author": "Stephen Hicks",
+   "shelf": "philosophy",
+   "start": "2025-09-23",
+   "end": "2025-09-26",
+   "sittings": 4
+  },
+  {
+   "title": "Journeys Out of the Body",
+   "author": "Robert A. Monroe",
+   "shelf": "mind",
+   "start": "2025-09-28",
+   "end": "2025-10-02",
+   "sittings": 2
+  },
+  {
+   "title": "Science and the Akashic Field",
+   "author": "Ervin Laszlo",
+   "shelf": "mind",
+   "start": "2025-10-07",
+   "end": "2025-10-07",
+   "sittings": 1
+  },
+  {
+   "title": "The Tao of Physics",
+   "author": "Fritjof Capra",
+   "shelf": "mind",
+   "start": "2025-10-09",
+   "end": "2025-10-13",
+   "sittings": 4
+  },
+  {
+   "title": "The Serpent Power",
+   "author": "Arthur Avalon",
+   "shelf": "mind",
+   "start": "2025-10-16",
+   "end": "2025-10-28",
+   "sittings": 5
+  },
+  {
+   "title": "Friends Hold All Things in Common",
+   "author": "Kathy Eden",
+   "shelf": "philosophy",
+   "start": "2025-10-28",
+   "end": "2025-10-31",
+   "sittings": 4
+  },
+  {
+   "title": "On Rhetoric",
+   "author": "Aristotle",
+   "shelf": "philosophy",
+   "start": "2025-11-01",
+   "end": "2025-11-11",
+   "sittings": 8
+  },
+  {
+   "title": "On Christian Doctrine",
+   "author": "Augustine",
+   "shelf": "sacred",
+   "start": "2025-11-18",
+   "end": "2025-11-23",
+   "sittings": 4
+  },
+  {
+   "title": "Rise to Consciousness",
+   "author": "DX888",
+   "shelf": "mind",
+   "start": "2025-11-23",
+   "end": "2025-11-23",
+   "sittings": 1
+  },
+  {
+   "title": "The Origins of Jewish Mysticism",
+   "author": "Peter Schäfer",
+   "shelf": "sacred",
+   "start": "2025-11-23",
+   "end": "2025-11-23",
+   "sittings": 1
+  },
+  {
+   "title": "The Name of God in Jewish Thought",
+   "author": "Michael T. Miller",
+   "shelf": "sacred",
+   "start": "2025-11-29",
+   "end": "2025-11-29",
+   "sittings": 1
+  },
+  {
+   "title": "The October Man Sequence",
+   "author": "IN10SE",
+   "shelf": "mind",
+   "start": "2025-11-30",
+   "end": "2025-11-30",
+   "sittings": 1
+  },
+  {
+   "title": "Secret, Don’t Tell: The Encyclopedia of Hypnotism",
+   "author": "Carla Emery",
+   "shelf": "mind",
+   "start": "2025-11-30",
+   "end": "2026-01-25",
+   "sittings": 17
+  },
+  {
+   "title": "Manufacturing Consent",
+   "author": "Edward S. Herman & Noam Chomsky",
+   "shelf": "world",
+   "start": "2025-12-05",
+   "end": "2025-12-05",
+   "sittings": 1
+  },
+  {
+   "title": "The Raven",
+   "author": "Edgar Allan Poe, ill. Gustave Doré",
+   "shelf": "fiction",
+   "start": "2025-12-18",
+   "end": "2025-12-18",
+   "sittings": 0
+  },
+  {
+   "title": "The Spider’s Thread",
+   "author": "Ryūnosuke Akutagawa",
+   "shelf": "fiction",
+   "start": "2025-12-20",
+   "end": "2025-12-20",
+   "sittings": 0
+  },
+  {
+   "title": "The Master and Margarita",
+   "author": "Mikhail Bulgakov",
+   "shelf": "fiction",
+   "start": "2025-12-21",
+   "end": "2025-12-29",
+   "sittings": 8
+  },
+  {
+   "title": "Prometheus Rising",
+   "author": "Robert Anton Wilson",
+   "shelf": "mind",
+   "start": "2025-12-29",
+   "end": "2026-01-25",
+   "sittings": 11
+  },
+  {
+   "title": "The Immortality Key",
+   "author": "Brian C. Muraresku",
+   "shelf": "mind",
+   "start": "2026-01-01",
+   "end": "2026-01-18",
+   "sittings": 13
+  },
+  {
+   "title": "Goblin Market",
+   "author": "Christina Rossetti",
+   "shelf": "fiction",
+   "start": "2026-01-17",
+   "end": "2026-01-17",
+   "sittings": 0
+  },
+  {
+   "title": "Liber Null & Psychonaut",
+   "author": "Peter J. Carroll",
+   "shelf": "mind",
+   "start": "2026-01-18",
+   "end": "2026-02-01",
+   "sittings": 9
+  },
+  {
+   "title": "Quantum Psychology",
+   "author": "Robert Anton Wilson",
+   "shelf": "mind",
+   "start": "2026-02-01",
+   "end": "2026-02-08",
+   "sittings": 8
+  },
+  {
+   "title": "Sex, Drugs & Magick",
+   "author": "Robert Anton Wilson",
+   "shelf": "mind",
+   "start": "2026-02-10",
+   "end": "2026-03-03",
+   "sittings": 12
+  },
+  {
+   "title": "Cosmic Trigger I: Final Secret of the Illuminati",
+   "author": "Robert Anton Wilson",
+   "shelf": "mind",
+   "start": "2026-03-04",
+   "end": "2026-03-20",
+   "sittings": 10
+  },
+  {
+   "title": "Pimp: The Story of My Life",
+   "author": "Iceberg Slim",
+   "shelf": "world",
+   "start": "2026-03-21",
+   "end": "2026-04-07",
+   "sittings": 11
+  },
+  {
+   "title": "Cosmic Trigger II: Down to Earth",
+   "author": "Robert Anton Wilson",
+   "shelf": "mind",
+   "start": "2026-04-07",
+   "end": "2026-05-16",
+   "sittings": 13
+  },
+  {
+   "title": "Science and Sanity",
+   "author": "Alfred Korzybski",
+   "shelf": "philosophy",
+   "start": "2026-05-03",
+   "end": "2026-05-13",
+   "sittings": 4
+  },
+  {
+   "title": "Cosmic Trigger III: My Life After Death",
+   "author": "Robert Anton Wilson",
+   "shelf": "mind",
+   "start": "2026-05-16",
+   "end": "2026-05-27",
+   "sittings": 6
+  },
+  {
+   "title": "Masks of the Illuminati",
+   "author": "Robert Anton Wilson",
+   "shelf": "fiction",
+   "start": "2026-05-28",
+   "end": "2026-06-22",
+   "sittings": 16
+  },
+  {
+   "title": "Living with the Himalayan Masters",
+   "author": "Swami Rama",
+   "shelf": "mind",
+   "start": "2026-06-14",
+   "end": "2026-07-26",
+   "sittings": 17
+  },
+  {
+   "title": "Fire in the Heart: Healers, Sages and Mystics",
+   "author": "Kyriacos C. Markides",
+   "shelf": "mind",
+   "start": "2026-07-26",
+   "end": "2026-09-09",
+   "sittings": 19
+  },
+  {
+   "title": "Finnegans Wake",
+   "author": "James Joyce",
+   "shelf": "fiction",
+   "start": "2026-09-12",
+   "end": "2026-10-04",
+   "sittings": 6
+  },
+  {
+   "title": "Ulysses",
+   "author": "James Joyce",
+   "shelf": "fiction",
+   "start": "2026-10-30",
+   "end": "2026-10-30",
+   "sittings": 1
+  }
+ ]
+}

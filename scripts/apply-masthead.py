@@ -58,6 +58,7 @@ NAV = [
     ("non-nominalism.html", "Non-Nominalism", False),
     ("exit-interview.html", "Exit Interview", False),
     ("poetry.html", "Poetry", False),
+    ("inspiration.html", "Inspiration", False),
     ("horrible-ideas.html", "Horrible Ideas", False),
     ("thoughts.html", "Thought of the Day", True),
     ("techne.html", "Techne", False),

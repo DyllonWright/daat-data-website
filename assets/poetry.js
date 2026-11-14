@@ -33,7 +33,7 @@
   var QUIET_MONTHS = 3;
   var CX = 300, CY = 300, ROUT = 252, RIN = 62;
 
-  var POEMS = [], CHAPTERS = [], PAIRS = [], MOODS = {}, SILENCES = [];
+  var POEMS = [], CHAPTERS = [], PAIRS = [], MOODS = {}, SILENCES = [], ERA = null;
   var season = null, sel = null, lastPick = {};
 
   function esc(s) {
@@ -219,6 +219,18 @@
            '" r="2" fill="var(--pp-soft)"/><text class="pp-ylab" x="' +
            (p[0] + 7).toFixed(1) + '" y="' + (p[1] - 5).toFixed(1) + '">' + y + "</text>";
     }
+    /* The era boundary: one small lens set across the loop, and a footnote in
+       the corner that wears the same lens and says what it means. */
+    if (ERA && T(ERA) > t0 && T(ERA) < t1) {
+      var ep = polar(ERA, t0, t1);
+      var edeg = Math.atan2(ep[1] - CY, ep[0] - CX) * 180 / Math.PI;
+      s += '<ellipse class="pp-eralens" cx="' + ep[0].toFixed(1) + '" cy="' + ep[1].toFixed(1) +
+           '" rx="12" ry="4.6" transform="rotate(' + edeg.toFixed(1) + " " +
+           ep[0].toFixed(1) + " " + ep[1].toFixed(1) + ')"/>' +
+           '<ellipse class="pp-eralens" cx="-11" cy="613.5" rx="9" ry="3.6" ' +
+           'transform="rotate(-24 -11 613.5)"/>' +
+           '<text class="pp-eralab" x="5" y="617">Generative AI is born</text>';
+    }
     POEMS.forEach(function (q) {
       var pt2 = polar(q.date, t0, t1);
       var r = 2 + Math.min(5, Math.sqrt(+q.lines || 1) * 0.75);
@@ -270,9 +282,20 @@
       if (ci > 0 && CHAPTERS[ci - 1]) {
         var g = months(CHAPTERS[ci - 1].date, c.date);
         if (g > QUIET_MONTHS) {
-          h += '<div class="pp-gap" style="--w:' + Math.min(96, g * 9) + 'px">' +
+          h += '<div class="pp-gap" style="--w:' + Math.min(34, g * 3) + 'px">' +
                '<span class="lb">' + g + ' months</span><span class="ln2"></span></div>';
         }
+      }
+      /* The one heavy rule in the book: where the era facet's own boundary
+         falls between two journal notes. The date comes from the data
+         (facets.era.boundary), never from here. */
+      if (ERA && ci > 0 && CHAPTERS[ci - 1].date < ERA && c.date >= ERA) {
+        var pre = POEMS.filter(function (p) { return p.date < ERA; }).length;
+        h += '<div class="pp-era" role="separator" aria-label="' + pre +
+             ' poems above, written before AI. ' + (POEMS.length - pre) + ' below, written after.">' +
+             '<span class="a">&uarr; Pre-AI &middot; ' + pre + '</span>' +
+             '<span class="m">No machine thoughts before this line</span>' +
+             '<span class="b">' + (POEMS.length - pre) + ' &middot; Post-AI &darr;</span></div>';
       }
       h += '<details class="pp-ch" id="pp-ch-' + ci + '"><summary>' +
            '<span class="no">' + String(ci + 1).padStart(2, "0") + '</span>' +
@@ -350,7 +373,7 @@
       if (season !== null && any) { el.open = true; }
       if (season === null && !sel) { el.open = false; }
     });
-    Array.prototype.forEach.call(document.querySelectorAll("#grimoire .pp-gap"), function (el) {
+    Array.prototype.forEach.call(document.querySelectorAll("#grimoire .pp-gap, #grimoire .pp-era"), function (el) {
       el.hidden = (season !== null);
     });
     document.getElementById("pp-none").hidden = (shown > 0);
@@ -363,6 +386,7 @@
     if (!POEMS.length) { return; }          /* the waiting line stays */
     CHAPTERS = data.chapters || [];
     PAIRS = data.pairs || [];
+    ERA = (data.facets && data.facets.era && data.facets.era.boundary) || null;
     MOODS = {};
     POEMS.forEach(function (p) {
       (p.moods || []).forEach(function (m) {
@@ -390,8 +414,8 @@
       [lens.reduce(function (a, b) { return a + b; }, 0).toLocaleString(), "lines of verse"],
       [CHAPTERS.length, "journal notes"],
       [ages.length ? Math.min.apply(null, ages) + "–" + Math.max.apply(null, ages) : "—",
-       "his age across it"],
-      [quiet + " / " + run, "months he wrote nothing"],
+       "my age across it"],
+      [quiet + " / " + run, "months I wrote nothing"],
       [18, "failed romances, one per woman"],
       [1, "powerlifting mentor lost"],
       [PAIRS.length, "poems answering another poem"],
@@ -422,6 +446,18 @@
       }).join("") + '<button type="button" data-y="top">top</button>';
 
     buildBook();
+
+    /* the cover in the hero: the same spiral, one plain dot per poem */
+    var cover = document.getElementById("pp-cover-dots");
+    if (cover) {
+      var csp = span();
+      cover.innerHTML = POEMS.map(function (q) {
+        var c = polar(q.date, csp[0], csp[1]);
+        return '<circle cx="' + c[0].toFixed(1) + '" cy="' + c[1].toFixed(1) + '" r="' +
+               (3 + Math.min(7, Math.sqrt(+q.lines || 1))).toFixed(1) + '" fill="' +
+               cvar(q.season) + '" fill-opacity=".85"/>';
+      }).join("");
+    }
 
     var dial = document.getElementById("poem-dial");
     dial.addEventListener("click", function (e) {
