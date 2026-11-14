@@ -1,0 +1,200 @@
+/* ─── PATRONAGE ─────────────────────────────────────────────────────────────
+   One small page: three addresses and a line of thanks. It stays quiet on
+   purpose — no banner, no button, no card. Loaded by patronage.html only. */
+
+/* The kicker sits grey here rather than gold, so nothing above the heading
+   asks for attention. */
+header.page-hero.patron-hero { padding: 2rem 0 1.5rem; }
+
+header.page-hero.patron-hero .kicker {
+  color: var(--ink-faint);
+  margin-bottom: 0.5rem;
+}
+
+header.page-hero.patron-hero h1 {
+  font-size: clamp(1.45rem, 4vw, 2rem);
+  margin-bottom: 0.45em;
+}
+
+header.page-hero.patron-hero .standfirst { font-size: 1rem; }
+
+.patron {
+  max-width: 600px;
+  padding: 1.5rem 0 2rem;
+}
+
+/* ─── THE LEDGER ──────────────────────────────────────────────────────────── */
+.coins {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.coin {
+  display: grid;
+  grid-template-columns: 4.4rem minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.15rem 0;
+  border-top: 1px solid var(--border-soft);
+}
+
+.coin-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+}
+
+.coin-name abbr { text-decoration: none; }
+
+.coin-ico {
+  width: 15px;
+  height: 15px;
+  flex: none;
+  fill: currentColor;
+}
+
+/* Each mark wears its network's own colour; the labels beside them stay gold.
+   Bitcoin's orange and Solana's purple come from the projects' brand kits.
+   Ethereum's own mark runs near-black, which vanishes on this page, so it
+   takes the blue-violet most wallets and explorers print it in. Solana's
+   gradient lives in patronage.html and arrives through an inline style; the
+   flat purple here covers a browser that fails to resolve it. */
+.coin-ico--btc { fill: #f7931a; }
+.coin-ico--eth { fill: #627eea; }
+.coin-ico--sol { fill: #9945ff; }
+
+.coin-addr {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+  /* one click selects the whole address, for anyone copying by hand */
+  user-select: all;
+  -webkit-user-select: all;
+}
+
+/* The copy control only does anything with script running, so the script
+   reveals it. Without script the address still selects in one click. */
+.coin-copy {
+  display: none;
+  min-width: 3.6rem;
+  min-height: 2.5rem;
+  padding: 0 0.25rem;
+  border: 0;
+  background: none;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  text-align: right;
+  cursor: pointer;
+}
+
+.has-copy .coin-copy { display: inline-block; }
+
+/* With script running the whole row copies, so it reads as one control and
+   the address gives up its select-all. */
+.has-copy .coin { cursor: pointer; }
+
+.has-copy .coin-addr {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.has-copy .coin:hover .coin-copy { color: var(--gold-bright); }
+
+.coin-copy:hover,
+.coin-copy.did { color: var(--gold-bright); }
+
+.coin-copy:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ─── THE BLESSING ──────────────────────────────────────────────────────────
+   One line of thanks, drawn from data/blessings.json. The min-height holds
+   two lines so the footer does not jump when a longer one arrives. The line
+   is a button: pressing it deals another. */
+.blessing {
+  display: block;
+  width: 100%;
+  margin: 1.25rem auto 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  max-width: 30rem;
+  min-height: 3.3em;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--ink-dim);
+  text-align: center;
+  transform-origin: 50% 55%;
+  will-change: filter, transform, opacity;
+}
+
+.blessing:hover { color: var(--ink); }
+
+.blessing:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: 4px;
+}
+
+.sand-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+@media (max-width: 480px) {
+  .coin {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.15rem 0.75rem;
+  }
+  /* The label and "copy" share the first line; the address takes the whole
+     second one, sized so its 44 characters hold a single line down to 320px. */
+  .coin { padding: 0.2rem 0 0.7rem; }
+  .coin-name { grid-column: 1; grid-row: 1; }
+  .coin-copy { grid-column: 2; grid-row: 1; min-height: 2.4rem; }
+  .coin-addr {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    font-size: min(0.78rem, 3.25vw);
+  }
+}
+
+/* ─── WIDE SCREENS ──────────────────────────────────────────────────────────
+   On a full desktop window the phone-first sizes read as fine print. Type,
+   marks and the ledger's width step up together here; the row padding does
+   not, so the ledger keeps its tightness. */
+@media (min-width: 900px) {
+  header.page-hero.patron-hero .kicker { font-size: 0.8rem; }
+  header.page-hero.patron-hero h1 { font-size: 2.6rem; }
+  header.page-hero.patron-hero .standfirst { font-size: 1.2rem; }
+
+  .patron { max-width: 800px; }
+
+  .coin {
+    grid-template-columns: 6rem minmax(0, 1fr) auto;
+    gap: 1rem;
+  }
+  .coin-name { font-size: 0.9rem; gap: 0.65rem; }
+  .coin-ico { width: 21px; height: 21px; }
+  .coin-addr { font-size: 1.05rem; }
+  .coin-copy { font-size: 0.85rem; min-width: 4.2rem; }
+
+  .blessing {
+    max-width: 40rem;
+    font-size: 1.4rem;
+    margin-top: 1.6rem;
+  }
+}
