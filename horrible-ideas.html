@@ -4,32 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Horrible Ideas — Da'at Data</title>
-<meta name="description" content="Gags, inversions and one-liners that obey the same constraint as the scripts and none of the manners.">
+<meta name="description" content="Real quotes from the videos, the shorts and the notebook. Reuse them freely; pin the blame on Da'at Data.">
 
 <link rel="icon" type="image/png" href="assets/favicon-64.png">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/horrible.css">
 <link rel="canonical" href="https://daatdata.net/horrible-ideas">
 <meta property="og:title" content="Horrible Ideas — Da'at Data">
-<meta property="og:description" content="Gags, inversions and one-liners that obey the same constraint as the scripts and none of the manners.">
+<meta property="og:description" content="Real quotes from the videos, the shorts and the notebook. Reuse them freely; pin the blame on Da'at Data.">
 <meta property="og:image" content="https://daatdata.net/assets/social-card.jpg">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://daatdata.net/horrible-ideas">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Horrible Ideas — Da'at Data">
-<meta name="twitter:description" content="Gags, inversions and one-liners that obey the same constraint as the scripts and none of the manners.">
+<meta name="twitter:description" content="Real quotes from the videos, the shorts and the notebook. Reuse them freely; pin the blame on Da'at Data.">
 <meta name="twitter:image" content="https://daatdata.net/assets/social-card.jpg">
 
-<!-- HORRIBLE IDEAS (overhaul workstream 3, 2026-10-31).
-     The section name came from the owner and stays settled. Report C ranks
-     voice-infused chrome third among the patterns worth taking, so the voice
-     runs through the heading and the empty state too, not only the lines.
-
-     The owner writes these. data/jokes.json ships with his one line and does
-     not get padded — Report C's thin-state rule holds that a short list shown
-     with confidence reads as a deliberate selection, while the same list
-     surrounded by filler reads as an incomplete build. -->
+<!-- HORRIBLE IDEAS. Every line in data/jokes.json traces to the owner's own
+     words. The list renders from that file; nothing on this page gets
+     generated to fill it out. -->
 </head>
-<body>
+<body class="hi">
 
 <div class="stars" aria-hidden="true"></div>
 
@@ -192,19 +187,58 @@
 <!-- MASTHEAD:END -->
 
 <header class="page-hero">
-  <div class="wrap">
-    <p class="kicker">Against better judgement</p>
+  <div class="wrap wide">
+    <p class="kicker">Real quotes. All mine. Take one.</p>
     <h1>Horrible <em>Ideas.</em> <svg class="sat sat-lg sat-wobble" role="img" aria-label="A small ringed planet wearing devil horns"><use href="assets/planet-sprite.svg#sat-devil"/></svg></h1>
     <p class="standfirst">
-      The constraint the scripts run under, minus the manners.
+      I said all of these, on camera or in my notebook. Use any of them; just
+      say who said it. I keep the list because I still need an epitaph.
     </p>
   </div>
 </header>
 
-<div class="wrap">
+<div class="wrap wide">
 
   <section class="first">
-    <div class="gags"></div>
+    <div class="hi-grid">
+      <ol class="q-list"></ol>
+
+      <aside class="bay" aria-label="Shirt and card preview">
+        <div class="bay-tabs">
+          <button type="button" class="hi-btn" data-view="card" aria-pressed="true">Card</button>
+          <button type="button" class="hi-btn" data-view="shirt" aria-pressed="false">Shirt</button>
+        </div>
+
+        <div class="shirt-view" hidden>
+          <div class="stage" title="Drag to spin, tap to flip">
+            <div class="shirt">
+              <div class="side front"></div>
+              <div class="side rear"></div>
+            </div>
+          </div>
+          <div class="bay-foot">
+            <span>Drag to spin</span>
+            <span>
+              <button type="button" class="swatch" data-cloth="black" aria-pressed="true" aria-label="Black shirt" style="background:#15130f"></button>
+              <button type="button" class="swatch" data-cloth="bone" aria-pressed="false" aria-label="Bone shirt" style="background:#e9dfc8"></button>
+              <button type="button" class="hi-btn flip-btn">Flip</button>
+            </span>
+          </div>
+        </div>
+
+        <div class="card-view">
+          <canvas width="1200" height="675" role="img" aria-label="The chosen quote as a shareable card"></canvas>
+          <div class="bay-foot">
+            <span>1200 × 675</span>
+            <span>
+              <button type="button" class="hi-btn copy-btn">Copy quote</button>
+              <button type="button" class="hi-btn save-btn">Download PNG</button>
+            </span>
+          </div>
+        </div>
+        <p class="bay-hint">Pick any line to see it here.</p>
+      </aside>
+    </div>
 
     <noscript>
       <div class="note">
@@ -213,6 +247,9 @@
       </div>
     </noscript>
   </section>
+
+</div>
+<div class="wrap">
 
   <section>
     <div class="section-heading">
@@ -238,7 +275,7 @@
 
 </div>
 
-<script src="assets/sections.js"></script>
+<script src="assets/horrible.js"></script>
 <script src="assets/chime.js"></script>
 </body>
 </html>
